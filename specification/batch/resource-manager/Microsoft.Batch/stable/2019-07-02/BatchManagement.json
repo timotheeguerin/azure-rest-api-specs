@@ -342,7 +342,7 @@
         "tags": [
           "BatchAccount"
         ],
-        "operationId": "BatchAccount_SynchronizeAutoStorageKeys",
+        "operationId": "BatchAccount_SynchronizeAutoStorageKeys2",
         "x-ms-examples": {
           "BatchAccountSynchronizeAutoStorageKeys": {
             "$ref": "./examples/BatchAccountSynchronizeAutoStorageKeys.json"
