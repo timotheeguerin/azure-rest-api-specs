@@ -7,12 +7,6 @@ on:
       - synchronize
       - reopened
       - edited
-  workflow_dispatch:
-    inputs:
-      spec-entrypoint:
-        description: "TypeSpec entrypoint path relative to repo root"
-        required: false
-        default: "specification/widget/resource-manager/Microsoft.Widget/Widget/main.tsp"
 
 permissions:
   contents: read
@@ -29,4 +23,4 @@ jobs:
         uses: ./.github/actions/setup-node-install-deps
 
       - name: Report TypeSpec suppressions
-        run: node .github/workflows/src/typespec-suppressions-warning.ts 'specification/widget/resource-manager/Microsoft.Widget/Widget/main.tsp'
+        run: node .github/workflows/src/typespec-suppressions-warning.ts 'specification/advisor/resource-manager/Microsoft.Advisor/Advisor/main.tsp'

@@ -11,7 +11,7 @@ import path from "path";
 const repoRoot = process.env.GITHUB_WORKSPACE ?? process.cwd();
 const defaultEntrypoint = path.join(
   repoRoot,
-  "specification/widget/resource-manager/Microsoft.Widget/Widget/main.tsp",
+  "specification/advisor/resource-manager/Microsoft.Advisor/Advisor/main.tsp",
 );
 const cliEntrypoint = process.argv[2];
 const entrypoint = cliEntrypoint ? path.resolve(repoRoot, cliEntrypoint) : defaultEntrypoint;
