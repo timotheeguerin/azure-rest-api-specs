@@ -6,6 +6,7 @@ import {
   type Node,
   type TypeSpecScriptNode,
 } from "@typespec/compiler/ast";
+import { writeFile } from "fs/promises";
 import path from "path";
 
 const repoRoot = process.env.GITHUB_WORKSPACE ?? process.cwd();
@@ -20,6 +21,12 @@ const program = await compile(NodeHost, entrypoint, { noEmit: true });
 const sourceFiles = [...program.sourceFiles.values()];
 
 let warningCount = 0;
+const suppressions = [] as {
+  file: string;
+  line: number;
+  column: number;
+  snippet: string;
+}[];
 
 for (const sourceFile of sourceFiles) {
   const context = getLocationContext(program, sourceFile);
@@ -38,18 +45,24 @@ for (const sourceFile of sourceFiles) {
     const snippet = extractSingleLine(file.text, node.pos ?? 0, node.end ?? 0);
     const lineAndChar = file.getLineAndCharacterOfPosition(node.pos ?? 0);
     const message = `TypeSpec #suppress directive found: ${snippet}`;
+    const line = lineAndChar.line + 1;
+    const column = lineAndChar.character + 1;
 
     console.log(
-      `::warning file=${relativePath},line=${lineAndChar.line + 1},col=${lineAndChar.character + 1}::${escapeAnnotation(
-        message,
-      )}`,
+      `::warning file=${relativePath},line=${line},col=${column}::${escapeAnnotation(message)}`,
     );
 
+    suppressions.push({ file: relativePath, line, column, snippet });
     warningCount += 1;
   });
 }
 
 console.log(`Found ${warningCount} TypeSpec #suppress directive(s).`);
+
+const summaryPath = process.env.GITHUB_STEP_SUMMARY;
+if (summaryPath) {
+  await writeFile(summaryPath, buildSummary(suppressions, warningCount), "utf-8");
+}
 
 function isSuppressDirective(node: Node): node is DirectiveExpressionNode {
   return (
@@ -71,4 +84,30 @@ function walkNode(node: TypeSpecScriptNode | Node, visit: (node: Node) => void):
   visitChildren(node, (child) => {
     walkNode(child, visit);
   });
+}
+
+function buildSummary(
+  items: { file: string; line: number; column: number; snippet: string }[],
+  total: number,
+): string {
+  if (total === 0) {
+    return "No TypeSpec #suppress directives found.\n";
+  }
+
+  const header = "## TypeSpec suppressions\n\n";
+  const countLine = `Found ${total} #suppress directive(s).\n\n`;
+  const tableHeader = "| File | Line | Col | Snippet |\n| --- | --- | --- | --- |\n";
+  const rows = items
+    .map(
+      (item) =>
+        `| ${escapeTable(item.file)} | ${item.line} | ${item.column} | ${escapeTable(
+          item.snippet,
+        )} |`,
+    )
+    .join("\n");
+  return `${header}${countLine}${tableHeader}${rows}\n`;
+}
+
+function escapeTable(value: string): string {
+  return value.replace(/\|/g, "\\|").replace(/\r?\n/g, " ");
 }
