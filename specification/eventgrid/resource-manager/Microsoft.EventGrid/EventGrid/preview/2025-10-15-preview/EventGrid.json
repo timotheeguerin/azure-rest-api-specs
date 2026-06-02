@@ -177,37 +177,37 @@
         },
         "x-ms-examples": {
           "EventSubscriptions_GetForCustomTopic": {
-            "$ref": "./examples/EventSubscriptions_GetForCustomTopic.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_GetForCustomTopic.json"
           },
           "EventSubscriptions_GetForCustomTopic_AzureFunctionDestination": {
-            "$ref": "./examples/EventSubscriptions_GetForCustomTopic_AzureFunctionDestination.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_GetForCustomTopic_AzureFunctionDestination.json"
           },
           "EventSubscriptions_GetForCustomTopic_EventHubDestination": {
-            "$ref": "./examples/EventSubscriptions_GetForCustomTopic_EventHubDestination.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_GetForCustomTopic_EventHubDestination.json"
           },
           "EventSubscriptions_GetForCustomTopic_HybridConnectionDestination": {
-            "$ref": "./examples/EventSubscriptions_GetForCustomTopic_HybridConnectionDestination.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_GetForCustomTopic_HybridConnectionDestination.json"
           },
           "EventSubscriptions_GetForCustomTopic_ServiceBusQueueDestination": {
-            "$ref": "./examples/EventSubscriptions_GetForCustomTopic_ServiceBusQueueDestination.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_GetForCustomTopic_ServiceBusQueueDestination.json"
           },
           "EventSubscriptions_GetForCustomTopic_ServiceBusTopicDestination": {
-            "$ref": "./examples/EventSubscriptions_GetForCustomTopic_ServiceBusTopicDestination.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_GetForCustomTopic_ServiceBusTopicDestination.json"
           },
           "EventSubscriptions_GetForCustomTopic_StorageQueueDestination": {
-            "$ref": "./examples/EventSubscriptions_GetForCustomTopic_StorageQueueDestination.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_GetForCustomTopic_StorageQueueDestination.json"
           },
           "EventSubscriptions_GetForCustomTopic_WebhookDestination": {
-            "$ref": "./examples/EventSubscriptions_GetForCustomTopic_WebhookDestination.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_GetForCustomTopic_WebhookDestination.json"
           },
           "EventSubscriptions_GetForResource": {
-            "$ref": "./examples/EventSubscriptions_GetForResource.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_GetForResource.json"
           },
           "EventSubscriptions_GetForResourceGroup": {
-            "$ref": "./examples/EventSubscriptions_GetForResourceGroup.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_GetForResourceGroup.json"
           },
           "EventSubscriptions_GetForSubscription": {
-            "$ref": "./examples/EventSubscriptions_GetForSubscription.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_GetForSubscription.json"
           }
         }
       },
@@ -273,37 +273,37 @@
         },
         "x-ms-examples": {
           "EventSubscriptions_CreateOrUpdateForCustomTopic": {
-            "$ref": "./examples/EventSubscriptions_CreateOrUpdateForCustomTopic.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_CreateOrUpdateForCustomTopic.json"
           },
           "EventSubscriptions_CreateOrUpdateForCustomTopic_AzureFunctionDestination": {
-            "$ref": "./examples/EventSubscriptions_CreateOrUpdateForCustomTopic_AzureFunctionDestination.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_CreateOrUpdateForCustomTopic_AzureFunctionDestination.json"
           },
           "EventSubscriptions_CreateOrUpdateForCustomTopic_EventHubDestination": {
-            "$ref": "./examples/EventSubscriptions_CreateOrUpdateForCustomTopic_EventHubDestination.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_CreateOrUpdateForCustomTopic_EventHubDestination.json"
           },
           "EventSubscriptions_CreateOrUpdateForCustomTopic_HybridConnectionDestination": {
-            "$ref": "./examples/EventSubscriptions_CreateOrUpdateForCustomTopic_HybridConnectionDestination.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_CreateOrUpdateForCustomTopic_HybridConnectionDestination.json"
           },
           "EventSubscriptions_CreateOrUpdateForCustomTopic_ServiceBusQueueDestination": {
-            "$ref": "./examples/EventSubscriptions_CreateOrUpdateForCustomTopic_ServiceBusQueueDestination.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_CreateOrUpdateForCustomTopic_ServiceBusQueueDestination.json"
           },
           "EventSubscriptions_CreateOrUpdateForCustomTopic_ServiceBusTopicDestination": {
-            "$ref": "./examples/EventSubscriptions_CreateOrUpdateForCustomTopic_ServiceBusTopicDestination.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_CreateOrUpdateForCustomTopic_ServiceBusTopicDestination.json"
           },
           "EventSubscriptions_CreateOrUpdateForCustomTopic_StorageQueueDestination": {
-            "$ref": "./examples/EventSubscriptions_CreateOrUpdateForCustomTopic_StorageQueueDestination.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_CreateOrUpdateForCustomTopic_StorageQueueDestination.json"
           },
           "EventSubscriptions_CreateOrUpdateForCustomTopic_WebhookDestination": {
-            "$ref": "./examples/EventSubscriptions_CreateOrUpdateForCustomTopic_WebhookDestination.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_CreateOrUpdateForCustomTopic_WebhookDestination.json"
           },
           "EventSubscriptions_CreateOrUpdateForResource": {
-            "$ref": "./examples/EventSubscriptions_CreateOrUpdateForResource.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_CreateOrUpdateForResource.json"
           },
           "EventSubscriptions_CreateOrUpdateForResourceGroup": {
-            "$ref": "./examples/EventSubscriptions_CreateOrUpdateForResourceGroup.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_CreateOrUpdateForResourceGroup.json"
           },
           "EventSubscriptions_CreateOrUpdateForSubscription": {
-            "$ref": "./examples/EventSubscriptions_CreateOrUpdateForSubscription.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_CreateOrUpdateForSubscription.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -369,37 +369,37 @@
         },
         "x-ms-examples": {
           "EventSubscriptions_UpdateForCustomTopic": {
-            "$ref": "./examples/EventSubscriptions_UpdateForCustomTopic.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_UpdateForCustomTopic.json"
           },
           "EventSubscriptions_UpdateForCustomTopic_AzureFunctionDestination": {
-            "$ref": "./examples/EventSubscriptions_UpdateForCustomTopic_AzureFunctionDestination.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_UpdateForCustomTopic_AzureFunctionDestination.json"
           },
           "EventSubscriptions_UpdateForCustomTopic_EventHubDestination": {
-            "$ref": "./examples/EventSubscriptions_UpdateForCustomTopic_EventHubDestination.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_UpdateForCustomTopic_EventHubDestination.json"
           },
           "EventSubscriptions_UpdateForCustomTopic_HybridConnectionDestination": {
-            "$ref": "./examples/EventSubscriptions_UpdateForCustomTopic_HybridConnectionDestination.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_UpdateForCustomTopic_HybridConnectionDestination.json"
           },
           "EventSubscriptions_UpdateForCustomTopic_ServiceBusQueueDestination": {
-            "$ref": "./examples/EventSubscriptions_UpdateForCustomTopic_ServiceBusQueueDestination.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_UpdateForCustomTopic_ServiceBusQueueDestination.json"
           },
           "EventSubscriptions_UpdateForCustomTopic_ServiceBusTopicDestination": {
-            "$ref": "./examples/EventSubscriptions_UpdateForCustomTopic_ServiceBusTopicDestination.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_UpdateForCustomTopic_ServiceBusTopicDestination.json"
           },
           "EventSubscriptions_UpdateForCustomTopic_StorageQueueDestination": {
-            "$ref": "./examples/EventSubscriptions_UpdateForCustomTopic_StorageQueueDestination.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_UpdateForCustomTopic_StorageQueueDestination.json"
           },
           "EventSubscriptions_UpdateForCustomTopic_WebhookDestination": {
-            "$ref": "./examples/EventSubscriptions_UpdateForCustomTopic_WebhookDestination.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_UpdateForCustomTopic_WebhookDestination.json"
           },
           "EventSubscriptions_UpdateForResource": {
-            "$ref": "./examples/EventSubscriptions_UpdateForResource.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_UpdateForResource.json"
           },
           "EventSubscriptions_UpdateForResourceGroup": {
-            "$ref": "./examples/EventSubscriptions_UpdateForResourceGroup.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_UpdateForResourceGroup.json"
           },
           "EventSubscriptions_UpdateForSubscription": {
-            "$ref": "./examples/EventSubscriptions_UpdateForSubscription.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_UpdateForSubscription.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -464,16 +464,16 @@
         },
         "x-ms-examples": {
           "EventSubscriptions_DeleteForCustomTopic": {
-            "$ref": "./examples/EventSubscriptions_DeleteForCustomTopic.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_DeleteForCustomTopic.json"
           },
           "EventSubscriptions_DeleteForResource": {
-            "$ref": "./examples/EventSubscriptions_DeleteForResource.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_DeleteForResource.json"
           },
           "EventSubscriptions_DeleteForResourceGroup": {
-            "$ref": "./examples/EventSubscriptions_DeleteForResourceGroup.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_DeleteForResourceGroup.json"
           },
           "EventSubscriptions_DeleteForSubscription": {
-            "$ref": "./examples/EventSubscriptions_DeleteForSubscription.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_DeleteForSubscription.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -525,7 +525,7 @@
         },
         "x-ms-examples": {
           "EventSubscriptions_GetDeliveryAttributes": {
-            "$ref": "./examples/EventSubscriptions_GetDeliveryAttributes.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_GetDeliveryAttributes.json"
           }
         }
       }
@@ -573,16 +573,16 @@
         },
         "x-ms-examples": {
           "EventSubscriptions_GetFullUrlForCustomTopic": {
-            "$ref": "./examples/EventSubscriptions_GetFullUrlForCustomTopic.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_GetFullUrlForCustomTopic.json"
           },
           "EventSubscriptions_GetFullUrlForResource": {
-            "$ref": "./examples/EventSubscriptions_GetFullUrlForResource.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_GetFullUrlForResource.json"
           },
           "EventSubscriptions_GetFullUrlForResourceGroup": {
-            "$ref": "./examples/EventSubscriptions_GetFullUrlForResourceGroup.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_GetFullUrlForResourceGroup.json"
           },
           "EventSubscriptions_GetFullUrlForSubscription": {
-            "$ref": "./examples/EventSubscriptions_GetFullUrlForSubscription.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_GetFullUrlForSubscription.json"
           }
         }
       }
@@ -624,7 +624,7 @@
         },
         "x-ms-examples": {
           "ExtensionTopics_Get": {
-            "$ref": "./examples/ExtensionTopics_Get.json"
+            "$ref": "../2025-07-15-preview/examples/ExtensionTopics_Get.json"
           }
         }
       }
@@ -658,7 +658,7 @@
         },
         "x-ms-examples": {
           "Operations_List": {
-            "$ref": "./examples/Operations_List.json"
+            "$ref": "../2025-07-15-preview/examples/Operations_List.json"
           }
         },
         "x-ms-pageable": {
@@ -695,7 +695,7 @@
         },
         "x-ms-examples": {
           "TopicTypes_List": {
-            "$ref": "./examples/TopicTypes_List.json"
+            "$ref": "../2025-07-15-preview/examples/TopicTypes_List.json"
           }
         },
         "x-ms-pageable": {
@@ -739,7 +739,7 @@
         },
         "x-ms-examples": {
           "TopicTypes_Get": {
-            "$ref": "./examples/TopicTypes_Get.json"
+            "$ref": "../2025-07-15-preview/examples/TopicTypes_Get.json"
           }
         }
       }
@@ -780,7 +780,7 @@
         },
         "x-ms-examples": {
           "TopicTypes_ListEventTypes": {
-            "$ref": "./examples/TopicTypes_ListEventTypes.json"
+            "$ref": "../2025-07-15-preview/examples/TopicTypes_ListEventTypes.json"
           }
         },
         "x-ms-pageable": {
@@ -832,7 +832,7 @@
         },
         "x-ms-examples": {
           "VerifiedPartners_List": {
-            "$ref": "./examples/VerifiedPartners_List.json"
+            "$ref": "../2025-07-15-preview/examples/VerifiedPartners_List.json"
           }
         },
         "x-ms-pageable": {
@@ -876,7 +876,7 @@
         },
         "x-ms-examples": {
           "VerifiedPartners_Get": {
-            "$ref": "./examples/VerifiedPartners_Get.json"
+            "$ref": "../2025-07-15-preview/examples/VerifiedPartners_Get.json"
           }
         }
       }
@@ -928,7 +928,7 @@
         },
         "x-ms-examples": {
           "Domains_ListBySubscription": {
-            "$ref": "./examples/Domains_ListBySubscription.json"
+            "$ref": "../2025-07-15-preview/examples/Domains_ListBySubscription.json"
           }
         },
         "x-ms-pageable": {
@@ -983,7 +983,7 @@
         },
         "x-ms-examples": {
           "EventSubscriptions_ListGlobalBySubscription": {
-            "$ref": "./examples/EventSubscriptions_ListGlobalBySubscription.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_ListGlobalBySubscription.json"
           }
         },
         "x-ms-pageable": {
@@ -1038,7 +1038,7 @@
         },
         "x-ms-examples": {
           "EventSubscriptions_ListRegionalBySubscription": {
-            "$ref": "./examples/EventSubscriptions_ListRegionalBySubscription.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_ListRegionalBySubscription.json"
           }
         },
         "x-ms-pageable": {
@@ -1100,7 +1100,7 @@
         },
         "x-ms-examples": {
           "EventSubscriptions_ListRegionalBySubscriptionForTopicType": {
-            "$ref": "./examples/EventSubscriptions_ListRegionalBySubscriptionForTopicType.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_ListRegionalBySubscriptionForTopicType.json"
           }
         },
         "x-ms-pageable": {
@@ -1155,7 +1155,7 @@
         },
         "x-ms-examples": {
           "Namespaces_ListBySubscription": {
-            "$ref": "./examples/Namespaces_ListBySubscription.json"
+            "$ref": "../2025-07-15-preview/examples/Namespaces_ListBySubscription.json"
           }
         },
         "x-ms-pageable": {
@@ -1210,7 +1210,7 @@
         },
         "x-ms-examples": {
           "PartnerConfigurations_ListBySubscription": {
-            "$ref": "./examples/PartnerConfigurations_ListBySubscription.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerConfigurations_ListBySubscription.json"
           }
         },
         "x-ms-pageable": {
@@ -1265,7 +1265,7 @@
         },
         "x-ms-examples": {
           "PartnerDestinations_ListBySubscription": {
-            "$ref": "./examples/PartnerDestinations_ListBySubscription.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerDestinations_ListBySubscription.json"
           }
         },
         "x-ms-pageable": {
@@ -1320,7 +1320,7 @@
         },
         "x-ms-examples": {
           "PartnerNamespaces_ListBySubscription": {
-            "$ref": "./examples/PartnerNamespaces_ListBySubscription.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerNamespaces_ListBySubscription.json"
           }
         },
         "x-ms-pageable": {
@@ -1375,7 +1375,7 @@
         },
         "x-ms-examples": {
           "PartnerRegistrations_ListBySubscription": {
-            "$ref": "./examples/PartnerRegistrations_ListBySubscription.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerRegistrations_ListBySubscription.json"
           }
         },
         "x-ms-pageable": {
@@ -1430,7 +1430,7 @@
         },
         "x-ms-examples": {
           "PartnerTopics_ListBySubscription": {
-            "$ref": "./examples/PartnerTopics_ListBySubscription.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerTopics_ListBySubscription.json"
           }
         },
         "x-ms-pageable": {
@@ -1485,7 +1485,7 @@
         },
         "x-ms-examples": {
           "SystemTopics_ListBySubscription": {
-            "$ref": "./examples/SystemTopics_ListBySubscription.json"
+            "$ref": "../2025-07-15-preview/examples/SystemTopics_ListBySubscription.json"
           }
         },
         "x-ms-pageable": {
@@ -1544,7 +1544,7 @@
         },
         "x-ms-examples": {
           "EventSubscriptions_ListGlobalBySubscriptionForTopicType": {
-            "$ref": "./examples/EventSubscriptions_ListGlobalBySubscriptionForTopicType.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_ListGlobalBySubscriptionForTopicType.json"
           }
         },
         "x-ms-pageable": {
@@ -1599,7 +1599,7 @@
         },
         "x-ms-examples": {
           "Topics_ListBySubscription": {
-            "$ref": "./examples/Topics_ListBySubscription.json"
+            "$ref": "../2025-07-15-preview/examples/Topics_ListBySubscription.json"
           }
         },
         "x-ms-pageable": {
@@ -1678,7 +1678,7 @@
         },
         "x-ms-examples": {
           "EventSubscriptions_ListByResource": {
-            "$ref": "./examples/EventSubscriptions_ListByResource.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_ListByResource.json"
           }
         },
         "x-ms-pageable": {
@@ -1739,7 +1739,7 @@
         },
         "x-ms-examples": {
           "Topics_ListEventTypes": {
-            "$ref": "./examples/Topics_ListEventTypes.json"
+            "$ref": "../2025-07-15-preview/examples/Topics_ListEventTypes.json"
           }
         },
         "x-ms-pageable": {
@@ -1819,7 +1819,7 @@
         },
         "x-ms-examples": {
           "NetworkSecurityPerimeterConfigurations_List": {
-            "$ref": "./examples/NetworkSecurityPerimeterConfigurations_List.json"
+            "$ref": "../2025-07-15-preview/examples/NetworkSecurityPerimeterConfigurations_List.json"
           }
         },
         "x-ms-pageable": {
@@ -1913,7 +1913,7 @@
         },
         "x-ms-examples": {
           "NetworkSecurityPerimeterConfigurations_Get": {
-            "$ref": "./examples/NetworkSecurityPerimeterConfigurations_Get.json"
+            "$ref": "../2025-07-15-preview/examples/NetworkSecurityPerimeterConfigurations_Get.json"
           }
         }
       }
@@ -2018,7 +2018,7 @@
         },
         "x-ms-examples": {
           "NetworkSecurityPerimeterConfigurations_Reconcile": {
-            "$ref": "./examples/NetworkSecurityPerimeterConfigurations_Reconcile.json"
+            "$ref": "../2025-07-15-preview/examples/NetworkSecurityPerimeterConfigurations_Reconcile.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -2124,7 +2124,7 @@
         },
         "x-ms-examples": {
           "PrivateEndpointConnections_ListByResource": {
-            "$ref": "./examples/PrivateEndpointConnections_ListByResource.json"
+            "$ref": "../2025-07-15-preview/examples/PrivateEndpointConnections_ListByResource.json"
           }
         },
         "x-ms-pageable": {
@@ -2220,7 +2220,7 @@
         },
         "x-ms-examples": {
           "PrivateEndpointConnections_Get": {
-            "$ref": "./examples/PrivateEndpointConnections_Get.json"
+            "$ref": "../2025-07-15-preview/examples/PrivateEndpointConnections_Get.json"
           }
         }
       },
@@ -2337,7 +2337,7 @@
         },
         "x-ms-examples": {
           "PrivateEndpointConnections_Update": {
-            "$ref": "./examples/PrivateEndpointConnections_Update.json"
+            "$ref": "../2025-07-15-preview/examples/PrivateEndpointConnections_Update.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -2444,7 +2444,7 @@
         },
         "x-ms-examples": {
           "PrivateEndpointConnections_Delete": {
-            "$ref": "./examples/PrivateEndpointConnections_Delete.json"
+            "$ref": "../2025-07-15-preview/examples/PrivateEndpointConnections_Delete.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -2517,7 +2517,7 @@
         },
         "x-ms-examples": {
           "PrivateLinkResources_ListByResource": {
-            "$ref": "./examples/PrivateLinkResources_ListByResource.json"
+            "$ref": "../2025-07-15-preview/examples/PrivateLinkResources_ListByResource.json"
           }
         },
         "x-ms-pageable": {
@@ -2581,7 +2581,7 @@
         },
         "x-ms-examples": {
           "PrivateLinkResources_Get": {
-            "$ref": "./examples/PrivateLinkResources_Get.json"
+            "$ref": "../2025-07-15-preview/examples/PrivateLinkResources_Get.json"
           }
         }
       }
@@ -2636,7 +2636,7 @@
         },
         "x-ms-examples": {
           "Domains_ListByResourceGroup": {
-            "$ref": "./examples/Domains_ListByResourceGroup.json"
+            "$ref": "../2025-07-15-preview/examples/Domains_ListByResourceGroup.json"
           }
         },
         "x-ms-pageable": {
@@ -2686,7 +2686,7 @@
         },
         "x-ms-examples": {
           "Domains_Get": {
-            "$ref": "./examples/Domains_Get.json"
+            "$ref": "../2025-07-15-preview/examples/Domains_Get.json"
           }
         }
       },
@@ -2751,7 +2751,7 @@
         },
         "x-ms-examples": {
           "Domains_CreateOrUpdate": {
-            "$ref": "./examples/Domains_CreateOrUpdate.json"
+            "$ref": "../2025-07-15-preview/examples/Domains_CreateOrUpdate.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -2824,7 +2824,7 @@
         },
         "x-ms-examples": {
           "Domains_Update": {
-            "$ref": "./examples/Domains_Update.json"
+            "$ref": "../2025-07-15-preview/examples/Domains_Update.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -2888,7 +2888,7 @@
         },
         "x-ms-examples": {
           "Domains_Delete": {
-            "$ref": "./examples/Domains_Delete.json"
+            "$ref": "../2025-07-15-preview/examples/Domains_Delete.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -2954,7 +2954,7 @@
         },
         "x-ms-examples": {
           "DomainEventSubscriptions_List": {
-            "$ref": "./examples/DomainEventSubscriptions_List.json"
+            "$ref": "../2025-07-15-preview/examples/DomainEventSubscriptions_List.json"
           }
         },
         "x-ms-pageable": {
@@ -3011,7 +3011,7 @@
         },
         "x-ms-examples": {
           "DomainEventSubscriptions_Get": {
-            "$ref": "./examples/DomainEventSubscriptions_Get.json"
+            "$ref": "../2025-07-15-preview/examples/DomainEventSubscriptions_Get.json"
           }
         }
       },
@@ -3089,7 +3089,7 @@
         },
         "x-ms-examples": {
           "DomainEventSubscriptions_CreateOrUpdate": {
-            "$ref": "./examples/DomainEventSubscriptions_CreateOrUpdate.json"
+            "$ref": "../2025-07-15-preview/examples/DomainEventSubscriptions_CreateOrUpdate.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -3161,7 +3161,7 @@
         },
         "x-ms-examples": {
           "DomainEventSubscriptions_Update": {
-            "$ref": "./examples/DomainEventSubscriptions_Update.json"
+            "$ref": "../2025-07-15-preview/examples/DomainEventSubscriptions_Update.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -3232,7 +3232,7 @@
         },
         "x-ms-examples": {
           "DomainEventSubscriptions_Delete": {
-            "$ref": "./examples/DomainEventSubscriptions_Delete.json"
+            "$ref": "../2025-07-15-preview/examples/DomainEventSubscriptions_Delete.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -3290,7 +3290,7 @@
         },
         "x-ms-examples": {
           "DomainEventSubscriptions_GetDeliveryAttributes": {
-            "$ref": "./examples/DomainEventSubscriptions_GetDeliveryAttributes.json"
+            "$ref": "../2025-07-15-preview/examples/DomainEventSubscriptions_GetDeliveryAttributes.json"
           }
         }
       }
@@ -3344,7 +3344,7 @@
         },
         "x-ms-examples": {
           "DomainEventSubscriptions_GetFullUrl": {
-            "$ref": "./examples/DomainEventSubscriptions_GetFullUrl.json"
+            "$ref": "../2025-07-15-preview/examples/DomainEventSubscriptions_GetFullUrl.json"
           }
         }
       }
@@ -3391,7 +3391,7 @@
         },
         "x-ms-examples": {
           "Domains_ListSharedAccessKeys": {
-            "$ref": "./examples/Domains_ListSharedAccessKeys.json"
+            "$ref": "../2025-07-15-preview/examples/Domains_ListSharedAccessKeys.json"
           }
         }
       }
@@ -3447,7 +3447,7 @@
         },
         "x-ms-examples": {
           "Domains_RegenerateKey": {
-            "$ref": "./examples/Domains_RegenerateKey.json"
+            "$ref": "../2025-07-15-preview/examples/Domains_RegenerateKey.json"
           }
         }
       }
@@ -3509,7 +3509,7 @@
         },
         "x-ms-examples": {
           "DomainTopics_ListByDomain": {
-            "$ref": "./examples/DomainTopics_ListByDomain.json"
+            "$ref": "../2025-07-15-preview/examples/DomainTopics_ListByDomain.json"
           }
         },
         "x-ms-pageable": {
@@ -3566,7 +3566,7 @@
         },
         "x-ms-examples": {
           "DomainTopics_Get": {
-            "$ref": "./examples/DomainTopics_Get.json"
+            "$ref": "../2025-07-15-preview/examples/DomainTopics_Get.json"
           }
         }
       },
@@ -3629,7 +3629,7 @@
         },
         "x-ms-examples": {
           "DomainTopics_CreateOrUpdate": {
-            "$ref": "./examples/DomainTopics_CreateOrUpdate.json"
+            "$ref": "../2025-07-15-preview/examples/DomainTopics_CreateOrUpdate.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -3700,7 +3700,7 @@
         },
         "x-ms-examples": {
           "DomainTopics_Delete": {
-            "$ref": "./examples/DomainTopics_Delete.json"
+            "$ref": "../2025-07-15-preview/examples/DomainTopics_Delete.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -3773,7 +3773,7 @@
         },
         "x-ms-examples": {
           "DomainTopicEventSubscriptions_List": {
-            "$ref": "./examples/DomainTopicEventSubscriptions_List.json"
+            "$ref": "../2025-07-15-preview/examples/DomainTopicEventSubscriptions_List.json"
           }
         },
         "x-ms-pageable": {
@@ -3837,7 +3837,7 @@
         },
         "x-ms-examples": {
           "DomainTopicEventSubscriptions_Get": {
-            "$ref": "./examples/DomainTopicEventSubscriptions_Get.json"
+            "$ref": "../2025-07-15-preview/examples/DomainTopicEventSubscriptions_Get.json"
           }
         }
       },
@@ -3922,7 +3922,7 @@
         },
         "x-ms-examples": {
           "DomainTopicEventSubscriptions_CreateOrUpdate": {
-            "$ref": "./examples/DomainTopicEventSubscriptions_CreateOrUpdate.json"
+            "$ref": "../2025-07-15-preview/examples/DomainTopicEventSubscriptions_CreateOrUpdate.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -4006,7 +4006,7 @@
         },
         "x-ms-examples": {
           "DomainTopicEventSubscriptions_Update": {
-            "$ref": "./examples/DomainTopicEventSubscriptions_Update.json"
+            "$ref": "../2025-07-15-preview/examples/DomainTopicEventSubscriptions_Update.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -4084,7 +4084,7 @@
         },
         "x-ms-examples": {
           "DomainTopicEventSubscriptions_Delete": {
-            "$ref": "./examples/DomainTopicEventSubscriptions_Delete.json"
+            "$ref": "../2025-07-15-preview/examples/DomainTopicEventSubscriptions_Delete.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -4149,7 +4149,7 @@
         },
         "x-ms-examples": {
           "DomainTopicEventSubscriptions_GetDeliveryAttributes": {
-            "$ref": "./examples/DomainTopicEventSubscriptions_GetDeliveryAttributes.json"
+            "$ref": "../2025-07-15-preview/examples/DomainTopicEventSubscriptions_GetDeliveryAttributes.json"
           }
         }
       }
@@ -4210,7 +4210,7 @@
         },
         "x-ms-examples": {
           "DomainTopicEventSubscriptions_GetFullUrl": {
-            "$ref": "./examples/DomainTopicEventSubscriptions_GetFullUrl.json"
+            "$ref": "../2025-07-15-preview/examples/DomainTopicEventSubscriptions_GetFullUrl.json"
           }
         }
       }
@@ -4279,7 +4279,7 @@
         },
         "x-ms-examples": {
           "EventSubscriptions_ListByDomainTopic": {
-            "$ref": "./examples/EventSubscriptions_ListByDomainTopic.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_ListByDomainTopic.json"
           }
         },
         "x-ms-pageable": {
@@ -4337,7 +4337,7 @@
         },
         "x-ms-examples": {
           "EventSubscriptions_ListGlobalByResourceGroup": {
-            "$ref": "./examples/EventSubscriptions_ListGlobalByResourceGroup.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_ListGlobalByResourceGroup.json"
           }
         },
         "x-ms-pageable": {
@@ -4395,7 +4395,7 @@
         },
         "x-ms-examples": {
           "EventSubscriptions_ListRegionalByResourceGroup": {
-            "$ref": "./examples/EventSubscriptions_ListRegionalByResourceGroup.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_ListRegionalByResourceGroup.json"
           }
         },
         "x-ms-pageable": {
@@ -4460,7 +4460,7 @@
         },
         "x-ms-examples": {
           "EventSubscriptions_ListRegionalByResourceGroupForTopicType": {
-            "$ref": "./examples/EventSubscriptions_ListRegionalByResourceGroupForTopicType.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_ListRegionalByResourceGroupForTopicType.json"
           }
         },
         "x-ms-pageable": {
@@ -4518,7 +4518,7 @@
         },
         "x-ms-examples": {
           "Namespaces_ListByResourceGroup": {
-            "$ref": "./examples/Namespaces_ListByResourceGroup.json"
+            "$ref": "../2025-07-15-preview/examples/Namespaces_ListByResourceGroup.json"
           }
         },
         "x-ms-pageable": {
@@ -4571,7 +4571,7 @@
         },
         "x-ms-examples": {
           "Namespaces_Get": {
-            "$ref": "./examples/Namespaces_Get.json"
+            "$ref": "../2025-07-15-preview/examples/Namespaces_Get.json"
           }
         }
       },
@@ -4645,7 +4645,7 @@
         },
         "x-ms-examples": {
           "Namespaces_CreateOrUpdate": {
-            "$ref": "./examples/Namespaces_CreateOrUpdate.json"
+            "$ref": "../2025-07-15-preview/examples/Namespaces_CreateOrUpdate.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -4729,7 +4729,7 @@
         },
         "x-ms-examples": {
           "Namespaces_Update": {
-            "$ref": "./examples/Namespaces_Update.json"
+            "$ref": "../2025-07-15-preview/examples/Namespaces_Update.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -4796,7 +4796,7 @@
         },
         "x-ms-examples": {
           "Namespaces_Delete": {
-            "$ref": "./examples/Namespaces_Delete.json"
+            "$ref": "../2025-07-15-preview/examples/Namespaces_Delete.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -4865,7 +4865,7 @@
         },
         "x-ms-examples": {
           "CaCertificates_ListByNamespace": {
-            "$ref": "./examples/CaCertificates_ListByNamespace.json"
+            "$ref": "../2025-07-15-preview/examples/CaCertificates_ListByNamespace.json"
           }
         },
         "x-ms-pageable": {
@@ -4928,7 +4928,7 @@
         },
         "x-ms-examples": {
           "CaCertificates_Get": {
-            "$ref": "./examples/CaCertificates_Get.json"
+            "$ref": "../2025-07-15-preview/examples/CaCertificates_Get.json"
           }
         }
       },
@@ -5012,7 +5012,7 @@
         },
         "x-ms-examples": {
           "CaCertificates_CreateOrUpdate": {
-            "$ref": "./examples/CaCertificates_CreateOrUpdate.json"
+            "$ref": "../2025-07-15-preview/examples/CaCertificates_CreateOrUpdate.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -5089,7 +5089,7 @@
         },
         "x-ms-examples": {
           "CaCertificates_Delete": {
-            "$ref": "./examples/CaCertificates_Delete.json"
+            "$ref": "../2025-07-15-preview/examples/CaCertificates_Delete.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -5158,7 +5158,7 @@
         },
         "x-ms-examples": {
           "ClientGroups_ListByNamespace": {
-            "$ref": "./examples/ClientGroups_ListByNamespace.json"
+            "$ref": "../2025-07-15-preview/examples/ClientGroups_ListByNamespace.json"
           }
         },
         "x-ms-pageable": {
@@ -5221,7 +5221,7 @@
         },
         "x-ms-examples": {
           "ClientGroups_Get": {
-            "$ref": "./examples/ClientGroups_Get.json"
+            "$ref": "../2025-07-15-preview/examples/ClientGroups_Get.json"
           }
         }
       },
@@ -5305,7 +5305,7 @@
         },
         "x-ms-examples": {
           "ClientGroups_CreateOrUpdate": {
-            "$ref": "./examples/ClientGroups_CreateOrUpdate.json"
+            "$ref": "../2025-07-15-preview/examples/ClientGroups_CreateOrUpdate.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -5382,7 +5382,7 @@
         },
         "x-ms-examples": {
           "ClientGroups_Delete": {
-            "$ref": "./examples/ClientGroups_Delete.json"
+            "$ref": "../2025-07-15-preview/examples/ClientGroups_Delete.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -5451,7 +5451,7 @@
         },
         "x-ms-examples": {
           "Clients_ListByNamespace": {
-            "$ref": "./examples/Clients_ListByNamespace.json"
+            "$ref": "../2025-07-15-preview/examples/Clients_ListByNamespace.json"
           }
         },
         "x-ms-pageable": {
@@ -5514,7 +5514,7 @@
         },
         "x-ms-examples": {
           "Clients_Get": {
-            "$ref": "./examples/Clients_Get.json"
+            "$ref": "../2025-07-15-preview/examples/Clients_Get.json"
           }
         }
       },
@@ -5598,7 +5598,7 @@
         },
         "x-ms-examples": {
           "Clients_CreateOrUpdate": {
-            "$ref": "./examples/Clients_CreateOrUpdate.json"
+            "$ref": "../2025-07-15-preview/examples/Clients_CreateOrUpdate.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -5675,7 +5675,7 @@
         },
         "x-ms-examples": {
           "Clients_Delete": {
-            "$ref": "./examples/Clients_Delete.json"
+            "$ref": "../2025-07-15-preview/examples/Clients_Delete.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -5729,7 +5729,7 @@
         },
         "x-ms-examples": {
           "Namespaces_ListSharedAccessKeys": {
-            "$ref": "./examples/Namespaces_ListSharedAccessKeys.json"
+            "$ref": "../2025-07-15-preview/examples/Namespaces_ListSharedAccessKeys.json"
           }
         }
       }
@@ -5794,7 +5794,7 @@
         },
         "x-ms-examples": {
           "PermissionBindings_ListByNamespace": {
-            "$ref": "./examples/PermissionBindings_ListByNamespace.json"
+            "$ref": "../2025-07-15-preview/examples/PermissionBindings_ListByNamespace.json"
           }
         },
         "x-ms-pageable": {
@@ -5857,7 +5857,7 @@
         },
         "x-ms-examples": {
           "PermissionBindings_Get": {
-            "$ref": "./examples/PermissionBindings_Get.json"
+            "$ref": "../2025-07-15-preview/examples/PermissionBindings_Get.json"
           }
         }
       },
@@ -5941,7 +5941,7 @@
         },
         "x-ms-examples": {
           "PermissionBindings_CreateOrUpdate": {
-            "$ref": "./examples/PermissionBindings_CreateOrUpdate.json"
+            "$ref": "../2025-07-15-preview/examples/PermissionBindings_CreateOrUpdate.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -6018,7 +6018,7 @@
         },
         "x-ms-examples": {
           "PermissionBindings_Delete": {
-            "$ref": "./examples/PermissionBindings_Delete.json"
+            "$ref": "../2025-07-15-preview/examples/PermissionBindings_Delete.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -6095,7 +6095,7 @@
         },
         "x-ms-examples": {
           "Namespaces_RegenerateKey": {
-            "$ref": "./examples/Namespaces_RegenerateKey.json"
+            "$ref": "../2025-07-15-preview/examples/Namespaces_RegenerateKey.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -6165,7 +6165,7 @@
         },
         "x-ms-examples": {
           "TopicSpaces_ListByNamespace": {
-            "$ref": "./examples/TopicSpaces_ListByNamespace.json"
+            "$ref": "../2025-07-15-preview/examples/TopicSpaces_ListByNamespace.json"
           }
         },
         "x-ms-pageable": {
@@ -6228,7 +6228,7 @@
         },
         "x-ms-examples": {
           "TopicSpaces_Get": {
-            "$ref": "./examples/TopicSpaces_Get.json"
+            "$ref": "../2025-07-15-preview/examples/TopicSpaces_Get.json"
           }
         }
       },
@@ -6312,7 +6312,7 @@
         },
         "x-ms-examples": {
           "TopicSpaces_CreateOrUpdate": {
-            "$ref": "./examples/TopicSpaces_CreateOrUpdate.json"
+            "$ref": "../2025-07-15-preview/examples/TopicSpaces_CreateOrUpdate.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -6389,7 +6389,7 @@
         },
         "x-ms-examples": {
           "TopicSpaces_Delete": {
-            "$ref": "./examples/TopicSpaces_Delete.json"
+            "$ref": "../2025-07-15-preview/examples/TopicSpaces_Delete.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -6458,7 +6458,7 @@
         },
         "x-ms-examples": {
           "NamespaceTopics_ListByNamespace": {
-            "$ref": "./examples/NamespaceTopics_ListByNamespace.json"
+            "$ref": "../2025-07-15-preview/examples/NamespaceTopics_ListByNamespace.json"
           }
         },
         "x-ms-pageable": {
@@ -6521,7 +6521,7 @@
         },
         "x-ms-examples": {
           "NamespaceTopics_Get": {
-            "$ref": "./examples/NamespaceTopics_Get.json"
+            "$ref": "../2025-07-15-preview/examples/NamespaceTopics_Get.json"
           }
         }
       },
@@ -6605,7 +6605,7 @@
         },
         "x-ms-examples": {
           "NamespaceTopics_CreateOrUpdate": {
-            "$ref": "./examples/NamespaceTopics_CreateOrUpdate.json"
+            "$ref": "../2025-07-15-preview/examples/NamespaceTopics_CreateOrUpdate.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -6699,7 +6699,7 @@
         },
         "x-ms-examples": {
           "NamespaceTopics_Update": {
-            "$ref": "./examples/NamespaceTopics_Update.json"
+            "$ref": "../2025-07-15-preview/examples/NamespaceTopics_Update.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -6776,7 +6776,7 @@
         },
         "x-ms-examples": {
           "NamespaceTopics_Delete": {
-            "$ref": "./examples/NamespaceTopics_Delete.json"
+            "$ref": "../2025-07-15-preview/examples/NamespaceTopics_Delete.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -6855,7 +6855,7 @@
         },
         "x-ms-examples": {
           "NamespaceTopicEventSubscriptions_ListByNamespaceTopic": {
-            "$ref": "./examples/NamespaceTopicEventSubscriptions_ListByNamespaceTopic.json"
+            "$ref": "../2025-07-15-preview/examples/NamespaceTopicEventSubscriptions_ListByNamespaceTopic.json"
           }
         },
         "x-ms-pageable": {
@@ -6928,7 +6928,7 @@
         },
         "x-ms-examples": {
           "NamespaceTopicEventSubscriptions_Get": {
-            "$ref": "./examples/NamespaceTopicEventSubscriptions_Get.json"
+            "$ref": "../2025-07-15-preview/examples/NamespaceTopicEventSubscriptions_Get.json"
           }
         }
       },
@@ -7022,7 +7022,7 @@
         },
         "x-ms-examples": {
           "NamespaceTopicEventSubscriptions_CreateOrUpdate": {
-            "$ref": "./examples/NamespaceTopicEventSubscriptions_CreateOrUpdate.json"
+            "$ref": "../2025-07-15-preview/examples/NamespaceTopicEventSubscriptions_CreateOrUpdate.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -7126,7 +7126,7 @@
         },
         "x-ms-examples": {
           "NamespaceTopicEventSubscriptions_Update": {
-            "$ref": "./examples/NamespaceTopicEventSubscriptions_Update.json"
+            "$ref": "../2025-07-15-preview/examples/NamespaceTopicEventSubscriptions_Update.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -7213,7 +7213,7 @@
         },
         "x-ms-examples": {
           "NamespaceTopicEventSubscriptions_Delete": {
-            "$ref": "./examples/NamespaceTopicEventSubscriptions_Delete.json"
+            "$ref": "../2025-07-15-preview/examples/NamespaceTopicEventSubscriptions_Delete.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -7287,7 +7287,7 @@
         },
         "x-ms-examples": {
           "NamespaceTopicEventSubscriptions_GetDeliveryAttributes": {
-            "$ref": "./examples/NamespaceTopicEventSubscriptions_GetDeliveryAttributes.json"
+            "$ref": "../2025-07-15-preview/examples/NamespaceTopicEventSubscriptions_GetDeliveryAttributes.json"
           }
         }
       }
@@ -7357,7 +7357,7 @@
         },
         "x-ms-examples": {
           "NamespaceTopicEventSubscriptions_GetFullUrl": {
-            "$ref": "./examples/NamespaceTopicEventSubscriptions_GetFullUrl.json"
+            "$ref": "../2025-07-15-preview/examples/NamespaceTopicEventSubscriptions_GetFullUrl.json"
           }
         }
       }
@@ -7417,7 +7417,7 @@
         },
         "x-ms-examples": {
           "NamespaceTopics_ListSharedAccessKeys": {
-            "$ref": "./examples/NamespaceTopics_ListSharedAccessKeys.json"
+            "$ref": "../2025-07-15-preview/examples/NamespaceTopics_ListSharedAccessKeys.json"
           }
         }
       }
@@ -7500,7 +7500,7 @@
         },
         "x-ms-examples": {
           "NamespaceTopics_RegenerateKey": {
-            "$ref": "./examples/NamespaceTopics_RegenerateKey.json"
+            "$ref": "../2025-07-15-preview/examples/NamespaceTopics_RegenerateKey.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -7569,7 +7569,7 @@
         },
         "x-ms-examples": {
           "Namespaces_ValidateCustomDomainOwnership": {
-            "$ref": "./examples/Namespaces_ValidateCustomDomainOwnership.json"
+            "$ref": "../2025-07-15-preview/examples/Namespaces_ValidateCustomDomainOwnership.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -7614,7 +7614,7 @@
         },
         "x-ms-examples": {
           "PartnerConfigurations_ListByResourceGroup": {
-            "$ref": "./examples/PartnerConfigurations_ListByResourceGroup.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerConfigurations_ListByResourceGroup.json"
           }
         },
         "x-ms-pageable": {
@@ -7657,7 +7657,7 @@
         },
         "x-ms-examples": {
           "PartnerConfigurations_Get": {
-            "$ref": "./examples/PartnerConfigurations_Get.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerConfigurations_Get.json"
           }
         }
       },
@@ -7721,7 +7721,7 @@
         },
         "x-ms-examples": {
           "PartnerConfigurations_CreateOrUpdate": {
-            "$ref": "./examples/PartnerConfigurations_CreateOrUpdate.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerConfigurations_CreateOrUpdate.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -7786,7 +7786,7 @@
         },
         "x-ms-examples": {
           "PartnerConfigurations_Update": {
-            "$ref": "./examples/PartnerConfigurations_Update.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerConfigurations_Update.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -7843,7 +7843,7 @@
         },
         "x-ms-examples": {
           "PartnerConfigurations_Delete": {
-            "$ref": "./examples/PartnerConfigurations_Delete.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerConfigurations_Delete.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -7896,7 +7896,7 @@
         },
         "x-ms-examples": {
           "PartnerConfigurations_AuthorizePartner": {
-            "$ref": "./examples/PartnerConfigurations_AuthorizePartner.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerConfigurations_AuthorizePartner.json"
           }
         }
       }
@@ -7945,7 +7945,7 @@
         },
         "x-ms-examples": {
           "PartnerConfigurations_UnauthorizePartner": {
-            "$ref": "./examples/PartnerConfigurations_UnauthorizePartner.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerConfigurations_UnauthorizePartner.json"
           }
         }
       }
@@ -8000,7 +8000,7 @@
         },
         "x-ms-examples": {
           "PartnerDestinations_ListByResourceGroup": {
-            "$ref": "./examples/PartnerDestinations_ListByResourceGroup.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerDestinations_ListByResourceGroup.json"
           }
         },
         "x-ms-pageable": {
@@ -8053,7 +8053,7 @@
         },
         "x-ms-examples": {
           "PartnerDestinations_Get": {
-            "$ref": "./examples/PartnerDestinations_Get.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerDestinations_Get.json"
           }
         }
       },
@@ -8127,7 +8127,7 @@
         },
         "x-ms-examples": {
           "PartnerDestinations_CreateOrUpdate": {
-            "$ref": "./examples/PartnerDestinations_CreateOrUpdate.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerDestinations_CreateOrUpdate.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -8224,7 +8224,7 @@
         },
         "x-ms-examples": {
           "PartnerDestinations_Update": {
-            "$ref": "./examples/PartnerDestinations_Update.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerDestinations_Update.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -8291,7 +8291,7 @@
         },
         "x-ms-examples": {
           "PartnerDestinations_Delete": {
-            "$ref": "./examples/PartnerDestinations_Delete.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerDestinations_Delete.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -8345,7 +8345,7 @@
         },
         "x-ms-examples": {
           "PartnerDestinations_Activate": {
-            "$ref": "./examples/PartnerDestinations_Activate.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerDestinations_Activate.json"
           }
         }
       }
@@ -8400,7 +8400,7 @@
         },
         "x-ms-examples": {
           "PartnerNamespaces_ListByResourceGroup": {
-            "$ref": "./examples/PartnerNamespaces_ListByResourceGroup.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerNamespaces_ListByResourceGroup.json"
           }
         },
         "x-ms-pageable": {
@@ -8450,7 +8450,7 @@
         },
         "x-ms-examples": {
           "PartnerNamespaces_Get": {
-            "$ref": "./examples/PartnerNamespaces_Get.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerNamespaces_Get.json"
           }
         }
       },
@@ -8515,7 +8515,7 @@
         },
         "x-ms-examples": {
           "PartnerNamespaces_CreateOrUpdate": {
-            "$ref": "./examples/PartnerNamespaces_CreateOrUpdate.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerNamespaces_CreateOrUpdate.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -8588,7 +8588,7 @@
         },
         "x-ms-examples": {
           "PartnerNamespaces_Update": {
-            "$ref": "./examples/PartnerNamespaces_Update.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerNamespaces_Update.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -8652,7 +8652,7 @@
         },
         "x-ms-examples": {
           "PartnerNamespaces_Delete": {
-            "$ref": "./examples/PartnerNamespaces_Delete.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerNamespaces_Delete.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -8718,7 +8718,7 @@
         },
         "x-ms-examples": {
           "Channels_ListByPartnerNamespace": {
-            "$ref": "./examples/Channels_ListByPartnerNamespace.json"
+            "$ref": "../2025-07-15-preview/examples/Channels_ListByPartnerNamespace.json"
           }
         },
         "x-ms-pageable": {
@@ -8775,7 +8775,7 @@
         },
         "x-ms-examples": {
           "Channels_Get": {
-            "$ref": "./examples/Channels_Get.json"
+            "$ref": "../2025-07-15-preview/examples/Channels_Get.json"
           }
         }
       },
@@ -8842,7 +8842,7 @@
         },
         "x-ms-examples": {
           "Channels_CreateOrUpdate": {
-            "$ref": "./examples/Channels_CreateOrUpdate.json"
+            "$ref": "../2025-07-15-preview/examples/Channels_CreateOrUpdate.json"
           }
         }
       },
@@ -8900,7 +8900,7 @@
         },
         "x-ms-examples": {
           "Channels_Update": {
-            "$ref": "./examples/Channels_Update.json"
+            "$ref": "../2025-07-15-preview/examples/Channels_Update.json"
           }
         }
       },
@@ -8966,7 +8966,7 @@
         },
         "x-ms-examples": {
           "Channels_Delete": {
-            "$ref": "./examples/Channels_Delete.json"
+            "$ref": "../2025-07-15-preview/examples/Channels_Delete.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -9024,7 +9024,7 @@
         },
         "x-ms-examples": {
           "Channels_GetFullUrl": {
-            "$ref": "./examples/Channels_GetFullUrl.json"
+            "$ref": "../2025-07-15-preview/examples/Channels_GetFullUrl.json"
           }
         }
       }
@@ -9071,7 +9071,7 @@
         },
         "x-ms-examples": {
           "PartnerNamespaces_ListSharedAccessKeys": {
-            "$ref": "./examples/PartnerNamespaces_ListSharedAccessKeys.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerNamespaces_ListSharedAccessKeys.json"
           }
         }
       }
@@ -9127,7 +9127,7 @@
         },
         "x-ms-examples": {
           "PartnerNamespaces_RegenerateKey": {
-            "$ref": "./examples/PartnerNamespaces_RegenerateKey.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerNamespaces_RegenerateKey.json"
           }
         }
       }
@@ -9182,7 +9182,7 @@
         },
         "x-ms-examples": {
           "PartnerRegistrations_ListByResourceGroup": {
-            "$ref": "./examples/PartnerRegistrations_ListByResourceGroup.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerRegistrations_ListByResourceGroup.json"
           }
         },
         "x-ms-pageable": {
@@ -9232,7 +9232,7 @@
         },
         "x-ms-examples": {
           "PartnerRegistrations_Get": {
-            "$ref": "./examples/PartnerRegistrations_Get.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerRegistrations_Get.json"
           }
         }
       },
@@ -9303,7 +9303,7 @@
         },
         "x-ms-examples": {
           "PartnerRegistrations_CreateOrUpdate": {
-            "$ref": "./examples/PartnerRegistrations_CreateOrUpdate.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerRegistrations_CreateOrUpdate.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -9376,7 +9376,7 @@
         },
         "x-ms-examples": {
           "PartnerRegistrations_Update": {
-            "$ref": "./examples/PartnerRegistrations_Update.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerRegistrations_Update.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -9440,7 +9440,7 @@
         },
         "x-ms-examples": {
           "PartnerRegistrations_Delete": {
-            "$ref": "./examples/PartnerRegistrations_Delete.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerRegistrations_Delete.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -9499,7 +9499,7 @@
         },
         "x-ms-examples": {
           "PartnerTopics_ListByResourceGroup": {
-            "$ref": "./examples/PartnerTopics_ListByResourceGroup.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerTopics_ListByResourceGroup.json"
           }
         },
         "x-ms-pageable": {
@@ -9549,7 +9549,7 @@
         },
         "x-ms-examples": {
           "PartnerTopics_Get": {
-            "$ref": "./examples/PartnerTopics_Get.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerTopics_Get.json"
           }
         }
       },
@@ -9609,7 +9609,7 @@
         },
         "x-ms-examples": {
           "PartnerTopics_CreateOrUpdate": {
-            "$ref": "./examples/PartnerTopics_CreateOrUpdate.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerTopics_CreateOrUpdate.json"
           }
         }
       },
@@ -9666,7 +9666,7 @@
         },
         "x-ms-examples": {
           "PartnerTopics_Update": {
-            "$ref": "./examples/PartnerTopics_Update.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerTopics_Update.json"
           }
         }
       },
@@ -9725,7 +9725,7 @@
         },
         "x-ms-examples": {
           "PartnerTopics_Delete": {
-            "$ref": "./examples/PartnerTopics_Delete.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerTopics_Delete.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -9776,7 +9776,7 @@
         },
         "x-ms-examples": {
           "PartnerTopics_Activate": {
-            "$ref": "./examples/PartnerTopics_Activate.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerTopics_Activate.json"
           }
         }
       }
@@ -9823,7 +9823,7 @@
         },
         "x-ms-examples": {
           "PartnerTopics_Deactivate": {
-            "$ref": "./examples/PartnerTopics_Deactivate.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerTopics_Deactivate.json"
           }
         }
       }
@@ -9885,7 +9885,7 @@
         },
         "x-ms-examples": {
           "PartnerTopicEventSubscriptions_ListByPartnerTopic": {
-            "$ref": "./examples/PartnerTopicEventSubscriptions_ListByPartnerTopic.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerTopicEventSubscriptions_ListByPartnerTopic.json"
           }
         },
         "x-ms-pageable": {
@@ -9942,7 +9942,7 @@
         },
         "x-ms-examples": {
           "PartnerTopicEventSubscriptions_Get": {
-            "$ref": "./examples/PartnerTopicEventSubscriptions_Get.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerTopicEventSubscriptions_Get.json"
           }
         }
       },
@@ -10020,7 +10020,7 @@
         },
         "x-ms-examples": {
           "PartnerTopicEventSubscriptions_CreateOrUpdate": {
-            "$ref": "./examples/PartnerTopicEventSubscriptions_CreateOrUpdate.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerTopicEventSubscriptions_CreateOrUpdate.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -10097,7 +10097,7 @@
         },
         "x-ms-examples": {
           "PartnerTopicEventSubscriptions_Update": {
-            "$ref": "./examples/PartnerTopicEventSubscriptions_Update.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerTopicEventSubscriptions_Update.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -10168,7 +10168,7 @@
         },
         "x-ms-examples": {
           "PartnerTopicEventSubscriptions_Delete": {
-            "$ref": "./examples/PartnerTopicEventSubscriptions_Delete.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerTopicEventSubscriptions_Delete.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -10226,7 +10226,7 @@
         },
         "x-ms-examples": {
           "PartnerTopicEventSubscriptions_GetDeliveryAttributes": {
-            "$ref": "./examples/PartnerTopicEventSubscriptions_GetDeliveryAttributes.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerTopicEventSubscriptions_GetDeliveryAttributes.json"
           }
         }
       }
@@ -10280,7 +10280,7 @@
         },
         "x-ms-examples": {
           "PartnerTopicEventSubscriptions_GetFullUrl": {
-            "$ref": "./examples/PartnerTopicEventSubscriptions_GetFullUrl.json"
+            "$ref": "../2025-07-15-preview/examples/PartnerTopicEventSubscriptions_GetFullUrl.json"
           }
         }
       }
@@ -10335,7 +10335,7 @@
         },
         "x-ms-examples": {
           "SystemTopics_ListByResourceGroup": {
-            "$ref": "./examples/SystemTopics_ListByResourceGroup.json"
+            "$ref": "../2025-07-15-preview/examples/SystemTopics_ListByResourceGroup.json"
           }
         },
         "x-ms-pageable": {
@@ -10385,7 +10385,7 @@
         },
         "x-ms-examples": {
           "SystemTopics_Get": {
-            "$ref": "./examples/SystemTopics_Get.json"
+            "$ref": "../2025-07-15-preview/examples/SystemTopics_Get.json"
           }
         }
       },
@@ -10456,7 +10456,7 @@
         },
         "x-ms-examples": {
           "SystemTopics_CreateOrUpdate": {
-            "$ref": "./examples/SystemTopics_CreateOrUpdate.json"
+            "$ref": "../2025-07-15-preview/examples/SystemTopics_CreateOrUpdate.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -10532,7 +10532,7 @@
         },
         "x-ms-examples": {
           "SystemTopics_Update": {
-            "$ref": "./examples/SystemTopics_Update.json"
+            "$ref": "../2025-07-15-preview/examples/SystemTopics_Update.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -10596,7 +10596,7 @@
         },
         "x-ms-examples": {
           "SystemTopics_Delete": {
-            "$ref": "./examples/SystemTopics_Delete.json"
+            "$ref": "../2025-07-15-preview/examples/SystemTopics_Delete.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -10662,7 +10662,7 @@
         },
         "x-ms-examples": {
           "SystemTopicEventSubscriptions_ListBySystemTopic": {
-            "$ref": "./examples/SystemTopicEventSubscriptions_ListBySystemTopic.json"
+            "$ref": "../2025-07-15-preview/examples/SystemTopicEventSubscriptions_ListBySystemTopic.json"
           }
         },
         "x-ms-pageable": {
@@ -10719,7 +10719,7 @@
         },
         "x-ms-examples": {
           "SystemTopicEventSubscriptions_Get": {
-            "$ref": "./examples/SystemTopicEventSubscriptions_Get.json"
+            "$ref": "../2025-07-15-preview/examples/SystemTopicEventSubscriptions_Get.json"
           }
         }
       },
@@ -10791,7 +10791,7 @@
         },
         "x-ms-examples": {
           "SystemTopicEventSubscriptions_CreateOrUpdate": {
-            "$ref": "./examples/SystemTopicEventSubscriptions_CreateOrUpdate.json"
+            "$ref": "../2025-07-15-preview/examples/SystemTopicEventSubscriptions_CreateOrUpdate.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -10868,7 +10868,7 @@
         },
         "x-ms-examples": {
           "SystemTopicEventSubscriptions_Update": {
-            "$ref": "./examples/SystemTopicEventSubscriptions_Update.json"
+            "$ref": "../2025-07-15-preview/examples/SystemTopicEventSubscriptions_Update.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -10939,7 +10939,7 @@
         },
         "x-ms-examples": {
           "SystemTopicEventSubscriptions_Delete": {
-            "$ref": "./examples/SystemTopicEventSubscriptions_Delete.json"
+            "$ref": "../2025-07-15-preview/examples/SystemTopicEventSubscriptions_Delete.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -10997,7 +10997,7 @@
         },
         "x-ms-examples": {
           "SystemTopicEventSubscriptions_GetDeliveryAttributes": {
-            "$ref": "./examples/SystemTopicEventSubscriptions_GetDeliveryAttributes.json"
+            "$ref": "../2025-07-15-preview/examples/SystemTopicEventSubscriptions_GetDeliveryAttributes.json"
           }
         }
       }
@@ -11051,7 +11051,7 @@
         },
         "x-ms-examples": {
           "SystemTopicEventSubscriptions_GetFullUrl": {
-            "$ref": "./examples/SystemTopicEventSubscriptions_GetFullUrl.json"
+            "$ref": "../2025-07-15-preview/examples/SystemTopicEventSubscriptions_GetFullUrl.json"
           }
         }
       }
@@ -11110,7 +11110,7 @@
         },
         "x-ms-examples": {
           "EventSubscriptions_ListGlobalByResourceGroupForTopicType": {
-            "$ref": "./examples/EventSubscriptions_ListGlobalByResourceGroupForTopicType.json"
+            "$ref": "../2025-07-15-preview/examples/EventSubscriptions_ListGlobalByResourceGroupForTopicType.json"
           }
         },
         "x-ms-pageable": {
@@ -11168,7 +11168,7 @@
         },
         "x-ms-examples": {
           "Topics_ListByResourceGroup": {
-            "$ref": "./examples/Topics_ListByResourceGroup.json"
+            "$ref": "../2025-07-15-preview/examples/Topics_ListByResourceGroup.json"
           }
         },
         "x-ms-pageable": {
@@ -11218,7 +11218,7 @@
         },
         "x-ms-examples": {
           "Topics_Get": {
-            "$ref": "./examples/Topics_Get.json"
+            "$ref": "../2025-07-15-preview/examples/Topics_Get.json"
           }
         }
       },
@@ -11283,10 +11283,10 @@
         },
         "x-ms-examples": {
           "Topics_CreateOrUpdate": {
-            "$ref": "./examples/Topics_CreateOrUpdate.json"
+            "$ref": "../2025-07-15-preview/examples/Topics_CreateOrUpdate.json"
           },
           "Topics_CreateOrUpdateForAzureArc": {
-            "$ref": "./examples/Topics_CreateOrUpdateForAzureArc.json"
+            "$ref": "../2025-07-15-preview/examples/Topics_CreateOrUpdateForAzureArc.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -11359,7 +11359,7 @@
         },
         "x-ms-examples": {
           "Topics_Update": {
-            "$ref": "./examples/Topics_Update.json"
+            "$ref": "../2025-07-15-preview/examples/Topics_Update.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -11420,7 +11420,7 @@
         },
         "x-ms-examples": {
           "Topics_Delete": {
-            "$ref": "./examples/Topics_Delete.json"
+            "$ref": "../2025-07-15-preview/examples/Topics_Delete.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -11486,7 +11486,7 @@
         },
         "x-ms-examples": {
           "TopicEventSubscriptions_List": {
-            "$ref": "./examples/TopicEventSubscriptions_List.json"
+            "$ref": "../2025-07-15-preview/examples/TopicEventSubscriptions_List.json"
           }
         },
         "x-ms-pageable": {
@@ -11543,7 +11543,7 @@
         },
         "x-ms-examples": {
           "TopicEventSubscriptions_Get": {
-            "$ref": "./examples/TopicEventSubscriptions_Get.json"
+            "$ref": "../2025-07-15-preview/examples/TopicEventSubscriptions_Get.json"
           }
         }
       },
@@ -11621,7 +11621,7 @@
         },
         "x-ms-examples": {
           "TopicEventSubscriptions_CreateOrUpdate": {
-            "$ref": "./examples/TopicEventSubscriptions_CreateOrUpdate.json"
+            "$ref": "../2025-07-15-preview/examples/TopicEventSubscriptions_CreateOrUpdate.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -11698,7 +11698,7 @@
         },
         "x-ms-examples": {
           "TopicEventSubscriptions_Update": {
-            "$ref": "./examples/TopicEventSubscriptions_Update.json"
+            "$ref": "../2025-07-15-preview/examples/TopicEventSubscriptions_Update.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -11769,7 +11769,7 @@
         },
         "x-ms-examples": {
           "TopicEventSubscriptions_Delete": {
-            "$ref": "./examples/TopicEventSubscriptions_Delete.json"
+            "$ref": "../2025-07-15-preview/examples/TopicEventSubscriptions_Delete.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -11827,7 +11827,7 @@
         },
         "x-ms-examples": {
           "TopicEventSubscriptions_GetDeliveryAttributes": {
-            "$ref": "./examples/TopicEventSubscriptions_GetDeliveryAttributes.json"
+            "$ref": "../2025-07-15-preview/examples/TopicEventSubscriptions_GetDeliveryAttributes.json"
           }
         }
       }
@@ -11881,7 +11881,7 @@
         },
         "x-ms-examples": {
           "TopicEventSubscriptions_GetFullUrl": {
-            "$ref": "./examples/TopicEventSubscriptions_GetFullUrl.json"
+            "$ref": "../2025-07-15-preview/examples/TopicEventSubscriptions_GetFullUrl.json"
           }
         }
       }
@@ -11928,7 +11928,7 @@
         },
         "x-ms-examples": {
           "Topics_ListSharedAccessKeys": {
-            "$ref": "./examples/Topics_ListSharedAccessKeys.json"
+            "$ref": "../2025-07-15-preview/examples/Topics_ListSharedAccessKeys.json"
           }
         }
       }
@@ -11998,7 +11998,7 @@
         },
         "x-ms-examples": {
           "Topics_RegenerateKey": {
-            "$ref": "./examples/Topics_RegenerateKey.json"
+            "$ref": "../2025-07-15-preview/examples/Topics_RegenerateKey.json"
           }
         },
         "x-ms-long-running-operation-options": {
@@ -18038,7 +18038,7 @@
         },
         "eventTimeToLive": {
           "type": "string",
-          "description": "Time span duration in ISO 8601 format that determines how long messages are available to the subscription from the time the message was published.\nThis duration value is expressed using the following format: \\'P(n)Y(n)M(n)DT(n)H(n)M(n)S\\', where:\n- (n) is replaced by the value of each time element that follows the (n).\n- P is the duration (or Period) designator and is always placed at the beginning of the duration.\n- Y is the year designator, and it follows the value for the number of years.\n- M is the month designator, and it follows the value for the number of months.\n- W is the week designator, and it follows the value for the number of weeks.\n- D is the day designator, and it follows the value for the number of days.\n- T is the time designator, and it precedes the time components.\n- H is the hour designator, and it follows the value for the number of hours.\n- M is the minute designator, and it follows the value for the number of minutes.\n- S is the second designator, and it follows the value for the number of seconds.\nThis duration value cannot be set greater than the topic’s EventRetentionInDays. It is is an optional field where its minimum value is 1 minute, and its maximum is determined\nby topic’s EventRetentionInDays value. The followings are examples of valid values:\n- \\'P0DT23H12M\\' or \\'PT23H12M\\': for duration of 23 hours and 12 minutes.\n- \\'P1D\\' or \\'P1DT0H0M0S\\': for duration of 1 day."
+          "description": "Time span duration in ISO 8601 format that determines how long messages are available to the subscription from the time the message was published.\nThis duration value is expressed using the following format: \\'P(n)Y(n)M(n)DT(n)H(n)M(n)S\\', where:\n- (n) is replaced by the value of each time element that follows the (n).\n- P is the duration (or Period) designator and is always placed at the beginning of the duration.\n- Y is the year designator, and it follows the value for the number of years.\n- M is the month designator, and it follows the value for the number of months.\n- W is the week designator, and it follows the value for the number of weeks.\n- D is the day designator, and it follows the value for the number of days.\n- T is the time designator, and it precedes the time components.\n- H is the hour designator, and it follows the value for the number of hours.\n- M is the minute designator, and it follows the value for the number of minutes.\n- S is the second designator, and it follows the value for the number of seconds.\nThis duration value cannot be set greater than the topic\u2019s EventRetentionInDays. It is is an optional field where its minimum value is 1 minute, and its maximum is determined\nby topic\u2019s EventRetentionInDays value. The followings are examples of valid values:\n- \\'P0DT23H12M\\' or \\'PT23H12M\\': for duration of 23 hours and 12 minutes.\n- \\'P1D\\' or \\'P1DT0H0M0S\\': for duration of 1 day."
         },
         "deadLetterDestinationWithResourceIdentity": {
           "$ref": "#/definitions/DeadLetterWithResourceIdentity",
@@ -18075,7 +18075,7 @@
         "eventTimeToLive": {
           "type": "string",
           "format": "duration",
-          "description": "Time span duration in ISO 8601 format that determines how long messages are available to the subscription from the time the message was published.\nThis duration value is expressed using the following format: \\'P(n)Y(n)M(n)DT(n)H(n)M(n)S\\', where:\n- (n) is replaced by the value of each time element that follows the (n).\n- P is the duration (or Period) designator and is always placed at the beginning of the duration.\n- Y is the year designator, and it follows the value for the number of years.\n- M is the month designator, and it follows the value for the number of months.\n- W is the week designator, and it follows the value for the number of weeks.\n- D is the day designator, and it follows the value for the number of days.\n- T is the time designator, and it precedes the time components.\n- H is the hour designator, and it follows the value for the number of hours.\n- M is the minute designator, and it follows the value for the number of minutes.\n- S is the second designator, and it follows the value for the number of seconds.\nThis duration value cannot be set greater than the topic’s EventRetentionInDays. It is is an optional field where its minimum value is 1 minute, and its maximum is determined\nby topic’s EventRetentionInDays value. The followings are examples of valid values:\n- \\'P0DT23H12M\\' or \\'PT23H12M\\': for duration of 23 hours and 12 minutes.\n- \\'P1D\\' or \\'P1DT0H0M0S\\': for duration of 1 day."
+          "description": "Time span duration in ISO 8601 format that determines how long messages are available to the subscription from the time the message was published.\nThis duration value is expressed using the following format: \\'P(n)Y(n)M(n)DT(n)H(n)M(n)S\\', where:\n- (n) is replaced by the value of each time element that follows the (n).\n- P is the duration (or Period) designator and is always placed at the beginning of the duration.\n- Y is the year designator, and it follows the value for the number of years.\n- M is the month designator, and it follows the value for the number of months.\n- W is the week designator, and it follows the value for the number of weeks.\n- D is the day designator, and it follows the value for the number of days.\n- T is the time designator, and it precedes the time components.\n- H is the hour designator, and it follows the value for the number of hours.\n- M is the minute designator, and it follows the value for the number of minutes.\n- S is the second designator, and it follows the value for the number of seconds.\nThis duration value cannot be set greater than the topic\u2019s EventRetentionInDays. It is is an optional field where its minimum value is 1 minute, and its maximum is determined\nby topic\u2019s EventRetentionInDays value. The followings are examples of valid values:\n- \\'P0DT23H12M\\' or \\'PT23H12M\\': for duration of 23 hours and 12 minutes.\n- \\'P1D\\' or \\'P1DT0H0M0S\\': for duration of 1 day."
         }
       }
     },
