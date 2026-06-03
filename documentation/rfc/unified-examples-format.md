@@ -105,12 +105,11 @@ title: Microsoft.Maps Account Management Examples
 description: Examples for Maps account CRUD operations
 
 # Examples grouped by operation
-operations:
-  <operation-key>:
-    - <example>
-    - <example>
-  <operation-key>:
-    - <example>
+<operation-key>:
+  - <example>
+  - <example>
+<operation-key>:
+  - <example>
 ```
 
 ### 3.3 Operation Identification
@@ -122,17 +121,16 @@ Operations need a stable, readable key in the YAML file. We define a primary app
 For TypeSpec-authored services, the **fully-qualified operation name** using the interface/resource name and operation name is the canonical identifier:
 
 ```yaml
-operations:
-  Accounts.get:
-    - ...
-  Accounts.createOrUpdate:
-    - ...
-  Accounts.delete:
-    - ...
-  Accounts.listByResourceGroup:
-    - ...
-  Creators.create:
-    - ...
+Accounts.get:
+  - ...
+Accounts.createOrUpdate:
+  - ...
+Accounts.delete:
+  - ...
+Accounts.listByResourceGroup:
+  - ...
+Creators.create:
+  - ...
 ```
 
 This uses the TypeSpec interface name (or resource name) and the operation name separated by a dot. It's concise, readable, and directly maps to the TypeSpec source.
@@ -157,7 +155,7 @@ Tooling must resolve the FQN to the corresponding path+method in the OpenAPI spe
 ```json
 "x-ms-examples": {
   "Get Account": {
-    "$ref": "./examples.yaml#/operations/Accounts.get/0"
+    "$ref": "./examples.yaml#/Accounts.get/0"
   }
 }
 ```
@@ -169,13 +167,12 @@ Tooling must resolve the FQN to the corresponding path+method in the OpenAPI spe
 All services already have operationIds, making this the most compatible solution today. It provides the easiest migration path from the current `x-ms-examples` format.
 
 ```yaml
-operations:
-  Accounts_Get:
-    - ...
-  Accounts_CreateOrUpdate:
-    - ...
-  Accounts_Delete:
-    - ...
+Accounts_Get:
+  - ...
+Accounts_CreateOrUpdate:
+  - ...
+Accounts_Delete:
+  - ...
 ```
 
 **Advantages**:
@@ -196,7 +193,7 @@ The operationId directly matches the operation in swagger, so tooling can locate
 ```json
 "x-ms-examples": {
   "Get Account": {
-    "$ref": "./examples.yaml#/operations/Accounts_Get/0"
+    "$ref": "./examples.yaml#/Accounts_Get/0"
   }
 }
 ```
@@ -208,19 +205,17 @@ The operationId directly matches the operation in swagger, so tooling can locate
 For maximum universality (especially for services without TypeSpec or inconsistent operationIds), the HTTP method and path template can be used:
 
 ```yaml
-operations:
-  "GET /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Maps/accounts/{accountName}":
-    - ...
-  "PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Maps/accounts/{accountName}":
-    - ...
+"GET /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Maps/accounts/{accountName}":
+  - ...
+"PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Maps/accounts/{accountName}":
+  - ...
 ```
 
 A shorter form for ARM resources where the subscription/resourceGroup prefix is implicit MAY be supported:
 
 ```yaml
-operations:
-  "GET Microsoft.Maps/accounts/{accountName}":
-    - ...
+"GET Microsoft.Maps/accounts/{accountName}":
+  - ...
 ```
 
 **Advantages**:
@@ -241,7 +236,7 @@ The key in the examples file directly corresponds to the swagger path+method str
 ```json
 "x-ms-examples": {
   "Get Account": {
-    "$ref": "./examples.yaml#/operations/GET %2Fsubscriptions%2F{subscriptionId}%2F...%2Faccounts%2F{accountName}/0"
+    "$ref": "./examples.yaml#/GET %2Fsubscriptions%2F{subscriptionId}%2F...%2Faccounts%2F{accountName}/0"
   }
 }
 ```
@@ -261,69 +256,68 @@ The recommended style is **TypeSpec Operation FQN** for new services. For legacy
 Each example entry represents one complete API interaction: a request and its possible responses. Parameters are split by location (path, query, headers) for clarity.
 
 ```yaml
-operations:
-  Accounts.createOrUpdate:
-    - title: Create Gen1 Account
-      description: Creates a Maps account with Gen1 SKU  # optional
+Accounts.createOrUpdate:
+  - title: Create Gen1 Account
+    description: Creates a Maps account with Gen1 SKU  # optional
 
-      request:
-        path:
-          subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
-          resourceGroupName: myResourceGroup
-          accountName: myMapsAccount
+    request:
+      path:
+        subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
+        resourceGroupName: myResourceGroup
+        accountName: myMapsAccount
+      body:
+        location: global
+        sku:
+          name: S0
+        kind: Gen1
+        tags:
+          test: "true"
+        properties:
+          disableLocalAuth: false
+
+    responses:
+      200:
         body:
-          location: global
-          sku:
-            name: S0
+          id: /subscriptions/21a9967a-e8a9-4656-a70b-96ff1c4d05a0/resourceGroups/myResourceGroup/providers/Microsoft.Maps/accounts/myMapsAccount
+          name: myMapsAccount
+          type: Microsoft.Maps/accounts
           kind: Gen1
+          location: global
           tags:
             test: "true"
-          properties:
-            disableLocalAuth: false
-
-      responses:
-        200:
-          body:
-            id: /subscriptions/21a9967a-e8a9-4656-a70b-96ff1c4d05a0/resourceGroups/myResourceGroup/providers/Microsoft.Maps/accounts/myMapsAccount
-            name: myMapsAccount
-            type: Microsoft.Maps/accounts
-            kind: Gen1
-            location: global
-            tags:
-              test: "true"
-            sku:
-              name: S0
-              tier: Standard
-            properties:
-              uniqueId: b2e763e6-d6f3-4858-9e2b-7cf8df85c593
-              provisioningState: Succeeded
-              disableLocalAuth: false
-        201:
-          body:
-            id: /subscriptions/21a9967a-e8a9-4656-a70b-96ff1c4d05a0/resourceGroups/myResourceGroup/providers/Microsoft.Maps/accounts/myMapsAccount
-            name: myMapsAccount
-            type: Microsoft.Maps/accounts
-            kind: Gen1
-            location: global
-            # ... same structure as 200
-
-    - title: Create Gen2 Account
-      request:
-        path:
-          subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
-          resourceGroupName: myResourceGroup
-          accountName: myMapsAccount
-        body:
-          location: global
           sku:
-            name: S1
-          kind: Gen2
+            name: S0
+            tier: Standard
           properties:
-            disableLocalAuth: true
-      responses:
-        200:
-          body:
-            # ...
+            uniqueId: b2e763e6-d6f3-4858-9e2b-7cf8df85c593
+            provisioningState: Succeeded
+            disableLocalAuth: false
+      201:
+        body:
+          id: /subscriptions/21a9967a-e8a9-4656-a70b-96ff1c4d05a0/resourceGroups/myResourceGroup/providers/Microsoft.Maps/accounts/myMapsAccount
+          name: myMapsAccount
+          type: Microsoft.Maps/accounts
+          kind: Gen1
+          location: global
+          # ... same structure as 200
+
+  - title: Create Gen2 Account
+    request:
+      path:
+        subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
+        resourceGroupName: myResourceGroup
+        accountName: myMapsAccount
+      body:
+        location: global
+        sku:
+          name: S1
+        kind: Gen2
+        properties:
+          disableLocalAuth: true
+    responses:
+      200:
+        body:
+          # ...
 ```
 
 The request is split into explicit sections by parameter location:
@@ -344,44 +338,43 @@ The key innovation: examples are version-aware without full duplication. We expl
 Each example can specify which versions it applies to:
 
 ```yaml
-operations:
-  Accounts.get:
-    - title: Get Account
-      # No version marker = applies to all versions (the common case)
-      request:
-        path:
-          subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
-          resourceGroupName: myResourceGroup
-          accountName: myMapsAccount
-      responses:
-        200:
-          body:
-            id: /subscriptions/.../myMapsAccount
-            name: myMapsAccount
-            type: Microsoft.Maps/accounts
-            location: global
-            properties:
-              provisioningState: Succeeded
-              disableLocalAuth: false
+Accounts.get:
+  - title: Get Account
+    # No version marker = applies to all versions (the common case)
+    request:
+      path:
+        subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
+        resourceGroupName: myResourceGroup
+        accountName: myMapsAccount
+    responses:
+      200:
+        body:
+          id: /subscriptions/.../myMapsAccount
+          name: myMapsAccount
+          type: Microsoft.Maps/accounts
+          location: global
+          properties:
+            provisioningState: Succeeded
+            disableLocalAuth: false
 
-    - title: Get Account
-      since: 2023-06-01   # This variant takes over from 2023-06-01 onward
-      request:
-        path:
-          subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
-          resourceGroupName: myResourceGroup
-          accountName: myMapsAccount
-      responses:
-        200:
-          body:
-            id: /subscriptions/.../myMapsAccount
-            name: myMapsAccount
-            type: Microsoft.Maps/accounts
-            location: eastus
-            properties:
-              provisioningState: Succeeded
-              disableLocalAuth: false
-              linkedResources: []   # new field added in 2023-06-01
+  - title: Get Account
+    since: 2023-06-01   # This variant takes over from 2023-06-01 onward
+    request:
+      path:
+        subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
+        resourceGroupName: myResourceGroup
+        accountName: myMapsAccount
+    responses:
+      200:
+        body:
+          id: /subscriptions/.../myMapsAccount
+          name: myMapsAccount
+          type: Microsoft.Maps/accounts
+          location: eastus
+          properties:
+            provisioningState: Succeeded
+            disableLocalAuth: false
+            linkedResources: []   # new field added in 2023-06-01
 ```
 
 **Rules**:
@@ -503,10 +496,9 @@ For complex services, examples can be split across multiple files in an `example
 $schema: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/schemas/examples.schema.yaml
 title: Virtual Machine Operations
 
-operations:
-  "PUT .../virtualMachines/{vmName}":
-    - title: Create a VM with managed disks
-      # ...
+"PUT .../virtualMachines/{vmName}":
+  - title: Create a VM with managed disks
+    # ...
 ```
 
 **Rules**:
@@ -542,158 +534,157 @@ Here's a complete `examples.yaml` for a simplified Maps service:
 $schema: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/schemas/examples.schema.yaml
 title: Microsoft.Maps Account Management
 
-operations:
-  Accounts.createOrUpdate:
-    - title: Create Gen1 Account
-      request:
-        path:
-          subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
-          resourceGroupName: myResourceGroup
-          accountName: myMapsAccount
+Accounts.createOrUpdate:
+  - title: Create Gen1 Account
+    request:
+      path:
+        subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
+        resourceGroupName: myResourceGroup
+        accountName: myMapsAccount
+      body:
+        location: global
+        sku:
+          name: S0
+        kind: Gen1
+        tags:
+          test: "true"
+        properties:
+          disableLocalAuth: false
+    responses:
+      200:
         body:
+          id: /subscriptions/21a9967a-e8a9-4656-a70b-96ff1c4d05a0/resourceGroups/myResourceGroup/providers/Microsoft.Maps/accounts/myMapsAccount
+          name: myMapsAccount
+          type: Microsoft.Maps/accounts
+          kind: Gen1
           location: global
           sku:
             name: S0
-          kind: Gen1
-          tags:
-            test: "true"
+            tier: Standard
           properties:
+            uniqueId: b2e763e6-d6f3-4858-9e2b-7cf8df85c593
+            provisioningState: Succeeded
             disableLocalAuth: false
-      responses:
-        200:
-          body:
-            id: /subscriptions/21a9967a-e8a9-4656-a70b-96ff1c4d05a0/resourceGroups/myResourceGroup/providers/Microsoft.Maps/accounts/myMapsAccount
-            name: myMapsAccount
-            type: Microsoft.Maps/accounts
-            kind: Gen1
-            location: global
-            sku:
-              name: S0
-              tier: Standard
-            properties:
-              uniqueId: b2e763e6-d6f3-4858-9e2b-7cf8df85c593
-              provisioningState: Succeeded
-              disableLocalAuth: false
-        201:
-          body:
-            id: /subscriptions/21a9967a-e8a9-4656-a70b-96ff1c4d05a0/resourceGroups/myResourceGroup/providers/Microsoft.Maps/accounts/myMapsAccount
-            name: myMapsAccount
-            type: Microsoft.Maps/accounts
-            kind: Gen1
-            location: global
-            sku:
-              name: S0
-              tier: Standard
-            properties:
-              uniqueId: b2e763e6-d6f3-4858-9e2b-7cf8df85c593
-              provisioningState: Succeeded
-              disableLocalAuth: false
-
-    - title: Create Gen2 Account
-      since: 2021-02-01
-      request:
-        path:
-          subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
-          resourceGroupName: myResourceGroup
-          accountName: myMapsAccount
+      201:
         body:
+          id: /subscriptions/21a9967a-e8a9-4656-a70b-96ff1c4d05a0/resourceGroups/myResourceGroup/providers/Microsoft.Maps/accounts/myMapsAccount
+          name: myMapsAccount
+          type: Microsoft.Maps/accounts
+          kind: Gen1
+          location: global
+          sku:
+            name: S0
+            tier: Standard
+          properties:
+            uniqueId: b2e763e6-d6f3-4858-9e2b-7cf8df85c593
+            provisioningState: Succeeded
+            disableLocalAuth: false
+
+  - title: Create Gen2 Account
+    since: 2021-02-01
+    request:
+      path:
+        subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
+        resourceGroupName: myResourceGroup
+        accountName: myMapsAccount
+      body:
+        location: global
+        sku:
+          name: S1
+        kind: Gen2
+        properties:
+          disableLocalAuth: true
+    responses:
+      200:
+        body:
+          id: /subscriptions/21a9967a-e8a9-4656-a70b-96ff1c4d05a0/resourceGroups/myResourceGroup/providers/Microsoft.Maps/accounts/myMapsAccount
+          name: myMapsAccount
+          type: Microsoft.Maps/accounts
+          kind: Gen2
           location: global
           sku:
             name: S1
-          kind: Gen2
+            tier: Standard
           properties:
+            uniqueId: c3f864f7-e9g4-5969-0f3c-8dg9ef96d6a4
+            provisioningState: Succeeded
             disableLocalAuth: true
-      responses:
-        200:
-          body:
-            id: /subscriptions/21a9967a-e8a9-4656-a70b-96ff1c4d05a0/resourceGroups/myResourceGroup/providers/Microsoft.Maps/accounts/myMapsAccount
-            name: myMapsAccount
-            type: Microsoft.Maps/accounts
-            kind: Gen2
-            location: global
-            sku:
-              name: S1
-              tier: Standard
-            properties:
-              uniqueId: c3f864f7-e9g4-5969-0f3c-8dg9ef96d6a4
-              provisioningState: Succeeded
-              disableLocalAuth: true
 
-  Accounts.get:
-    - title: Get Account
-      request:
-        path:
-          subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
-          resourceGroupName: myResourceGroup
-          accountName: myMapsAccount
-      responses:
-        200:
-          body:
-            id: /subscriptions/21a9967a-e8a9-4656-a70b-96ff1c4d05a0/resourceGroups/myResourceGroup/providers/Microsoft.Maps/accounts/myMapsAccount
-            name: myMapsAccount
-            type: Microsoft.Maps/accounts
-            location: global
-            kind: Gen1
-            sku:
-              name: S0
-              tier: Standard
-            properties:
-              uniqueId: b2e763e6-d6f3-4858-9e2b-7cf8df85c593
-              provisioningState: Succeeded
-              disableLocalAuth: false
+Accounts.get:
+  - title: Get Account
+    request:
+      path:
+        subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
+        resourceGroupName: myResourceGroup
+        accountName: myMapsAccount
+    responses:
+      200:
+        body:
+          id: /subscriptions/21a9967a-e8a9-4656-a70b-96ff1c4d05a0/resourceGroups/myResourceGroup/providers/Microsoft.Maps/accounts/myMapsAccount
+          name: myMapsAccount
+          type: Microsoft.Maps/accounts
+          location: global
+          kind: Gen1
+          sku:
+            name: S0
+            tier: Standard
+          properties:
+            uniqueId: b2e763e6-d6f3-4858-9e2b-7cf8df85c593
+            provisioningState: Succeeded
+            disableLocalAuth: false
 
-    - title: Get Account
-      since: 2023-06-01
-      request:
-        path:
-          subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
-          resourceGroupName: myResourceGroup
-          accountName: myMapsAccount
-      responses:
-        200:
-          body:
-            id: /subscriptions/21a9967a-e8a9-4656-a70b-96ff1c4d05a0/resourceGroups/myResourceGroup/providers/Microsoft.Maps/accounts/myMapsAccount
-            name: myMapsAccount
-            type: Microsoft.Maps/accounts
-            location: eastus
-            kind: Gen1
-            sku:
-              name: S0
-              tier: Standard
-            properties:
-              uniqueId: b2e763e6-d6f3-4858-9e2b-7cf8df85c593
-              provisioningState: Succeeded
-              disableLocalAuth: false
-              linkedResources: []
+  - title: Get Account
+    since: 2023-06-01
+    request:
+      path:
+        subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
+        resourceGroupName: myResourceGroup
+        accountName: myMapsAccount
+    responses:
+      200:
+        body:
+          id: /subscriptions/21a9967a-e8a9-4656-a70b-96ff1c4d05a0/resourceGroups/myResourceGroup/providers/Microsoft.Maps/accounts/myMapsAccount
+          name: myMapsAccount
+          type: Microsoft.Maps/accounts
+          location: eastus
+          kind: Gen1
+          sku:
+            name: S0
+            tier: Standard
+          properties:
+            uniqueId: b2e763e6-d6f3-4858-9e2b-7cf8df85c593
+            provisioningState: Succeeded
+            disableLocalAuth: false
+            linkedResources: []
 
-  Accounts.delete:
-    - title: Delete Account
-      request:
-        path:
-          subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
-          resourceGroupName: myResourceGroup
-          accountName: myMapsAccount
-      responses:
-        200: {}
-        204: {}
+Accounts.delete:
+  - title: Delete Account
+    request:
+      path:
+        subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
+        resourceGroupName: myResourceGroup
+        accountName: myMapsAccount
+    responses:
+      200: {}
+      204: {}
 
-  Accounts.listByResourceGroup:
-    - title: List Accounts By Resource Group
-      request:
-        path:
-          subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
-          resourceGroupName: myResourceGroup
-      responses:
-        200:
-          body:
-            value:
-              - id: /subscriptions/21a9967a-e8a9-4656-a70b-96ff1c4d05a0/resourceGroups/myResourceGroup/providers/Microsoft.Maps/accounts/myMapsAccount
-                name: myMapsAccount
-                type: Microsoft.Maps/accounts
-                location: global
-                sku:
-                  name: S0
-                  tier: Standard
+Accounts.listByResourceGroup:
+  - title: List Accounts By Resource Group
+    request:
+      path:
+        subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
+        resourceGroupName: myResourceGroup
+    responses:
+      200:
+        body:
+          value:
+            - id: /subscriptions/21a9967a-e8a9-4656-a70b-96ff1c4d05a0/resourceGroups/myResourceGroup/providers/Microsoft.Maps/accounts/myMapsAccount
+              name: myMapsAccount
+              type: Microsoft.Maps/accounts
+              location: global
+              sku:
+                name: S0
+                tier: Standard
 ```
 
 ## 5. TypeSpec Schema
@@ -704,23 +695,19 @@ The following TypeSpec definitions formalize the structure of the examples file:
 namespace Azure.ApiExamples;
 
 /** Root document structure for an examples file. */
-model ExamplesDocument {
-  /** Schema URL for validation. */
-  `$schema`?: string;
-
-  /** Human-readable title for the examples file. */
-  title?: string;
-
-  /** Description of what this examples file covers. */
-  description?: string;
-
-  /**
-   * Map of operation identifiers to their examples.
-   * Keys are in the format "<METHOD> <path-pattern>"
-   * e.g., "GET /subscriptions/{subscriptionId}/providers/Microsoft.Maps/accounts"
-   */
-  operations: Record<Example[]>;
-}
+/**
+ * The examples file is a YAML document where the top-level keys are operation identifiers
+ * mapping directly to arrays of examples. Optional metadata fields ($schema, title, description)
+ * may appear at the top level alongside operation keys.
+ *
+ * Example structure:
+ *   $schema: ...
+ *   title: ...
+ *   Accounts.get:
+ *     - { title, request, responses }
+ *   Accounts.createOrUpdate:
+ *     - { title, request, responses }
+ */
 
 /** A single example representing one complete API interaction. */
 model Example {
