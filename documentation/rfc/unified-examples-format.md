@@ -1,843 +1,468 @@
 # RFC: Unified Examples File Format
 
-- **Status**: Draft
+- **Status**: Draft — **decision pending** between two candidate formats (see §4)
 - **Authors**: TBD
 - **Created**: 2026-06-03
+- **Updated**: 2026-06-15 (reflects design-meeting decisions)
+
+> **Reading note**: This RFC was originally a single proposal. After the design
+> meeting it became a **bake-off** between two co-equal candidate formats. The
+> original single-proposal document is preserved for reference at
+> [`archive/unified-examples-format.md`](./archive/unified-examples-format.md).
 
 ## 1. Motivation
 
 ### Current State
 
-Azure REST API specifications use `x-ms-examples` to reference JSON example files. Each operation can have multiple examples, and each API version gets its own copy of every example file.
+Azure REST API specifications use `x-ms-examples` to reference JSON example
+files. Each operation can have multiple examples, and each API version gets its
+own copy of every example file.
 
 **Scale of the problem**:
 
-- 281,000+ individual JSON example files across the repository
-- A single service like Compute has 9,400+ example files
-- Examples are duplicated across every API version, often with trivial differences (e.g., only the `api-version` parameter changes)
-- The Maps `GetAccount.json` example exists in 13 separate copies across versions, with changes limited to the api-version string, a date, and one added property
+- ~282,000 individual JSON example files across the repository; research shows
+  ~60% (~170,000) are duplicates copied across versions with no or trivial
+  differences.
+- A single service like Compute has 9,400+ example files.
+- The Maps `GetAccount.json` example exists in 13 separate copies across
+  versions, differing only by the `api-version` string, a date, and one
+  property.
+- EventGrid alone has **2,968** JSON example files (~4.2 MB).
 
 ### Current Format
 
 ```
 specification/maps/resource-manager/Microsoft.Maps/Maps/
-├── stable/2021-02-01/examples/
-│   ├── GetAccount.json
-│   ├── CreateAccount.json
-│   └── ...
-├── stable/2023-06-01/examples/
-│   ├── GetAccount.json        ← 95% identical to 2021-02-01 version
-│   ├── CreateAccount.json
-│   └── ...
-└── preview/2024-01-01-preview/examples/
-    ├── GetAccount.json        ← 95% identical again
-    └── ...
+├── stable/2021-02-01/examples/GetAccount.json
+├── stable/2023-06-01/examples/GetAccount.json   ← 95% identical
+└── preview/2024-01-01-preview/examples/GetAccount.json   ← 95% identical
 ```
 
-Each JSON file:
-
-```json
-{
-  "parameters": {
-    "api-version": "2021-02-01",
-    "subscriptionId": "21a9967a-e8a9-4656-a70b-96ff1c4d05a0",
-    "resourceGroupName": "myResourceGroup",
-    "accountName": "myMapsAccount"
-  },
-  "responses": {
-    "200": {
-      "body": { ... }
-    }
-  }
-}
-```
+Each JSON file repeats the full request/response, including the `api-version`
+parameter that is the most common trivial difference between versions.
 
 ## 2. Goals
 
-1. **Single source of truth** — One file (or small set of files) per service holds all examples for all versions
-2. **Eliminate duplication** — An example is written once; version-specific variations are recorded only when they differ
-3. **Readability first** — YAML format with focus on clarity; a human should be able to read an example and understand the API interaction immediately
-4. **Version-aware** — The format tracks which versions an example applies to, without requiring a full copy per version
-5. **(Optional) Decouple from operationId** — Identify operations in a way that works for both TypeSpec and legacy Swagger
-6. **Flexible file organization** — Single file for simple services, multi-file for complex services
-7. **Concrete values** — Use real-looking data with limited placeholder support for version-dependent values
+1. **Single source of truth** — one file (or small set) per service holds all
+   examples for all versions.
+2. **Eliminate duplication** — write an example once; record version-specific
+   variations only when they differ.
+3. **Readability first** — a human should be able to read an example and
+   understand the API interaction immediately.
+4. **Version-aware** — track which versions an example applies to without a full
+   copy per version.
+5. **Stable, source-friendly operation identity** that works across versions.
+6. **Flexible organization** — single file for simple services, multi-file for
+   complex services.
+7. **Concrete values** with limited placeholder support for version-dependent
+   values.
 
 ### Non-Goals
 
-- Backward compatibility with `x-ms-examples` JSON format (tooling will handle migration)
+- Backward compatibility with the `x-ms-examples` JSON *format* (tooling handles
+  migration; see §10).
 
-## 3. Proposed Format
+## 3. Shared Design (applies to both candidates)
 
-### 3.1 File Location
+The two candidate formats in §4 differ only in **where examples live and how
+they are written**. Everything in this section is common to both.
 
-Examples live alongside the TypeSpec or Swagger project at a well-known path:
+### 3.1 Operation Identification — TypeSpec FQN (decided)
+
+Operations are identified by their **TypeSpec fully-qualified operation name
+(FQN)**, starting at and including the **service namespace**:
+
+```
+Microsoft.EventGrid.CaCertificates.createOrUpdate
+└──── namespace ────┘└─ interface ─┘└─ operation ┘
+```
+
+- In the **YAML candidate (A)** the FQN is the top-level key.
+- In the **decorator candidate (B)** the FQN is the augment-decorator target, so
+  it is implicit in the reference itself.
+
+For legacy Swagger-only services, a generated `operationId → FQN` mapping lets
+them adopt the same identity without a full TypeSpec migration.
+
+> The FQN **includes the namespace** (resolving a review question): it is not
+> just the interface name. For ARM the namespace is the provider namespace
+> (e.g. `Microsoft.EventGrid`).
+
+#### Alternatives considered (rejected)
+
+| Alternative | Why rejected |
+| ----------- | ------------ |
+| **operationId** (`Accounts_Get`) | OperationIds can collide across versions and are an emitter artifact rather than source identity. **Tooling MAY still accept operationId keys as a transitional migration aid**, but it is not the target. |
+| **HTTP method + path** (`GET .../accounts/{name}`) | Verbose for nested ARM paths; produces unwieldy `$ref` fragments; and crucially **the path is implicit in TypeSpec** — a TypeSpec author has no intuitive way to hand-write the path for an operation, especially in management scenarios. |
+
+### 3.2 Request / Response Shape
+
+Each example is one complete API interaction. The request is split by parameter
+location; responses are keyed by status code.
+
+| Section | Purpose | When to include |
+| ------- | ------- | --------------- |
+| `path` | Path parameters | When the operation has path params |
+| `query` | Query parameters (`$top`, `$filter`, …) | Only for non-default query params |
+| `headers` | Request headers (`If-Match`, …) | Only for non-standard headers |
+| `body` | Request body | Only for operations with a body |
+
+- **`api-version` is implicit** and never written — it is resolved from the
+  version context. This removes the most common trivial version difference.
+- **Placeholders** are the exception, not the rule. The only supported
+  placeholder is `{api-version}`, used where a value must embed the target
+  version (e.g. inside a `Location` header URL).
+- **Response headers** are supported per status code.
+- **Error responses (4xx/5xx) are in scope** — they are ordinary entries in the
+  responses map and require no special mechanism.
+- **Long-running operations (LRO)** are represented by including the initial
+  status code (e.g. `202` with `Azure-AsyncOperation` / `Location` /
+  `Retry-After` headers) alongside the terminal response.
+- **Pagination** is shown with a `value` array and a `nextLink` URL on the first
+  page; consumers follow `nextLink` for subsequent pages.
+
+### 3.3 Versioning Model
+
+Examples are version-aware without full duplication via a **`since`** marker:
+
+- An example with no `since` applies from the earliest version.
+- `since: <version>` means the variant supersedes any earlier variant with the
+  same title for versions `>= <version>`.
+- When several variants share a title, the highest `since` that is `<=` the
+  target version wins.
+
+**No partial overrides (decided).** A changed variant always restates the
+**full** body — we deliberately do *not* support patching a single field. This
+keeps an example readable as a complete request/response without mentally
+applying a chain of diffs. Where duplication becomes heavy, the answer is to
+**generate examples on demand** rather than to add partial-override machinery.
+
+**Version-string agnostic.** The model is not opinionated about the version
+string format — date-based, version-number, or mixed schemes all work. Ordering
+is taken from the service's [`service.yaml`](./service-yaml.md), not inferred
+from the string, so data-plane services that do not use date-based versions are
+supported.
+
+### 3.4 Swagger Linkage / Rollout — `x-id` (decided)
+
+Generated Swagger will **no longer embed `x-ms-examples` `$ref` blocks**.
+Instead, every operation carries an **`x-id`** extension whose value is the
+operation FQN:
+
+```json
+"get": {
+  "operationId": "CaCertificates_Get",
+  "x-id": "Microsoft.EventGrid.CaCertificates.get"
+}
+```
+
+`x-id` is the **sole** link between a Swagger operation and the examples. Any
+consumer (docs, SDK generators, validation, TCGC, …) joins a Swagger operation
+to its examples by matching `x-id` to the example identity (the YAML key in
+Candidate A, or the decorator target in Candidate B). This decouples examples
+from the Swagger file and removes ~282K embedded `$ref` blocks.
+
+## 4. The Two Candidate Formats
+
+The meeting agreed to evaluate two formats as **co-equal candidates**. The
+current lean is **TypeSpec-first (Candidate B)**, but the decision is **left
+open** pending the trade-offs in §7.
+
+- **Candidate A — Standalone YAML file** (§5)
+- **Candidate B — TypeSpec-first decorator** (§6)
+
+Both use the shared design from §3, so a service can move between them without
+changing operation identity, versioning semantics, or the `x-id` rollout.
+
+## 5. Candidate A — Standalone YAML File
+
+### 5.1 Location
 
 ```
 specification/<service>/<plane>/<namespace>/
 ├── main.tsp
 ├── tspconfig.yaml
-└── examples.yaml          ← single-file (most services)
+└── examples.yaml          ← single file (most services)
 ```
 
-Or for complex services with multi-file:
+Complex services may split into `examples/*.yaml`; tooling discovers all YAML
+files in the directory. Each operation MUST appear in exactly one file.
 
-```
-specification/compute/resource-manager/Microsoft.Compute/
-├── main.tsp
-├── tspconfig.yaml
-└── examples/
-    ├── virtual-machines.yaml
-    ├── disks.yaml
-    ├── galleries.yaml
-    └── networking.yaml
-```
-
-The file(s) can also be named `examples/*.yaml` when using a directory. The grouping is purely organizational — tooling discovers all `*.yaml` files in the examples directory.
-
-### 3.2 Top-Level Structure
-
-```yaml
-# examples.yaml
-$schema: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/schemas/examples.schema.yaml
-
-# Optional metadata
-title: Microsoft.Maps Account Management Examples
-description: Examples for Maps account CRUD operations
-
-# Examples grouped by operation
-<operation-key>:
-  - <example>
-  - <example>
-<operation-key>:
-  - <example>
-```
-
-### 3.3 Operation Identification
-
-Operations need a stable, readable key in the YAML file. We define a primary approach and two alternatives. Tooling MUST support the primary approach; alternatives MAY be supported for convenience.
-
-#### Primary: TypeSpec Operation FQN
-
-For TypeSpec-authored services, the **fully-qualified operation name** using the interface/resource name and operation name is the canonical identifier:
-
-```yaml
-Accounts.get:
-  - ...
-Accounts.createOrUpdate:
-  - ...
-Accounts.delete:
-  - ...
-Accounts.listByResourceGroup:
-  - ...
-Creators.create:
-  - ...
-```
-
-This uses the TypeSpec interface name (or resource name) and the operation name separated by a dot. It's concise, readable, and directly maps to the TypeSpec source.
-
-**Advantages**:
-
-- Most readable and concise option
-- Directly corresponds to TypeSpec source code
-- Stable across versions (operation names rarely change)
-- Natural grouping by resource
-
-**Considerations**:
-
-- Only works natively for TypeSpec-authored services
-- Requires the TypeSpec compilation context to resolve
-- For legacy Swagger services, a mapping of operationId → FQN could be generated (e.g., `Accounts_Get` → `Accounts.get`), allowing non-TypeSpec services to adopt this format without requiring a full TypeSpec migration
-
-**Generated swagger reference**:
-
-Tooling must resolve the FQN to the corresponding path+method in the OpenAPI spec. This requires TypeSpec compilation metadata to map `Accounts.get` → `GET /subscriptions/{subscriptionId}/.../accounts/{accountName}`. Once resolved, tooling emits a `$ref` pointing into the YAML examples file using a JSON pointer-like fragment:
-
-```json
-"x-ms-examples": {
-  "Get Account": {
-    "$ref": "./examples.yaml#/Accounts.get/0"
-  }
-}
-```
-
-**What's needed**: A resolution step that uses the TypeSpec compiler output (or a pre-built mapping file) to associate FQNs with their swagger path+method. This adds a build-time dependency on TypeSpec compilation context.
-
-#### Alternative A: OperationId
-
-All services already have operationIds, making this the most compatible solution today. It provides the easiest migration path from the current `x-ms-examples` format.
-
-```yaml
-Accounts_Get:
-  - ...
-Accounts_CreateOrUpdate:
-  - ...
-Accounts_Delete:
-  - ...
-```
-
-**Advantages**:
-
-- Works for both TypeSpec and Swagger services — every service already has operationIds
-- Familiar to existing API authors
-- Easy to migrate from current format (direct mapping)
-
-**Considerations**:
-
-- OperationId conflicts can occur (e.g., when multiple API versions define the same operationId for different operations), requiring authors to disambiguate explicitly — this is not ideal for authoring ergonomics
-- This is the primary reason to explore moving toward the TypeSpec FQN as the preferred approach long-term, while keeping operationId as a supported fallback
-
-**Generated swagger reference**:
-
-The operationId directly matches the operation in swagger, so tooling can locate the correct path+method by scanning the OpenAPI spec for the matching operationId. It then emits a `$ref` pointing into the YAML examples file:
-
-```json
-"x-ms-examples": {
-  "Get Account": {
-    "$ref": "./examples.yaml#/Accounts_Get/0"
-  }
-}
-```
-
-**What's needed**: A simple lookup — scan the swagger for `operationId: "Accounts_Get"` and place the `x-ms-examples` reference there. This is straightforward and requires no additional compilation context.
-
-#### Alternative B: HTTP Method + Path Pattern
-
-For maximum universality (especially for services without TypeSpec or inconsistent operationIds), the HTTP method and path template can be used:
-
-```yaml
-"GET /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Maps/accounts/{accountName}":
-  - ...
-"PUT /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Maps/accounts/{accountName}":
-  - ...
-```
-
-A shorter form for ARM resources where the subscription/resourceGroup prefix is implicit MAY be supported:
-
-```yaml
-"GET Microsoft.Maps/accounts/{accountName}":
-  - ...
-```
-
-**Advantages**:
-
-- Works universally — no dependency on TypeSpec or operationId
-- Unambiguous: the HTTP contract is the source of truth
-- Self-documenting: you can see the exact endpoint
-
-**Considerations**:
-
-- Verbose, especially for deeply nested ARM paths
-- Harder to read at a glance compared to FQN or operationId
-
-**Generated swagger reference**:
-
-The key in the examples file directly corresponds to the swagger path+method structure. Tooling can match the key to `paths[<path>].<method>` without any lookup and emit a `$ref` into the YAML:
-
-```json
-"x-ms-examples": {
-  "Get Account": {
-    "$ref": "./examples.yaml#/GET %2Fsubscriptions%2F{subscriptionId}%2F...%2Faccounts%2F{accountName}/0"
-  }
-}
-```
-
-**What's needed**: Nothing beyond string matching — the examples file key already encodes the exact location in the swagger. However, the `$ref` fragment becomes unwieldy due to URL-encoded paths, which is a usability downside of this approach.
-
-#### Choosing a Single Style
-
-A given examples file MUST use exactly one identification style. Mixing styles within a file is not allowed — this keeps files consistent and avoids ambiguity in tooling.
-
-The recommended style is **TypeSpec Operation FQN** for new services. For legacy Swagger services that cannot adopt FQN, **operationId** is acceptable. The **HTTP method + path** style exists as a fallback but is not recommended for hand-authored files due to verbosity.
-
-> **Backward compatibility**: Tooling MAY accept operationId keys even in FQN-style files during a transition period, to ease migration from existing examples. However, new files SHOULD NOT rely on this.
-
-### 3.4 Example Entry Structure
-
-Each example entry represents one complete API interaction: a request and its possible responses. Parameters are split by location (path, query, headers) for clarity.
-
-```yaml
-Accounts.createOrUpdate:
-  - title: Create Gen1 Account
-    description: Creates a Maps account with Gen1 SKU  # optional
-
-    request:
-      path:
-        subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
-        resourceGroupName: myResourceGroup
-        accountName: myMapsAccount
-      body:
-        location: global
-        sku:
-          name: S0
-        kind: Gen1
-        tags:
-          test: "true"
-        properties:
-          disableLocalAuth: false
-
-    responses:
-      200:
-        body:
-          id: /subscriptions/21a9967a-e8a9-4656-a70b-96ff1c4d05a0/resourceGroups/myResourceGroup/providers/Microsoft.Maps/accounts/myMapsAccount
-          name: myMapsAccount
-          type: Microsoft.Maps/accounts
-          kind: Gen1
-          location: global
-          tags:
-            test: "true"
-          sku:
-            name: S0
-            tier: Standard
-          properties:
-            uniqueId: b2e763e6-d6f3-4858-9e2b-7cf8df85c593
-            provisioningState: Succeeded
-            disableLocalAuth: false
-      201:
-        body:
-          id: /subscriptions/21a9967a-e8a9-4656-a70b-96ff1c4d05a0/resourceGroups/myResourceGroup/providers/Microsoft.Maps/accounts/myMapsAccount
-          name: myMapsAccount
-          type: Microsoft.Maps/accounts
-          kind: Gen1
-          location: global
-          # ... same structure as 200
-
-  - title: Create Gen2 Account
-    request:
-      path:
-        subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
-        resourceGroupName: myResourceGroup
-        accountName: myMapsAccount
-      body:
-        location: global
-        sku:
-          name: S1
-        kind: Gen2
-        properties:
-          disableLocalAuth: true
-    responses:
-      200:
-        body:
-          # ...
-```
-
-The request is split into explicit sections by parameter location:
-
-| Section | Purpose | When to include |
-| ------- | ------- | --------------- |
-| `path` | Path parameters (e.g., resourceGroupName, accountName) | Always (if the operation has path params) |
-| `query` | Query parameters (e.g., `$top`, `$filter`) | Only when non-default query params are used |
-| `headers` | Request headers (e.g., `If-Match`, `x-ms-client-request-id`) | Only for non-standard headers |
-| `body` | Request body | Only for operations with a body (PUT, POST, PATCH) |
-
-### 3.5 Versioning Model
-
-The key innovation: examples are version-aware without full duplication. We explore two approaches.
-
-#### Option A: `since` Marker
-
-Each example can specify which versions it applies to:
-
-```yaml
-Accounts.get:
-  - title: Get Account
-    # No version marker = applies to all versions (the common case)
-    request:
-      path:
-        subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
-        resourceGroupName: myResourceGroup
-        accountName: myMapsAccount
-    responses:
-      200:
-        body:
-          id: /subscriptions/.../myMapsAccount
-          name: myMapsAccount
-          type: Microsoft.Maps/accounts
-          location: global
-          properties:
-            provisioningState: Succeeded
-            disableLocalAuth: false
-
-  - title: Get Account
-    since: 2023-06-01   # This variant takes over from 2023-06-01 onward
-    request:
-      path:
-        subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
-        resourceGroupName: myResourceGroup
-        accountName: myMapsAccount
-    responses:
-      200:
-        body:
-          id: /subscriptions/.../myMapsAccount
-          name: myMapsAccount
-          type: Microsoft.Maps/accounts
-          location: eastus
-          properties:
-            provisioningState: Succeeded
-            disableLocalAuth: false
-            linkedResources: []   # new field added in 2023-06-01
-```
-
-**Rules**:
-
-- An example with no `since` applies from the earliest version
-- `since: <version>` means "this example supersedes any previous example with the same title for versions >= `<version>`"
-- When multiple entries share the same title, the one with the highest `since` that is <= the target version wins
-
-**Pros**:
-
-- Simple mental model: write the base case, override only what changes
-- Minimal duplication: only the changed variant needs to be written in full
-- Easy to read: most examples have no version markers at all
-
-**Cons**:
-
-- When a response changes significantly, you still need the full new response body
-- Ordering matters implicitly (later `since` overrides earlier)
-
-#### Alternative: `@version` Suffix Convention
-
-An earlier experiment ([PR #6](https://github.com/timotheeguerin/azure-rest-api-specs/pull/6)) explored a different approach where versioning is encoded in the operation key itself using a `@version` suffix with **`since` semantics** — the `@version` means "this variant applies from that version onward":
-
-```yaml
-# Unversioned key = the base example (applies from the earliest version)
-Channels_CreateOrUpdate:
-  parameters:
-    subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
-    resourceGroupName: examplerg
-    channelName: exampleChannelName1
-    # ...
-  responses:
-    200:
-      body: # ...
-
-# @version key = new variant that takes over from that version onward
-Channels_CreateOrUpdate@2023-06-01-preview:
-  parameters:
-    subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
-    resourceGroupName: examplerg
-    channelName: exampleChannelName1
-    # ...
-  responses:
-    200:
-      body: # ...
-```
-
-Using `since` semantics (rather than "this was the old version") means you only need to add a new entry going forward — you never have to patch older examples when something changes.
-
-**Key differences from our proposal**:
-
-| Aspect | This RFC (`since` field) | `@version` suffix |
-| ------ | ------------------------ | ----------------- |
-| Structure | Array of examples per operation, with `since` field | Flat map, version encoded in key name |
-| Versioning semantics | `since` field on the entry | `@version` in the key name (same semantics) |
-| Base example | Entry without `since` | The unversioned key |
-| Multiple examples per operation | Multiple array entries with different titles | Not directly supported — one example per operation key |
-| Parameter grouping | Split by location (`path`, `query`, `headers`, `body`) | Flat `parameters` map |
-| Request/response nesting | Nested under `request:` / `responses:` | Top-level `parameters:` and `responses:` |
-
-**Pros of the `@version` approach**:
-
-- Extremely flat and simple — no nesting beyond parameters/responses
-- Easy to reference from swagger via `$ref: "../../examples.yaml#/CaCertificates_Get"`
-- Proven at scale: demonstrated 2,751 → 1 file, 42% size reduction for EventGrid
-- Adding a new version variant is append-only — just add a new `@version` key
-
-**Cons of the `@version` approach**:
-
-- Only supports one example per operation (no "Create Gen1" vs "Create Gen2" variants)
-- No explicit grouping of path/query/header parameters — flat `parameters` map is ambiguous about where values go
-- Title/description metadata not supported per example
-- Key ordering in the file matters for readability (versions should be chronological)
-
-**Conclusion**: The `@version` approach is simpler and more compact, making it excellent for automated migration and tooling. This RFC's approach adds more structure (parameter splitting, titles, multiple examples per operation) at the cost of verbosity, making it better suited for hand-authoring and documentation generation.
-
-### 3.6 Placeholder Support
-
-Concrete values are used everywhere by default. Limited placeholders are supported for values that embed the API version:
-
-```yaml
-request:
-  query:
-    api-version: "{api-version}"  # resolved by tooling to the target version
-
-responses:
-  200:
-    body:
-      id: /subscriptions/21a9967a-e8a9-4656-a70b-96ff1c4d05a0/resourceGroups/myResourceGroup/providers/Microsoft.Maps/accounts/myMapsAccount
-      # Real values everywhere else
-```
-
-Supported placeholders:
-
-- `{api-version}` — replaced with the target API version string
-
-> **Design Principle**: Placeholders are the exception, not the rule. They exist only when a value MUST change with the version. All other values use concrete, realistic data.
-
-### 3.7 Response Headers
-
-Examples may optionally include response headers:
-
-```yaml
-responses:
-  202:
-    headers:
-      Location: https://management.azure.com/subscriptions/.../operationResults/abc123
-      Retry-After: "30"
-    body:
-      status: InProgress
-```
-
-### 3.8 Multi-File Organization
-
-For complex services, examples can be split across multiple files in an `examples/` directory:
-
-```yaml
-# examples/virtual-machines.yaml
-$schema: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/schemas/examples.schema.yaml
-title: Virtual Machine Operations
-
-"PUT .../virtualMachines/{vmName}":
-  - title: Create a VM with managed disks
-    # ...
-```
-
-**Rules**:
-
-- Each file is self-contained (no cross-file references)
-- An operation MUST NOT appear in multiple files (enforced by tooling)
-- Files are named descriptively by operation area (not by operation name)
-- Discovery: tooling reads all `*.yaml` files in the `examples/` directory
-
-### 3.9 Handling `api-version` Parameter
-
-The `api-version` parameter is **implicit** and NOT included in example parameters. It's determined by the version context in which the example is consumed.
-
-```yaml
-# Good — api-version is implicit
-request:
-  path:
-    subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
-    resourceGroupName: myResourceGroup
-    accountName: myMapsAccount
-
-# Not needed:
-#   api-version: 2021-02-01   ← this is determined by context
-```
-
-This eliminates the most common source of trivial version differences.
-
-## 4. Full Example
-
-Here's a complete `examples.yaml` for a simplified Maps service:
+### 5.2 Structure
 
 ```yaml
 $schema: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/schemas/examples.schema.yaml
-title: Microsoft.Maps Account Management
+title: Microsoft.EventGrid Examples
 
-Accounts.createOrUpdate:
-  - title: Create Gen1 Account
+Microsoft.EventGrid.CaCertificates.createOrUpdate:
+  - title: Create CA certificate
     request:
       path:
-        subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
-        resourceGroupName: myResourceGroup
-        accountName: myMapsAccount
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        namespaceName: exampleNamespaceName1
+        caCertificateName: exampleCACertificateName1
       body:
-        location: global
-        sku:
-          name: S0
-        kind: Gen1
-        tags:
-          test: "true"
         properties:
-          disableLocalAuth: false
+          description: This is a test certificate
+          encodedCertificate: base64EncodePemFormattedCertificateString
     responses:
-      200:
+      "200":
         body:
-          id: /subscriptions/21a9967a-e8a9-4656-a70b-96ff1c4d05a0/resourceGroups/myResourceGroup/providers/Microsoft.Maps/accounts/myMapsAccount
-          name: myMapsAccount
-          type: Microsoft.Maps/accounts
-          kind: Gen1
-          location: global
-          sku:
-            name: S0
-            tier: Standard
           properties:
-            uniqueId: b2e763e6-d6f3-4858-9e2b-7cf8df85c593
             provisioningState: Succeeded
-            disableLocalAuth: false
-      201:
-        body:
-          id: /subscriptions/21a9967a-e8a9-4656-a70b-96ff1c4d05a0/resourceGroups/myResourceGroup/providers/Microsoft.Maps/accounts/myMapsAccount
-          name: myMapsAccount
-          type: Microsoft.Maps/accounts
-          kind: Gen1
-          location: global
-          sku:
-            name: S0
-            tier: Standard
-          properties:
-            uniqueId: b2e763e6-d6f3-4858-9e2b-7cf8df85c593
-            provisioningState: Succeeded
-            disableLocalAuth: false
-
-  - title: Create Gen2 Account
-    since: 2021-02-01
-    request:
-      path:
-        subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
-        resourceGroupName: myResourceGroup
-        accountName: myMapsAccount
-      body:
-        location: global
-        sku:
-          name: S1
-        kind: Gen2
-        properties:
-          disableLocalAuth: true
-    responses:
-      200:
-        body:
-          id: /subscriptions/21a9967a-e8a9-4656-a70b-96ff1c4d05a0/resourceGroups/myResourceGroup/providers/Microsoft.Maps/accounts/myMapsAccount
-          name: myMapsAccount
-          type: Microsoft.Maps/accounts
-          kind: Gen2
-          location: global
-          sku:
-            name: S1
-            tier: Standard
-          properties:
-            uniqueId: c3f864f7-e9g4-5969-0f3c-8dg9ef96d6a4
-            provisioningState: Succeeded
-            disableLocalAuth: true
-
-Accounts.get:
-  - title: Get Account
-    request:
-      path:
-        subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
-        resourceGroupName: myResourceGroup
-        accountName: myMapsAccount
-    responses:
-      200:
-        body:
-          id: /subscriptions/21a9967a-e8a9-4656-a70b-96ff1c4d05a0/resourceGroups/myResourceGroup/providers/Microsoft.Maps/accounts/myMapsAccount
-          name: myMapsAccount
-          type: Microsoft.Maps/accounts
-          location: global
-          kind: Gen1
-          sku:
-            name: S0
-            tier: Standard
-          properties:
-            uniqueId: b2e763e6-d6f3-4858-9e2b-7cf8df85c593
-            provisioningState: Succeeded
-            disableLocalAuth: false
-
-  - title: Get Account
-    since: 2023-06-01
-    request:
-      path:
-        subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
-        resourceGroupName: myResourceGroup
-        accountName: myMapsAccount
-    responses:
-      200:
-        body:
-          id: /subscriptions/21a9967a-e8a9-4656-a70b-96ff1c4d05a0/resourceGroups/myResourceGroup/providers/Microsoft.Maps/accounts/myMapsAccount
-          name: myMapsAccount
-          type: Microsoft.Maps/accounts
-          location: eastus
-          kind: Gen1
-          sku:
-            name: S0
-            tier: Standard
-          properties:
-            uniqueId: b2e763e6-d6f3-4858-9e2b-7cf8df85c593
-            provisioningState: Succeeded
-            disableLocalAuth: false
-            linkedResources: []
-
-Accounts.delete:
-  - title: Delete Account
-    request:
-      path:
-        subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
-        resourceGroupName: myResourceGroup
-        accountName: myMapsAccount
-    responses:
-      200: {}
-      204: {}
-
-Accounts.listByResourceGroup:
-  - title: List Accounts By Resource Group
-    request:
-      path:
-        subscriptionId: 21a9967a-e8a9-4656-a70b-96ff1c4d05a0
-        resourceGroupName: myResourceGroup
-    responses:
-      200:
-        body:
-          value:
-            - id: /subscriptions/21a9967a-e8a9-4656-a70b-96ff1c4d05a0/resourceGroups/myResourceGroup/providers/Microsoft.Maps/accounts/myMapsAccount
-              name: myMapsAccount
-              type: Microsoft.Maps/accounts
-              location: global
-              sku:
-                name: S0
-                tier: Standard
+          name: exampleCACertificateName1
+          type: Microsoft.EventGrid/namespaces/caCertificates
 ```
 
-## 5. TypeSpec Schema
+A full, real-scale example is the EventGrid showcase at
+[`examples-reference/examples-fqn.yaml`](../../specification/eventgrid/resource-manager/Microsoft.EventGrid/EventGrid/examples-reference/examples-fqn.yaml)
+(231 operations, 413 example entries, 182 `since` variants, **one file**).
 
-The following TypeSpec definitions formalize the structure of the examples file:
+### 5.3 Why YAML (not JSON)
+
+YAML is chosen over JSON because (resolving a review question):
+
+- It supports **comments**, which examples benefit from.
+- It is **shorter and more readable** for hand-authoring than JSON.
+- YAML is already used throughout the repo, and the OpenAPI ecosystem treats
+  YAML as the standard authoring format.
+
+### 5.4 Pros / Cons
+
+- **Pros**: works for both TypeSpec and legacy Swagger services; no TypeSpec
+  compilation needed to read/author; trivially diffable; one obvious file.
+- **Cons**: a second artifact to keep in sync with the spec; values are not
+  type-checked against the model at author time (needs a validation tool, §10).
+
+## 6. Candidate B — TypeSpec-first Decorator
+
+Examples are expressed directly in TypeSpec via a new **HTTP-centric example
+decorator**, mirroring the same request/response shape as Candidate A so the two
+are directly comparable.
+
+### 6.1 The `@example` Decorator
+
+```tsp
+@@example(Microsoft.EventGrid.CaCertificates.createOrUpdate,
+  #{
+    title: "Create CA certificate",
+    since: "2024-06-01-preview",          // optional; omit = from earliest version
+    request: #{
+      path: #{
+        subscriptionId: "8f6b6269-84f2-4d09-9e31-1127efcd1e40",
+        resourceGroupName: "examplerg",
+        namespaceName: "exampleNamespaceName1",
+        caCertificateName: "exampleCACertificateName1",
+      },
+      body: #{
+        properties: #{
+          description: "This is a test certificate",
+          encodedCertificate: "base64EncodePemFormattedCertificateString",
+        },
+      },
+    },
+    responses: #{
+      "200": #{ body: #{ name: "exampleCACertificateName1" } },
+      "201": #{ body: #{ name: "exampleCACertificateName1" } },
+    },
+  });
+```
+
+Using the **augment** form (`@@example`) keeps examples out of the operation
+definitions, so example data can live in a dedicated file (e.g. `examples.tsp`)
+without cluttering the API surface.
+
+### 6.2 Versioning
+
+A `since` field on the example object selects the variant for a target version —
+identical semantics to Candidate A's `since`. Multiple variants are simply
+multiple `@@example` applications on the same operation:
+
+```tsp
+@@example(Microsoft.EventGrid.Channels.createOrUpdate, #{ title: "Create", /* base */ });
+@@example(Microsoft.EventGrid.Channels.createOrUpdate, #{ title: "Create", since: "2023-06-01-preview", /* updated */ });
+```
+
+> This addresses the meeting's hardest concern: versioning examples that are
+> embedded in TypeSpec. Rather than relying on `@added`/value-level versioning
+> decorators (which cannot version individual values), we reuse the same
+> data-driven `since` marker, expressed as repeated augment decorators.
+
+### 6.3 EventGrid Full Conversion (showcase)
+
+The complete EventGrid example set has been converted to this decorator form as a
+demonstration:
+[`examples.tsp`](../../specification/eventgrid/resource-manager/Microsoft.EventGrid/EventGrid/examples.tsp)
+— one file, 231 operations, 413 `@@example` applications, 182 `since` variants.
+It is **demonstration only** (not wired into the build); the proposed `@example`
+decorator is not yet implemented.
+
+### 6.4 Pros / Cons
+
+- **Pros**: examples live with the source; the operation reference is a real
+  symbol (no string FQN to mistype; rename-safe); values can eventually be
+  **type-checked** against the operation's request/response models by the
+  compiler; the FQN is intrinsic so no separate key is needed.
+- **Cons**: the decorator can only apply to **TypeSpec-authored** operations —
+  **retired / Swagger-only versions cannot be expressed this way** and still need
+  the YAML/generated-JSON path; non-TypeSpec consumers (e.g. some doc pipelines)
+  still need an emitted intermediate format; requires building and shipping the
+  decorator + emitter support.
+
+## 7. Bake-off Comparison
+
+| Axis | A — YAML file | B — TypeSpec decorator |
+| ---- | ------------- | ---------------------- |
+| Where examples live | Separate `examples.yaml` | In TypeSpec (`@@example`) |
+| Operation identity | FQN as YAML key (string) | Real operation symbol |
+| Type checking at author time | No (needs validator) | Possible via compiler |
+| Versioning | `since` field | `since` field (repeated `@@example`) |
+| Legacy / retired Swagger-only versions | ✅ supported | ❌ not expressible (needs A as fallback) |
+| Non-TypeSpec / docs consumers | ✅ reads YAML directly | Needs emitted intermediate format |
+| Authoring without TypeSpec context | ✅ | ❌ |
+| Comments / annotations | ✅ (YAML) | ✅ (TypeSpec) |
+| EventGrid scale | 1 file, 11,176 lines, 496 KB | 1 file, 17,155 lines, 632 KB |
+| Original baseline (EventGrid) | 2,968 JSON files, ~4.2 MB | 2,968 JSON files, ~4.2 MB |
+
+**Current lean**: TypeSpec-first (B), because the operation reference is a real
+symbol and values can be compiler-checked. **Open**: B cannot express retired
+Swagger-only versions, so A is still needed as the fallback for those — which is
+the main reason the decision remains open. A likely outcome is **B for live
+TypeSpec services + A for retired/Swagger-only versions**, but that is not yet
+decided.
+
+## 8. TypeSpec Schema
+
+The example value object (shared by both candidates — it is the YAML document
+model in A and the decorator argument type in B):
 
 ```tsp
 namespace Azure.ApiExamples;
 
-/** Root document structure for an examples file. */
-/**
- * The examples file is a YAML document where the top-level keys are operation identifiers
- * mapping directly to arrays of examples. Optional metadata fields ($schema, title, description)
- * may appear at the top level alongside operation keys.
- *
- * Example structure:
- *   $schema: ...
- *   title: ...
- *   Accounts.get:
- *     - { title, request, responses }
- *   Accounts.createOrUpdate:
- *     - { title, request, responses }
- */
-
 /** A single example representing one complete API interaction. */
 model Example {
-  /** Human-readable title for this example. Required. */
+  /** Human-readable title. */
   title: string;
 
   /** Longer description of what this example demonstrates. */
   description?: string;
 
   /**
-   * API version from which this example variant applies.
-   * If omitted, the example applies from the earliest version.
-   * Format: date-based version string (e.g., "2023-06-01" or "2024-01-01-preview")
+   * Version from which this variant applies. Omit to apply from the earliest
+   * version. Ordering comes from the service's `service.yaml`.
    */
   since?: string;
 
-  /** The request portion of the example. */
   request: ExampleRequest;
 
-  /**
-   * Map of HTTP status codes to response examples.
-   * Keys are status code strings (e.g., "200", "201", "404").
-   */
+  /** Map of status-code string (e.g. "200", "404") to response example. */
   responses: Record<ExampleResponse>;
 }
 
-/** Describes the request side of an example. */
 model ExampleRequest {
-  /**
-   * Path parameters for the request.
-   * Keys are parameter names as they appear in the path template.
-   * The `api-version` parameter should NOT be included (it's implicit).
-   */
+  /** Path parameters. `api-version` is implicit and MUST NOT be included. */
   path?: Record<unknown>;
-
-  /**
-   * Query parameters for the request.
-   * Keys are query parameter names (e.g., "$top", "$filter").
-   */
+  /** Query parameters (e.g. "$top", "$filter"). */
   query?: Record<unknown>;
-
-  /** Request headers (only include non-standard headers). */
+  /** Non-standard request headers. */
   headers?: Record<string>;
-
-  /**
-   * Request body. Structure matches the operation's request schema.
-   * Use concrete, realistic values.
-   */
+  /** Request body. Structure matches the operation's request schema. */
   body?: unknown;
 }
 
-/** Describes a single response variant for a status code. */
 model ExampleResponse {
   /** Response body. Structure matches the operation's response schema. */
   body?: unknown;
-
   /** Response headers. */
   headers?: Record<string>;
 }
+
+/** Candidate B: HTTP-centric example decorator (augmentable). */
+extern dec example(target: Operation, example: Example);
 ```
 
-## 6. Migration Strategy
+## 9. Migration Strategy
 
-### Phase 1: Tooling Development
+### Phase 1 — Tooling
 
-- Build a converter that reads existing `x-ms-examples` JSON and produces the new YAML format
-- Deduplication logic: compare examples across versions, emit `since` markers where differences exist
-- Build a generator that produces `x-ms-examples` JSON from the new YAML format (round-trip)
-- Validation tooling to ensure YAML examples match the OpenAPI/TypeSpec schema
+- Converter that reads existing `x-ms-examples` JSON and produces the chosen
+  format (YAML and/or decorator), deduplicating across versions into `since`
+  variants.
+- Emitter support: emit `x-id` on every operation; (transitional) generate
+  `x-ms-examples` JSON from the new format for consumers not yet updated.
+- A validator (§10).
 
-### Phase 2: Migrate All Services
+### Phase 2 — Migrate services
 
-- Migrate every service to the new YAML format (may be split across multiple PRs)
-- CI validates that regenerating the original `x-ms-examples` JSON from the new YAML produces identical output (round-trip correctness)
-- Both formats coexist during this phase — the YAML is the source, JSON is generated
+- **Scope decision (open)**: migrate *all* historical versions, or only from the
+  TypeSpec-converted version forward? Because the Swagger toolchain is being
+  retired, one option is to migrate only from the converted version and leave
+  retired Swagger-only versions as-is (these are also the versions Candidate B
+  cannot express). CI validates round-trip correctness for migrated versions.
 
-### Phase 3: Disable Old Tooling
+### Phase 3 — Disable old tooling
 
-- Once all services are migrated and CI confirms round-trip correctness, disable the old swagger-based example tooling
-- New examples are authored exclusively in the YAML format
+- Once migrated and CI confirms round-trip correctness, disable the old
+  Swagger-based example tooling; new examples are authored only in the new
+  format.
 
-### Phase 4: Remove Old Files
+### Phase 4 — Remove old files
 
-- Remove the legacy `x-ms-examples` JSON files from the repository
-- The YAML format is the sole source of truth; JSON is generated on demand by tooling
+- Remove legacy `x-ms-examples` JSON; the new format is the sole source of
+  truth, with JSON generated on demand if still needed.
 
-## 7. Tooling Considerations
+## 10. Tooling Considerations
 
-### Consumers of Examples
+### Consumers of examples
 
-1. **SDK test generation** — Generates test cases from examples
-2. **Documentation** — REST API docs show examples for each operation
-3. **API validation** — Ensures examples conform to the schema
-4. **Try It** experiences — Portal/docs "Try It" buttons use example data
+1. **SDK test generation** — generates test cases from examples.
+2. **TCGC** — all language generators consume examples via TCGC, so **TCGC must
+   adopt the new format** (parse it and surface real content). The only place
+   that still needs a file path is doc tooling that maps a JSON example to a
+   language sample; that mapping can be done via `x-id` (or a dedicated tool)
+   instead of an embedded `$ref`.
+3. **Documentation** — REST API docs render examples per operation.
+4. **API validation** — examples conform to the schema for each applicable
+   version.
+5. **"Try It"** — portal/docs use example data.
 
-### Required Tooling
+### Required tooling
 
 | Tool | Purpose |
 | ---- | ------- |
-| `examples-validate` | Validates YAML against schema and API spec |
-| `examples-resolve` | Resolves an example for a specific API version (applies `since`/`until` logic) |
-| `examples-migrate` | Converts existing JSON examples to new YAML format |
-| `examples-generate-swagger` | Produces `x-ms-examples` JSON from YAML (for backward compat) |
-| `examples-diff` | Shows what changed in an example between versions |
+| `examples-validate` | Validate examples against the schema and API surface. **HTTP-centric**, so it starts as a standalone (or `http`-library) tool; it MAY move into the TypeSpec compiler/`http` library later if that proves clean. |
+| `examples-resolve` | Resolve the applicable example for a target version (apply `since`). |
+| `examples-migrate` | Convert existing JSON examples to the new format. |
+| `examples-scaffold` | Generate faked initial examples from the API surface — **replacing OAV's faked-example generation**. |
+| `examples-emit` | Emit `x-id` (and, transitionally, `x-ms-examples` JSON). |
+| `examples-diff` | Show what changed in an example between versions. |
 
-### Integration Points
+### Doc-team consumption (needs review)
 
-- **TypeSpec compilation**: TypeSpec compiler plugin reads `examples.yaml` and emits `x-ms-examples` in generated OpenAPI
-- **CI validation**: Ensures examples validate against the API schema for all applicable versions
-- **PR review**: Tooling shows which operations gained/lost/changed examples
+How the documentation pipeline consumes examples (whether it relies on built-in
+`$ref` resolution or a different mapping) needs Doc-team review, since `x-id`
+replaces the embedded `$ref`.
 
-## 8. Open Questions
+## 11. Open Questions
 
-1. **Operation identification syntax** — Should we support both full path and short-form? What about TypeSpec operation names as aliases?
-2. **Response body diffing** — When a response adds one field in a new version, must the entire response be rewritten? Or should we support partial overrides?
-3. **Error responses** — Should error examples (4xx, 5xx) be included? Today they often aren't in `x-ms-examples`.
-4. **LRO examples** — Long-running operations need multiple response snapshots (initial response, polling response, final response). How to represent this?
-5. **Pagination examples** — Should we show `nextLink` handling with multiple pages?
-6. **Data-plane services** — The path-based identification works well for ARM. How does it work for data-plane services with different URL structures?
+1. **Final A-vs-B decision**, and whether the outcome is "B for TypeSpec
+   services + A for retired Swagger-only versions."
+2. **Migration scope** — all historical versions vs. from the converted version
+   forward (§9 Phase 2).
+3. **Decorator authoring ergonomics** at scale (Candidate B) for services with
+   many `since` variants.
+4. **Doc-team pipeline** consumption of `x-id` (§10).
+5. **Data-plane** services with non-ARM URL structures — confirm FQN identity and
+   `service.yaml` ordering cover all cases.
 
-## 9. Appendix: Comparison
+## 12. Appendix: Current vs Proposed
 
-| Aspect | Current (`x-ms-examples`) | Proposed (YAML) |
-| ------ | ------------------------- | --------------- |
-| Format | JSON | YAML |
-| Files per operation | 1 file × N versions | 1 entry (with optional version variants) |
-| Total files (Maps) | ~130+ | 1 |
-| Total files (Compute) | ~9,400+ | ~4-6 |
-| Version handling | Full copy per version | `since`/`until` markers |
-| Operation identity | operationId reference | HTTP method + path |
+| Aspect | Current (`x-ms-examples`) | Proposed |
+| ------ | ------------------------- | -------- |
+| Format | JSON, per-version copies | YAML file (A) or TypeSpec decorator (B) |
+| Files (EventGrid) | 2,968 | 1 |
+| Version handling | Full copy per version | `since` variants |
+| Operation identity | operationId `$ref` | FQN via `x-id` |
+| api-version in data | Explicit | Implicit (contextual) |
 | Comments | Not supported | Supported |
-| api-version in data | Explicit parameter | Implicit (contextual) |
-| Readability | Verbose JSON | Concise YAML |

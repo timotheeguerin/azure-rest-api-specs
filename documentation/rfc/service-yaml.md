@@ -1,8 +1,14 @@
-# RFC: versions.yaml
+# RFC: service.yaml
 
 - **Status**: Draft
 - **Authors**: TBD
 - **Created**: 2026-06-03
+- **Updated**: 2026-06-15 (renamed from `versions.yaml`; reflects design-meeting feedback)
+
+> **Naming**: this file was originally proposed as `versions.yaml`. It is named
+> **`service.yaml`** to leave room for other service-level metadata beyond the
+> version list, should it be needed later (see §2). The version list is the only
+> content for now.
 
 ## 1. Motivation
 
@@ -25,7 +31,7 @@ Today, every service in the repository has a `readme.md` that serves as the entr
 - Adding a new API version requires editing multiple sections of a complex file
 - There is no schema or validation for the format
 
-## 2. Proposal: versions.yaml
+## 2. Proposal: service.yaml
 
 ### Purpose
 
@@ -34,15 +40,29 @@ A simple, machine-readable file that declares all API versions for a service —
 ### Location
 
 ```
-specification/<service>/<RP-or-service-name>/versions.yaml
+specification/<service>/<RP-or-service-name>/service.yaml
 ```
 
-One file per service, at the same level where `readme.md` lives today.
+One file per service, at the same level where `readme.md` lives today. For
+TypeSpec services this is **alongside `tspconfig.yaml`** (the TypeSpec project
+root), so a service's version metadata sits next to its TypeSpec configuration.
+
+> **Granularity / the Compute case**: `service.yaml` follows the same
+> granularity as today's `readme.md` — one file per service/RP project, not one
+> per namespace. A large service like Compute that spans multiple namespaces and
+> many input files still has a single `service.yaml` at its project root, listing
+> every version (and, for Swagger versions, their `input-files`). This keeps a
+> single authoritative "which versions exist" list per service even when the
+> TypeSpec/Swagger is split across many files.
 
 ### Schema
 
 ```yaml
-# versions.yaml
+# service.yaml
+
+# The file currently holds only the version list. The name leaves room for
+# future service-level metadata if it is needed (none is added speculatively).
+
 versions:
   - version: "2024-06-01"
 
@@ -57,6 +77,19 @@ versions:
     input-files:
       - stable/2020-06-01/compute.json
 ```
+
+> **RPaaS `openapi-subtype`** (resolving a review question): we **omit
+> `openapi-subtype` for now**. It is intentionally not part of the initial
+> `service.yaml` schema and will only be added as service-level metadata **if ARM
+> teams explicitly request it** to carry the value that currently lives in
+> `readme.md`. The `service.yaml` name leaves room to add it later without a
+> rename.
+
+> **Version ordering** is taken from the order of this `versions` list and is the
+> source of truth for resolving example `since` markers (see the
+> [Unified Examples Format RFC](./unified-examples-format.md)). The format is not
+> opinionated about the version string, so **data-plane services that use
+> non-date or mixed version schemes** order their versions here explicitly.
 
 ### What Is Inferred (Not Declared)
 
@@ -80,24 +113,30 @@ The principle is: **don't repeat information that's already encoded in the repo 
 | Flat version list | Simple to parse; no "tag" indirection. Ordering is chronological. |
 | YAML format | Human-readable, supports comments, already used for `tspconfig.yaml`. A JSON Schema will be provided for validation. |
 
-### What versions.yaml Does NOT Replace
+### What service.yaml Does NOT Replace
 
 - Language-specific codegen settings → stay in `tspconfig.yaml` or dedicated config files
 - Suppressions → stay in `tspconfig.yaml` or a dedicated suppressions file
-- The `readme.md` file itself (during transition) → generated from `versions.yaml`
+- The `readme.md` file itself (during transition) → generated from `service.yaml`
 
 ## 3. Migration Strategy
 
+> **Timing**: `readme.md` is expected to be phased out across the repo over the
+> coming months (independent of this RFC). `service.yaml` is the forward-looking
+> replacement for its version-metadata role; the phases below assume `readme.md`
+> still exists during the transition and is generated from `service.yaml` until
+> it is removed.
+
 ### Phase 1: Introduction
 
-- `versions.yaml` introduced alongside `readme.md`
+- `service.yaml` introduced alongside `readme.md`
 - Both are maintained; tooling reads `readme.md`
 - Generator validates they stay in sync
 
 ### Phase 2: Tooling Migration
 
-- Tooling migrates to read `versions.yaml` directly
-- `readme.md` is generated from `versions.yaml`
+- Tooling migrates to read `service.yaml` directly
+- `readme.md` is generated from `service.yaml`
 - Manual edits to `readme.md` are blocked by CI
 
 ### Phase 3: Removal
@@ -148,7 +187,7 @@ The source repo stays lean (only the authoritative TypeSpec/Swagger), while the 
 ┌────────────────────────────────────────────┐
 │   Source Repo (azure-rest-api-specs)       │
 │                                            │
-│  versions.yaml  +  TypeSpec/Swagger        │
+│  service.yaml  +  TypeSpec/Swagger        │
 │  + deduplicated examples                   │
 └──────────────────┬─────────────────────────┘
                    │  CI Build (on merge to main)
@@ -196,14 +235,14 @@ The source repo stays lean (only the authoritative TypeSpec/Swagger), while the 
 
 ### Build Process
 
-1. Discover all `versions.yaml` files in the repo
+1. Discover all `service.yaml` files in the repo
 2. For each service:
    - Parse version list
    - For TypeSpec versions: compile TypeSpec → OpenAPI (if not already generated)
    - For swagger versions: resolve `input-file` references
    - Resolve and materialize full example sets per version
    - Inject correct `api-version` values into example bodies
-   - Generate `readme.md` from template + `versions.yaml` data
+   - Generate `readme.md` from template + `service.yaml` data
    - Produce `manifest.json`
 3. Generate global `index.json`
 4. Publish all artifacts to hosting (blob storage, CDN, or GitHub Pages)
@@ -213,8 +252,8 @@ The source repo stays lean (only the authoritative TypeSpec/Swagger), while the 
 
 | # | Question | Options | Impact |
 | - | -------- | ------- | ------ |
-| 1 | TypeSpec version auto-detection | Auto from `@versioned` enum vs. always manual in `versions.yaml` | Affects authoring burden |
+| 1 | TypeSpec version auto-detection | Auto from `@versioned` enum vs. always manual in `service.yaml` | Affects authoring burden |
 | 2 | Hosting for static artifacts | GitHub Pages / Azure Blob / npm package | Affects availability, cost, auth |
-| 3 | `versions.yaml` granularity | One per RP namespace vs. one per sub-service | Must match current `readme.md` granularity |
+| 3 | `service.yaml` granularity | One per RP namespace vs. one per sub-service | Must match current `readme.md` granularity |
 | 4 | Migration velocity | All-at-once (scripted) vs. service-by-service opt-in | Affects risk and partner communication |
 | 5 | Cross stable/preview references | Can a preview version reference an example from a stable version (or vice versa)? | Affects example resolution |
