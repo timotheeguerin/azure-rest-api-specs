@@ -262,12 +262,21 @@ are directly comparable.
         },
       },
     },
-    responses: #{
-      "200": #{ body: #{ name: "exampleCACertificateName1" } },
-      "201": #{ body: #{ name: "exampleCACertificateName1" } },
-    },
+    responses: #[
+      #{ statusCode: 200, body: #{ name: "exampleCACertificateName1" } },
+      #{ statusCode: 201, body: #{ name: "exampleCACertificateName1" } },
+    ],
   });
 ```
+
+> **Why arrays for `responses` (and `headers`/`query`), not maps?** TypeSpec
+> object values (`#{}`) only permit **identifier** property keys — quoted or
+> numeric keys (`"200"`, `Azure-AsyncOperation`, `api-version`) are a compile
+> error. So status codes, headers, and query parameters are modeled as **arrays
+> of entry objects** (`#{ statusCode, ... }`, `#{ name, value }`). This is a
+> real constraint of the TypeSpec value system, verified against the v1.13
+> compiler, and is a distinguishing factor in the bake-off (see §6.6 and §7).
+
 
 Using the **augment** form (`@@example`) keeps examples out of the operation
 definitions, so example data can live in a dedicated file (e.g. `examples.tsp`)
@@ -289,26 +298,192 @@ multiple `@@example` applications on the same operation:
 > decorators (which cannot version individual values), we reuse the same
 > data-driven `since` marker, expressed as repeated augment decorators.
 
-### 6.3 EventGrid Full Conversion (showcase)
+### 6.3 Reducing duplication with `const` and spread
 
-The complete EventGrid example set has been converted to this decorator form as a
-demonstration:
-[`examples.tsp`](../../specification/eventgrid/resource-manager/Microsoft.EventGrid/EventGrid/examples.tsp)
-— one file, 231 operations, 413 `@@example` applications, 182 `since` variants.
-It is **demonstration only** (not wired into the build); the proposed `@example`
-decorator is not yet implemented.
+Because Candidate B is real TypeSpec source (not a data file), it can use
+**`const` value declarations** and the **spread (`...`) operator** to factor out
+values that repeat across many examples — subscription IDs, common path blocks,
+shared response envelopes, etc. This is a capability the YAML candidate only
+approximates with anchors/aliases.
 
-### 6.4 Pros / Cons
+The same `CaCertificates` examples from §6.1, with shared values factored out:
+
+```tsp
+import "./main.tsp";
+
+// Reused scalars — declared once.
+const subscriptionId = "00000000-0000-0000-0000-000000000000";
+
+// A path block shared by every operation under a namespace.
+const namespacePath = #{
+  subscriptionId: subscriptionId,
+  resourceGroupName: "examplerg",
+  namespaceName: "exampleNamespace",
+};
+
+// Common resource-envelope fields reused across responses.
+const caCertEnvelope = #{
+  name: "exampleCaCertificate",
+  type: "Microsoft.EventGrid/namespaces/caCertificates",
+  id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/caCertificates/exampleCaCertificate",
+};
+
+// Shared properties block (also reused by the versioned variant in §6.4).
+const caCertProps = #{
+  provisioningState: "Succeeded",
+  description: "This is a test Root certificate",
+  encodedCertificate: "base64EncodePemFormattedCertificateString",
+};
+
+// Response body reused by both 200 and 201.
+const caCertCreated = #{
+  ...caCertEnvelope,
+  properties: caCertProps,
+};
+
+@@example(Microsoft.EventGrid.CaCertificates.createOrUpdate,
+  #{
+    title: "Create CA certificate",
+    request: #{
+      path: #{ ...namespacePath, caCertificateName: "exampleCaCertificate" },
+      body: #{
+        properties: #{
+          description: "This is a test certificate",
+          encodedCertificate: "base64EncodePemFormattedCertificateString",
+        },
+      },
+    },
+    responses: #[
+      #{ statusCode: 200, body: caCertCreated },
+      #{ statusCode: 201, body: caCertCreated },
+    ],
+  });
+
+@@example(Microsoft.EventGrid.CaCertificates.get,
+  #{
+    title: "Get CA certificate",
+    request: #{ path: #{ ...namespacePath, caCertificateName: "exampleCaCertificate" } },
+    responses: #[#{ statusCode: 200, body: caCertCreated }],
+  });
+```
+
+Here `namespacePath`, `caCertEnvelope`, and `caCertCreated` are written once and
+reused (and spread-merged) across every operation and response — **one shared
+object per resource type**, with each example overriding only what is specific to
+it. This is the realistic DRY win of the TypeSpec-first candidate.
+
+> **Meaningful de-duplication vs. mechanical blob-hoisting.** A naive pass that
+> hoists *every* repeated blob into a const produces meaningless, numbered names
+> (`path1`…`path10`, `id1`…`id19`, `value1`…`value20`) that match no reusable
+> concept and make the file *harder* to read. The trick that makes automatic
+> de-duplication worthwhile is to **first simplify the values**: collapse each
+> incidental identity to a single canonical value per *semantic role* (one
+> subscription, one resource group, one canonical name per resource type, one
+> timestamp, one GUID per identity role). Once every "topic" or "namespace" id is
+> literally the same string, it can be hoisted into a single, well-named const
+> (`topicId`, `namespacePath`, `exampleTimestamp`) and reused everywhere — exactly
+> the §6.3 pattern, applied mechanically but yielding semantic names. The
+> EventGrid showcase ([§6.5](#65-eventgrid-full-conversion-showcase)) ships both a
+> straight conversion and this de-duplicated variant.
+
+> Note: `const`/spread is a property of the **source representation**. The
+> emitted examples (and the `x-id`-linked output consumers see) are fully
+> expanded — factoring only improves authoring, not the on-the-wire result.
+
+### 6.4 Versioning + shared values
+
+`const`/spread composes with the `since` versioning from §6.2 — a new variant can
+spread the shared base and override only the block that changed (referencing the
+shared `caCertProps`/`caCertCreated` consts from §6.3):
+
+```tsp
+@@example(Microsoft.EventGrid.CaCertificates.get,
+  #{
+    title: "Get CA certificate",
+    since: "2023-06-01-preview",
+    request: #{ path: #{ ...namespacePath, caCertificateName: "exampleCaCertificate" } },
+    responses: #[
+      #{
+        statusCode: 200,
+        body: #{
+          ...caCertCreated,
+          properties: #{
+            ...caCertProps,
+            delegatedIdentityTokenExpirationTimeInUtc: "2023-10-12T23:06:43+00:00",
+          },
+        },
+      },
+    ],
+  });
+```
+
+### 6.5 EventGrid Full Conversion (showcase)
+
+The complete EventGrid example set has been converted to this decorator form in
+two variants, generated from the same normalized data:
+
+- [`examples.tsp`](../../specification/eventgrid/resource-manager/Microsoft.EventGrid/EventGrid/examples.tsp)
+  — a faithful conversion of every example: **18,171 lines**, 231 operations,
+  413 `@@example` applications, 182 `since` variants. Each operation's examples
+  are emitted directly, so the file is easy to read and diff against the source
+  YAML.
+- [`examples-dedup.tsp`](../../specification/eventgrid/resource-manager/Microsoft.EventGrid/EventGrid/examples-dedup.tsp)
+  — the same content with shared **data** hoisted into **107 semantically-named
+  consts** (63 scalars + 44 object blocks) and reused by reference / spread:
+  **15,193 lines** (~16% smaller). Every const owns a meaningful name —
+  `topicId`, `namespacePath`, `caCertificateId`, `exampleTimestamp`,
+  `subscriptionId` — never a numbered placeholder.
+
+**Value canonicalization is what makes the dedup meaningful.** Rather than blindly
+hoisting repeated blobs (which yields `path1`…`path10` noise), the converter first
+*simplifies the values*: each incidental identity is collapsed to a single
+canonical value per semantic role —
+
+- one subscription id, one resource group, normalized provider casing;
+- **one canonical name per resource type** (`exampleTopic`, `exampleNamespace`,
+  `exampleCaCertificate`), applied consistently to standalone name fields *and*
+  to the name segments embedded inside resource ids, so an id, its `name`, and
+  its path parameters all agree;
+- one canonical location, one canonical timestamp, and one GUID per identity role
+  (`principalId`, `tenantId`, `clientId`, …).
+
+Because every "topic id" (or namespace path, or timestamp) is now literally the
+same value, it hoists into a single shared const named after its role. Enum-like
+bare words (`Succeeded`, `WebHook`) and short names are intentionally **left
+inline** — hoisting values that legitimately vary would be misleading.
+
+**Version markers stay literal.** The `since` field is deliberately *never*
+canonicalized or hoisted — version identifiers are meaningful and must stay
+readable inline.
+
+Both files are **demonstration only** (not wired into the build); the proposed
+`@example` decorator is not yet implemented. Their **value literals were
+validated against the TypeSpec v1.13 compiler** by rewriting each `@@example`
+application as a `const` — they parse and type-check as TypeSpec values.
+
+### 6.6 Pros / Cons
 
 - **Pros**: examples live with the source; the operation reference is a real
   symbol (no string FQN to mistype; rename-safe); values can eventually be
   **type-checked** against the operation's request/response models by the
-  compiler; the FQN is intrinsic so no separate key is needed.
-- **Cons**: the decorator can only apply to **TypeSpec-authored** operations —
-  **retired / Swagger-only versions cannot be expressed this way** and still need
-  the YAML/generated-JSON path; non-TypeSpec consumers (e.g. some doc pipelines)
-  still need an emitted intermediate format; requires building and shipping the
-  decorator + emitter support.
+  compiler; the FQN is intrinsic so no separate key is needed; **`const` + spread
+  let authors factor out and canonicalize repeated values** (subscription IDs,
+  common path blocks, shared response envelopes — see §6.3).
+- **Cons**:
+  - The decorator can only apply to **TypeSpec-authored** operations —
+    **retired / Swagger-only versions cannot be expressed this way** and still
+    need the YAML/generated-JSON path.
+  - Non-TypeSpec consumers (e.g. some doc pipelines) still need an emitted
+    intermediate format.
+  - **TypeSpec object values only allow identifier keys.** Status codes,
+    HTTP headers, and query parameters therefore cannot be map keys and are
+    modeled as **arrays of entry objects**; and **JSON bodies that are maps with
+    arbitrary string keys** (e.g. ARM `userAssignedIdentities`, keyed by resource
+    id) cannot be written as native object values at all — they must be encoded
+    as `#[#{ key, value }]` entry arrays, which reads less naturally than the raw
+    JSON the YAML candidate keeps verbatim.
+  - Requires building and shipping the decorator + emitter support.
+
 
 ## 7. Bake-off Comparison
 
@@ -322,7 +497,9 @@ decorator is not yet implemented.
 | Non-TypeSpec / docs consumers | ✅ reads YAML directly | Needs emitted intermediate format |
 | Authoring without TypeSpec context | ✅ | ❌ |
 | Comments / annotations | ✅ (YAML) | ✅ (TypeSpec) |
-| EventGrid scale | 1 file, 11,176 lines, 496 KB | 1 file, 17,155 lines, 632 KB |
+| Factor out / canonicalize repeated values | ⚠️ YAML anchors/aliases (clunky) | ✅ `const` + spread (§6.3) |
+| Arbitrary keys (status codes, headers, map bodies) | ✅ native string keys | ⚠️ must use entry arrays; arbitrary-key map bodies can't be native object values |
+| EventGrid scale | 1 file, 11,176 lines, 496 KB | straight: 18,171 lines; de-duplicated: 15,193 lines |
 | Original baseline (EventGrid) | 2,968 JSON files, ~4.2 MB | 2,968 JSON files, ~4.2 MB |
 
 **Current lean**: TypeSpec-first (B), because the operation reference is a real
@@ -334,8 +511,12 @@ decided.
 
 ## 8. TypeSpec Schema
 
-The example value object (shared by both candidates — it is the YAML document
-model in A and the decorator argument type in B):
+The logical example model is shared by both candidates. The two candidates
+**encode maps differently**: Candidate A (YAML) uses native string keys for
+status codes / headers / query; Candidate B (the decorator) must use **entry
+arrays**, because TypeSpec object values only allow identifier property keys
+(§6.1). The models below are the decorator's actual argument types (verified
+against the v1.13 compiler); in YAML the same data is a status-code/header map.
 
 ```tsp
 namespace Azure.ApiExamples;
@@ -356,30 +537,41 @@ model Example {
 
   request: ExampleRequest;
 
-  /** Map of status-code string (e.g. "200", "404") to response example. */
-  responses: Record<ExampleResponse>;
+  /** One entry per returned status code. (YAML: a status-code-keyed map.) */
+  responses: ExampleResponse[];
 }
 
 model ExampleRequest {
-  /** Path parameters. `api-version` is implicit and MUST NOT be included. */
+  /** Path parameters. `api-version` is implicit and MUST NOT be included.
+      Parameter names are always identifiers, so this stays a keyed object. */
   path?: Record<unknown>;
-  /** Query parameters (e.g. "$top", "$filter"). */
-  query?: Record<unknown>;
-  /** Non-standard request headers. */
-  headers?: Record<string>;
-  /** Request body. Structure matches the operation's request schema. */
+  /** Query parameters as entries (names like `$top`/`api-version` aren't identifiers). */
+  query?: NameValue[];
+  /** Request headers as entries (header names aren't identifiers). */
+  headers?: NameValue[];
+  /** Request body. Structure matches the operation's request schema.
+      NB: bodies that are maps with arbitrary string keys must be encoded as
+      `NameValue`-style entry arrays in Candidate B (§6.6). */
   body?: unknown;
 }
 
 model ExampleResponse {
+  /** HTTP status code, e.g. 200, 201, 404. */
+  statusCode: int32;
+  /** Response headers as entries. */
+  headers?: NameValue[];
   /** Response body. Structure matches the operation's response schema. */
   body?: unknown;
-  /** Response headers. */
-  headers?: Record<string>;
+}
+
+/** A name/value pair used for headers and query parameters. */
+model NameValue {
+  name: string;
+  value: unknown;
 }
 
 /** Candidate B: HTTP-centric example decorator (augmentable). */
-extern dec example(target: Operation, example: Example);
+extern dec example(target: Operation, example: valueof Example);
 ```
 
 ## 9. Migration Strategy

@@ -1,6 +1,9 @@
 // RFC: Unified Examples Format — Candidate B (TypeSpec-first decorator).
-// Full EventGrid conversion. Incidental identity values are canonicalized
-// (see header below); structure is otherwise a faithful 1:1 mapping.
+// DE-DUPLICATED variant: shared *data* (resource ids, GUIDs, timestamps,
+// URLs, repeated object blocks) is hoisted into semantically-named `const`s
+// and reused by reference / spread (...). Each const owns a meaningful name
+// (e.g. topicId, namespacePath) — values that can't share one name stay
+// inline rather than becoming numbered noise.
 // Generated from examples-reference/examples-fqn.yaml (Microsoft.EventGrid).
 // Demonstration only; the @@example decorator shown here is a proposal.
 //
@@ -10,16 +13,448 @@
 
 import "./main.tsp";
 
+// --- 63 shared scalar values ---
+const addressPrefixes = "148.0.0.0/8";
+const authorizedAzureSubscriptionIds = "d48566a8-2428-4a6c-8347-9675d09fb851";
+const caCertificateId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/caCertificates/exampleCaCertificate";
+const clientGroupId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/clientGroups/exampleClientGroup";
+const clientId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/clients/exampleClient";
+const description = "approving connection";
+const displayName = "Event Grid topic";
+const domainId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain";
+const domainTopicId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain/domainTopics/exampleDomainTopic";
+const endpoint = "https://exampletopic.westus2-1.eventgrid.azure.net/api/events";
+const endpointBaseUrl = "https://requestb.in/15ksip71";
+const eventHubId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/eventhubs/exampleEventHub";
+const eventSubscriptionId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription";
+const exampleTimestamp = "2024-01-01T00:00:00Z";
+const hostname = "exampleNamespaceName.westus-1.mqtt.eventgrid-int.azure.net";
+const id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Network/privateEndpoints/bmtpe5";
+const includedEventTypes = "Microsoft.Storage.BlobDeleted";
+const inputSchema = "CloudEventSchemaV1_0";
+const ipMask = "12.18.30.15";
+const key = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id";
+const keyEncryptionKeyStatusFriendlyDescription = "Customer Managed Key (CMK) Encryption is 'Active' and running normally.";
+const keyEncryptionKeyUrl = "https://ege2ekeyvault.vault.azure.net/keys/ValidKey1";
+const logoUri = "https://www.example.com/logo.png";
+const longDescription = "This is really long long... long description";
+const messageForActivation = "Some message to the approver";
+const metricResourceId = "183c0fb1-17ff-47b6-ac77-5a47420ab01e";
+const name = "Azure-AsyncOperation";
+const namespaceId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace";
+const partnerConfigurationId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerConfigurations/examplePartnerConfiguration";
+const partnerDestinationId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestination";
+const partnerDisplayName = "Contoso - Finance Department";
+const partnerName = "Contoso.Finance";
+const partnerNamespaceId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespace";
+const partnerRegistrationId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/examplePartnerRegistration";
+const partnerRegistrationImmutableId = "66666666-6666-6666-6666-666666666666";
+const partnerResourceTypeDescription = "ContocoCorp Accounts Description Text";
+const partnerResourceTypeDisplayName = "ContocoCorp Accounts DisplayName Text";
+const partnerResourceTypeName = "ContosoCorp.Accounts";
+const partnerTopicId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerTopics/examplePartnerTopic";
+const perimeterGuid = "8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter";
+const permissionBindingId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/permissionBindings/examplePermissionBinding";
+const principalId = "22222222-2222-2222-2222-222222222222";
+const privateEndpointConnectionId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateEndpointConnections/examplePrivateEndpointConnection";
+const privateLinkResourceId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateLinkResources/examplePrivateLinkResource";
+const provider = "Microsoft.Storage";
+const query = "attributes.b IN ['a', 'b', 'c']";
+const queueId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.ServiceBus/namespaces/exampleNamespace/queues/exampleQueue";
+const requiredZoneNames = "privatelink.eventgrid.azure.net";
+const resourceId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Web/sites/ContosoSite/funtions/ContosoFunc";
+const scope = "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg";
+const setupUri = "https://www.example.com/";
+const source = "ContosoCorp.Accounts.User1";
+const sourceField = "data.foo";
+const storageAccountId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount";
+const subscriptionId = "00000000-0000-0000-0000-000000000000";
+const systemTopicId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic";
+const title = "EventSubscriptions CreateOrUpdateForCustomTopic WebhookDestination";
+const topic = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg";
+const topicId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic";
+const topicSpaceId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topicSpaces/exampleTopicSpace";
+const topicType = "Microsoft.Storage.storageaccounts";
+const topicTypeName = "Microsoft.Storage.StorageAccounts";
+const type = "Microsoft.EventGrid/eventSubscriptions";
+
+// --- 44 shared object blocks ---
+const associationPath = #{
+  subscriptionId: subscriptionId,
+  resourceGroupName: "examplerg",
+  resourceType: "topics",
+  resourceName: "exampleResourceName",
+  perimeterGuid: perimeterGuid,
+  associationName: "someAssociation",
+};
+
+const authorizedPartnersList = #{
+  partnerRegistrationImmutableId: partnerRegistrationImmutableId,
+  partnerName: partnerName,
+  authorizationExpirationTimeInUtc: exampleTimestamp,
+};
+
+const body = #{
+  destination: #{
+    endpointType: "WebHook",
+    properties: #{
+      endpointUrl: endpointBaseUrl,
+    },
+  },
+  filter: #{
+    isSubjectCaseSensitive: true,
+    subjectBeginsWith: "existingPrefix",
+    subjectEndsWith: "newSuffix",
+  },
+  labels: #[
+    "label1",
+    "label2",
+  ],
+};
+
+const caCertificatePath = #{
+  subscriptionId: subscriptionId,
+  resourceGroupName: "examplerg",
+  namespaceName: "exampleNamespace",
+  caCertificateName: "exampleCaCertificate",
+};
+
+const channelPath = #{
+  subscriptionId: subscriptionId,
+  resourceGroupName: "examplerg",
+  partnerNamespaceName: "examplePartnerNamespace",
+  channelName: "exampleChannel",
+};
+
+const clientGroupPath = #{
+  subscriptionId: subscriptionId,
+  resourceGroupName: "examplerg",
+  namespaceName: "exampleNamespace",
+  clientGroupName: "exampleClientGroup",
+};
+
+const clientPath = #{
+  subscriptionId: subscriptionId,
+  resourceGroupName: "examplerg",
+  namespaceName: "exampleNamespace",
+  clientName: "exampleClient",
+};
+
+const customerManagedKeyEncryption = #{
+  keyEncryptionKeyIdentity: #{
+    type: "UserAssigned",
+    userAssignedIdentityResourceId: key,
+  },
+  keyEncryptionKeyStatus: "Active",
+  keyEncryptionKeyStatusFriendlyDescription: keyEncryptionKeyStatusFriendlyDescription,
+  keyEncryptionKeyUrl: keyEncryptionKeyUrl,
+};
+
+const deadLetterDestination = #{
+  endpointType: "StorageBlob",
+  properties: #{
+    blobContainerName: "contosocontainer",
+    resourceId: storageAccountId,
+  },
+};
+
+const deliveryConfiguration = #{
+  deliveryMode: "Queue",
+  queue: #{
+    receiveLockDurationInSeconds: 60,
+    maxDeliveryCount: 4,
+    eventTimeToLive: "P1D",
+  },
+};
+
+const destination = #{
+  endpointType: "EventHub",
+  properties: #{
+    resourceId: eventHubId,
+  },
+};
+
+const domainPath = #{
+  subscriptionId: subscriptionId,
+  resourceGroupName: "examplerg",
+  domainName: "exampleDomain",
+};
+
+const domainTopicPath = #{
+  subscriptionId: subscriptionId,
+  resourceGroupName: "examplerg",
+  domainName: "exampleDomain",
+  domainTopicName: "exampleDomainTopic",
+};
+
+const eventChannelPath = #{
+  subscriptionId: subscriptionId,
+  resourceGroupName: "examplerg",
+  partnerNamespaceName: "examplePartnerNamespace",
+  eventChannelName: "exampleEventChannel",
+};
+
+const eventSubscriptionPath = #{
+  subscriptionId: subscriptionId,
+  resourceGroupName: "examplerg",
+  topicName: "exampleTopic",
+  eventSubscriptionName: "exampleEventSubscription",
+};
+
+const filter = #{
+  isSubjectCaseSensitive: false,
+  subjectBeginsWith: "ExamplePrefix",
+  subjectEndsWith: "ExampleSuffix",
+};
+
+const headers = #{
+  name: "Location",
+  value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
+};
+
+const identity = #{
+  type: "UserAssigned",
+  userAssignedIdentities: #[
+    #{
+      key: key,
+      value: #{
+        clientId: "33333333-3333-3333-3333-333333333333",
+        principalId: principalId,
+      },
+    },
+  ],
+};
+
+const keyEncryptionKeyIdentity = #{
+  type: "UserAssigned",
+  userAssignedIdentityResourceId: key,
+};
+
+const namespacePath = #{
+  subscriptionId: subscriptionId,
+  resourceGroupName: "examplerg",
+  namespaceName: "exampleNamespace",
+};
+
+const networkSecurityPerimeter = #{
+  id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Network/networkSecurityPerimeters/somePerimeter",
+  perimeterGuid: perimeterGuid,
+  location: "westus2",
+};
+
+const parentPath = #{
+  subscriptionId: subscriptionId,
+  resourceGroupName: "examplerg",
+  parentType: "topics",
+  parentName: "exampletopic",
+};
+
+const partnerAuthorization = #{
+  defaultMaximumExpirationTimeInDays: 10,
+  authorizedPartnersList: #[
+    #{
+      partnerRegistrationImmutableId: partnerRegistrationImmutableId,
+      partnerName: partnerName,
+      authorizationExpirationTimeInUtc: exampleTimestamp,
+    },
+    #{
+      partnerRegistrationImmutableId: partnerRegistrationImmutableId,
+      partnerName: "fabrikam.HR",
+      authorizationExpirationTimeInUtc: exampleTimestamp,
+    },
+  ],
+};
+
+const partnerDestinationDetails = #{
+  description: "This is custom description",
+  longDescription: "This is long custom description",
+  setupUri: setupUri,
+};
+
+const partnerDestinationPath = #{
+  subscriptionId: subscriptionId,
+  resourceGroupName: "examplerg",
+  partnerDestinationName: "examplePartnerDestination",
+};
+
+const partnerNamespacePath = #{
+  subscriptionId: subscriptionId,
+  resourceGroupName: "examplerg",
+  partnerNamespaceName: "examplePartnerNamespace",
+};
+
+const partnerRegistrationPath = #{
+  subscriptionId: subscriptionId,
+  resourceGroupName: "examplerg",
+  partnerRegistrationName: "examplePartnerRegistration",
+};
+
+const partnerTopicDetails = #{
+  description: "This is short description",
+  longDescription: longDescription,
+  setupUri: setupUri,
+};
+
+const partnerTopicPath = #{
+  subscriptionId: subscriptionId,
+  resourceGroupName: "examplerg",
+  partnerTopicName: "examplePartnerTopic",
+};
+
+const path = #{
+  scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+  eventSubscriptionName: "exampleEventSubscription",
+};
+
+const permissionBindingPath = #{
+  subscriptionId: subscriptionId,
+  resourceGroupName: "examplerg",
+  namespaceName: "exampleNamespace",
+  permissionBindingName: "examplePermissionBinding",
+};
+
+const privateEndpointConnectionPath = #{
+  subscriptionId: subscriptionId,
+  resourceGroupName: "examplerg",
+  parentType: "topics",
+  parentName: "exampletopic",
+  privateEndpointConnectionName: "examplePrivateEndpointConnection",
+};
+
+const privateLinkResourcePath = #{
+  subscriptionId: subscriptionId,
+  resourceGroupName: "examplerg",
+  parentType: "topics",
+  parentName: "exampletopic",
+  privateLinkResourceName: "examplePrivateLinkResource",
+};
+
+const profile = #{
+  name: "someProfile",
+  accessRulesVersion: "1",
+  accessRules: #[
+    #{
+      name: "ipRule",
+      properties: #{
+        direction: "Inbound",
+        addressPrefixes: #[
+          addressPrefixes,
+        ],
+      },
+    },
+  ],
+  diagnosticSettingsVersion: "1",
+  enabledLogCategories: #[
+    "NspOutbound",
+  ],
+};
+
+const properties = #{
+  blobContainerName: "contosocontainer",
+  resourceId: storageAccountId,
+};
+
+const request = #{
+  path: #{
+    scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+    eventSubscriptionName: "exampleEventSubscription",
+  },
+  body: #{
+    properties: #{
+      destination: #{
+        endpointType: "EventHub",
+        properties: #{
+          resourceId: eventHubId,
+        },
+      },
+      filter: #{
+        isSubjectCaseSensitive: false,
+        subjectBeginsWith: "ExamplePrefix",
+        subjectEndsWith: "ExampleSuffix",
+      },
+    },
+  },
+};
+
+const resourceGroupPath = #{
+  azureSubscriptionId: subscriptionId,
+  resourceGroupName: "examplerg",
+  name: "examplePartnerTopic",
+  source: source,
+};
+
+const responses = #{
+  statusCode: 202,
+  headers: #[
+    #{
+      name: "Location",
+      value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
+    },
+    #{
+      name: name,
+      value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
+    },
+  ],
+};
+
+const systemTopicPath = #{
+  subscriptionId: subscriptionId,
+  resourceGroupName: "examplerg",
+  systemTopicName: "exampleSystemTopic",
+};
+
+const topicPath = #{
+  subscriptionId: subscriptionId,
+  resourceGroupName: "examplerg",
+  topicName: "exampleTopic",
+};
+
+const topicSpacePath = #{
+  subscriptionId: subscriptionId,
+  resourceGroupName: "examplerg",
+  namespaceName: "exampleNamespace",
+  topicSpaceName: "exampleTopicSpace",
+};
+
+const topicSpacesConfiguration = #{
+  state: "Enabled",
+  routeTopicResourceId: topicId,
+  hostname: hostname,
+};
+
+const userAssignedIdentities = #{
+  key: key,
+  value: #{
+    clientId: "33333333-3333-3333-3333-333333333333",
+    principalId: principalId,
+  },
+};
+
+const value = #{
+  properties: #{
+    provisioningState: "Succeeded",
+    topicSpacesConfiguration: #{
+      state: "Enabled",
+      routeTopicResourceId: topicId,
+      hostname: hostname,
+    },
+  },
+  location: "westus2",
+  tags: #{
+    key1: "value1",
+    key2: "value2",
+    key3: "value3",
+  },
+  id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace",
+  name: "exampleNamespace",
+  type: "Microsoft.EventGrid/namespaces",
+};
+
 @@example(Microsoft.EventGrid.CaCertificates.createOrUpdate,
   #{
     title: "CaCertificates CreateOrUpdate",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-        caCertificateName: "exampleCaCertificate",
-      },
+      path: caCertificatePath,
       body: #{
         properties: #{
           description: "This is a test certificate",
@@ -33,12 +468,12 @@ import "./main.tsp";
         body: #{
           properties: #{
             encodedCertificate: "base64EncodePemFormattedCertificateString",
-            issueTimeInUtc: "2024-01-01T00:00:00Z",
-            expiryTimeInUtc: "2024-01-01T00:00:00Z",
+            issueTimeInUtc: exampleTimestamp,
+            expiryTimeInUtc: exampleTimestamp,
             provisioningState: "Succeeded",
             description: "This is a test Root certificate",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/caCertificates/exampleCaCertificate",
+          id: caCertificateId,
           name: "exampleCaCertificate",
           type: "Microsoft.EventGrid/namespaces/caCertificates",
         },
@@ -48,12 +483,12 @@ import "./main.tsp";
         body: #{
           properties: #{
             encodedCertificate: "base64EncodePemFormattedCertificateString",
-            issueTimeInUtc: "2024-01-01T00:00:00Z",
-            expiryTimeInUtc: "2024-01-01T00:00:00Z",
+            issueTimeInUtc: exampleTimestamp,
+            expiryTimeInUtc: exampleTimestamp,
             provisioningState: "Succeeded",
             description: "This is a test Root certificate",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/caCertificates/exampleCaCertificate",
+          id: caCertificateId,
           name: "exampleCaCertificate",
           type: "Microsoft.EventGrid/namespaces/caCertificates",
         },
@@ -65,30 +500,13 @@ import "./main.tsp";
   #{
     title: "CaCertificates Delete",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-        caCertificateName: "exampleCaCertificate",
-      },
+      path: caCertificatePath,
     },
     responses: #[
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -99,12 +517,7 @@ import "./main.tsp";
   #{
     title: "CaCertificates Get",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-        caCertificateName: "exampleCaCertificate",
-      },
+      path: caCertificatePath,
     },
     responses: #[
       #{
@@ -112,12 +525,12 @@ import "./main.tsp";
         body: #{
           properties: #{
             encodedCertificate: "base64EncodePemFormattedCertificateString",
-            issueTimeInUtc: "2024-01-01T00:00:00Z",
-            expiryTimeInUtc: "2024-01-01T00:00:00Z",
+            issueTimeInUtc: exampleTimestamp,
+            expiryTimeInUtc: exampleTimestamp,
             provisioningState: "Succeeded",
             description: "This is a test Root certificate",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/caCertificates/exampleCaCertificate",
+          id: caCertificateId,
           name: "exampleCaCertificate",
           type: "Microsoft.EventGrid/namespaces/caCertificates",
         },
@@ -129,11 +542,7 @@ import "./main.tsp";
   #{
     title: "CaCertificates ListByNamespace",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -143,12 +552,12 @@ import "./main.tsp";
             #{
               properties: #{
                 encodedCertificate: "base64EncodePemFormattedCertificateString",
-                issueTimeInUtc: "2024-01-01T00:00:00Z",
-                expiryTimeInUtc: "2024-01-01T00:00:00Z",
+                issueTimeInUtc: exampleTimestamp,
+                expiryTimeInUtc: exampleTimestamp,
                 provisioningState: "Succeeded",
                 description: "This is a test Root certificate",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/caCertificates/exampleCaCertificate",
+              id: caCertificateId,
               name: "exampleCaCertificate",
               type: "Microsoft.EventGrid/namespaces/caCertificates",
             },
@@ -164,11 +573,7 @@ import "./main.tsp";
     title: "CaCertificates ListByNamespace",
     since: "2023-12-15-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -178,12 +583,12 @@ import "./main.tsp";
             #{
               properties: #{
                 encodedCertificate: "base64EncodePemFormattedCertificateString",
-                issueTimeInUtc: "2024-01-01T00:00:00Z",
-                expiryTimeInUtc: "2024-01-01T00:00:00Z",
+                issueTimeInUtc: exampleTimestamp,
+                expiryTimeInUtc: exampleTimestamp,
                 provisioningState: "Succeeded",
                 description: "This is a test Root certificate",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/caCertificates/exampleCaCertificate",
+              id: caCertificateId,
               name: "exampleCaCertificate",
               type: "Microsoft.EventGrid/namespaces/caCertificates",
             },
@@ -199,11 +604,7 @@ import "./main.tsp";
     title: "CaCertificates ListByNamespace",
     since: "2024-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -213,12 +614,12 @@ import "./main.tsp";
             #{
               properties: #{
                 encodedCertificate: "base64EncodePemFormattedCertificateString",
-                issueTimeInUtc: "2024-01-01T00:00:00Z",
-                expiryTimeInUtc: "2024-01-01T00:00:00Z",
+                issueTimeInUtc: exampleTimestamp,
+                expiryTimeInUtc: exampleTimestamp,
                 provisioningState: "Succeeded",
                 description: "This is a test Root certificate",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/caCertificates/exampleCaCertificate",
+              id: caCertificateId,
               name: "exampleCaCertificate",
               type: "Microsoft.EventGrid/namespaces/caCertificates",
             },
@@ -234,11 +635,7 @@ import "./main.tsp";
     title: "CaCertificates ListByNamespace",
     since: "2024-12-15-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -248,12 +645,12 @@ import "./main.tsp";
             #{
               properties: #{
                 encodedCertificate: "base64EncodePemFormattedCertificateString",
-                issueTimeInUtc: "2024-01-01T00:00:00Z",
-                expiryTimeInUtc: "2024-01-01T00:00:00Z",
+                issueTimeInUtc: exampleTimestamp,
+                expiryTimeInUtc: exampleTimestamp,
                 provisioningState: "Succeeded",
                 description: "This is a test Root certificate",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/caCertificates/exampleCaCertificate",
+              id: caCertificateId,
               name: "exampleCaCertificate",
               type: "Microsoft.EventGrid/namespaces/caCertificates",
             },
@@ -269,11 +666,7 @@ import "./main.tsp";
     title: "CaCertificates ListByNamespace",
     since: "2025-02-15",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -283,12 +676,12 @@ import "./main.tsp";
             #{
               properties: #{
                 encodedCertificate: "base64EncodePemFormattedCertificateString",
-                issueTimeInUtc: "2024-01-01T00:00:00Z",
-                expiryTimeInUtc: "2024-01-01T00:00:00Z",
+                issueTimeInUtc: exampleTimestamp,
+                expiryTimeInUtc: exampleTimestamp,
                 provisioningState: "Succeeded",
                 description: "This is a test Root certificate",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/caCertificates/exampleCaCertificate",
+              id: caCertificateId,
               name: "exampleCaCertificate",
               type: "Microsoft.EventGrid/namespaces/caCertificates",
             },
@@ -304,11 +697,7 @@ import "./main.tsp";
     title: "CaCertificates ListByNamespace",
     since: "2025-04-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -318,12 +707,12 @@ import "./main.tsp";
             #{
               properties: #{
                 encodedCertificate: "base64EncodePemFormattedCertificateString",
-                issueTimeInUtc: "2024-01-01T00:00:00Z",
-                expiryTimeInUtc: "2024-01-01T00:00:00Z",
+                issueTimeInUtc: exampleTimestamp,
+                expiryTimeInUtc: exampleTimestamp,
                 provisioningState: "Succeeded",
                 description: "This is a test Root certificate",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/caCertificates/exampleCaCertificate",
+              id: caCertificateId,
               name: "exampleCaCertificate",
               type: "Microsoft.EventGrid/namespaces/caCertificates",
             },
@@ -338,23 +727,13 @@ import "./main.tsp";
   #{
     title: "Channels CreateOrUpdate",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerNamespaceName: "examplePartnerNamespace",
-        channelName: "exampleChannel",
-      },
+      path: channelPath,
       body: #{
         properties: #{
           channelType: "PartnerTopic",
-          partnerTopicInfo: #{
-            azureSubscriptionId: "00000000-0000-0000-0000-000000000000",
-            resourceGroupName: "examplerg",
-            name: "examplePartnerTopic",
-            source: "ContosoCorp.Accounts.User1",
-          },
+          partnerTopicInfo: resourceGroupPath,
           messageForActivation: "Example message to approver",
-          expirationTimeIfNotActivatedUtc: "2024-01-01T00:00:00Z",
+          expirationTimeIfNotActivatedUtc: exampleTimestamp,
         },
       },
     },
@@ -364,14 +743,9 @@ import "./main.tsp";
         body: #{
           properties: #{
             channelType: "PartnerTopic",
-            partnerTopicInfo: #{
-              azureSubscriptionId: "00000000-0000-0000-0000-000000000000",
-              resourceGroupName: "examplerg",
-              name: "examplePartnerTopic",
-              source: "ContosoCorp.Accounts.User1",
-            },
+            partnerTopicInfo: resourceGroupPath,
             messageForActivation: "Example message to approver",
-            expirationTimeIfNotActivatedUtc: "2024-01-01T00:00:00Z",
+            expirationTimeIfNotActivatedUtc: exampleTimestamp,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespace/changes/exampleChannelName",
           name: "exampleChannel",
@@ -383,14 +757,9 @@ import "./main.tsp";
         body: #{
           properties: #{
             channelType: "PartnerTopic",
-            partnerTopicInfo: #{
-              azureSubscriptionId: "00000000-0000-0000-0000-000000000000",
-              resourceGroupName: "examplerg",
-              name: "examplePartnerTopic",
-              source: "ContosoCorp.Accounts.User1",
-            },
+            partnerTopicInfo: resourceGroupPath,
             messageForActivation: "Example message to approver",
-            expirationTimeIfNotActivatedUtc: "2024-01-01T00:00:00Z",
+            expirationTimeIfNotActivatedUtc: exampleTimestamp,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespace/changes/exampleChannelName",
           name: "exampleChannel",
@@ -404,12 +773,7 @@ import "./main.tsp";
   #{
     title: "Channels Delete",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerNamespaceName: "examplePartnerNamespace",
-        channelName: "exampleChannel",
-      },
+      path: channelPath,
     },
     responses: #[
       #{
@@ -429,30 +793,13 @@ import "./main.tsp";
     title: "Channels Delete",
     since: "2023-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerNamespaceName: "examplePartnerNamespace",
-        channelName: "exampleChannel",
-      },
+      path: channelPath,
     },
     responses: #[
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -463,12 +810,7 @@ import "./main.tsp";
   #{
     title: "Channels Get",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerNamespaceName: "examplePartnerNamespace",
-        channelName: "exampleChannel",
-      },
+      path: channelPath,
     },
     responses: #[
       #{
@@ -476,14 +818,9 @@ import "./main.tsp";
         body: #{
           properties: #{
             channelType: "PartnerTopic",
-            partnerTopicInfo: #{
-              azureSubscriptionId: "00000000-0000-0000-0000-000000000000",
-              resourceGroupName: "examplerg",
-              name: "examplePartnerTopic",
-              source: "ContosoCorp.Accounts.User1",
-            },
+            partnerTopicInfo: resourceGroupPath,
             messageForActivation: "Example message to approver",
-            expirationTimeIfNotActivatedUtc: "2024-01-01T00:00:00Z",
+            expirationTimeIfNotActivatedUtc: exampleTimestamp,
             readinessState: "NeverActivated",
             provisioningState: "Succeeded",
           },
@@ -500,18 +837,15 @@ import "./main.tsp";
     title: "Channels GetFullUrl",
     request: #{
       path: #{
+        ...channelPath,
         scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnernamespaces/examplePartnerNamespace",
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerNamespaceName: "examplePartnerNamespace",
-        channelName: "exampleChannel",
       },
     },
     responses: #[
       #{
         statusCode: 200,
         body: #{
-          endpointUrl: "https://requestb.in/15ksip71",
+          endpointUrl: endpointBaseUrl,
         },
       },
     ],
@@ -521,11 +855,7 @@ import "./main.tsp";
   #{
     title: "Channels ListByPartnerNamespace",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerNamespaceName: "examplePartnerNamespace",
-      },
+      path: partnerNamespacePath,
     },
     responses: #[
       #{
@@ -535,14 +865,9 @@ import "./main.tsp";
             #{
               properties: #{
                 channelType: "PartnerTopic",
-                partnerTopicInfo: #{
-                  azureSubscriptionId: "00000000-0000-0000-0000-000000000000",
-                  resourceGroupName: "examplerg",
-                  name: "examplePartnerTopic",
-                  source: "ContosoCorp.Accounts.User1",
-                },
+                partnerTopicInfo: resourceGroupPath,
                 messageForActivation: "Example message to approver",
-                expirationTimeIfNotActivatedUtc: "2024-01-01T00:00:00Z",
+                expirationTimeIfNotActivatedUtc: exampleTimestamp,
                 readinessState: "NeverActivated",
                 provisioningState: "Succeeded",
               },
@@ -560,15 +885,10 @@ import "./main.tsp";
   #{
     title: "Channels Update",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerNamespaceName: "examplePartnerNamespace",
-        channelName: "exampleChannel",
-      },
+      path: channelPath,
       body: #{
         properties: #{
-          expirationTimeIfNotActivatedUtc: "2024-01-01T00:00:00Z",
+          expirationTimeIfNotActivatedUtc: exampleTimestamp,
         },
       },
     },
@@ -583,16 +903,11 @@ import "./main.tsp";
   #{
     title: "ClientGroups CreateOrUpdate",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-        clientGroupName: "exampleClientGroup",
-      },
+      path: clientGroupPath,
       body: #{
         properties: #{
           description: "This is a test client group",
-          query: "attributes.b IN ['a', 'b', 'c']",
+          query: query,
         },
       },
     },
@@ -602,9 +917,9 @@ import "./main.tsp";
         body: #{
           properties: #{
             description: "This is a test client group",
-            query: "attributes.b IN ['a', 'b', 'c']",
+            query: query,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/clientGroups/exampleClientGroup",
+          id: clientGroupId,
           name: "exampleClientGroup",
           type: "Microsoft.EventGrid/namespaces/clientGroups",
         },
@@ -614,9 +929,9 @@ import "./main.tsp";
         body: #{
           properties: #{
             description: "This is a test client group",
-            query: "attributes.b IN ['a', 'b', 'c']",
+            query: query,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/clientGroups/exampleClientGroup",
+          id: clientGroupId,
           name: "exampleClientGroup",
           type: "Microsoft.EventGrid/namespaces/clientGroups",
         },
@@ -628,30 +943,13 @@ import "./main.tsp";
   #{
     title: "ClientGroups Delete",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-        clientGroupName: "exampleClientGroup",
-      },
+      path: clientGroupPath,
     },
     responses: #[
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -662,12 +960,7 @@ import "./main.tsp";
   #{
     title: "ClientGroups Get",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-        clientGroupName: "exampleClientGroup",
-      },
+      path: clientGroupPath,
     },
     responses: #[
       #{
@@ -675,9 +968,9 @@ import "./main.tsp";
         body: #{
           properties: #{
             description: "This is a test client group",
-            query: "attributes.b IN ['a', 'b', 'c']",
+            query: query,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/clientGroups/exampleClientGroup",
+          id: clientGroupId,
           name: "exampleClientGroup",
           type: "Microsoft.EventGrid/namespaces/clientGroups",
         },
@@ -689,11 +982,7 @@ import "./main.tsp";
   #{
     title: "ClientGroups ListByNamespace",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -703,9 +992,9 @@ import "./main.tsp";
             #{
               properties: #{
                 description: "This is a test client group",
-                query: "attributes.b IN ['a', 'b', 'c']",
+                query: query,
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/clientGroups/exampleClientGroup",
+              id: clientGroupId,
               name: "exampleClientGroup",
               type: "Microsoft.EventGrid/namespaces/clientGroups",
             },
@@ -721,11 +1010,7 @@ import "./main.tsp";
     title: "ClientGroups ListByNamespace",
     since: "2023-12-15-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -735,9 +1020,9 @@ import "./main.tsp";
             #{
               properties: #{
                 description: "This is a test client group",
-                query: "attributes.b IN ['a', 'b', 'c']",
+                query: query,
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/clientGroups/exampleClientGroup",
+              id: clientGroupId,
               name: "exampleClientGroup",
               type: "Microsoft.EventGrid/namespaces/clientGroups",
             },
@@ -753,11 +1038,7 @@ import "./main.tsp";
     title: "ClientGroups ListByNamespace",
     since: "2024-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -767,9 +1048,9 @@ import "./main.tsp";
             #{
               properties: #{
                 description: "This is a test client group",
-                query: "attributes.b IN ['a', 'b', 'c']",
+                query: query,
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/clientGroups/exampleClientGroup",
+              id: clientGroupId,
               name: "exampleClientGroup",
               type: "Microsoft.EventGrid/namespaces/clientGroups",
             },
@@ -785,11 +1066,7 @@ import "./main.tsp";
     title: "ClientGroups ListByNamespace",
     since: "2024-12-15-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -799,9 +1076,9 @@ import "./main.tsp";
             #{
               properties: #{
                 description: "This is a test client group",
-                query: "attributes.b IN ['a', 'b', 'c']",
+                query: query,
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/clientGroups/exampleClientGroup",
+              id: clientGroupId,
               name: "exampleClientGroup",
               type: "Microsoft.EventGrid/namespaces/clientGroups",
             },
@@ -817,11 +1094,7 @@ import "./main.tsp";
     title: "ClientGroups ListByNamespace",
     since: "2025-02-15",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -831,9 +1104,9 @@ import "./main.tsp";
             #{
               properties: #{
                 description: "This is a test client group",
-                query: "attributes.b IN ['a', 'b', 'c']",
+                query: query,
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/clientGroups/exampleClientGroup",
+              id: clientGroupId,
               name: "exampleClientGroup",
               type: "Microsoft.EventGrid/namespaces/clientGroups",
             },
@@ -849,11 +1122,7 @@ import "./main.tsp";
     title: "ClientGroups ListByNamespace",
     since: "2025-04-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -863,9 +1132,9 @@ import "./main.tsp";
             #{
               properties: #{
                 description: "This is a test client group",
-                query: "attributes.b IN ['a', 'b', 'c']",
+                query: query,
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/clientGroups/exampleClientGroup",
+              id: clientGroupId,
               name: "exampleClientGroup",
               type: "Microsoft.EventGrid/namespaces/clientGroups",
             },
@@ -880,12 +1149,7 @@ import "./main.tsp";
   #{
     title: "Clients CreateOrUpdate",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-        clientName: "exampleClient",
-      },
+      path: clientPath,
       body: #{
         properties: #{
           state: "Enabled",
@@ -925,7 +1189,7 @@ import "./main.tsp";
             provisioningState: "Succeeded",
             description: "This is a test client",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/clients/exampleClient",
+          id: clientId,
           name: "exampleClient",
           type: "Microsoft.EventGrid/namespaces/clients",
         },
@@ -949,7 +1213,7 @@ import "./main.tsp";
             provisioningState: "Succeeded",
             description: "This is a test client",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/clients/exampleClient",
+          id: clientId,
           name: "exampleClient",
           type: "Microsoft.EventGrid/namespaces/clients",
         },
@@ -961,30 +1225,13 @@ import "./main.tsp";
   #{
     title: "Clients Delete",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-        clientName: "exampleClient",
-      },
+      path: clientPath,
     },
     responses: #[
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -995,12 +1242,7 @@ import "./main.tsp";
   #{
     title: "Clients Get",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-        clientName: "exampleClient",
-      },
+      path: clientPath,
     },
     responses: #[
       #{
@@ -1022,7 +1264,7 @@ import "./main.tsp";
             provisioningState: "Succeeded",
             description: "This is a test client",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/clients/exampleClient",
+          id: clientId,
           name: "exampleClient",
           type: "Microsoft.EventGrid/namespaces/clients",
         },
@@ -1034,11 +1276,7 @@ import "./main.tsp";
   #{
     title: "Clients ListByNamespace",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -1062,7 +1300,7 @@ import "./main.tsp";
                 provisioningState: "Succeeded",
                 description: "This is a test client",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/clients/exampleClient",
+              id: clientId,
               name: "exampleClient",
               type: "Microsoft.EventGrid/namespaces/clients",
             },
@@ -1078,11 +1316,7 @@ import "./main.tsp";
     title: "Clients ListByNamespace",
     since: "2023-12-15-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -1106,7 +1340,7 @@ import "./main.tsp";
                 provisioningState: "Succeeded",
                 description: "This is a test client",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/clients/exampleClient",
+              id: clientId,
               name: "exampleClient",
               type: "Microsoft.EventGrid/namespaces/clients",
             },
@@ -1122,11 +1356,7 @@ import "./main.tsp";
     title: "Clients ListByNamespace",
     since: "2024-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -1150,7 +1380,7 @@ import "./main.tsp";
                 provisioningState: "Succeeded",
                 description: "This is a test client",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/clients/exampleClient",
+              id: clientId,
               name: "exampleClient",
               type: "Microsoft.EventGrid/namespaces/clients",
             },
@@ -1166,11 +1396,7 @@ import "./main.tsp";
     title: "Clients ListByNamespace",
     since: "2024-12-15-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -1194,7 +1420,7 @@ import "./main.tsp";
                 provisioningState: "Succeeded",
                 description: "This is a test client",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/clients/exampleClient",
+              id: clientId,
               name: "exampleClient",
               type: "Microsoft.EventGrid/namespaces/clients",
             },
@@ -1210,11 +1436,7 @@ import "./main.tsp";
     title: "Clients ListByNamespace",
     since: "2025-02-15",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -1238,7 +1460,7 @@ import "./main.tsp";
                 provisioningState: "Succeeded",
                 description: "This is a test client",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/clients/exampleClient",
+              id: clientId,
               name: "exampleClient",
               type: "Microsoft.EventGrid/namespaces/clients",
             },
@@ -1254,11 +1476,7 @@ import "./main.tsp";
     title: "Clients ListByNamespace",
     since: "2025-04-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -1282,7 +1500,7 @@ import "./main.tsp";
                 provisioningState: "Succeeded",
                 description: "This is a test client",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/clients/exampleClient",
+              id: clientId,
               name: "exampleClient",
               type: "Microsoft.EventGrid/namespaces/clients",
             },
@@ -1298,9 +1516,7 @@ import "./main.tsp";
     title: "DomainEventSubscriptions CreateOrUpdate",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
+        ...domainPath,
         eventSubscriptionName: "exampleEventSubscription",
       },
       body: #{
@@ -1308,14 +1524,10 @@ import "./main.tsp";
           destination: #{
             endpointType: "WebHook",
             properties: #{
-              endpointUrl: "https://requestb.in/15ksip71",
+              endpointUrl: endpointBaseUrl,
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
+          filter: filter,
         },
       },
     },
@@ -1326,15 +1538,11 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             labels: null,
             eventDeliverySchema: "EventGridSchema",
             retryPolicy: #{
@@ -1342,7 +1550,7 @@ import "./main.tsp";
               eventTimeToLiveInMinutes: 1440,
             },
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain",
+            topic: domainId,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
@@ -1355,15 +1563,11 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             labels: null,
             eventDeliverySchema: "EventGridSchema",
             retryPolicy: #{
@@ -1371,7 +1575,7 @@ import "./main.tsp";
               eventTimeToLiveInMinutes: 1440,
             },
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain",
+            topic: domainId,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
@@ -1386,9 +1590,7 @@ import "./main.tsp";
     title: "DomainEventSubscriptions Delete",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
+        ...domainPath,
         eventSubscriptionName: "exampleEventSubscription",
       },
     },
@@ -1411,9 +1613,7 @@ import "./main.tsp";
     since: "2023-06-01-preview",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
+        ...domainPath,
         eventSubscriptionName: "exampleEventSubscription",
       },
     },
@@ -1421,19 +1621,7 @@ import "./main.tsp";
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -1445,9 +1633,7 @@ import "./main.tsp";
     title: "DomainEventSubscriptions Get",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
+        ...domainPath,
         eventSubscriptionName: "exampleEventSubscription",
       },
     },
@@ -1456,22 +1642,20 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           properties: #{
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain",
+            topic: domainId,
             provisioningState: "Succeeded",
             destination: #{
               properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+                resourceId: storageAccountId,
                 queueName: "exampleQueue",
               },
               endpointType: "StorageQueue",
             },
             filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
+              ...filter,
               includedEventTypes: #[
                 "Microsoft.Storage.BlobCreated",
-                "Microsoft.Storage.BlobDeleted",
+                includedEventTypes,
               ],
             },
             labels: #[
@@ -1497,9 +1681,7 @@ import "./main.tsp";
     title: "DomainEventSubscriptions GetDeliveryAttributes",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
+        ...domainPath,
         eventSubscriptionName: "exampleEventSubscription",
       },
     },
@@ -1520,7 +1702,7 @@ import "./main.tsp";
               name: "header2",
               type: "Dynamic",
               properties: #{
-                sourceField: "data.foo",
+                sourceField: sourceField,
               },
             },
             #{
@@ -1542,9 +1724,7 @@ import "./main.tsp";
     title: "DomainEventSubscriptions GetFullUrl",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
+        ...domainPath,
         eventSubscriptionName: "exampleEventSubscription",
       },
     },
@@ -1552,7 +1732,7 @@ import "./main.tsp";
       #{
         statusCode: 200,
         body: #{
-          endpointUrl: "https://requestb.in/15ksip71",
+          endpointUrl: endpointBaseUrl,
         },
       },
     ],
@@ -1562,11 +1742,7 @@ import "./main.tsp";
   #{
     title: "DomainEventSubscriptions List",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-      },
+      path: domainPath,
     },
     responses: #[
       #{
@@ -1575,22 +1751,20 @@ import "./main.tsp";
           value: #[
             #{
               properties: #{
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain",
+                topic: domainId,
                 provisioningState: "Succeeded",
                 destination: #{
                   properties: #{
-                    resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+                    resourceId: storageAccountId,
                     queueName: "exampleQueue",
                   },
                   endpointType: "StorageQueue",
                 },
                 filter: #{
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
+                  ...filter,
                   includedEventTypes: #[
                     "Microsoft.Storage.BlobCreated",
-                    "Microsoft.Storage.BlobDeleted",
+                    includedEventTypes,
                   ],
                 },
                 labels: #[
@@ -1618,28 +1792,10 @@ import "./main.tsp";
     title: "DomainEventSubscriptions Update",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
+        ...domainPath,
         eventSubscriptionName: "exampleEventSubscription",
       },
-      body: #{
-        destination: #{
-          endpointType: "WebHook",
-          properties: #{
-            endpointUrl: "https://requestb.in/15ksip71",
-          },
-        },
-        filter: #{
-          isSubjectCaseSensitive: true,
-          subjectBeginsWith: "existingPrefix",
-          subjectEndsWith: "newSuffix",
-        },
-        labels: #[
-          "label1",
-          "label2",
-        ],
-      },
+      body: body,
     },
     responses: #[
       #{
@@ -1648,7 +1804,7 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
@@ -1667,7 +1823,7 @@ import "./main.tsp";
               eventTimeToLiveInMinutes: 1440,
             },
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain",
+            topic: domainId,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
@@ -1682,25 +1838,18 @@ import "./main.tsp";
     title: "DomainTopicEventSubscriptions CreateOrUpdate",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
+        ...eventSubscriptionPath,
         domainName: "exampleDomain",
-        topicName: "exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
       },
       body: #{
         properties: #{
           destination: #{
             endpointType: "WebHook",
             properties: #{
-              endpointUrl: "https://requestb.in/15ksip71",
+              endpointUrl: endpointBaseUrl,
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
+          filter: filter,
         },
       },
     },
@@ -1711,15 +1860,11 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             labels: null,
             eventDeliverySchema: "EventGridSchema",
             retryPolicy: #{
@@ -1727,7 +1872,7 @@ import "./main.tsp";
               eventTimeToLiveInMinutes: 1440,
             },
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain/domainTopics/exampleDomainTopic",
+            topic: domainTopicId,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain/domainTopics/exampleDomainTopic/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
@@ -1740,15 +1885,11 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             labels: null,
             eventDeliverySchema: "EventGridSchema",
             retryPolicy: #{
@@ -1756,7 +1897,7 @@ import "./main.tsp";
               eventTimeToLiveInMinutes: 1440,
             },
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain/domainTopics/exampleDomainTopic",
+            topic: domainTopicId,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain/domainTopics/exampleDomainTopic/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
@@ -1771,11 +1912,8 @@ import "./main.tsp";
     title: "DomainTopicEventSubscriptions Delete",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
+        ...eventSubscriptionPath,
         domainName: "exampleDomain",
-        topicName: "exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
       },
     },
     responses: #[
@@ -1797,30 +1935,15 @@ import "./main.tsp";
     since: "2023-06-01-preview",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
+        ...eventSubscriptionPath,
         domainName: "exampleDomain",
-        topicName: "exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
       },
     },
     responses: #[
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -1832,11 +1955,8 @@ import "./main.tsp";
     title: "DomainTopicEventSubscriptions Get",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
+        ...eventSubscriptionPath,
         domainName: "exampleDomain",
-        topicName: "exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
       },
     },
     responses: #[
@@ -1844,22 +1964,20 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           properties: #{
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain/domainTopics/exampleDomainTopic",
+            topic: domainTopicId,
             provisioningState: "Succeeded",
             destination: #{
               properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+                resourceId: storageAccountId,
                 queueName: "exampleQueue",
               },
               endpointType: "StorageQueue",
             },
             filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
+              ...filter,
               includedEventTypes: #[
                 "Microsoft.Storage.BlobCreated",
-                "Microsoft.Storage.BlobDeleted",
+                includedEventTypes,
               ],
             },
             labels: #[
@@ -1885,11 +2003,8 @@ import "./main.tsp";
     title: "DomainTopicEventSubscriptions GetDeliveryAttributes",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
+        ...eventSubscriptionPath,
         domainName: "exampleDomain",
-        topicName: "exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
       },
     },
     responses: #[
@@ -1909,7 +2024,7 @@ import "./main.tsp";
               name: "header2",
               type: "Dynamic",
               properties: #{
-                sourceField: "data.foo",
+                sourceField: sourceField,
               },
             },
             #{
@@ -1931,18 +2046,15 @@ import "./main.tsp";
     title: "DomainTopicEventSubscriptions GetFullUrl",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
+        ...eventSubscriptionPath,
         domainName: "exampleDomain",
-        topicName: "exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
       },
     },
     responses: #[
       #{
         statusCode: 200,
         body: #{
-          endpointUrl: "https://requestb.in/15ksip71",
+          endpointUrl: endpointBaseUrl,
         },
       },
     ],
@@ -1953,10 +2065,8 @@ import "./main.tsp";
     title: "DomainTopicEventSubscriptions List",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
+        ...topicPath,
         domainName: "exampleDomain",
-        topicName: "exampleTopic",
       },
     },
     responses: #[
@@ -1966,22 +2076,20 @@ import "./main.tsp";
           value: #[
             #{
               properties: #{
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain/domainTopics/exampleDomainTopic",
+                topic: domainTopicId,
                 provisioningState: "Succeeded",
                 destination: #{
                   properties: #{
-                    resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+                    resourceId: storageAccountId,
                     queueName: "exampleQueue",
                   },
                   endpointType: "StorageQueue",
                 },
                 filter: #{
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
+                  ...filter,
                   includedEventTypes: #[
                     "Microsoft.Storage.BlobCreated",
-                    "Microsoft.Storage.BlobDeleted",
+                    includedEventTypes,
                   ],
                 },
                 labels: #[
@@ -2009,29 +2117,10 @@ import "./main.tsp";
     title: "DomainTopicEventSubscriptions Update",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
+        ...eventSubscriptionPath,
         domainName: "exampleDomain",
-        topicName: "exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
       },
-      body: #{
-        destination: #{
-          endpointType: "WebHook",
-          properties: #{
-            endpointUrl: "https://requestb.in/15ksip71",
-          },
-        },
-        filter: #{
-          isSubjectCaseSensitive: true,
-          subjectBeginsWith: "existingPrefix",
-          subjectEndsWith: "newSuffix",
-        },
-        labels: #[
-          "label1",
-          "label2",
-        ],
-      },
+      body: body,
     },
     responses: #[
       #{
@@ -2040,7 +2129,7 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
@@ -2059,7 +2148,7 @@ import "./main.tsp";
               eventTimeToLiveInMinutes: 1440,
             },
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain/domainTopics/exampleDomainTopic",
+            topic: domainTopicId,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain/domainTopics/exampleDomainTopic/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
@@ -2073,12 +2162,7 @@ import "./main.tsp";
   #{
     title: "DomainTopics CreateOrUpdate",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-        domainTopicName: "exampleDomainTopic",
-      },
+      path: domainTopicPath,
     },
     responses: #[
       #{
@@ -2099,12 +2183,7 @@ import "./main.tsp";
   #{
     title: "DomainTopics Delete",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-        domainTopicName: "exampleDomainTopic",
-      },
+      path: domainTopicPath,
     },
     responses: #[
       #{
@@ -2121,12 +2200,7 @@ import "./main.tsp";
     title: "DomainTopics Delete",
     since: "2020-04-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-        domainTopicName: "exampleDomainTopic",
-      },
+      path: domainTopicPath,
     },
     responses: #[
       #{
@@ -2146,30 +2220,13 @@ import "./main.tsp";
     title: "DomainTopics Delete",
     since: "2023-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-        domainTopicName: "exampleDomainTopic",
-      },
+      path: domainTopicPath,
     },
     responses: #[
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -2181,10 +2238,8 @@ import "./main.tsp";
     title: "DomainTopics Get",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
+        ...topicPath,
         domainName: "exampleDomain",
-        topicName: "exampleTopic",
       },
     },
     responses: #[
@@ -2206,12 +2261,7 @@ import "./main.tsp";
     title: "DomainTopics Get",
     since: "2019-06-01",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-        domainTopicName: "exampleDomainTopic",
-      },
+      path: domainTopicPath,
     },
     responses: #[
       #{
@@ -2233,7 +2283,7 @@ import "./main.tsp";
     title: "DomainTopics ListByDomain",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
       },
     },
@@ -2247,7 +2297,7 @@ import "./main.tsp";
                 endpoint: "https://exampledomain.westus2-1.eventgrid.azure.net/api/events",
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain",
+              id: domainId,
               location: "westus2",
               name: "exampleDomain",
               tags: #{
@@ -2261,7 +2311,7 @@ import "./main.tsp";
                 endpoint: "https://exampledomain.westcentralus-1.eventgrid.azure.net/api/events",
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain",
+              id: domainId,
               location: "westus2",
               name: "exampleDomain",
               tags: #{
@@ -2281,11 +2331,7 @@ import "./main.tsp";
     title: "DomainTopics ListByDomain",
     since: "2019-06-01",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-      },
+      path: domainPath,
     },
     responses: #[
       #{
@@ -2318,11 +2364,7 @@ import "./main.tsp";
   #{
     title: "Domains CreateOrUpdate",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-      },
+      path: domainPath,
       body: #{
         location: "westus2",
         tags: #{
@@ -2339,7 +2381,7 @@ import "./main.tsp";
             endpoint: "https://exampledomain.westus2-1.eventgrid.azure.net/api/events",
             provisioningState: "Succeeded",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain",
+          id: domainId,
           location: "westus2",
           name: "exampleDomain",
           tags: #{
@@ -2357,11 +2399,7 @@ import "./main.tsp";
     title: "Domains CreateOrUpdate",
     since: "2020-04-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-      },
+      path: domainPath,
       body: #{
         location: "westus2",
         tags: #{
@@ -2372,7 +2410,7 @@ import "./main.tsp";
           publicNetworkAccess: "Enabled",
           inboundIpRules: #[
             #{
-              ipMask: "12.18.30.15",
+              ipMask: ipMask,
               action: "Allow",
             },
             #{
@@ -2393,7 +2431,7 @@ import "./main.tsp";
             publicNetworkAccess: "Enabled",
             inboundIpRules: #[
               #{
-                ipMask: "12.18.30.15",
+                ipMask: ipMask,
                 action: "Allow",
               },
               #{
@@ -2402,7 +2440,7 @@ import "./main.tsp";
               },
             ],
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain",
+          id: domainId,
           location: "westus2",
           name: "exampleDomain",
           tags: #{
@@ -2419,11 +2457,7 @@ import "./main.tsp";
   #{
     title: "Domains Delete",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-      },
+      path: domainPath,
     },
     responses: #[
       #{
@@ -2440,11 +2474,7 @@ import "./main.tsp";
     title: "Domains Delete",
     since: "2020-04-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-      },
+      path: domainPath,
     },
     responses: #[
       #{
@@ -2464,29 +2494,13 @@ import "./main.tsp";
     title: "Domains Delete",
     since: "2023-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-      },
+      path: domainPath,
     },
     responses: #[
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -2497,11 +2511,7 @@ import "./main.tsp";
   #{
     title: "Domains Get",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-      },
+      path: domainPath,
     },
     responses: #[
       #{
@@ -2511,7 +2521,7 @@ import "./main.tsp";
             endpoint: "https://exampledomain.westcentralus-1.eventgrid.azure.net/api/events",
             provisioningState: "Succeeded",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain",
+          id: domainId,
           location: "westus2",
           name: "exampleDomain",
           tags: #{
@@ -2529,7 +2539,7 @@ import "./main.tsp";
     title: "Domains ListByResourceGroup",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
       },
     },
@@ -2543,7 +2553,7 @@ import "./main.tsp";
                 endpoint: "https://exampledomain.westus2-1.eventgrid.azure.net/api/events",
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain",
+              id: domainId,
               location: "westus2",
               name: "exampleDomain",
               tags: #{
@@ -2557,7 +2567,7 @@ import "./main.tsp";
                 endpoint: "https://exampledomain.westcentralus-1.eventgrid.azure.net/api/events",
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain",
+              id: domainId,
               location: "westus2",
               name: "exampleDomain",
               tags: #{
@@ -2577,7 +2587,7 @@ import "./main.tsp";
     title: "Domains ListBySubscription",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
       },
     },
     responses: #[
@@ -2590,7 +2600,7 @@ import "./main.tsp";
                 endpoint: "https://exampledomain.westus2-1.eventgrid.azure.net/api/events",
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain",
+              id: domainId,
               location: "westus2",
               name: "exampleDomain",
               tags: #{
@@ -2604,7 +2614,7 @@ import "./main.tsp";
                 endpoint: "https://exampledomain.westcentralus-1.eventgrid.azure.net/api/events",
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain",
+              id: domainId,
               location: "westus2",
               name: "exampleDomain",
               tags: #{
@@ -2623,11 +2633,7 @@ import "./main.tsp";
   #{
     title: "Domains ListSharedAccessKeys",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-      },
+      path: domainPath,
     },
     responses: #[
       #{
@@ -2645,11 +2651,7 @@ import "./main.tsp";
     title: "Domains ListSharedAccessKeys",
     since: "2020-10-15-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-      },
+      path: domainPath,
     },
     responses: #[
       #{
@@ -2667,11 +2669,7 @@ import "./main.tsp";
     title: "Domains ListSharedAccessKeys",
     since: "2021-12-01",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-      },
+      path: domainPath,
     },
     responses: #[
       #{
@@ -2689,11 +2687,7 @@ import "./main.tsp";
     title: "Domains ListSharedAccessKeys",
     since: "2023-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-      },
+      path: domainPath,
     },
     responses: #[
       #{
@@ -2711,11 +2705,7 @@ import "./main.tsp";
     title: "Domains ListSharedAccessKeys",
     since: "2025-02-15",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-      },
+      path: domainPath,
     },
     responses: #[
       #{
@@ -2733,11 +2723,7 @@ import "./main.tsp";
     title: "Domains ListSharedAccessKeys",
     since: "2025-04-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-      },
+      path: domainPath,
     },
     responses: #[
       #{
@@ -2754,11 +2740,7 @@ import "./main.tsp";
   #{
     title: "Domains RegenerateKey",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-      },
+      path: domainPath,
       body: #{
         keyName: "key1",
       },
@@ -2779,11 +2761,7 @@ import "./main.tsp";
     title: "Domains RegenerateKey",
     since: "2020-10-15-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-      },
+      path: domainPath,
       body: #{
         keyName: "key1",
       },
@@ -2804,11 +2782,7 @@ import "./main.tsp";
     title: "Domains RegenerateKey",
     since: "2021-12-01",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-      },
+      path: domainPath,
       body: #{
         keyName: "key1",
       },
@@ -2829,11 +2803,7 @@ import "./main.tsp";
     title: "Domains RegenerateKey",
     since: "2023-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-      },
+      path: domainPath,
       body: #{
         keyName: "key1",
       },
@@ -2854,11 +2824,7 @@ import "./main.tsp";
     title: "Domains RegenerateKey",
     since: "2025-02-15",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-      },
+      path: domainPath,
       body: #{
         keyName: "key1",
       },
@@ -2879,11 +2845,7 @@ import "./main.tsp";
     title: "Domains RegenerateKey",
     since: "2025-04-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-      },
+      path: domainPath,
       body: #{
         keyName: "key1",
       },
@@ -2903,11 +2865,7 @@ import "./main.tsp";
   #{
     title: "Domains Update",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-      },
+      path: domainPath,
       body: #{
         tags: #{
           tag1: "value1",
@@ -2923,7 +2881,7 @@ import "./main.tsp";
             endpoint: "https://exampledomain.westus2-1.eventgrid.azure.net/api/events",
             provisioningState: "Succeeded",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain",
+          id: domainId,
           location: "westus2",
           name: "exampleDomain",
           tags: #{
@@ -2941,11 +2899,7 @@ import "./main.tsp";
     title: "Domains Update",
     since: "2020-04-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        domainName: "exampleDomain",
-      },
+      path: domainPath,
       body: #{
         tags: #{
           tag1: "value1",
@@ -2955,7 +2909,7 @@ import "./main.tsp";
           publicNetworkAccess: "Enabled",
           inboundIpRules: #[
             #{
-              ipMask: "12.18.30.15",
+              ipMask: ipMask,
               action: "Allow",
             },
             #{
@@ -2979,7 +2933,7 @@ import "./main.tsp";
             publicNetworkAccess: "Enabled",
             inboundIpRules: #[
               #{
-                ipMask: "12.18.30.15",
+                ipMask: ipMask,
                 action: "Allow",
               },
               #{
@@ -2988,7 +2942,7 @@ import "./main.tsp";
               },
             ],
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain",
+          id: domainId,
           location: "westus2",
           name: "exampleDomain",
           tags: #{
@@ -3005,19 +2959,14 @@ import "./main.tsp";
   #{
     title: "EventChannels CreateOrUpdate",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerNamespaceName: "examplePartnerNamespace",
-        eventChannelName: "exampleEventChannel",
-      },
+      path: eventChannelPath,
       body: #{
         properties: #{
           source: #{
-            source: "ContosoCorp.Accounts.User1",
+            source: source,
           },
           destination: #{
-            azureSubscriptionId: "00000000-0000-0000-0000-000000000000",
+            azureSubscriptionId: subscriptionId,
             resourceGroup: "examplerg",
             partnerTopicName: "examplePartnerTopic",
           },
@@ -3030,10 +2979,10 @@ import "./main.tsp";
         body: #{
           properties: #{
             source: #{
-              source: "ContosoCorp.Accounts.User1",
+              source: source,
             },
             destination: #{
-              azureSubscriptionId: "00000000-0000-0000-0000-000000000000",
+              azureSubscriptionId: subscriptionId,
               resourceGroup: "examplerg",
               partnerTopicName: "examplePartnerTopic",
             },
@@ -3051,12 +3000,7 @@ import "./main.tsp";
   #{
     title: "EventChannels Delete",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerNamespaceName: "examplePartnerNamespace",
-        eventChannelName: "exampleEventChannel",
-      },
+      path: eventChannelPath,
     },
     responses: #[
       #{
@@ -3075,12 +3019,7 @@ import "./main.tsp";
   #{
     title: "EventChannels Get",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerNamespaceName: "examplePartnerNamespace",
-        eventChannelName: "exampleEventChannel",
-      },
+      path: eventChannelPath,
     },
     responses: #[
       #{
@@ -3088,10 +3027,10 @@ import "./main.tsp";
         body: #{
           properties: #{
             source: #{
-              source: "ContosoCorp.Accounts.User1",
+              source: source,
             },
             destination: #{
-              azureSubscriptionId: "00000000-0000-0000-0000-000000000000",
+              azureSubscriptionId: subscriptionId,
               resourceGroup: "examplerg",
               partnerTopicName: "examplePartnerTopic",
             },
@@ -3109,11 +3048,7 @@ import "./main.tsp";
   #{
     title: "EventChannels ListByPartnerNamespace",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerNamespaceName: "examplePartnerNamespace",
-      },
+      path: partnerNamespacePath,
     },
     responses: #[
       #{
@@ -3123,10 +3058,10 @@ import "./main.tsp";
             #{
               properties: #{
                 source: #{
-                  source: "ContosoCorp.Accounts.User1",
+                  source: source,
                 },
                 destination: #{
-                  azureSubscriptionId: "00000000-0000-0000-0000-000000000000",
+                  azureSubscriptionId: subscriptionId,
                   resourceGroup: "amh",
                   partnerTopicName: "examplePartnerTopic",
                 },
@@ -3146,23 +3081,16 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions CreateForCustomTopic",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
       body: #{
         properties: #{
           destination: #{
             endpointType: "WebHook",
             properties: #{
-              endpointUrl: "https://requestb.in/15ksip71",
+              endpointUrl: endpointBaseUrl,
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
+          filter: filter,
         },
       },
     },
@@ -3173,24 +3101,22 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
             filter: #{
+              ...filter,
               includedEventTypes: #[
                 "All",
               ],
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
             },
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -3200,27 +3126,7 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions CreateForCustomTopic",
     since: "2017-09-15-preview",
-    request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
-      body: #{
-        properties: #{
-          destination: #{
-            endpointType: "EventHub",
-            properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/eventhubs/exampleEventHub",
-            },
-          },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
-        },
-      },
-    },
+    request: request,
     responses: #[
       #{
         statusCode: 201,
@@ -3228,24 +3134,22 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
             filter: #{
+              ...filter,
               includedEventTypes: #[
                 "All",
               ],
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
             },
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -3264,14 +3168,10 @@ import "./main.tsp";
           destination: #{
             endpointType: "WebHook",
             properties: #{
-              endpointUrl: "https://requestb.in/15ksip71",
+              endpointUrl: endpointBaseUrl,
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
+          filter: filter,
         },
       },
     },
@@ -3282,24 +3182,22 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
             filter: #{
+              ...filter,
               includedEventTypes: #[
                 "All",
               ],
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
             },
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+            topic: namespaceId,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -3310,7 +3208,7 @@ import "./main.tsp";
     title: "EventSubscriptions CreateForResourceGroup",
     request: #{
       path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+        scope: scope,
         eventSubscriptionName: "exampleEventSubscription",
       },
       body: #{
@@ -3318,14 +3216,10 @@ import "./main.tsp";
           destination: #{
             endpointType: "WebHook",
             properties: #{
-              endpointUrl: "https://requestb.in/15ksip71",
+              endpointUrl: endpointBaseUrl,
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
+          filter: filter,
         },
       },
     },
@@ -3336,24 +3230,22 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
             filter: #{
+              ...filter,
               includedEventTypes: #[
                 "All",
               ],
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
             },
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+            topic: topic,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -3372,7 +3264,7 @@ import "./main.tsp";
           destination: #{
             endpointType: "WebHook",
             properties: #{
-              endpointUrl: "https://requestb.in/15ksip71",
+              endpointUrl: endpointBaseUrl,
             },
           },
           filter: #{
@@ -3388,7 +3280,7 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
@@ -3405,7 +3297,7 @@ import "./main.tsp";
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -3415,32 +3307,19 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions CreateOrUpdate",
     request: #{
-      path: #{
-        eventSubscriptionName: "exampleEventSubscription",
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-      },
+      path: path,
       body: #{
         properties: #{
-          deadLetterDestination: #{
-            endpointType: "StorageBlob",
-            properties: #{
-              blobContainerName: "contosocontainer",
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-            },
-          },
+          deadLetterDestination: deadLetterDestination,
           destination: #{
             endpointType: "StorageQueue",
             properties: #{
               queueMessageTimeToLiveInSeconds: 300,
               queueName: "exampleQueue",
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+              resourceId: storageAccountId,
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
+          filter: filter,
         },
       },
     },
@@ -3449,32 +3328,22 @@ import "./main.tsp";
         statusCode: 201,
         body: #{
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          type: type,
+          id: eventSubscriptionId,
           properties: #{
-            deadLetterDestination: #{
-              endpointType: "StorageBlob",
-              properties: #{
-                blobContainerName: "contosocontainer",
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-              },
-            },
+            deadLetterDestination: deadLetterDestination,
             destination: #{
               endpointType: "StorageQueue",
               properties: #{
                 queueMessageTimeToLiveInSeconds: 300,
                 queueName: "exampleQueue",
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+                resourceId: storageAccountId,
               },
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             labels: null,
             provisioningState: "Creating",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
         },
       },
@@ -3484,27 +3353,7 @@ import "./main.tsp";
 @@example(Microsoft.EventGrid.EventSubscriptions.createOrUpdateForCustomTopic,
   #{
     title: "EventSubscriptions CreateOrUpdateForCustomTopic",
-    request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
-      body: #{
-        properties: #{
-          destination: #{
-            endpointType: "EventHub",
-            properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/eventhubs/exampleEventHub",
-            },
-          },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
-        },
-      },
-    },
+    request: request,
     responses: #[
       #{
         statusCode: 201,
@@ -3512,24 +3361,22 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
             filter: #{
+              ...filter,
               includedEventTypes: #[
                 "All",
               ],
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
             },
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -3539,27 +3386,7 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions CreateOrUpdateForCustomTopic",
     since: "2021-10-15-preview",
-    request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
-      body: #{
-        properties: #{
-          destination: #{
-            endpointType: "EventHub",
-            properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/eventhubs/exampleEventHub",
-            },
-          },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
-        },
-      },
-    },
+    request: request,
     responses: #[
       #{
         statusCode: 201,
@@ -3567,21 +3394,17 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -3591,30 +3414,17 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions CreateOrUpdateForCustomTopic AzureFunctionDestination",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
       body: #{
         properties: #{
           destination: #{
             endpointType: "AzureFunction",
             properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Web/sites/ContosoSite/funtions/ContosoFunc",
+              resourceId: resourceId,
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
-          deadLetterDestination: #{
-            endpointType: "StorageBlob",
-            properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-              blobContainerName: "contosocontainer",
-            },
-          },
+          filter: filter,
+          deadLetterDestination: deadLetterDestination,
         },
       },
     },
@@ -3625,29 +3435,19 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Web/sites/ContosoSite/funtions/ContosoFunc",
+                resourceId: resourceId,
               },
               endpointType: "AzureFunction",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            filter: filter,
+            topic: topicId,
             provisioningState: "Creating",
             labels: null,
-            deadLetterDestination: #{
-              endpointType: "StorageBlob",
-              properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-                blobContainerName: "contosocontainer",
-              },
-            },
+            deadLetterDestination: deadLetterDestination,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -3657,30 +3457,12 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions CreateOrUpdateForCustomTopic EventHubDestination",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
       body: #{
         properties: #{
-          destination: #{
-            endpointType: "EventHub",
-            properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/eventhubs/exampleEventHub",
-            },
-          },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
-          deadLetterDestination: #{
-            endpointType: "StorageBlob",
-            properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-              blobContainerName: "contosocontainer",
-            },
-          },
+          destination: destination,
+          filter: filter,
+          deadLetterDestination: deadLetterDestination,
         },
       },
     },
@@ -3689,34 +3471,21 @@ import "./main.tsp";
         statusCode: 201,
         body: #{
           properties: #{
-            destination: #{
-              properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/eventhubs/exampleEventHub",
-              },
-              endpointType: "EventHub",
-            },
+            destination: destination,
             filter: #{
+              ...filter,
               includedEventTypes: #[
                 "All",
               ],
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
             },
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
             provisioningState: "Creating",
             labels: null,
-            deadLetterDestination: #{
-              endpointType: "StorageBlob",
-              properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-                blobContainerName: "contosocontainer",
-              },
-            },
+            deadLetterDestination: deadLetterDestination,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -3727,30 +3496,12 @@ import "./main.tsp";
     title: "EventSubscriptions CreateOrUpdateForCustomTopic EventHubDestination",
     since: "2019-06-01",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
       body: #{
         properties: #{
-          destination: #{
-            endpointType: "EventHub",
-            properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/eventhubs/exampleEventHub",
-            },
-          },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
-          deadLetterDestination: #{
-            endpointType: "StorageBlob",
-            properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-              blobContainerName: "contosocontainer",
-            },
-          },
+          destination: destination,
+          filter: filter,
+          deadLetterDestination: deadLetterDestination,
         },
       },
     },
@@ -3759,31 +3510,16 @@ import "./main.tsp";
         statusCode: 201,
         body: #{
           properties: #{
-            destination: #{
-              properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/eventhubs/exampleEventHub",
-              },
-              endpointType: "EventHub",
-            },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            destination: destination,
+            filter: filter,
+            topic: topicId,
             provisioningState: "Creating",
             labels: null,
-            deadLetterDestination: #{
-              endpointType: "StorageBlob",
-              properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-                blobContainerName: "contosocontainer",
-              },
-            },
+            deadLetterDestination: deadLetterDestination,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -3793,10 +3529,7 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions CreateOrUpdateForCustomTopic HybridConnectionDestination",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
       body: #{
         properties: #{
           destination: #{
@@ -3805,18 +3538,8 @@ import "./main.tsp";
               resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Relay/namespaces/exampleNamespace/hybridConnections/HC1",
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
-          deadLetterDestination: #{
-            endpointType: "StorageBlob",
-            properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-              blobContainerName: "contosocontainer",
-            },
-          },
+          filter: filter,
+          deadLetterDestination: deadLetterDestination,
         },
       },
     },
@@ -3832,27 +3555,19 @@ import "./main.tsp";
               endpointType: "HybridConnection",
             },
             filter: #{
+              ...filter,
               includedEventTypes: #[
                 "All",
               ],
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
             },
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
             provisioningState: "Creating",
             labels: null,
-            deadLetterDestination: #{
-              endpointType: "StorageBlob",
-              properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-                blobContainerName: "contosocontainer",
-              },
-            },
+            deadLetterDestination: deadLetterDestination,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -3863,10 +3578,7 @@ import "./main.tsp";
     title: "EventSubscriptions CreateOrUpdateForCustomTopic HybridConnectionDestination",
     since: "2019-06-01",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
       body: #{
         properties: #{
           destination: #{
@@ -3875,18 +3587,8 @@ import "./main.tsp";
               resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Relay/namespaces/exampleNamespace/hybridConnections/HC1",
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
-          deadLetterDestination: #{
-            endpointType: "StorageBlob",
-            properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-              blobContainerName: "contosocontainer",
-            },
-          },
+          filter: filter,
+          deadLetterDestination: deadLetterDestination,
         },
       },
     },
@@ -3901,25 +3603,15 @@ import "./main.tsp";
               },
               endpointType: "HybridConnection",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            filter: filter,
+            topic: topicId,
             provisioningState: "Creating",
             labels: null,
-            deadLetterDestination: #{
-              endpointType: "StorageBlob",
-              properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-                blobContainerName: "contosocontainer",
-              },
-            },
+            deadLetterDestination: deadLetterDestination,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -3929,30 +3621,17 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions CreateOrUpdateForCustomTopic ServiceBusQueueDestination",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
       body: #{
         properties: #{
           destination: #{
             endpointType: "ServiceBusQueue",
             properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.ServiceBus/namespaces/exampleNamespace/queues/exampleQueue",
+              resourceId: queueId,
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
-          deadLetterDestination: #{
-            endpointType: "StorageBlob",
-            properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-              blobContainerName: "contosocontainer",
-            },
-          },
+          filter: filter,
+          deadLetterDestination: deadLetterDestination,
         },
       },
     },
@@ -3963,29 +3642,19 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.ServiceBus/namespaces/exampleNamespace/queues/exampleQueue",
+                resourceId: queueId,
               },
               endpointType: "ServiceBusQueue",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            filter: filter,
+            topic: topicId,
             provisioningState: "Creating",
             labels: null,
-            deadLetterDestination: #{
-              endpointType: "StorageBlob",
-              properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-                blobContainerName: "contosocontainer",
-              },
-            },
+            deadLetterDestination: deadLetterDestination,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -3995,10 +3664,7 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions CreateOrUpdateForCustomTopic ServiceBusTopicDestination",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
       body: #{
         properties: #{
           destination: #{
@@ -4007,18 +3673,8 @@ import "./main.tsp";
               resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.ServiceBus/namespaces/exampleNamespace/topics/exampleTopic",
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
-          deadLetterDestination: #{
-            endpointType: "StorageBlob",
-            properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-              blobContainerName: "contosocontainer",
-            },
-          },
+          filter: filter,
+          deadLetterDestination: deadLetterDestination,
         },
       },
     },
@@ -4033,25 +3689,15 @@ import "./main.tsp";
               },
               endpointType: "ServiceBusTopic",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            filter: filter,
+            topic: topicId,
             provisioningState: "Creating",
             labels: null,
-            deadLetterDestination: #{
-              endpointType: "StorageBlob",
-              properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-                blobContainerName: "contosocontainer",
-              },
-            },
+            deadLetterDestination: deadLetterDestination,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -4061,31 +3707,18 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions CreateOrUpdateForCustomTopic StorageQueueDestination",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
       body: #{
         properties: #{
           destination: #{
             endpointType: "StorageQueue",
             properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+              resourceId: storageAccountId,
               queueName: "exampleQueue",
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
-          deadLetterDestination: #{
-            endpointType: "StorageBlob",
-            properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-              blobContainerName: "contosocontainer",
-            },
-          },
+          filter: filter,
+          deadLetterDestination: deadLetterDestination,
         },
       },
     },
@@ -4096,33 +3729,25 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+                resourceId: storageAccountId,
                 queueName: "exampleQueue",
               },
               endpointType: "StorageQueue",
             },
             filter: #{
+              ...filter,
               includedEventTypes: #[
                 "All",
               ],
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
             },
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
             provisioningState: "Creating",
             labels: null,
-            deadLetterDestination: #{
-              endpointType: "StorageBlob",
-              properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-                blobContainerName: "contosocontainer",
-              },
-            },
+            deadLetterDestination: deadLetterDestination,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -4133,31 +3758,18 @@ import "./main.tsp";
     title: "EventSubscriptions CreateOrUpdateForCustomTopic StorageQueueDestination",
     since: "2019-06-01",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
       body: #{
         properties: #{
           destination: #{
             endpointType: "StorageQueue",
             properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+              resourceId: storageAccountId,
               queueName: "exampleQueue",
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
-          deadLetterDestination: #{
-            endpointType: "StorageBlob",
-            properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-              blobContainerName: "contosocontainer",
-            },
-          },
+          filter: filter,
+          deadLetterDestination: deadLetterDestination,
         },
       },
     },
@@ -4168,30 +3780,20 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+                resourceId: storageAccountId,
                 queueName: "exampleQueue",
               },
               endpointType: "StorageQueue",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            filter: filter,
+            topic: topicId,
             provisioningState: "Creating",
             labels: null,
-            deadLetterDestination: #{
-              endpointType: "StorageBlob",
-              properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-                blobContainerName: "contosocontainer",
-              },
-            },
+            deadLetterDestination: deadLetterDestination,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -4202,32 +3804,19 @@ import "./main.tsp";
     title: "EventSubscriptions CreateOrUpdateForCustomTopic StorageQueueDestination",
     since: "2020-10-15-preview",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
       body: #{
         properties: #{
           destination: #{
             endpointType: "StorageQueue",
             properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+              resourceId: storageAccountId,
               queueName: "exampleQueue",
               queueMessageTimeToLiveInSeconds: 300,
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
-          deadLetterDestination: #{
-            endpointType: "StorageBlob",
-            properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-              blobContainerName: "contosocontainer",
-            },
-          },
+          filter: filter,
+          deadLetterDestination: deadLetterDestination,
         },
       },
     },
@@ -4238,31 +3827,21 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+                resourceId: storageAccountId,
                 queueName: "exampleQueue",
                 queueMessageTimeToLiveInSeconds: 300,
               },
               endpointType: "StorageQueue",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            filter: filter,
+            topic: topicId,
             provisioningState: "Creating",
             labels: null,
-            deadLetterDestination: #{
-              endpointType: "StorageBlob",
-              properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-                blobContainerName: "contosocontainer",
-              },
-            },
+            deadLetterDestination: deadLetterDestination,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -4273,31 +3852,18 @@ import "./main.tsp";
     title: "EventSubscriptions CreateOrUpdateForCustomTopic StorageQueueDestination",
     since: "2021-12-01",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
       body: #{
         properties: #{
           destination: #{
             endpointType: "StorageQueue",
             properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+              resourceId: storageAccountId,
               queueName: "exampleQueue",
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
-          deadLetterDestination: #{
-            endpointType: "StorageBlob",
-            properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-              blobContainerName: "contosocontainer",
-            },
-          },
+          filter: filter,
+          deadLetterDestination: deadLetterDestination,
         },
       },
     },
@@ -4308,30 +3874,20 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+                resourceId: storageAccountId,
                 queueName: "exampleQueue",
               },
               endpointType: "StorageQueue",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            filter: filter,
+            topic: topicId,
             provisioningState: "Creating",
             labels: null,
-            deadLetterDestination: #{
-              endpointType: "StorageBlob",
-              properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-                blobContainerName: "contosocontainer",
-              },
-            },
+            deadLetterDestination: deadLetterDestination,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -4342,32 +3898,19 @@ import "./main.tsp";
     title: "EventSubscriptions CreateOrUpdateForCustomTopic StorageQueueDestination",
     since: "2023-06-01-preview",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
       body: #{
         properties: #{
           destination: #{
             endpointType: "StorageQueue",
             properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+              resourceId: storageAccountId,
               queueName: "exampleQueue",
               queueMessageTimeToLiveInSeconds: 300,
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
-          deadLetterDestination: #{
-            endpointType: "StorageBlob",
-            properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-              blobContainerName: "contosocontainer",
-            },
-          },
+          filter: filter,
+          deadLetterDestination: deadLetterDestination,
         },
       },
     },
@@ -4378,31 +3921,21 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+                resourceId: storageAccountId,
                 queueName: "exampleQueue",
                 queueMessageTimeToLiveInSeconds: 300,
               },
               endpointType: "StorageQueue",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            filter: filter,
+            topic: topicId,
             provisioningState: "Creating",
             labels: null,
-            deadLetterDestination: #{
-              endpointType: "StorageBlob",
-              properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-                blobContainerName: "contosocontainer",
-              },
-            },
+            deadLetterDestination: deadLetterDestination,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -4413,31 +3946,18 @@ import "./main.tsp";
     title: "EventSubscriptions CreateOrUpdateForCustomTopic StorageQueueDestination",
     since: "2025-02-15",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
       body: #{
         properties: #{
           destination: #{
             endpointType: "StorageQueue",
             properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+              resourceId: storageAccountId,
               queueName: "exampleQueue",
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
-          deadLetterDestination: #{
-            endpointType: "StorageBlob",
-            properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-              blobContainerName: "contosocontainer",
-            },
-          },
+          filter: filter,
+          deadLetterDestination: deadLetterDestination,
         },
       },
     },
@@ -4448,30 +3968,20 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+                resourceId: storageAccountId,
                 queueName: "exampleQueue",
               },
               endpointType: "StorageQueue",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            filter: filter,
+            topic: topicId,
             provisioningState: "Creating",
             labels: null,
-            deadLetterDestination: #{
-              endpointType: "StorageBlob",
-              properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-                blobContainerName: "contosocontainer",
-              },
-            },
+            deadLetterDestination: deadLetterDestination,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -4482,32 +3992,19 @@ import "./main.tsp";
     title: "EventSubscriptions CreateOrUpdateForCustomTopic StorageQueueDestination",
     since: "2025-04-01-preview",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
       body: #{
         properties: #{
           destination: #{
             endpointType: "StorageQueue",
             properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+              resourceId: storageAccountId,
               queueName: "exampleQueue",
               queueMessageTimeToLiveInSeconds: 300,
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
-          deadLetterDestination: #{
-            endpointType: "StorageBlob",
-            properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-              blobContainerName: "contosocontainer",
-            },
-          },
+          filter: filter,
+          deadLetterDestination: deadLetterDestination,
         },
       },
     },
@@ -4518,31 +4015,21 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+                resourceId: storageAccountId,
                 queueName: "exampleQueue",
                 queueMessageTimeToLiveInSeconds: 300,
               },
               endpointType: "StorageQueue",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            filter: filter,
+            topic: topicId,
             provisioningState: "Creating",
             labels: null,
-            deadLetterDestination: #{
-              endpointType: "StorageBlob",
-              properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-                blobContainerName: "contosocontainer",
-              },
-            },
+            deadLetterDestination: deadLetterDestination,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -4550,12 +4037,9 @@ import "./main.tsp";
 
 @@example(Microsoft.EventGrid.EventSubscriptions.createOrUpdateForCustomTopic_WebhookDestination,
   #{
-    title: "EventSubscriptions CreateOrUpdateForCustomTopic WebhookDestination",
+    title: title,
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
       body: #{
         properties: #{
           destination: #{
@@ -4564,18 +4048,8 @@ import "./main.tsp";
               endpointUrl: "https://contosofunction.azurewebsites.net/api/HttpTriggerCSharp1?code=<HIDDEN>",
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
-          deadLetterDestination: #{
-            endpointType: "StorageBlob",
-            properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-              blobContainerName: "contosocontainer",
-            },
-          },
+          filter: filter,
+          deadLetterDestination: deadLetterDestination,
         },
       },
     },
@@ -4592,27 +4066,19 @@ import "./main.tsp";
               endpointType: "WebHook",
             },
             filter: #{
+              ...filter,
               includedEventTypes: #[
                 "All",
               ],
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
             },
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
             provisioningState: "Creating",
             labels: null,
-            deadLetterDestination: #{
-              endpointType: "StorageBlob",
-              properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-                blobContainerName: "contosocontainer",
-              },
-            },
+            deadLetterDestination: deadLetterDestination,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -4620,29 +4086,9 @@ import "./main.tsp";
 
 @@example(Microsoft.EventGrid.EventSubscriptions.createOrUpdateForCustomTopic_WebhookDestination,
   #{
-    title: "EventSubscriptions CreateOrUpdateForCustomTopic WebhookDestination",
+    title: title,
     since: "2019-06-01",
-    request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
-      body: #{
-        properties: #{
-          destination: #{
-            endpointType: "EventHub",
-            properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/eventhubs/exampleEventHub",
-            },
-          },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
-        },
-      },
-    },
+    request: request,
     responses: #[
       #{
         statusCode: 201,
@@ -4650,21 +4096,17 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -4672,13 +4114,10 @@ import "./main.tsp";
 
 @@example(Microsoft.EventGrid.EventSubscriptions.createOrUpdateForCustomTopic_WebhookDestination,
   #{
-    title: "EventSubscriptions CreateOrUpdateForCustomTopic WebhookDestination",
+    title: title,
     since: "2020-06-01",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
       body: #{
         properties: #{
           destination: #{
@@ -4687,11 +4126,7 @@ import "./main.tsp";
               endpointUrl: "https://azurefunctionexample.azurewebsites.net/runtime/webhooks/EventGrid?functionName=EventGridTrigger1&code=PASSWORDCODE",
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
+          filter: filter,
         },
       },
     },
@@ -4706,17 +4141,13 @@ import "./main.tsp";
               },
               endpointType: "WebHook",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -4724,29 +4155,9 @@ import "./main.tsp";
 
 @@example(Microsoft.EventGrid.EventSubscriptions.createOrUpdateForCustomTopic_WebhookDestination,
   #{
-    title: "EventSubscriptions CreateOrUpdateForCustomTopic WebhookDestination",
+    title: title,
     since: "2020-10-15-preview",
-    request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
-      body: #{
-        properties: #{
-          destination: #{
-            endpointType: "EventHub",
-            properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/eventhubs/exampleEventHub",
-            },
-          },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
-        },
-      },
-    },
+    request: request,
     responses: #[
       #{
         statusCode: 201,
@@ -4754,21 +4165,17 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -4776,13 +4183,10 @@ import "./main.tsp";
 
 @@example(Microsoft.EventGrid.EventSubscriptions.createOrUpdateForCustomTopic_WebhookDestination,
   #{
-    title: "EventSubscriptions CreateOrUpdateForCustomTopic WebhookDestination",
+    title: title,
     since: "2021-12-01",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
       body: #{
         properties: #{
           destination: #{
@@ -4791,11 +4195,7 @@ import "./main.tsp";
               endpointUrl: "https://azurefunctionexample.azurewebsites.net/runtime/webhooks/EventGrid?functionName=EventGridTrigger1&code=PASSWORDCODE",
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
+          filter: filter,
         },
       },
     },
@@ -4810,17 +4210,13 @@ import "./main.tsp";
               },
               endpointType: "WebHook",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -4828,29 +4224,9 @@ import "./main.tsp";
 
 @@example(Microsoft.EventGrid.EventSubscriptions.createOrUpdateForCustomTopic_WebhookDestination,
   #{
-    title: "EventSubscriptions CreateOrUpdateForCustomTopic WebhookDestination",
+    title: title,
     since: "2023-06-01-preview",
-    request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
-      body: #{
-        properties: #{
-          destination: #{
-            endpointType: "EventHub",
-            properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/eventhubs/exampleEventHub",
-            },
-          },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
-        },
-      },
-    },
+    request: request,
     responses: #[
       #{
         statusCode: 201,
@@ -4858,21 +4234,17 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -4880,13 +4252,10 @@ import "./main.tsp";
 
 @@example(Microsoft.EventGrid.EventSubscriptions.createOrUpdateForCustomTopic_WebhookDestination,
   #{
-    title: "EventSubscriptions CreateOrUpdateForCustomTopic WebhookDestination",
+    title: title,
     since: "2025-02-15",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
       body: #{
         properties: #{
           destination: #{
@@ -4895,11 +4264,7 @@ import "./main.tsp";
               endpointUrl: "https://azurefunctionexample.azurewebsites.net/runtime/webhooks/EventGrid?functionName=EventGridTrigger1&code=PASSWORDCODE",
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
+          filter: filter,
         },
       },
     },
@@ -4914,17 +4279,13 @@ import "./main.tsp";
               },
               endpointType: "WebHook",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -4932,29 +4293,9 @@ import "./main.tsp";
 
 @@example(Microsoft.EventGrid.EventSubscriptions.createOrUpdateForCustomTopic_WebhookDestination,
   #{
-    title: "EventSubscriptions CreateOrUpdateForCustomTopic WebhookDestination",
+    title: title,
     since: "2025-04-01-preview",
-    request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
-      body: #{
-        properties: #{
-          destination: #{
-            endpointType: "EventHub",
-            properties: #{
-              resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/eventhubs/exampleEventHub",
-            },
-          },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
-        },
-      },
-    },
+    request: request,
     responses: #[
       #{
         statusCode: 201,
@@ -4962,21 +4303,17 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -4995,14 +4332,10 @@ import "./main.tsp";
           destination: #{
             endpointType: "WebHook",
             properties: #{
-              endpointUrl: "https://requestb.in/15ksip71",
+              endpointUrl: endpointBaseUrl,
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
+          filter: filter,
         },
       },
     },
@@ -5013,24 +4346,22 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
             filter: #{
+              ...filter,
               includedEventTypes: #[
                 "All",
               ],
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
             },
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+            topic: namespaceId,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -5050,14 +4381,10 @@ import "./main.tsp";
           destination: #{
             endpointType: "WebHook",
             properties: #{
-              endpointUrl: "https://requestb.in/15ksip71",
+              endpointUrl: endpointBaseUrl,
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
+          filter: filter,
         },
       },
     },
@@ -5068,21 +4395,17 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+            topic: namespaceId,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -5093,7 +4416,7 @@ import "./main.tsp";
     title: "EventSubscriptions CreateOrUpdateForResourceGroup",
     request: #{
       path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+        scope: scope,
         eventSubscriptionName: "exampleEventSubscription",
       },
       body: #{
@@ -5101,14 +4424,10 @@ import "./main.tsp";
           destination: #{
             endpointType: "WebHook",
             properties: #{
-              endpointUrl: "https://requestb.in/15ksip71",
+              endpointUrl: endpointBaseUrl,
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
+          filter: filter,
         },
       },
     },
@@ -5119,24 +4438,22 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
             filter: #{
+              ...filter,
               includedEventTypes: #[
                 "All",
               ],
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
             },
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+            topic: topic,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -5148,7 +4465,7 @@ import "./main.tsp";
     since: "2019-06-01",
     request: #{
       path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+        scope: scope,
         eventSubscriptionName: "exampleEventSubscription",
       },
       body: #{
@@ -5156,14 +4473,10 @@ import "./main.tsp";
           destination: #{
             endpointType: "WebHook",
             properties: #{
-              endpointUrl: "https://requestb.in/15ksip71",
+              endpointUrl: endpointBaseUrl,
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
+          filter: filter,
         },
       },
     },
@@ -5174,21 +4487,17 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+            topic: topic,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -5207,7 +4516,7 @@ import "./main.tsp";
           destination: #{
             endpointType: "WebHook",
             properties: #{
-              endpointUrl: "https://requestb.in/15ksip71",
+              endpointUrl: endpointBaseUrl,
             },
           },
           filter: #{
@@ -5223,7 +4532,7 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
@@ -5240,7 +4549,7 @@ import "./main.tsp";
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -5260,7 +4569,7 @@ import "./main.tsp";
           destination: #{
             endpointType: "WebHook",
             properties: #{
-              endpointUrl: "https://requestb.in/15ksip71",
+              endpointUrl: endpointBaseUrl,
             },
           },
           filter: #{
@@ -5276,7 +4585,7 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
@@ -5290,7 +4599,7 @@ import "./main.tsp";
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -5300,10 +4609,7 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions Delete",
     request: #{
-      path: #{
-        eventSubscriptionName: "exampleEventSubscription",
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-      },
+      path: path,
     },
     responses: #[
       #{
@@ -5313,13 +4619,10 @@ import "./main.tsp";
         statusCode: 202,
         headers: #[
           #{
-            name: "Azure-AsyncOperation",
+            name: name,
             value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
           },
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
+          headers,
         ],
       },
       #{
@@ -5332,10 +4635,7 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions DeleteForCustomTopic",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
     },
     responses: #[
       #{
@@ -5355,28 +4655,13 @@ import "./main.tsp";
     title: "EventSubscriptions DeleteForCustomTopic",
     since: "2023-06-01-preview",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
     },
     responses: #[
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -5419,19 +4704,7 @@ import "./main.tsp";
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -5443,7 +4716,7 @@ import "./main.tsp";
     title: "EventSubscriptions DeleteForResourceGroup",
     request: #{
       path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+        scope: scope,
         eventSubscriptionName: "exampleEventSubscription",
       },
     },
@@ -5466,7 +4739,7 @@ import "./main.tsp";
     since: "2023-06-01-preview",
     request: #{
       path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+        scope: scope,
         eventSubscriptionName: "exampleEventSubscription",
       },
     },
@@ -5474,19 +4747,7 @@ import "./main.tsp";
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -5529,19 +4790,7 @@ import "./main.tsp";
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -5552,36 +4801,29 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions Get",
     request: #{
-      path: #{
-        eventSubscriptionName: "exampleEventSubscription",
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-      },
+      path: path,
     },
     responses: #[
       #{
         statusCode: 200,
         body: #{
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          type: type,
+          id: eventSubscriptionId,
           properties: #{
             destination: #{
               endpointType: "WebHook",
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             labels: #[
               "label1",
               "label2",
             ],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
         },
       },
@@ -5592,10 +4834,7 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions GetDeliveryAttributes",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
     },
     responses: #[
       #{
@@ -5614,7 +4853,7 @@ import "./main.tsp";
               name: "header2",
               type: "Dynamic",
               properties: #{
-                sourceField: "data.foo",
+                sourceField: sourceField,
               },
             },
             #{
@@ -5669,10 +4908,7 @@ import "./main.tsp";
     title: "EventSubscriptions GetDeliveryAttributes",
     since: "2023-06-01-preview",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
     },
     responses: #[
       #{
@@ -5691,7 +4927,7 @@ import "./main.tsp";
               name: "header2",
               type: "Dynamic",
               properties: #{
-                sourceField: "data.foo",
+                sourceField: sourceField,
               },
             },
             #{
@@ -5746,10 +4982,7 @@ import "./main.tsp";
     title: "EventSubscriptions GetDeliveryAttributes",
     since: "2025-04-01-preview",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
     },
     responses: #[
       #{
@@ -5768,7 +5001,7 @@ import "./main.tsp";
               name: "header2",
               type: "Dynamic",
               properties: #{
-                sourceField: "data.foo",
+                sourceField: sourceField,
               },
             },
             #{
@@ -5789,10 +5022,7 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions GetForCustomTopic",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
     },
     responses: #[
       #{
@@ -5801,28 +5031,26 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
             filter: #{
+              ...filter,
               includedEventTypes: #[
                 "All",
               ],
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
             },
             labels: #[
               "label1",
               "label2",
             ],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -5833,10 +5061,7 @@ import "./main.tsp";
     title: "EventSubscriptions GetForCustomTopic",
     since: "2019-06-01",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
     },
     responses: #[
       #{
@@ -5845,25 +5070,21 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             labels: #[
               "label1",
               "label2",
             ],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -5873,10 +5094,7 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions GetForCustomTopic AzureFunctionDestination",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
     },
     responses: #[
       #{
@@ -5885,25 +5103,21 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Web/sites/ContosoSite/funtions/ContosoFunc",
+                resourceId: resourceId,
               },
               endpointType: "AzureFunction",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             labels: #[
               "label1",
               "label2",
             ],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -5913,37 +5127,25 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions GetForCustomTopic EventHubDestination",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
     },
     responses: #[
       #{
         statusCode: 200,
         body: #{
           properties: #{
-            destination: #{
-              properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/eventhubs/exampleEventHub",
-              },
-              endpointType: "EventHub",
-            },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            destination: destination,
+            filter: filter,
             labels: #[
               "label1",
               "label2",
             ],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -5953,10 +5155,7 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions GetForCustomTopic HybridConnectionDestination",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
     },
     responses: #[
       #{
@@ -5969,21 +5168,17 @@ import "./main.tsp";
               },
               endpointType: "HybridConnection",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             labels: #[
               "label1",
               "label2",
             ],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -5993,10 +5188,7 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions GetForCustomTopic ServiceBusQueueDestination",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
     },
     responses: #[
       #{
@@ -6005,25 +5197,21 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.ServiceBus/namespaces/exampleNamespace/queues/exampleQueue",
+                resourceId: queueId,
               },
               endpointType: "ServiceBusQueue",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             labels: #[
               "label1",
               "label2",
             ],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -6033,10 +5221,7 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions GetForCustomTopic ServiceBusTopicDestination",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
     },
     responses: #[
       #{
@@ -6049,21 +5234,17 @@ import "./main.tsp";
               },
               endpointType: "ServiceBusTopic",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             labels: #[
               "label1",
               "label2",
             ],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -6073,10 +5254,7 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions GetForCustomTopic StorageQueueDestination",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
     },
     responses: #[
       #{
@@ -6085,27 +5263,23 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+                resourceId: storageAccountId,
                 queueName: "exampleQueue",
                 queueMessageTimeToLiveInSeconds: 300,
               },
               endpointType: "StorageQueue",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             labels: #[
               "label1",
               "label2",
             ],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -6115,10 +5289,7 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions GetForCustomTopic WebhookDestination",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
     },
     responses: #[
       #{
@@ -6127,25 +5298,21 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             labels: #[
               "label1",
               "label2",
             ],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -6167,28 +5334,26 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
             filter: #{
+              ...filter,
               includedEventTypes: #[
                 "All",
               ],
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
             },
             labels: #[
               "label1",
               "label2",
             ],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+            topic: namespaceId,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -6209,30 +5374,23 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           properties: #{
-            destination: #{
-              properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/eventhubs/exampleEventHub",
-              },
-              endpointType: "EventHub",
-            },
+            destination: destination,
             filter: #{
+              ...filter,
               includedEventTypes: #[
                 "All",
               ],
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
             },
             labels: #[
               "label1",
               "label2",
             ],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+            topic: namespaceId,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -6253,27 +5411,18 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           properties: #{
-            destination: #{
-              properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/eventhubs/exampleEventHub",
-              },
-              endpointType: "EventHub",
-            },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            destination: destination,
+            filter: filter,
             labels: #[
               "label1",
               "label2",
             ],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+            topic: namespaceId,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -6284,7 +5433,7 @@ import "./main.tsp";
     title: "EventSubscriptions GetForResourceGroup",
     request: #{
       path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+        scope: scope,
         eventSubscriptionName: "exampleEventSubscription",
       },
     },
@@ -6295,28 +5444,26 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
             filter: #{
+              ...filter,
               includedEventTypes: #[
                 "All",
               ],
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
             },
             labels: #[
               "label1",
               "label2",
             ],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+            topic: topic,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -6328,7 +5475,7 @@ import "./main.tsp";
     since: "2019-06-01",
     request: #{
       path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+        scope: scope,
         eventSubscriptionName: "exampleEventSubscription",
       },
     },
@@ -6339,25 +5486,21 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             labels: #[
               "label1",
               "label2",
             ],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+            topic: topic,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -6379,17 +5522,15 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
             filter: #{
+              ...filter,
               includedEventTypes: #[
                 "All",
               ],
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
             },
             labels: #[
               "label1",
@@ -6400,7 +5541,7 @@ import "./main.tsp";
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -6423,15 +5564,11 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             labels: #[
               "label1",
               "label2",
@@ -6441,7 +5578,7 @@ import "./main.tsp";
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -6451,16 +5588,13 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions GetFullUrl",
     request: #{
-      path: #{
-        eventSubscriptionName: "exampleEventSubscription",
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-      },
+      path: path,
     },
     responses: #[
       #{
         statusCode: 200,
         body: #{
-          endpointUrl: "https://requestb.in/15ksip71",
+          endpointUrl: endpointBaseUrl,
         },
       },
     ],
@@ -6470,16 +5604,13 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions GetFullUrlForCustomTopic",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
     },
     responses: #[
       #{
         statusCode: 200,
         body: #{
-          endpointUrl: "https://requestb.in/15ksip71",
+          endpointUrl: endpointBaseUrl,
         },
       },
     ],
@@ -6498,7 +5629,7 @@ import "./main.tsp";
       #{
         statusCode: 200,
         body: #{
-          endpointUrl: "https://requestb.in/15ksip71",
+          endpointUrl: endpointBaseUrl,
         },
       },
     ],
@@ -6509,7 +5640,7 @@ import "./main.tsp";
     title: "EventSubscriptions GetFullUrlForResourceGroup",
     request: #{
       path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+        scope: scope,
         eventSubscriptionName: "exampleEventSubscription",
       },
     },
@@ -6517,7 +5648,7 @@ import "./main.tsp";
       #{
         statusCode: 200,
         body: #{
-          endpointUrl: "https://requestb.in/15ksip71",
+          endpointUrl: endpointBaseUrl,
         },
       },
     ],
@@ -6536,7 +5667,7 @@ import "./main.tsp";
       #{
         statusCode: 200,
         body: #{
-          endpointUrl: "https://requestb.in/15ksip71",
+          endpointUrl: endpointBaseUrl,
         },
       },
     ],
@@ -6547,10 +5678,8 @@ import "./main.tsp";
     title: "EventSubscriptions ListByDomainTopic",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
+        ...topicPath,
         domainName: "exampleDomain",
-        topicName: "exampleTopic",
       },
     },
     responses: #[
@@ -6562,7 +5691,7 @@ import "./main.tsp";
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
@@ -6579,13 +5708,13 @@ import "./main.tsp";
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
             #{
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
@@ -6602,13 +5731,13 @@ import "./main.tsp";
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
             #{
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
@@ -6626,7 +5755,7 @@ import "./main.tsp";
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
           ],
         },
@@ -6640,10 +5769,8 @@ import "./main.tsp";
     since: "2019-06-01",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
+        ...topicPath,
         domainName: "exampleDomain",
-        topicName: "exampleTopic",
       },
     },
     responses: #[
@@ -6655,7 +5782,7 @@ import "./main.tsp";
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
@@ -6669,13 +5796,13 @@ import "./main.tsp";
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
             #{
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
@@ -6689,13 +5816,13 @@ import "./main.tsp";
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
             #{
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
@@ -6710,7 +5837,7 @@ import "./main.tsp";
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampleDomain/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
           ],
         },
@@ -6723,7 +5850,7 @@ import "./main.tsp";
     title: "EventSubscriptions ListByResource",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
         providerNamespace: "Microsoft.EventGrid",
         resourceTypeName: "topics",
@@ -6739,7 +5866,7 @@ import "./main.tsp";
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
@@ -6752,17 +5879,17 @@ import "./main.tsp";
                   subjectEndsWith: "",
                 },
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+                topic: topicId,
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+              id: eventSubscriptionId,
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
             #{
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
@@ -6775,17 +5902,17 @@ import "./main.tsp";
                   subjectEndsWith: "",
                 },
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+                topic: topicId,
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+              id: eventSubscriptionId,
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
             #{
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
@@ -6799,11 +5926,11 @@ import "./main.tsp";
                 },
                 labels: #[],
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+                topic: topicId,
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+              id: eventSubscriptionId,
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
           ],
         },
@@ -6817,7 +5944,7 @@ import "./main.tsp";
     since: "2019-06-01",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
         providerNamespace: "Microsoft.EventGrid",
         resourceTypeName: "topics",
@@ -6833,7 +5960,7 @@ import "./main.tsp";
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
@@ -6843,17 +5970,17 @@ import "./main.tsp";
                   subjectEndsWith: "",
                 },
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+                topic: topicId,
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+              id: eventSubscriptionId,
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
             #{
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
@@ -6863,17 +5990,17 @@ import "./main.tsp";
                   subjectEndsWith: "",
                 },
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+                topic: topicId,
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+              id: eventSubscriptionId,
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
             #{
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
@@ -6884,11 +6011,11 @@ import "./main.tsp";
                 },
                 labels: #[],
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+                topic: topicId,
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+              id: eventSubscriptionId,
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
           ],
         },
@@ -6901,7 +6028,7 @@ import "./main.tsp";
     title: "EventSubscriptions ListGlobalByResourceGroup",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
       },
     },
@@ -6914,7 +6041,7 @@ import "./main.tsp";
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
@@ -6927,17 +6054,17 @@ import "./main.tsp";
                   subjectEndsWith: "",
                 },
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+                topic: topic,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
             #{
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
@@ -6950,11 +6077,11 @@ import "./main.tsp";
                   subjectEndsWith: "",
                 },
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+                topic: topic,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
           ],
         },
@@ -6968,7 +6095,7 @@ import "./main.tsp";
     since: "2019-06-01",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
       },
     },
@@ -6981,7 +6108,7 @@ import "./main.tsp";
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
@@ -6991,17 +6118,17 @@ import "./main.tsp";
                   subjectEndsWith: "",
                 },
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+                topic: topic,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
             #{
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
@@ -7011,11 +6138,11 @@ import "./main.tsp";
                   subjectEndsWith: "",
                 },
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+                topic: topic,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
           ],
         },
@@ -7028,7 +6155,7 @@ import "./main.tsp";
     title: "EventSubscriptions ListGlobalByResourceGroupForTopicType",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
         topicTypeName: "Microsoft.Resources.ResourceGroups",
       },
@@ -7042,28 +6169,26 @@ import "./main.tsp";
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
                 filter: #{
+                  ...filter,
                   includedEventTypes: #[
                     "All",
                   ],
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
                 },
                 labels: #[
                   "Finance",
                   "HR",
                 ],
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+                topic: topic,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
           ],
         },
@@ -7077,7 +6202,7 @@ import "./main.tsp";
     since: "2019-06-01",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
         topicTypeName: "Microsoft.Resources.ResourceGroups",
       },
@@ -7091,25 +6216,21 @@ import "./main.tsp";
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
-                filter: #{
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
-                },
+                filter: filter,
                 labels: #[
                   "Finance",
                   "HR",
                 ],
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+                topic: topic,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
           ],
         },
@@ -7122,7 +6243,7 @@ import "./main.tsp";
     title: "EventSubscriptions ListGlobalBySubscription",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
       },
     },
     responses: #[
@@ -7134,7 +6255,7 @@ import "./main.tsp";
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
@@ -7147,17 +6268,17 @@ import "./main.tsp";
                   subjectEndsWith: "",
                 },
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+                topic: topic,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
             #{
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
@@ -7170,11 +6291,11 @@ import "./main.tsp";
                   subjectEndsWith: "",
                 },
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+                topic: topic,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
           ],
         },
@@ -7188,7 +6309,7 @@ import "./main.tsp";
     since: "2019-06-01",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
       },
     },
     responses: #[
@@ -7200,7 +6321,7 @@ import "./main.tsp";
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
@@ -7210,17 +6331,17 @@ import "./main.tsp";
                   subjectEndsWith: "",
                 },
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+                topic: topic,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
             #{
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
@@ -7230,11 +6351,11 @@ import "./main.tsp";
                   subjectEndsWith: "",
                 },
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+                topic: topic,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
           ],
         },
@@ -7247,7 +6368,7 @@ import "./main.tsp";
     title: "EventSubscriptions ListGlobalBySubscriptionForTopicType",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         topicTypeName: "Microsoft.Resources.Subscriptions",
       },
     },
@@ -7260,17 +6381,15 @@ import "./main.tsp";
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
                 filter: #{
+                  ...filter,
                   includedEventTypes: #[
                     "All",
                   ],
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
                 },
                 labels: #[
                   "Finance",
@@ -7281,7 +6400,7 @@ import "./main.tsp";
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
           ],
         },
@@ -7295,7 +6414,7 @@ import "./main.tsp";
     since: "2019-06-01",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         topicTypeName: "Microsoft.Resources.Subscriptions",
       },
     },
@@ -7308,15 +6427,11 @@ import "./main.tsp";
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
-                filter: #{
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
-                },
+                filter: filter,
                 labels: #[
                   "Finance",
                   "HR",
@@ -7326,7 +6441,7 @@ import "./main.tsp";
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
           ],
         },
@@ -7339,7 +6454,7 @@ import "./main.tsp";
     title: "EventSubscriptions ListRegionalByResourceGroup",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
         location: "westus2",
       },
@@ -7353,55 +6468,51 @@ import "./main.tsp";
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
                 filter: #{
+                  ...filter,
                   includedEventTypes: #[
                     "All",
                   ],
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
                 },
                 labels: #[
                   "Finance",
                   "HR",
                 ],
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+                topic: namespaceId,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
             #{
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
                 filter: #{
+                  ...filter,
                   includedEventTypes: #[
                     "All",
                   ],
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
                 },
                 labels: #[
                   "Finance",
                   "HR",
                 ],
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+                topic: namespaceId,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
           ],
         },
@@ -7415,7 +6526,7 @@ import "./main.tsp";
     since: "2019-06-01",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
         location: "westus2",
       },
@@ -7429,49 +6540,41 @@ import "./main.tsp";
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
-                filter: #{
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
-                },
+                filter: filter,
                 labels: #[
                   "Finance",
                   "HR",
                 ],
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+                topic: namespaceId,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
             #{
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
-                filter: #{
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
-                },
+                filter: filter,
                 labels: #[
                   "Finance",
                   "HR",
                 ],
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+                topic: namespaceId,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
           ],
         },
@@ -7484,7 +6587,7 @@ import "./main.tsp";
     title: "EventSubscriptions ListRegionalByResourceGroupForTopicType",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
         location: "westus2",
         topicTypeName: "Microsoft.EventHub.namespaces",
@@ -7499,55 +6602,51 @@ import "./main.tsp";
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
                 filter: #{
+                  ...filter,
                   includedEventTypes: #[
                     "All",
                   ],
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
                 },
                 labels: #[
                   "Finance",
                   "HR",
                 ],
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+                topic: namespaceId,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
             #{
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
                 filter: #{
+                  ...filter,
                   includedEventTypes: #[
                     "All",
                   ],
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
                 },
                 labels: #[
                   "Finance",
                   "HR",
                 ],
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+                topic: namespaceId,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
           ],
         },
@@ -7561,7 +6660,7 @@ import "./main.tsp";
     since: "2019-06-01",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
         location: "westus2",
         topicTypeName: "Microsoft.EventHub.namespaces",
@@ -7576,49 +6675,41 @@ import "./main.tsp";
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
-                filter: #{
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
-                },
+                filter: filter,
                 labels: #[
                   "Finance",
                   "HR",
                 ],
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+                topic: namespaceId,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
             #{
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
-                filter: #{
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
-                },
+                filter: filter,
                 labels: #[
                   "Finance",
                   "HR",
                 ],
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+                topic: namespaceId,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
           ],
         },
@@ -7631,7 +6722,7 @@ import "./main.tsp";
     title: "EventSubscriptions ListRegionalBySubscription",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         location: "westus2",
       },
     },
@@ -7644,55 +6735,51 @@ import "./main.tsp";
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
                 filter: #{
+                  ...filter,
                   includedEventTypes: #[
                     "All",
                   ],
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
                 },
                 labels: #[
                   "Finance",
                   "HR",
                 ],
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+                topic: namespaceId,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
             #{
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
                 filter: #{
+                  ...filter,
                   includedEventTypes: #[
                     "All",
                   ],
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
                 },
                 labels: #[
                   "Finance",
                   "HR",
                 ],
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+                topic: namespaceId,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
           ],
         },
@@ -7706,7 +6793,7 @@ import "./main.tsp";
     since: "2017-09-15-preview",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         location: "westus2",
       },
     },
@@ -7717,57 +6804,48 @@ import "./main.tsp";
           value: #[
             #{
               properties: #{
-                destination: #{
-                  properties: #{
-                    resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/eventhubs/exampleEventHub",
-                  },
-                  endpointType: "EventHub",
-                },
+                destination: destination,
                 filter: #{
+                  ...filter,
                   includedEventTypes: #[
                     "All",
                   ],
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
                 },
                 labels: #[
                   "Finance",
                   "HR",
                 ],
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+                topic: namespaceId,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
             #{
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
                 filter: #{
+                  ...filter,
                   includedEventTypes: #[
                     "All",
                   ],
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
                 },
                 labels: #[
                   "Finance",
                   "HR",
                 ],
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+                topic: namespaceId,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
           ],
         },
@@ -7781,7 +6859,7 @@ import "./main.tsp";
     since: "2019-06-01",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         location: "westus2",
       },
     },
@@ -7792,51 +6870,38 @@ import "./main.tsp";
           value: #[
             #{
               properties: #{
-                destination: #{
-                  properties: #{
-                    resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/eventhubs/exampleEventHub",
-                  },
-                  endpointType: "EventHub",
-                },
-                filter: #{
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
-                },
+                destination: destination,
+                filter: filter,
                 labels: #[
                   "Finance",
                   "HR",
                 ],
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+                topic: namespaceId,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
             #{
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
-                filter: #{
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
-                },
+                filter: filter,
                 labels: #[
                   "Finance",
                   "HR",
                 ],
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+                topic: namespaceId,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
           ],
         },
@@ -7849,7 +6914,7 @@ import "./main.tsp";
     title: "EventSubscriptions ListRegionalBySubscriptionForTopicType",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         location: "westus2",
         topicTypeName: "Microsoft.EventHub.namespaces",
       },
@@ -7863,55 +6928,51 @@ import "./main.tsp";
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
                 filter: #{
+                  ...filter,
                   includedEventTypes: #[
                     "All",
                   ],
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
                 },
                 labels: #[
                   "Finance",
                   "HR",
                 ],
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+                topic: namespaceId,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
             #{
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
                 filter: #{
+                  ...filter,
                   includedEventTypes: #[
                     "All",
                   ],
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
                 },
                 labels: #[
                   "Finance",
                   "HR",
                 ],
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+                topic: namespaceId,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
           ],
         },
@@ -7925,7 +6986,7 @@ import "./main.tsp";
     since: "2019-06-01",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         location: "westus2",
         topicTypeName: "Microsoft.EventHub.namespaces",
       },
@@ -7939,49 +7000,41 @@ import "./main.tsp";
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
-                filter: #{
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
-                },
+                filter: filter,
                 labels: #[
                   "Finance",
                   "HR",
                 ],
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+                topic: namespaceId,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
             #{
               properties: #{
                 destination: #{
                   properties: #{
-                    endpointBaseUrl: "https://requestb.in/15ksip71",
+                    endpointBaseUrl: endpointBaseUrl,
                   },
                   endpointType: "WebHook",
                 },
-                filter: #{
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
-                },
+                filter: filter,
                 labels: #[
                   "Finance",
                   "HR",
                 ],
                 provisioningState: "Succeeded",
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+                topic: namespaceId,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
-              type: "Microsoft.EventGrid/eventSubscriptions",
+              type: type,
             },
           ],
         },
@@ -7993,17 +7046,9 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions Update",
     request: #{
-      path: #{
-        eventSubscriptionName: "exampleEventSubscription",
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-      },
+      path: path,
       body: #{
-        destination: #{
-          endpointType: "EventHub",
-          properties: #{
-            resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/eventhubs/exampleEventHub",
-          },
-        },
+        destination: destination,
         filter: #{
           isSubjectCaseSensitive: true,
           subjectBeginsWith: "existingPrefix",
@@ -8020,15 +7065,10 @@ import "./main.tsp";
         statusCode: 201,
         body: #{
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          type: type,
+          id: eventSubscriptionId,
           properties: #{
-            destination: #{
-              endpointType: "EventHub",
-              properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/eventhubs/exampleEventHub",
-              },
-            },
+            destination: destination,
             filter: #{
               isSubjectCaseSensitive: true,
               subjectBeginsWith: "existingPrefix",
@@ -8039,7 +7079,7 @@ import "./main.tsp";
               "label2",
             ],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
         },
       },
@@ -8050,27 +7090,8 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions UpdateForCustomTopic",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
-      body: #{
-        destination: #{
-          endpointType: "WebHook",
-          properties: #{
-            endpointUrl: "https://requestb.in/15ksip71",
-          },
-        },
-        filter: #{
-          isSubjectCaseSensitive: true,
-          subjectBeginsWith: "existingPrefix",
-          subjectEndsWith: "newSuffix",
-        },
-        labels: #[
-          "label1",
-          "label2",
-        ],
-      },
+      path: path,
+      body: body,
     },
     responses: #[
       #{
@@ -8079,7 +7100,7 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
@@ -8096,11 +7117,11 @@ import "./main.tsp";
               "label2",
             ],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -8111,27 +7132,8 @@ import "./main.tsp";
     title: "EventSubscriptions UpdateForCustomTopic",
     since: "2019-06-01",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
-      body: #{
-        destination: #{
-          endpointType: "WebHook",
-          properties: #{
-            endpointUrl: "https://requestb.in/15ksip71",
-          },
-        },
-        filter: #{
-          isSubjectCaseSensitive: true,
-          subjectBeginsWith: "existingPrefix",
-          subjectEndsWith: "newSuffix",
-        },
-        labels: #[
-          "label1",
-          "label2",
-        ],
-      },
+      path: path,
+      body: body,
     },
     responses: #[
       #{
@@ -8140,7 +7142,7 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
@@ -8154,11 +7156,11 @@ import "./main.tsp";
               "label2",
             ],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -8168,29 +7170,16 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions UpdateForCustomTopic AzureFunctionDestination",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
       body: #{
         destination: #{
           endpointType: "AzureFunction",
           properties: #{
-            resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Web/sites/ContosoSite/funtions/ContosoFunc",
+            resourceId: resourceId,
           },
         },
-        filter: #{
-          isSubjectCaseSensitive: false,
-          subjectBeginsWith: "ExamplePrefix",
-          subjectEndsWith: "ExampleSuffix",
-        },
-        deadLetterDestination: #{
-          endpointType: "StorageBlob",
-          properties: #{
-            resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-            blobContainerName: "contosocontainer",
-          },
-        },
+        filter: filter,
+        deadLetterDestination: deadLetterDestination,
       },
     },
     responses: #[
@@ -8200,29 +7189,19 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Web/sites/ContosoSite/funtions/ContosoFunc",
+                resourceId: resourceId,
               },
               endpointType: "AzureFunction",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            filter: filter,
+            topic: topicId,
             provisioningState: "Creating",
             labels: null,
-            deadLetterDestination: #{
-              endpointType: "StorageBlob",
-              properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-                blobContainerName: "contosocontainer",
-              },
-            },
+            deadLetterDestination: deadLetterDestination,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -8232,17 +7211,9 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions UpdateForCustomTopic EventHubDestination",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
       body: #{
-        destination: #{
-          endpointType: "EventHub",
-          properties: #{
-            resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/eventhubs/exampleEventHub",
-          },
-        },
+        destination: destination,
         filter: #{
           isSubjectCaseSensitive: true,
           subjectBeginsWith: "existingPrefix",
@@ -8259,12 +7230,7 @@ import "./main.tsp";
         statusCode: 201,
         body: #{
           properties: #{
-            destination: #{
-              properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/eventhubs/exampleEventHub",
-              },
-              endpointType: "EventHub",
-            },
+            destination: destination,
             filter: #{
               isSubjectCaseSensitive: true,
               subjectBeginsWith: "existingPrefix",
@@ -8275,11 +7241,11 @@ import "./main.tsp";
               "label2",
             ],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -8289,10 +7255,7 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions UpdateForCustomTopic HybridConnectionDestination",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
       body: #{
         destination: #{
           endpointType: "HybridConnection",
@@ -8332,11 +7295,11 @@ import "./main.tsp";
               "label2",
             ],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -8346,29 +7309,16 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions UpdateForCustomTopic ServiceBusQueueDestination",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
       body: #{
         destination: #{
           endpointType: "ServiceBusQueue",
           properties: #{
-            resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.ServiceBus/namespaces/exampleNamespace/queues/exampleQueue",
+            resourceId: queueId,
           },
         },
-        filter: #{
-          isSubjectCaseSensitive: false,
-          subjectBeginsWith: "ExamplePrefix",
-          subjectEndsWith: "ExampleSuffix",
-        },
-        deadLetterDestination: #{
-          endpointType: "StorageBlob",
-          properties: #{
-            resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-            blobContainerName: "contosocontainer",
-          },
-        },
+        filter: filter,
+        deadLetterDestination: deadLetterDestination,
       },
     },
     responses: #[
@@ -8378,29 +7328,19 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.ServiceBus/namespaces/exampleNamespace/queues/exampleQueue",
+                resourceId: queueId,
               },
               endpointType: "ServiceBusQueue",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            filter: filter,
+            topic: topicId,
             provisioningState: "Creating",
             labels: null,
-            deadLetterDestination: #{
-              endpointType: "StorageBlob",
-              properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-                blobContainerName: "contosocontainer",
-              },
-            },
+            deadLetterDestination: deadLetterDestination,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -8410,10 +7350,7 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions UpdateForCustomTopic ServiceBusTopicDestination",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
       body: #{
         destination: #{
           endpointType: "ServiceBusTopic",
@@ -8453,11 +7390,11 @@ import "./main.tsp";
               "label2",
             ],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -8467,31 +7404,18 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions UpdateForCustomTopic StorageQueueDestination",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: path,
       body: #{
         destination: #{
           endpointType: "StorageQueue",
           properties: #{
-            resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+            resourceId: storageAccountId,
             queueName: "exampleQueue",
             queueMessageTimeToLiveInSeconds: 300,
           },
         },
-        filter: #{
-          isSubjectCaseSensitive: false,
-          subjectBeginsWith: "ExamplePrefix",
-          subjectEndsWith: "ExampleSuffix",
-        },
-        deadLetterDestination: #{
-          endpointType: "StorageBlob",
-          properties: #{
-            resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-            blobContainerName: "contosocontainer",
-          },
-        },
+        filter: filter,
+        deadLetterDestination: deadLetterDestination,
       },
     },
     responses: #[
@@ -8501,31 +7425,21 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+                resourceId: storageAccountId,
                 queueName: "exampleQueue",
                 queueMessageTimeToLiveInSeconds: 300,
               },
               endpointType: "StorageQueue",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            filter: filter,
+            topic: topicId,
             provisioningState: "Creating",
             labels: null,
-            deadLetterDestination: #{
-              endpointType: "StorageBlob",
-              properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
-                blobContainerName: "contosocontainer",
-              },
-            },
+            deadLetterDestination: deadLetterDestination,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -8535,27 +7449,8 @@ import "./main.tsp";
   #{
     title: "EventSubscriptions UpdateForCustomTopic WebhookDestination",
     request: #{
-      path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
-      body: #{
-        destination: #{
-          endpointType: "WebHook",
-          properties: #{
-            endpointUrl: "https://requestb.in/15ksip71",
-          },
-        },
-        filter: #{
-          isSubjectCaseSensitive: true,
-          subjectBeginsWith: "existingPrefix",
-          subjectEndsWith: "newSuffix",
-        },
-        labels: #[
-          "label1",
-          "label2",
-        ],
-      },
+      path: path,
+      body: body,
     },
     responses: #[
       #{
@@ -8564,7 +7459,7 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
@@ -8578,11 +7473,11 @@ import "./main.tsp";
               "label2",
             ],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
+          id: eventSubscriptionId,
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -8596,23 +7491,7 @@ import "./main.tsp";
         scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
         eventSubscriptionName: "exampleEventSubscription",
       },
-      body: #{
-        destination: #{
-          endpointType: "WebHook",
-          properties: #{
-            endpointUrl: "https://requestb.in/15ksip71",
-          },
-        },
-        filter: #{
-          isSubjectCaseSensitive: true,
-          subjectBeginsWith: "existingPrefix",
-          subjectEndsWith: "newSuffix",
-        },
-        labels: #[
-          "label1",
-          "label2",
-        ],
-      },
+      body: body,
     },
     responses: #[
       #{
@@ -8621,7 +7500,7 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
@@ -8635,11 +7514,11 @@ import "./main.tsp";
             },
             labels: #[],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+            topic: namespaceId,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -8654,23 +7533,7 @@ import "./main.tsp";
         scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
         eventSubscriptionName: "exampleEventSubscription",
       },
-      body: #{
-        destination: #{
-          endpointType: "WebHook",
-          properties: #{
-            endpointUrl: "https://requestb.in/15ksip71",
-          },
-        },
-        filter: #{
-          isSubjectCaseSensitive: true,
-          subjectBeginsWith: "existingPrefix",
-          subjectEndsWith: "newSuffix",
-        },
-        labels: #[
-          "label1",
-          "label2",
-        ],
-      },
+      body: body,
     },
     responses: #[
       #{
@@ -8679,7 +7542,7 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
@@ -8690,11 +7553,11 @@ import "./main.tsp";
             },
             labels: #[],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace",
+            topic: namespaceId,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -8705,26 +7568,10 @@ import "./main.tsp";
     title: "EventSubscriptions UpdateForResourceGroup",
     request: #{
       path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+        scope: scope,
         eventSubscriptionName: "exampleEventSubscription",
       },
-      body: #{
-        destination: #{
-          endpointType: "WebHook",
-          properties: #{
-            endpointUrl: "https://requestb.in/15ksip71",
-          },
-        },
-        filter: #{
-          isSubjectCaseSensitive: true,
-          subjectBeginsWith: "existingPrefix",
-          subjectEndsWith: "newSuffix",
-        },
-        labels: #[
-          "label1",
-          "label2",
-        ],
-      },
+      body: body,
     },
     responses: #[
       #{
@@ -8733,7 +7580,7 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
@@ -8747,11 +7594,11 @@ import "./main.tsp";
             },
             labels: #[],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+            topic: topic,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -8763,16 +7610,11 @@ import "./main.tsp";
     since: "2017-09-15-preview",
     request: #{
       path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+        scope: scope,
         eventSubscriptionName: "exampleEventSubscription",
       },
       body: #{
-        destination: #{
-          endpointType: "EventHub",
-          properties: #{
-            resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/eventhubs/exampleEventHub",
-          },
-        },
+        destination: destination,
         filter: #{
           isSubjectCaseSensitive: true,
           subjectBeginsWith: "existingPrefix",
@@ -8791,7 +7633,7 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
@@ -8805,11 +7647,11 @@ import "./main.tsp";
             },
             labels: #[],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+            topic: topic,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -8821,16 +7663,11 @@ import "./main.tsp";
     since: "2019-06-01",
     request: #{
       path: #{
-        scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+        scope: scope,
         eventSubscriptionName: "exampleEventSubscription",
       },
       body: #{
-        destination: #{
-          endpointType: "EventHub",
-          properties: #{
-            resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventHub/namespaces/exampleNamespace/eventhubs/exampleEventHub",
-          },
-        },
+        destination: destination,
         filter: #{
           isSubjectCaseSensitive: true,
           subjectBeginsWith: "existingPrefix",
@@ -8849,7 +7686,7 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
@@ -8860,11 +7697,11 @@ import "./main.tsp";
             },
             labels: #[],
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg",
+            topic: topic,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -8878,23 +7715,7 @@ import "./main.tsp";
         scope: "subscriptions/00000000-0000-0000-0000-000000000000",
         eventSubscriptionName: "exampleEventSubscription",
       },
-      body: #{
-        destination: #{
-          endpointType: "WebHook",
-          properties: #{
-            endpointUrl: "https://requestb.in/15ksip71",
-          },
-        },
-        filter: #{
-          isSubjectCaseSensitive: true,
-          subjectBeginsWith: "existingPrefix",
-          subjectEndsWith: "newSuffix",
-        },
-        labels: #[
-          "label1",
-          "label2",
-        ],
-      },
+      body: body,
     },
     responses: #[
       #{
@@ -8903,7 +7724,7 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
@@ -8921,7 +7742,7 @@ import "./main.tsp";
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -8936,23 +7757,7 @@ import "./main.tsp";
         scope: "subscriptions/00000000-0000-0000-0000-000000000000",
         eventSubscriptionName: "exampleEventSubscription",
       },
-      body: #{
-        destination: #{
-          endpointType: "WebHook",
-          properties: #{
-            endpointUrl: "https://requestb.in/15ksip71",
-          },
-        },
-        filter: #{
-          isSubjectCaseSensitive: true,
-          subjectBeginsWith: "existingPrefix",
-          subjectEndsWith: "newSuffix",
-        },
-        labels: #[
-          "label1",
-          "label2",
-        ],
-      },
+      body: body,
     },
     responses: #[
       #{
@@ -8961,7 +7766,7 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
@@ -8976,7 +7781,7 @@ import "./main.tsp";
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.EventGrid/topics/exampleTopic/providers/Microsoft.EventGrid/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
-          type: "Microsoft.EventGrid/eventSubscriptions",
+          type: type,
         },
       },
     ],
@@ -8988,9 +7793,9 @@ import "./main.tsp";
     request: #{
       path: #{
         scope: "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageaccounts/exampleStorageAccount/providers/Microsoft.EventGrid/extensionTopics/default",
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
-        providerNamespace: "Microsoft.Storage",
+        providerNamespace: provider,
         resourceTypeName: "storageaccounts",
         resourceName: "exampleResourceName",
       },
@@ -9001,7 +7806,7 @@ import "./main.tsp";
         body: #{
           properties: #{
             description: "Extension topic for /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageaccounts/exampleStorageAccount/providers/Microsoft.EventGrid/extensionTopics/default that can be used to obtain metrics",
-            systemTopic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic",
+            systemTopic: systemTopicId,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageaccounts/exampleStorageAccount/providers/Microsoft.EventGrid/extensionTopics/default",
           name: "exampleExtensionTopic",
@@ -9016,23 +7821,13 @@ import "./main.tsp";
     title: "NamespaceTopicEventSubscriptions CreateOrUpdate",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
+        ...eventSubscriptionPath,
         namespaceName: "exampleNamespace",
-        topicName: "exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
       },
       body: #{
         properties: #{
-          deliveryConfiguration: #{
-            deliveryMode: "Queue",
-            queue: #{
-              receiveLockDurationInSeconds: 60,
-              maxDeliveryCount: 4,
-              eventTimeToLive: "P1D",
-            },
-          },
-          eventDeliverySchema: "CloudEventSchemaV1_0",
+          deliveryConfiguration: deliveryConfiguration,
+          eventDeliverySchema: inputSchema,
         },
       },
     },
@@ -9042,15 +7837,8 @@ import "./main.tsp";
         body: #{
           properties: #{
             provisioningState: "Succeeded",
-            deliveryConfiguration: #{
-              deliveryMode: "Queue",
-              queue: #{
-                receiveLockDurationInSeconds: 60,
-                maxDeliveryCount: 4,
-                eventTimeToLive: "P1D",
-              },
-            },
-            eventDeliverySchema: "CloudEventSchemaV1_0",
+            deliveryConfiguration: deliveryConfiguration,
+            eventDeliverySchema: inputSchema,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topics/exampleTopic/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
@@ -9063,14 +7851,7 @@ import "./main.tsp";
         body: #{
           properties: #{
             provisioningState: "Creating",
-            deliveryConfiguration: #{
-              deliveryMode: "Queue",
-              queue: #{
-                receiveLockDurationInSeconds: 60,
-                maxDeliveryCount: 4,
-                eventTimeToLive: "P1D",
-              },
-            },
+            deliveryConfiguration: deliveryConfiguration,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topics/exampleTopic/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
@@ -9086,30 +7867,15 @@ import "./main.tsp";
     title: "NamespaceTopicEventSubscriptions Delete",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
+        ...eventSubscriptionPath,
         namespaceName: "exampleNamespace",
-        topicName: "exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
       },
     },
     responses: #[
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -9121,11 +7887,8 @@ import "./main.tsp";
     title: "NamespaceTopicEventSubscriptions Get",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
+        ...eventSubscriptionPath,
         namespaceName: "exampleNamespace",
-        topicName: "exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
       },
     },
     responses: #[
@@ -9134,15 +7897,8 @@ import "./main.tsp";
         body: #{
           properties: #{
             provisioningState: "Succeeded",
-            deliveryConfiguration: #{
-              deliveryMode: "Queue",
-              queue: #{
-                receiveLockDurationInSeconds: 60,
-                maxDeliveryCount: 4,
-                eventTimeToLive: "P1D",
-              },
-            },
-            eventDeliverySchema: "CloudEventSchemaV1_0",
+            deliveryConfiguration: deliveryConfiguration,
+            eventDeliverySchema: inputSchema,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topics/exampleTopic/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
@@ -9158,11 +7914,8 @@ import "./main.tsp";
     title: "NamespaceTopicEventSubscriptions GetDeliveryAttributes",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
+        ...eventSubscriptionPath,
         namespaceName: "exampleNamespace",
-        topicName: "exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
       },
     },
     responses: #[
@@ -9182,7 +7935,7 @@ import "./main.tsp";
               name: "header2",
               type: "Dynamic",
               properties: #{
-                sourceField: "data.foo",
+                sourceField: sourceField,
               },
             },
             #{
@@ -9204,18 +7957,15 @@ import "./main.tsp";
     title: "NamespaceTopicEventSubscriptions GetFullUrl",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
+        ...eventSubscriptionPath,
         namespaceName: "exampleNamespace",
-        topicName: "exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
       },
     },
     responses: #[
       #{
         statusCode: 200,
         body: #{
-          endpointUrl: "https://requestb.in/15ksip71",
+          endpointUrl: endpointBaseUrl,
         },
       },
     ],
@@ -9226,9 +7976,7 @@ import "./main.tsp";
     title: "NamespaceTopicEventSubscriptions ListByNamespaceTopic",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
+        ...namespacePath,
         topicName: "exampleTopic",
       },
     },
@@ -9248,7 +7996,7 @@ import "./main.tsp";
                     eventTimeToLive: "P1D",
                   },
                 },
-                eventDeliverySchema: "CloudEventSchemaV1_0",
+                eventDeliverySchema: inputSchema,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topics/exampleTopic/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
@@ -9258,15 +8006,8 @@ import "./main.tsp";
             #{
               properties: #{
                 provisioningState: "Succeeded",
-                deliveryConfiguration: #{
-                  deliveryMode: "Queue",
-                  queue: #{
-                    receiveLockDurationInSeconds: 60,
-                    maxDeliveryCount: 4,
-                    eventTimeToLive: "P1D",
-                  },
-                },
-                eventDeliverySchema: "CloudEventSchemaV1_0",
+                deliveryConfiguration: deliveryConfiguration,
+                eventDeliverySchema: inputSchema,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topics/exampleTopic/eventSubscriptions/exampleEventSubscription",
               name: "exampleEventSubscription",
@@ -9284,11 +8025,8 @@ import "./main.tsp";
     title: "NamespaceTopicEventSubscriptions Update",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
+        ...eventSubscriptionPath,
         namespaceName: "exampleNamespace",
-        topicName: "exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
       },
       body: #{
         properties: #{
@@ -9300,7 +8038,7 @@ import "./main.tsp";
               eventTimeToLive: "P1D",
             },
           },
-          eventDeliverySchema: "CloudEventSchemaV1_0",
+          eventDeliverySchema: inputSchema,
         },
       },
     },
@@ -9318,7 +8056,7 @@ import "./main.tsp";
                 eventTimeToLive: "P1D",
               },
             },
-            eventDeliverySchema: "CloudEventSchemaV1_0",
+            eventDeliverySchema: inputSchema,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topics/exampleTopic/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
@@ -9330,7 +8068,7 @@ import "./main.tsp";
         statusCode: 202,
         headers: #[
           #{
-            name: "Azure-AsyncOperation",
+            name: name,
             value: "https://management.windowsazure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topics/exampleTopic/eventSubscriptions/exampleEventSubscription/operationStatus/7B023877-A473-457B-B462-562F97048FB6?api-version={api-version}",
           },
           #{
@@ -9353,7 +8091,7 @@ import "./main.tsp";
                 eventTimeToLive: "P1D",
               },
             },
-            eventDeliverySchema: "CloudEventSchemaV1_0",
+            eventDeliverySchema: inputSchema,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topics/exampleTopic/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
@@ -9369,15 +8107,13 @@ import "./main.tsp";
     title: "NamespaceTopics CreateOrUpdate",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
+        ...namespacePath,
         topicName: "exampleTopic",
       },
       body: #{
         properties: #{
           publisherType: "Custom",
-          inputSchema: "CloudEventSchemaV1_0",
+          inputSchema: inputSchema,
           eventRetentionInDays: 1,
         },
       },
@@ -9389,7 +8125,7 @@ import "./main.tsp";
           properties: #{
             provisioningState: "Succeeded",
             publisherType: "Custom",
-            inputSchema: "CloudEventSchemaV1_0",
+            inputSchema: inputSchema,
             eventRetentionInDays: 1,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topics/exampleTopic",
@@ -9404,7 +8140,7 @@ import "./main.tsp";
           properties: #{
             provisioningState: "Creating",
             publisherType: "Custom",
-            inputSchema: "CloudEventSchemaV1_0",
+            inputSchema: inputSchema,
             eventRetentionInDays: 1,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topics/exampleTopic",
@@ -9421,9 +8157,7 @@ import "./main.tsp";
     title: "NamespaceTopics Delete",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
+        ...namespacePath,
         topicName: "exampleTopic",
       },
     },
@@ -9431,19 +8165,7 @@ import "./main.tsp";
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -9455,9 +8177,7 @@ import "./main.tsp";
     title: "NamespaceTopics Get",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
+        ...namespacePath,
         topicName: "exampleTopic",
       },
     },
@@ -9468,7 +8188,7 @@ import "./main.tsp";
           properties: #{
             provisioningState: "Succeeded",
             publisherType: "Custom",
-            inputSchema: "CloudEventSchemaV1_0",
+            inputSchema: inputSchema,
             eventRetentionInDays: 1,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topics/exampleTopic",
@@ -9484,11 +8204,7 @@ import "./main.tsp";
   #{
     title: "NamespaceTopics ListByNamespace",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -9499,7 +8215,7 @@ import "./main.tsp";
               properties: #{
                 provisioningState: "Succeeded",
                 publisherType: "Custom",
-                inputSchema: "CloudEventSchemaV1_0",
+                inputSchema: inputSchema,
                 eventRetentionInDays: 1,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topics/exampleTopic",
@@ -9511,7 +8227,7 @@ import "./main.tsp";
               properties: #{
                 provisioningState: "Succeeded",
                 publisherType: "Custom",
-                inputSchema: "CloudEventSchemaV1_0",
+                inputSchema: inputSchema,
                 eventRetentionInDays: 1,
               },
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topics/exampleTopic",
@@ -9530,9 +8246,7 @@ import "./main.tsp";
     title: "NamespaceTopics ListSharedAccessKeys",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
+        ...namespacePath,
         topicName: "exampleTopic",
       },
     },
@@ -9552,9 +8266,7 @@ import "./main.tsp";
     title: "NamespaceTopics RegenerateKey",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
+        ...namespacePath,
         topicName: "exampleTopic",
       },
       body: #{
@@ -9569,19 +8281,7 @@ import "./main.tsp";
           key2: "testKey2Value",
         },
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
     ],
   });
 
@@ -9590,9 +8290,7 @@ import "./main.tsp";
     title: "NamespaceTopics Update",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
+        ...namespacePath,
         topicName: "exampleTopic",
       },
       body: #{
@@ -9608,7 +8306,7 @@ import "./main.tsp";
           properties: #{
             provisioningState: "Succeeded",
             publisherType: "Custom",
-            inputSchema: "CloudEventSchemaV1_0",
+            inputSchema: inputSchema,
             eventRetentionInDays: 1,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topics/exampleTopic",
@@ -9621,7 +8319,7 @@ import "./main.tsp";
         statusCode: 202,
         headers: #[
           #{
-            name: "Azure-AsyncOperation",
+            name: name,
             value: "https://management.windowsazure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topics/exampleTopic/operationStatus/7B023877-A473-457B-B462-562F97048FB6?api-version={api-version}",
           },
           #{
@@ -9637,7 +8335,7 @@ import "./main.tsp";
           properties: #{
             provisioningState: "Succeeded",
             publisherType: "Custom",
-            inputSchema: "CloudEventSchemaV1_0",
+            inputSchema: inputSchema,
             eventRetentionInDays: 1,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topics/exampleTopic",
@@ -9653,11 +8351,7 @@ import "./main.tsp";
   #{
     title: "Namespaces CreateOrUpdate",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
       body: #{
         location: "westus2",
         tags: #{
@@ -9667,7 +8361,7 @@ import "./main.tsp";
         properties: #{
           topicSpacesConfiguration: #{
             state: "Enabled",
-            routeTopicResourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            routeTopicResourceId: topicId,
           },
         },
       },
@@ -9680,7 +8374,7 @@ import "./main.tsp";
             provisioningState: "Creating",
             topicSpacesConfiguration: #{
               state: "Enabled",
-              routeTopicResourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+              routeTopicResourceId: topicId,
               hostname: null,
             },
           },
@@ -9701,7 +8395,7 @@ import "./main.tsp";
             provisioningState: "Creating",
             topicSpacesConfiguration: #{
               state: "Enabled",
-              routeTopicResourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+              routeTopicResourceId: topicId,
               hostname: null,
             },
           },
@@ -9722,29 +8416,13 @@ import "./main.tsp";
   #{
     title: "Namespaces Delete",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -9755,34 +8433,12 @@ import "./main.tsp";
   #{
     title: "Namespaces Get",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
         statusCode: 200,
-        body: #{
-          properties: #{
-            provisioningState: "Succeeded",
-            topicSpacesConfiguration: #{
-              state: "Enabled",
-              routeTopicResourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-              hostname: "exampleNamespaceName.westus-1.mqtt.eventgrid-int.azure.net",
-            },
-          },
-          location: "westus2",
-          tags: #{
-            key1: "value1",
-            key2: "value2",
-            key3: "value3",
-          },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace",
-          name: "exampleNamespace",
-          type: "Microsoft.EventGrid/namespaces",
-        },
+        body: value,
       },
     ],
   });
@@ -9792,7 +8448,7 @@ import "./main.tsp";
     title: "Namespaces ListByResourceGroup",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
       },
     },
@@ -9801,25 +8457,7 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           value: #[
-            #{
-              properties: #{
-                provisioningState: "Succeeded",
-                topicSpacesConfiguration: #{
-                  state: "Enabled",
-                  routeTopicResourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-                  hostname: "exampleNamespaceName.westus-1.mqtt.eventgrid-int.azure.net",
-                },
-              },
-              location: "westus2",
-              tags: #{
-                key1: "value1",
-                key2: "value2",
-                key3: "value3",
-              },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace",
-              name: "exampleNamespace",
-              type: "Microsoft.EventGrid/namespaces",
-            },
+            value,
           ],
           nextLink: "https://xyz.net/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces?2023-06-01-preview&%24skiptoken=7ZjtaqQwFIbvRWp%2f1dHJ6GgHypK1yro707F%2bdOn%2bUxPdMJhIkmqh9N43cYfeg6CE%2bB45mI%2bHlxz9MCh%2bl0dCL8I4fBi%2fo7woc%2bNg%2fJVyEAfbrgZiIda1jKENx4K98QaLzUQoYpOwCJUbiqUt3mrRcDJIwqiwkRt4%2b30VWMAFgeVW%2b8YKdq5v3e99Dzn3bR14W3vgbCQIc2H3pOFMsFZu8Iip7DhBtmQDacQ3PfqoctRrH4ADgLV1rK1nDRyPBE%2b3N%2bKixmQXTB9Mrzb92gRgDtXd3FW6B3WWPGrt49F5fYS%2ffP7SJxf4dZk7pBvYZYVK2ypRZKFSwFEyyV%2b01Co6K7X3PE%2bnPIexigKl4lQnwy7SL%2bxgeIIlDKGcTslrB6cu5SZoJ6dpwziCbqqC8ll1QQtDeqp5k81zbFTPK9rh67znhfSEXkO9DNV0Vl%2b9fz2MYy19pJuHbm%2fUnqlNMu6uEMFKcdEU83NZ%2fAijpyKDx9WSC7fk9wz%2bSY4z0tWWi7alPiGjMjun0Qpy0SAjqEud9ZTUBc5ya53%2fFFcrLh4izBO4Ylw0xrm80YZcWS7%2bG%2fInTOGTrnVWTy7Yk593RsV72HUcd5XEqND%2fShRRmJ2Mz38%3d",
         },
@@ -9833,7 +8471,7 @@ import "./main.tsp";
     since: "2023-12-15-preview",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
       },
     },
@@ -9842,25 +8480,7 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           value: #[
-            #{
-              properties: #{
-                provisioningState: "Succeeded",
-                topicSpacesConfiguration: #{
-                  state: "Enabled",
-                  routeTopicResourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-                  hostname: "exampleNamespaceName.westus-1.mqtt.eventgrid-int.azure.net",
-                },
-              },
-              location: "westus2",
-              tags: #{
-                key1: "value1",
-                key2: "value2",
-                key3: "value3",
-              },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace",
-              name: "exampleNamespace",
-              type: "Microsoft.EventGrid/namespaces",
-            },
+            value,
           ],
           nextLink: "https://xyz.net/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces?2023-12-15-preview&%24skiptoken=7ZjtaqQwFIbvRWp%2f1dHJ6GgHypK1yro707F%2bdOn%2bUxPdMJhIkmqh9N43cYfeg6CE%2bB45mI%2bHlxz9MCh%2bl0dCL8I4fBi%2fo7woc%2bNg%2fJVyEAfbrgZiIda1jKENx4K98QaLzUQoYpOwCJUbiqUt3mrRcDJIwqiwkRt4%2b30VWMAFgeVW%2b8YKdq5v3e99Dzn3bR14W3vgbCQIc2H3pOFMsFZu8Iip7DhBtmQDacQ3PfqoctRrH4ADgLV1rK1nDRyPBE%2b3N%2bKixmQXTB9Mrzb92gRgDtXd3FW6B3WWPGrt49F5fYS%2ffP7SJxf4dZk7pBvYZYVK2ypRZKFSwFEyyV%2b01Co6K7X3PE%2bnPIexigKl4lQnwy7SL%2bxgeIIlDKGcTslrB6cu5SZoJ6dpwziCbqqC8ll1QQtDeqp5k81zbFTPK9rh67znhfSEXkO9DNV0Vl%2b9fz2MYy19pJuHbm%2fUnqlNMu6uEMFKcdEU83NZ%2fAijpyKDx9WSC7fk9wz%2bSY4z0tWWi7alPiGjMjun0Qpy0SAjqEud9ZTUBc5ya53%2fFFcrLh4izBO4Ylw0xrm80YZcWS7%2bG%2fInTOGTrnVWTy7Yk593RsV72HUcd5XEqND%2fShRRmJ2Mz38%3d",
         },
@@ -9874,7 +8494,7 @@ import "./main.tsp";
     since: "2024-06-01-preview",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
       },
     },
@@ -9883,25 +8503,7 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           value: #[
-            #{
-              properties: #{
-                provisioningState: "Succeeded",
-                topicSpacesConfiguration: #{
-                  state: "Enabled",
-                  routeTopicResourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-                  hostname: "exampleNamespaceName.westus-1.mqtt.eventgrid-int.azure.net",
-                },
-              },
-              location: "westus2",
-              tags: #{
-                key1: "value1",
-                key2: "value2",
-                key3: "value3",
-              },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace",
-              name: "exampleNamespace",
-              type: "Microsoft.EventGrid/namespaces",
-            },
+            value,
           ],
           nextLink: "https://xyz.net/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces?2024-06-01-preview&%24skiptoken=7ZjtaqQwFIbvRWp%2f1dHJ6GgHypK1yro707F%2bdOn%2bUxPdMJhIkmqh9N43cYfeg6CE%2bB45mI%2bHlxz9MCh%2bl0dCL8I4fBi%2fo7woc%2bNg%2fJVyEAfbrgZiIda1jKENx4K98QaLzUQoYpOwCJUbiqUt3mrRcDJIwqiwkRt4%2b30VWMAFgeVW%2b8YKdq5v3e99Dzn3bR14W3vgbCQIc2H3pOFMsFZu8Iip7DhBtmQDacQ3PfqoctRrH4ADgLV1rK1nDRyPBE%2b3N%2bKixmQXTB9Mrzb92gRgDtXd3FW6B3WWPGrt49F5fYS%2ffP7SJxf4dZk7pBvYZYVK2ypRZKFSwFEyyV%2b01Co6K7X3PE%2bnPIexigKl4lQnwy7SL%2bxgeIIlDKGcTslrB6cu5SZoJ6dpwziCbqqC8ll1QQtDeqp5k81zbFTPK9rh67znhfSEXkO9DNV0Vl%2b9fz2MYy19pJuHbm%2fUnqlNMu6uEMFKcdEU83NZ%2fAijpyKDx9WSC7fk9wz%2bSY4z0tWWi7alPiGjMjun0Qpy0SAjqEud9ZTUBc5ya53%2fFFcrLh4izBO4Ylw0xrm80YZcWS7%2bG%2fInTOGTrnVWTy7Yk593RsV72HUcd5XEqND%2fShRRmJ2Mz38%3d",
         },
@@ -9915,7 +8517,7 @@ import "./main.tsp";
     since: "2024-12-15-preview",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
       },
     },
@@ -9924,25 +8526,7 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           value: #[
-            #{
-              properties: #{
-                provisioningState: "Succeeded",
-                topicSpacesConfiguration: #{
-                  state: "Enabled",
-                  routeTopicResourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-                  hostname: "exampleNamespaceName.westus-1.mqtt.eventgrid-int.azure.net",
-                },
-              },
-              location: "westus2",
-              tags: #{
-                key1: "value1",
-                key2: "value2",
-                key3: "value3",
-              },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace",
-              name: "exampleNamespace",
-              type: "Microsoft.EventGrid/namespaces",
-            },
+            value,
           ],
           nextLink: "https://xyz.net/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces?2024-12-15-preview&%24skiptoken=7ZjtaqQwFIbvRWp%2f1dHJ6GgHypK1yro707F%2bdOn%2bUxPdMJhIkmqh9N43cYfeg6CE%2bB45mI%2bHlxz9MCh%2bl0dCL8I4fBi%2fo7woc%2bNg%2fJVyEAfbrgZiIda1jKENx4K98QaLzUQoYpOwCJUbiqUt3mrRcDJIwqiwkRt4%2b30VWMAFgeVW%2b8YKdq5v3e99Dzn3bR14W3vgbCQIc2H3pOFMsFZu8Iip7DhBtmQDacQ3PfqoctRrH4ADgLV1rK1nDRyPBE%2b3N%2bKixmQXTB9Mrzb92gRgDtXd3FW6B3WWPGrt49F5fYS%2ffP7SJxf4dZk7pBvYZYVK2ypRZKFSwFEyyV%2b01Co6K7X3PE%2bnPIexigKl4lQnwy7SL%2bxgeIIlDKGcTslrB6cu5SZoJ6dpwziCbqqC8ll1QQtDeqp5k81zbFTPK9rh67znhfSEXkO9DNV0Vl%2b9fz2MYy19pJuHbm%2fUnqlNMu6uEMFKcdEU83NZ%2fAijpyKDx9WSC7fk9wz%2bSY4z0tWWi7alPiGjMjun0Qpy0SAjqEud9ZTUBc5ya53%2fFFcrLh4izBO4Ylw0xrm80YZcWS7%2bG%2fInTOGTrnVWTy7Yk593RsV72HUcd5XEqND%2fShRRmJ2Mz38%3d",
         },
@@ -9956,7 +8540,7 @@ import "./main.tsp";
     since: "2025-02-15",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
       },
     },
@@ -9965,25 +8549,7 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           value: #[
-            #{
-              properties: #{
-                provisioningState: "Succeeded",
-                topicSpacesConfiguration: #{
-                  state: "Enabled",
-                  routeTopicResourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-                  hostname: "exampleNamespaceName.westus-1.mqtt.eventgrid-int.azure.net",
-                },
-              },
-              location: "westus2",
-              tags: #{
-                key1: "value1",
-                key2: "value2",
-                key3: "value3",
-              },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace",
-              name: "exampleNamespace",
-              type: "Microsoft.EventGrid/namespaces",
-            },
+            value,
           ],
           nextLink: "https://xyz.net/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces?2025-02-15&%24skiptoken=7ZjtaqQwFIbvRWp%2f1dHJ6GgHypK1yro707F%2bdOn%2bUxPdMJhIkmqh9N43cYfeg6CE%2bB45mI%2bHlxz9MCh%2bl0dCL8I4fBi%2fo7woc%2bNg%2fJVyEAfbrgZiIda1jKENx4K98QaLzUQoYpOwCJUbiqUt3mrRcDJIwqiwkRt4%2b30VWMAFgeVW%2b8YKdq5v3e99Dzn3bR14W3vgbCQIc2H3pOFMsFZu8Iip7DhBtmQDacQ3PfqoctRrH4ADgLV1rK1nDRyPBE%2b3N%2bKixmQXTB9Mrzb92gRgDtXd3FW6B3WWPGrt49F5fYS%2ffP7SJxf4dZk7pBvYZYVK2ypRZKFSwFEyyV%2b01Co6K7X3PE%2bnPIexigKl4lQnwy7SL%2bxgeIIlDKGcTslrB6cu5SZoJ6dpwziCbqqC8ll1QQtDeqp5k81zbFTPK9rh67znhfSEXkO9DNV0Vl%2b9fz2MYy19pJuHbm%2fUnqlNMu6uEMFKcdEU83NZ%2fAijpyKDx9WSC7fk9wz%2bSY4z0tWWi7alPiGjMjun0Qpy0SAjqEud9ZTUBc5ya53%2fFFcrLh4izBO4Ylw0xrm80YZcWS7%2bG%2fInTOGTrnVWTy7Yk593RsV72HUcd5XEqND%2fShRRmJ2Mz38%3d",
         },
@@ -9997,7 +8563,7 @@ import "./main.tsp";
     since: "2025-04-01-preview",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
       },
     },
@@ -10006,25 +8572,7 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           value: #[
-            #{
-              properties: #{
-                provisioningState: "Succeeded",
-                topicSpacesConfiguration: #{
-                  state: "Enabled",
-                  routeTopicResourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-                  hostname: "exampleNamespaceName.westus-1.mqtt.eventgrid-int.azure.net",
-                },
-              },
-              location: "westus2",
-              tags: #{
-                key1: "value1",
-                key2: "value2",
-                key3: "value3",
-              },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace",
-              name: "exampleNamespace",
-              type: "Microsoft.EventGrid/namespaces",
-            },
+            value,
           ],
           nextLink: "https://xyz.net/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces?2025-04-01-preview&%24skiptoken=7ZjtaqQwFIbvRWp%2f1dHJ6GgHypK1yro707F%2bdOn%2bUxPdMJhIkmqh9N43cYfeg6CE%2bB45mI%2bHlxz9MCh%2bl0dCL8I4fBi%2fo7woc%2bNg%2fJVyEAfbrgZiIda1jKENx4K98QaLzUQoYpOwCJUbiqUt3mrRcDJIwqiwkRt4%2b30VWMAFgeVW%2b8YKdq5v3e99Dzn3bR14W3vgbCQIc2H3pOFMsFZu8Iip7DhBtmQDacQ3PfqoctRrH4ADgLV1rK1nDRyPBE%2b3N%2bKixmQXTB9Mrzb92gRgDtXd3FW6B3WWPGrt49F5fYS%2ffP7SJxf4dZk7pBvYZYVK2ypRZKFSwFEyyV%2b01Co6K7X3PE%2bnPIexigKl4lQnwy7SL%2bxgeIIlDKGcTslrB6cu5SZoJ6dpwziCbqqC8ll1QQtDeqp5k81zbFTPK9rh67znhfSEXkO9DNV0Vl%2b9fz2MYy19pJuHbm%2fUnqlNMu6uEMFKcdEU83NZ%2fAijpyKDx9WSC7fk9wz%2bSY4z0tWWi7alPiGjMjun0Qpy0SAjqEud9ZTUBc5ya53%2fFFcrLh4izBO4Ylw0xrm80YZcWS7%2bG%2fInTOGTrnVWTy7Yk593RsV72HUcd5XEqND%2fShRRmJ2Mz38%3d",
         },
@@ -10037,7 +8585,7 @@ import "./main.tsp";
     title: "Namespaces ListBySubscription",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
       },
     },
     responses: #[
@@ -10045,25 +8593,7 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           value: #[
-            #{
-              properties: #{
-                provisioningState: "Succeeded",
-                topicSpacesConfiguration: #{
-                  state: "Enabled",
-                  routeTopicResourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-                  hostname: "exampleNamespaceName.westus-1.mqtt.eventgrid-int.azure.net",
-                },
-              },
-              location: "westus2",
-              tags: #{
-                key1: "value1",
-                key2: "value2",
-                key3: "value3",
-              },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace",
-              name: "exampleNamespace",
-              type: "Microsoft.EventGrid/namespaces",
-            },
+            value,
           ],
           nextLink: "https://xyz.net/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.EventGrid/namespaces?2023-06-01-preview&%24skiptoken=7ZjtaqQwFIbvRWp%2f1dHJ6GgHypK1yro707F%2bdOn%2bUxPdMJhIkmqh9N43cYfeg6CE%2bB45mI%2bHlxz9MCh%2bl0dCL8I4fBi%2fo7woc%2bNg%2fJVyEAfbrgZiIda1jKENx4K98QaLzUQoYpOwCJUbiqUt3mrRcDJIwqiwkRt4%2b30VWMAFgeVW%2b8YKdq5v3e99Dzn3bR14W3vgbCQIc2H3pOFMsFZu8Iip7DhBtmQDacQ3PfqoctRrH4ADgLV1rK1nDRyPBE%2b3N%2bKixmQXTB9Mrzb92gRgDtXd3FW6B3WWPGrt49F5fYS%2ffP7SJxf4dZk7pBvYZYVK2ypRZKFSwFEyyV%2b01Co6K7X3PE%2bnPIexigKl4lQnwy7SL%2bxgeIIlDKGcTslrB6cu5SZoJ6dpwziCbqqC8ll1QQtDeqp5k81zbFTPK9rh67znhfSEXkO9DNV0Vl%2b9fz2MYy19pJuHbm%2fUnqlNMu6uEMFKcdEU83NZ%2fAijpyKDx9WSC7fk9wz%2bSY4z0tWWi7alPiGjMjun0Qpy0SAjqEud9ZTUBc5ya53%2fFFcrLh4izBO4Ylw0xrm80YZcWS7%2bG%2fInTOGTrnVWTy7Yk593RsV72HUcd5XEqND%2fShRRmJ2Mz38%3d",
         },
@@ -10077,7 +8607,7 @@ import "./main.tsp";
     since: "2023-12-15-preview",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
       },
     },
     responses: #[
@@ -10085,25 +8615,7 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           value: #[
-            #{
-              properties: #{
-                provisioningState: "Succeeded",
-                topicSpacesConfiguration: #{
-                  state: "Enabled",
-                  routeTopicResourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-                  hostname: "exampleNamespaceName.westus-1.mqtt.eventgrid-int.azure.net",
-                },
-              },
-              location: "westus2",
-              tags: #{
-                key1: "value1",
-                key2: "value2",
-                key3: "value3",
-              },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace",
-              name: "exampleNamespace",
-              type: "Microsoft.EventGrid/namespaces",
-            },
+            value,
           ],
           nextLink: "https://xyz.net/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.EventGrid/namespaces?2023-12-15-preview&%24skiptoken=7ZjtaqQwFIbvRWp%2f1dHJ6GgHypK1yro707F%2bdOn%2bUxPdMJhIkmqh9N43cYfeg6CE%2bB45mI%2bHlxz9MCh%2bl0dCL8I4fBi%2fo7woc%2bNg%2fJVyEAfbrgZiIda1jKENx4K98QaLzUQoYpOwCJUbiqUt3mrRcDJIwqiwkRt4%2b30VWMAFgeVW%2b8YKdq5v3e99Dzn3bR14W3vgbCQIc2H3pOFMsFZu8Iip7DhBtmQDacQ3PfqoctRrH4ADgLV1rK1nDRyPBE%2b3N%2bKixmQXTB9Mrzb92gRgDtXd3FW6B3WWPGrt49F5fYS%2ffP7SJxf4dZk7pBvYZYVK2ypRZKFSwFEyyV%2b01Co6K7X3PE%2bnPIexigKl4lQnwy7SL%2bxgeIIlDKGcTslrB6cu5SZoJ6dpwziCbqqC8ll1QQtDeqp5k81zbFTPK9rh67znhfSEXkO9DNV0Vl%2b9fz2MYy19pJuHbm%2fUnqlNMu6uEMFKcdEU83NZ%2fAijpyKDx9WSC7fk9wz%2bSY4z0tWWi7alPiGjMjun0Qpy0SAjqEud9ZTUBc5ya53%2fFFcrLh4izBO4Ylw0xrm80YZcWS7%2bG%2fInTOGTrnVWTy7Yk593RsV72HUcd5XEqND%2fShRRmJ2Mz38%3d",
         },
@@ -10117,7 +8629,7 @@ import "./main.tsp";
     since: "2024-06-01-preview",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
       },
     },
     responses: #[
@@ -10125,25 +8637,7 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           value: #[
-            #{
-              properties: #{
-                provisioningState: "Succeeded",
-                topicSpacesConfiguration: #{
-                  state: "Enabled",
-                  routeTopicResourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-                  hostname: "exampleNamespaceName.westus-1.mqtt.eventgrid-int.azure.net",
-                },
-              },
-              location: "westus2",
-              tags: #{
-                key1: "value1",
-                key2: "value2",
-                key3: "value3",
-              },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace",
-              name: "exampleNamespace",
-              type: "Microsoft.EventGrid/namespaces",
-            },
+            value,
           ],
           nextLink: "https://xyz.net/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.EventGrid/namespaces?2024-06-01-preview&%24skiptoken=7ZjtaqQwFIbvRWp%2f1dHJ6GgHypK1yro707F%2bdOn%2bUxPdMJhIkmqh9N43cYfeg6CE%2bB45mI%2bHlxz9MCh%2bl0dCL8I4fBi%2fo7woc%2bNg%2fJVyEAfbrgZiIda1jKENx4K98QaLzUQoYpOwCJUbiqUt3mrRcDJIwqiwkRt4%2b30VWMAFgeVW%2b8YKdq5v3e99Dzn3bR14W3vgbCQIc2H3pOFMsFZu8Iip7DhBtmQDacQ3PfqoctRrH4ADgLV1rK1nDRyPBE%2b3N%2bKixmQXTB9Mrzb92gRgDtXd3FW6B3WWPGrt49F5fYS%2ffP7SJxf4dZk7pBvYZYVK2ypRZKFSwFEyyV%2b01Co6K7X3PE%2bnPIexigKl4lQnwy7SL%2bxgeIIlDKGcTslrB6cu5SZoJ6dpwziCbqqC8ll1QQtDeqp5k81zbFTPK9rh67znhfSEXkO9DNV0Vl%2b9fz2MYy19pJuHbm%2fUnqlNMu6uEMFKcdEU83NZ%2fAijpyKDx9WSC7fk9wz%2bSY4z0tWWi7alPiGjMjun0Qpy0SAjqEud9ZTUBc5ya53%2fFFcrLh4izBO4Ylw0xrm80YZcWS7%2bG%2fInTOGTrnVWTy7Yk593RsV72HUcd5XEqND%2fShRRmJ2Mz38%3d",
         },
@@ -10157,7 +8651,7 @@ import "./main.tsp";
     since: "2024-12-15-preview",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
       },
     },
     responses: #[
@@ -10165,25 +8659,7 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           value: #[
-            #{
-              properties: #{
-                provisioningState: "Succeeded",
-                topicSpacesConfiguration: #{
-                  state: "Enabled",
-                  routeTopicResourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-                  hostname: "exampleNamespaceName.westus-1.mqtt.eventgrid-int.azure.net",
-                },
-              },
-              location: "westus2",
-              tags: #{
-                key1: "value1",
-                key2: "value2",
-                key3: "value3",
-              },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace",
-              name: "exampleNamespace",
-              type: "Microsoft.EventGrid/namespaces",
-            },
+            value,
           ],
           nextLink: "https://xyz.net/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.EventGrid/namespaces?2024-12-15-preview&%24skiptoken=7ZjtaqQwFIbvRWp%2f1dHJ6GgHypK1yro707F%2bdOn%2bUxPdMJhIkmqh9N43cYfeg6CE%2bB45mI%2bHlxz9MCh%2bl0dCL8I4fBi%2fo7woc%2bNg%2fJVyEAfbrgZiIda1jKENx4K98QaLzUQoYpOwCJUbiqUt3mrRcDJIwqiwkRt4%2b30VWMAFgeVW%2b8YKdq5v3e99Dzn3bR14W3vgbCQIc2H3pOFMsFZu8Iip7DhBtmQDacQ3PfqoctRrH4ADgLV1rK1nDRyPBE%2b3N%2bKixmQXTB9Mrzb92gRgDtXd3FW6B3WWPGrt49F5fYS%2ffP7SJxf4dZk7pBvYZYVK2ypRZKFSwFEyyV%2b01Co6K7X3PE%2bnPIexigKl4lQnwy7SL%2bxgeIIlDKGcTslrB6cu5SZoJ6dpwziCbqqC8ll1QQtDeqp5k81zbFTPK9rh67znhfSEXkO9DNV0Vl%2b9fz2MYy19pJuHbm%2fUnqlNMu6uEMFKcdEU83NZ%2fAijpyKDx9WSC7fk9wz%2bSY4z0tWWi7alPiGjMjun0Qpy0SAjqEud9ZTUBc5ya53%2fFFcrLh4izBO4Ylw0xrm80YZcWS7%2bG%2fInTOGTrnVWTy7Yk593RsV72HUcd5XEqND%2fShRRmJ2Mz38%3d",
         },
@@ -10197,7 +8673,7 @@ import "./main.tsp";
     since: "2025-02-15",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
       },
     },
     responses: #[
@@ -10205,25 +8681,7 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           value: #[
-            #{
-              properties: #{
-                provisioningState: "Succeeded",
-                topicSpacesConfiguration: #{
-                  state: "Enabled",
-                  routeTopicResourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-                  hostname: "exampleNamespaceName.westus-1.mqtt.eventgrid-int.azure.net",
-                },
-              },
-              location: "westus2",
-              tags: #{
-                key1: "value1",
-                key2: "value2",
-                key3: "value3",
-              },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace",
-              name: "exampleNamespace",
-              type: "Microsoft.EventGrid/namespaces",
-            },
+            value,
           ],
           nextLink: "https://xyz.net/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.EventGrid/namespaces?2025-02-15&%24skiptoken=7ZjtaqQwFIbvRWp%2f1dHJ6GgHypK1yro707F%2bdOn%2bUxPdMJhIkmqh9N43cYfeg6CE%2bB45mI%2bHlxz9MCh%2bl0dCL8I4fBi%2fo7woc%2bNg%2fJVyEAfbrgZiIda1jKENx4K98QaLzUQoYpOwCJUbiqUt3mrRcDJIwqiwkRt4%2b30VWMAFgeVW%2b8YKdq5v3e99Dzn3bR14W3vgbCQIc2H3pOFMsFZu8Iip7DhBtmQDacQ3PfqoctRrH4ADgLV1rK1nDRyPBE%2b3N%2bKixmQXTB9Mrzb92gRgDtXd3FW6B3WWPGrt49F5fYS%2ffP7SJxf4dZk7pBvYZYVK2ypRZKFSwFEyyV%2b01Co6K7X3PE%2bnPIexigKl4lQnwy7SL%2bxgeIIlDKGcTslrB6cu5SZoJ6dpwziCbqqC8ll1QQtDeqp5k81zbFTPK9rh67znhfSEXkO9DNV0Vl%2b9fz2MYy19pJuHbm%2fUnqlNMu6uEMFKcdEU83NZ%2fAijpyKDx9WSC7fk9wz%2bSY4z0tWWi7alPiGjMjun0Qpy0SAjqEud9ZTUBc5ya53%2fFFcrLh4izBO4Ylw0xrm80YZcWS7%2bG%2fInTOGTrnVWTy7Yk593RsV72HUcd5XEqND%2fShRRmJ2Mz38%3d",
         },
@@ -10237,7 +8695,7 @@ import "./main.tsp";
     since: "2025-04-01-preview",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
       },
     },
     responses: #[
@@ -10245,25 +8703,7 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           value: #[
-            #{
-              properties: #{
-                provisioningState: "Succeeded",
-                topicSpacesConfiguration: #{
-                  state: "Enabled",
-                  routeTopicResourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-                  hostname: "exampleNamespaceName.westus-1.mqtt.eventgrid-int.azure.net",
-                },
-              },
-              location: "westus2",
-              tags: #{
-                key1: "value1",
-                key2: "value2",
-                key3: "value3",
-              },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace",
-              name: "exampleNamespace",
-              type: "Microsoft.EventGrid/namespaces",
-            },
+            value,
           ],
           nextLink: "https://xyz.net/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.EventGrid/namespaces?2025-04-01-preview&%24skiptoken=7ZjtaqQwFIbvRWp%2f1dHJ6GgHypK1yro707F%2bdOn%2bUxPdMJhIkmqh9N43cYfeg6CE%2bB45mI%2bHlxz9MCh%2bl0dCL8I4fBi%2fo7woc%2bNg%2fJVyEAfbrgZiIda1jKENx4K98QaLzUQoYpOwCJUbiqUt3mrRcDJIwqiwkRt4%2b30VWMAFgeVW%2b8YKdq5v3e99Dzn3bR14W3vgbCQIc2H3pOFMsFZu8Iip7DhBtmQDacQ3PfqoctRrH4ADgLV1rK1nDRyPBE%2b3N%2bKixmQXTB9Mrzb92gRgDtXd3FW6B3WWPGrt49F5fYS%2ffP7SJxf4dZk7pBvYZYVK2ypRZKFSwFEyyV%2b01Co6K7X3PE%2bnPIexigKl4lQnwy7SL%2bxgeIIlDKGcTslrB6cu5SZoJ6dpwziCbqqC8ll1QQtDeqp5k81zbFTPK9rh67znhfSEXkO9DNV0Vl%2b9fz2MYy19pJuHbm%2fUnqlNMu6uEMFKcdEU83NZ%2fAijpyKDx9WSC7fk9wz%2bSY4z0tWWi7alPiGjMjun0Qpy0SAjqEud9ZTUBc5ya53%2fFFcrLh4izBO4Ylw0xrm80YZcWS7%2bG%2fInTOGTrnVWTy7Yk593RsV72HUcd5XEqND%2fShRRmJ2Mz38%3d",
         },
@@ -10275,11 +8715,7 @@ import "./main.tsp";
   #{
     title: "Namespaces ListSharedAccessKeys",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -10296,11 +8732,7 @@ import "./main.tsp";
   #{
     title: "Namespaces RegenerateKey",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
       body: #{
         keyName: "key1",
       },
@@ -10313,19 +8745,7 @@ import "./main.tsp";
           key2: "testKey2Value",
         },
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
     ],
   });
 
@@ -10333,11 +8753,7 @@ import "./main.tsp";
   #{
     title: "Namespaces Update",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
       body: #{
         tags: #{
           tag1: "value1Updated",
@@ -10350,11 +8766,7 @@ import "./main.tsp";
         body: #{
           properties: #{
             provisioningState: "Succeeded",
-            topicSpacesConfiguration: #{
-              state: "Enabled",
-              routeTopicResourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-              hostname: "exampleNamespaceName.westus-1.mqtt.eventgrid-int.azure.net",
-            },
+            topicSpacesConfiguration: topicSpacesConfiguration,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace",
           name: "exampleNamespace",
@@ -10366,7 +8778,7 @@ import "./main.tsp";
         statusCode: 202,
         headers: #[
           #{
-            name: "Azure-AsyncOperation",
+            name: name,
             value: "https://management.windowsazure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/operationStatus/7B023877-A473-457B-B462-562F97048FB6?api-version={api-version}",
           },
           #{
@@ -10381,11 +8793,7 @@ import "./main.tsp";
         body: #{
           properties: #{
             provisioningState: "Succeeded",
-            topicSpacesConfiguration: #{
-              state: "Enabled",
-              routeTopicResourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-              hostname: "exampleNamespaceName.westus-1.mqtt.eventgrid-int.azure.net",
-            },
+            topicSpacesConfiguration: topicSpacesConfiguration,
           },
           location: "westus2",
           tags: #{
@@ -10403,11 +8811,7 @@ import "./main.tsp";
   #{
     title: "Namespaces ValidateCustomDomainOwnership",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -10439,19 +8843,7 @@ import "./main.tsp";
           ],
         },
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
     ],
   });
 
@@ -10459,14 +8851,7 @@ import "./main.tsp";
   #{
     title: "NetworkSecurityPerimeterConfigurations Get",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        resourceType: "topics",
-        resourceName: "exampleResourceName",
-        perimeterGuid: "8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter",
-        associationName: "someAssociation",
-      },
+      path: associationPath,
     },
     responses: #[
       #{
@@ -10474,34 +8859,12 @@ import "./main.tsp";
         body: #{
           properties: #{
             provisioningState: "Succeeded",
-            networkSecurityPerimeter: #{
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Network/networkSecurityPerimeters/somePerimeter",
-              perimeterGuid: "8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter",
-              location: "westus2",
-            },
+            networkSecurityPerimeter: networkSecurityPerimeter,
             resourceAssociation: #{
               name: "someAssociation",
               accessMode: "Enforced",
             },
-            profile: #{
-              name: "someProfile",
-              accessRulesVersion: "1",
-              accessRules: #[
-                #{
-                  name: "ipRule",
-                  properties: #{
-                    direction: "Inbound",
-                    addressPrefixes: #[
-                      "148.0.0.0/8",
-                    ],
-                  },
-                },
-              ],
-              diagnosticSettingsVersion: "1",
-              enabledLogCategories: #[
-                "NspOutbound",
-              ],
-            },
+            profile: profile,
           },
           id: "/subscriptions//resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/networkSecurityPerimeterConfigurations/exampleNetworkSecurityPerimeterConfiguration",
           name: "exampleNetworkSecurityPerimeterConfiguration",
@@ -10516,14 +8879,7 @@ import "./main.tsp";
     title: "NetworkSecurityPerimeterConfigurations Get",
     since: "2025-07-15-preview",
     request: #{
-      path: #{
-        associationName: "someAssociation",
-        perimeterGuid: "8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter",
-        resourceGroupName: "examplerg",
-        resourceName: "exampleResourceName",
-        resourceType: "topics",
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-      },
+      path: associationPath,
     },
     responses: #[
       #{
@@ -10533,30 +8889,8 @@ import "./main.tsp";
           type: "Microsoft.EventGrid/topics/networkSecurityPerimeterConfigurations",
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/networkSecurityPerimeterConfigurations/exampleNetworkSecurityPerimeterConfiguration",
           properties: #{
-            networkSecurityPerimeter: #{
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Network/networkSecurityPerimeters/somePerimeter",
-              location: "westus2",
-              perimeterGuid: "8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter",
-            },
-            profile: #{
-              name: "someProfile",
-              accessRules: #[
-                #{
-                  name: "ipRule",
-                  properties: #{
-                    addressPrefixes: #[
-                      "148.0.0.0/8",
-                    ],
-                    direction: "Inbound",
-                  },
-                },
-              ],
-              accessRulesVersion: "1",
-              diagnosticSettingsVersion: "1",
-              enabledLogCategories: #[
-                "NspOutbound",
-              ],
-            },
+            networkSecurityPerimeter: networkSecurityPerimeter,
+            profile: profile,
             provisioningState: "Succeeded",
             resourceAssociation: #{
               name: "someAssociation",
@@ -10573,7 +8907,7 @@ import "./main.tsp";
     title: "NetworkSecurityPerimeterConfigurations List",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
         resourceType: "topics",
         resourceName: "exampleResourceName",
@@ -10587,34 +8921,12 @@ import "./main.tsp";
             #{
               properties: #{
                 provisioningState: "Succeeded",
-                networkSecurityPerimeter: #{
-                  id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Network/networkSecurityPerimeters/somePerimeter",
-                  perimeterGuid: "8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter",
-                  location: "westus2",
-                },
+                networkSecurityPerimeter: networkSecurityPerimeter,
                 resourceAssociation: #{
                   name: "someAssociation",
                   accessMode: "Enforced",
                 },
-                profile: #{
-                  name: "someProfile",
-                  accessRulesVersion: "1",
-                  accessRules: #[
-                    #{
-                      name: "ipRule",
-                      properties: #{
-                        direction: "Inbound",
-                        addressPrefixes: #[
-                          "148.0.0.0/8",
-                        ],
-                      },
-                    },
-                  ],
-                  diagnosticSettingsVersion: "1",
-                  enabledLogCategories: #[
-                    "NspOutbound",
-                  ],
-                },
+                profile: profile,
               },
               id: "/subscriptions//resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/networkSecurityPerimeterConfigurations/exampleNetworkSecurityPerimeterConfiguration",
               name: "exampleNetworkSecurityPerimeterConfiguration",
@@ -10635,7 +8947,7 @@ import "./main.tsp";
         resourceGroupName: "examplerg",
         resourceName: "exampleResourceName",
         resourceType: "topics",
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
       },
     },
     responses: #[
@@ -10648,30 +8960,8 @@ import "./main.tsp";
               type: "Microsoft.EventGrid/topics/networkSecurityPerimeterConfigurations",
               id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/networkSecurityPerimeterConfigurations/exampleNetworkSecurityPerimeterConfiguration",
               properties: #{
-                networkSecurityPerimeter: #{
-                  id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Network/networkSecurityPerimeters/somePerimeter",
-                  location: "westus2",
-                  perimeterGuid: "8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter",
-                },
-                profile: #{
-                  name: "someProfile",
-                  accessRules: #[
-                    #{
-                      name: "ipRule",
-                      properties: #{
-                        addressPrefixes: #[
-                          "148.0.0.0/8",
-                        ],
-                        direction: "Inbound",
-                      },
-                    },
-                  ],
-                  accessRulesVersion: "1",
-                  diagnosticSettingsVersion: "1",
-                  enabledLogCategories: #[
-                    "NspOutbound",
-                  ],
-                },
+                networkSecurityPerimeter: networkSecurityPerimeter,
+                profile: profile,
                 provisioningState: "Succeeded",
                 resourceAssociation: #{
                   name: "someAssociation",
@@ -10689,14 +8979,7 @@ import "./main.tsp";
   #{
     title: "NetworkSecurityPerimeterConfigurations Reconcile",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        resourceType: "topics",
-        resourceName: "exampleResourceName",
-        perimeterGuid: "8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter",
-        associationName: "someAssociation",
-      },
+      path: associationPath,
     },
     responses: #[
       #{
@@ -10704,53 +8987,19 @@ import "./main.tsp";
         body: #{
           properties: #{
             provisioningState: "Succeeded",
-            networkSecurityPerimeter: #{
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Network/networkSecurityPerimeters/somePerimeter",
-              perimeterGuid: "8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter",
-              location: "westus2",
-            },
+            networkSecurityPerimeter: networkSecurityPerimeter,
             resourceAssociation: #{
               name: "someAssociation",
               accessMode: "Enforced",
             },
-            profile: #{
-              name: "someProfile",
-              accessRulesVersion: "1",
-              accessRules: #[
-                #{
-                  name: "ipRule",
-                  properties: #{
-                    direction: "Inbound",
-                    addressPrefixes: #[
-                      "148.0.0.0/8",
-                    ],
-                  },
-                },
-              ],
-              diagnosticSettingsVersion: "1",
-              enabledLogCategories: #[
-                "NspOutbound",
-              ],
-            },
+            profile: profile,
           },
           id: "/subscriptions//resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/networkSecurityPerimeterConfigurations/exampleNetworkSecurityPerimeterConfiguration",
           name: "exampleNetworkSecurityPerimeterConfiguration",
           type: "Microsoft.EventGrid/topics/networkSecurityPerimeterConfigurations",
         },
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
     ],
   });
 
@@ -10759,14 +9008,7 @@ import "./main.tsp";
     title: "NetworkSecurityPerimeterConfigurations Reconcile",
     since: "2025-07-15-preview",
     request: #{
-      path: #{
-        associationName: "someAssociation",
-        perimeterGuid: "8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter",
-        resourceGroupName: "examplerg",
-        resourceName: "exampleResourceName",
-        resourceType: "topics",
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-      },
+      path: associationPath,
     },
     responses: #[
       #{
@@ -10776,30 +9018,8 @@ import "./main.tsp";
           type: "Microsoft.EventGrid/topics/networkSecurityPerimeterConfigurations",
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/networkSecurityPerimeterConfigurations/exampleNetworkSecurityPerimeterConfiguration",
           properties: #{
-            networkSecurityPerimeter: #{
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Network/networkSecurityPerimeters/somePerimeter",
-              location: "westus2",
-              perimeterGuid: "8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter",
-            },
-            profile: #{
-              name: "someProfile",
-              accessRules: #[
-                #{
-                  name: "ipRule",
-                  properties: #{
-                    addressPrefixes: #[
-                      "148.0.0.0/8",
-                    ],
-                    direction: "Inbound",
-                  },
-                },
-              ],
-              accessRulesVersion: "1",
-              diagnosticSettingsVersion: "1",
-              enabledLogCategories: #[
-                "NspOutbound",
-              ],
-            },
+            networkSecurityPerimeter: networkSecurityPerimeter,
+            profile: profile,
             provisioningState: "Succeeded",
             resourceAssociation: #{
               name: "someAssociation",
@@ -10812,13 +9032,10 @@ import "./main.tsp";
         statusCode: 202,
         headers: #[
           #{
-            name: "Azure-AsyncOperation",
+            name: name,
             value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
           },
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
+          headers,
         ],
       },
     ],
@@ -10914,42 +9131,24 @@ import "./main.tsp";
     title: "PartnerConfigurations AuthorizePartner",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
       },
-      body: #{
-        partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
-        partnerName: "Contoso.Finance",
-        authorizationExpirationTimeInUtc: "2024-01-01T00:00:00Z",
-      },
+      body: authorizedPartnersList,
     },
     responses: #[
       #{
         statusCode: 200,
         body: #{
           properties: #{
-            partnerAuthorization: #{
-              defaultMaximumExpirationTimeInDays: 10,
-              authorizedPartnersList: #[
-                #{
-                  partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
-                  partnerName: "Contoso.Finance",
-                  authorizationExpirationTimeInUtc: "2024-01-01T00:00:00Z",
-                },
-                #{
-                  partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
-                  partnerName: "fabrikam.HR",
-                  authorizationExpirationTimeInUtc: "2024-01-01T00:00:00Z",
-                },
-              ],
-            },
+            partnerAuthorization: partnerAuthorization,
           },
           location: "westus2",
           tags: #{
             tag1: "value1",
             tag2: "value2",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerConfigurations/examplePartnerConfiguration",
+          id: partnerConfigurationId,
           name: "examplePartnerConfiguration",
           type: "Microsoft.EventGrid/partnerConfigurations",
         },
@@ -10962,26 +9161,12 @@ import "./main.tsp";
     title: "PartnerConfigurations CreateOrUpdate",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
       },
       body: #{
         properties: #{
-          partnerAuthorization: #{
-            defaultMaximumExpirationTimeInDays: 10,
-            authorizedPartnersList: #[
-              #{
-                partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
-                partnerName: "Contoso.Finance",
-                authorizationExpirationTimeInUtc: "2024-01-01T00:00:00Z",
-              },
-              #{
-                partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
-                partnerName: "fabrikam.HR",
-                authorizationExpirationTimeInUtc: "2024-01-01T00:00:00Z",
-              },
-            ],
-          },
+          partnerAuthorization: partnerAuthorization,
         },
       },
     },
@@ -10990,28 +9175,14 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           properties: #{
-            partnerAuthorization: #{
-              defaultMaximumExpirationTimeInDays: 10,
-              authorizedPartnersList: #[
-                #{
-                  partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
-                  partnerName: "Contoso.Finance",
-                  authorizationExpirationTimeInUtc: "2024-01-01T00:00:00Z",
-                },
-                #{
-                  partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
-                  partnerName: "fabrikam.HR",
-                  authorizationExpirationTimeInUtc: "2024-01-01T00:00:00Z",
-                },
-              ],
-            },
+            partnerAuthorization: partnerAuthorization,
           },
           location: "westus2",
           tags: #{
             tag1: "value1",
             tag2: "value2",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerConfigurations/examplePartnerConfiguration",
+          id: partnerConfigurationId,
           name: "examplePartnerConfiguration",
           type: "Microsoft.EventGrid/partnerConfigurations",
         },
@@ -11020,28 +9191,14 @@ import "./main.tsp";
         statusCode: 201,
         body: #{
           properties: #{
-            partnerAuthorization: #{
-              defaultMaximumExpirationTimeInDays: 10,
-              authorizedPartnersList: #[
-                #{
-                  partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
-                  partnerName: "Contoso.Finance",
-                  authorizationExpirationTimeInUtc: "2024-01-01T00:00:00Z",
-                },
-                #{
-                  partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
-                  partnerName: "fabrikam.HR",
-                  authorizationExpirationTimeInUtc: "2024-01-01T00:00:00Z",
-                },
-              ],
-            },
+            partnerAuthorization: partnerAuthorization,
           },
           location: "westus2",
           tags: #{
             tag1: "value1",
             tag2: "value2",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerConfigurations/examplePartnerConfiguration",
+          id: partnerConfigurationId,
           name: "examplePartnerConfiguration",
           type: "Microsoft.EventGrid/partnerConfigurations",
         },
@@ -11054,7 +9211,7 @@ import "./main.tsp";
     title: "PartnerConfigurations Delete",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
       },
     },
@@ -11077,7 +9234,7 @@ import "./main.tsp";
     since: "2023-06-01-preview",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
       },
     },
@@ -11085,19 +9242,7 @@ import "./main.tsp";
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -11109,7 +9254,7 @@ import "./main.tsp";
     title: "PartnerConfigurations Get",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
       },
     },
@@ -11118,28 +9263,14 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           properties: #{
-            partnerAuthorization: #{
-              defaultMaximumExpirationTimeInDays: 10,
-              authorizedPartnersList: #[
-                #{
-                  partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
-                  partnerName: "Contoso.Finance",
-                  authorizationExpirationTimeInUtc: "2024-01-01T00:00:00Z",
-                },
-                #{
-                  partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
-                  partnerName: "fabrikam.HR",
-                  authorizationExpirationTimeInUtc: "2024-01-01T00:00:00Z",
-                },
-              ],
-            },
+            partnerAuthorization: partnerAuthorization,
           },
           location: "westus2",
           tags: #{
             tag1: "value1",
             tag2: "value2",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerConfigurations/examplePartnerConfiguration",
+          id: partnerConfigurationId,
           name: "examplePartnerConfiguration",
           type: "Microsoft.EventGrid/partnerConfigurations",
         },
@@ -11152,7 +9283,7 @@ import "./main.tsp";
     title: "PartnerConfigurations ListByResourceGroup",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
       },
     },
@@ -11163,28 +9294,14 @@ import "./main.tsp";
           value: #[
             #{
               properties: #{
-                partnerAuthorization: #{
-                  defaultMaximumExpirationTimeInDays: 10,
-                  authorizedPartnersList: #[
-                    #{
-                      partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
-                      partnerName: "Contoso.Finance",
-                      authorizationExpirationTimeInUtc: "2024-01-01T00:00:00Z",
-                    },
-                    #{
-                      partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
-                      partnerName: "fabrikam.HR",
-                      authorizationExpirationTimeInUtc: "2024-01-01T00:00:00Z",
-                    },
-                  ],
-                },
+                partnerAuthorization: partnerAuthorization,
               },
               location: "westus2",
               tags: #{
                 tag1: "value1",
                 tag2: "value2",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerConfigurations/examplePartnerConfiguration",
+              id: partnerConfigurationId,
               name: "examplePartnerConfiguration",
               type: "Microsoft.EventGrid/partnerConfigurations",
             },
@@ -11199,7 +9316,7 @@ import "./main.tsp";
     title: "PartnerConfigurations ListBySubscription",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
       },
     },
     responses: #[
@@ -11209,28 +9326,14 @@ import "./main.tsp";
           value: #[
             #{
               properties: #{
-                partnerAuthorization: #{
-                  defaultMaximumExpirationTimeInDays: 10,
-                  authorizedPartnersList: #[
-                    #{
-                      partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
-                      partnerName: "Contoso.Finance",
-                      authorizationExpirationTimeInUtc: "2024-01-01T00:00:00Z",
-                    },
-                    #{
-                      partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
-                      partnerName: "fabrikam.HR",
-                      authorizationExpirationTimeInUtc: "2024-01-01T00:00:00Z",
-                    },
-                  ],
-                },
+                partnerAuthorization: partnerAuthorization,
               },
               location: "westus2",
               tags: #{
                 tag1: "value1",
                 tag2: "value2",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerConfigurations/examplePartnerConfiguration",
+              id: partnerConfigurationId,
               name: "examplePartnerConfiguration",
               type: "Microsoft.EventGrid/partnerConfigurations",
             },
@@ -11245,14 +9348,10 @@ import "./main.tsp";
     title: "PartnerConfigurations UnauthorizePartner",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
       },
-      body: #{
-        partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
-        partnerName: "Contoso.Finance",
-        authorizationExpirationTimeInUtc: "2024-01-01T00:00:00Z",
-      },
+      body: authorizedPartnersList,
     },
     responses: #[
       #{
@@ -11263,9 +9362,9 @@ import "./main.tsp";
               defaultMaximumExpirationTimeInDays: 10,
               authorizedPartnersList: #[
                 #{
-                  partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
+                  partnerRegistrationImmutableId: partnerRegistrationImmutableId,
                   partnerName: "fabrikam.HR",
-                  authorizationExpirationTimeInUtc: "2024-01-01T00:00:00Z",
+                  authorizationExpirationTimeInUtc: exampleTimestamp,
                 },
               ],
             },
@@ -11275,7 +9374,7 @@ import "./main.tsp";
             tag1: "value1",
             tag2: "value2",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerConfigurations/examplePartnerConfiguration",
+          id: partnerConfigurationId,
           name: "examplePartnerConfiguration",
           type: "Microsoft.EventGrid/partnerConfigurations",
         },
@@ -11288,7 +9387,7 @@ import "./main.tsp";
     title: "PartnerConfigurations Update",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
       },
       body: #{
@@ -11309,15 +9408,11 @@ import "./main.tsp";
             partnerAuthorization: #{
               defaultMaximumExpirationTimeInDays: 100,
               authorizedPartnersList: #[
+                authorizedPartnersList,
                 #{
-                  partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
-                  partnerName: "Contoso.Finance",
-                  authorizationExpirationTimeInUtc: "2024-01-01T00:00:00Z",
-                },
-                #{
-                  partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
+                  partnerRegistrationImmutableId: partnerRegistrationImmutableId,
                   partnerName: "fabrikam.HR",
-                  authorizationExpirationTimeInUtc: "2024-01-01T00:00:00Z",
+                  authorizationExpirationTimeInUtc: exampleTimestamp,
                 },
               ],
             },
@@ -11327,7 +9422,7 @@ import "./main.tsp";
             tag1: "value11",
             tag2: "value22",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerConfigurations/examplePartnerConfiguration",
+          id: partnerConfigurationId,
           name: "examplePartnerConfiguration",
           type: "Microsoft.EventGrid/partnerConfigurations",
         },
@@ -11339,15 +9434,11 @@ import "./main.tsp";
             partnerAuthorization: #{
               defaultMaximumExpirationTimeInDays: 100,
               authorizedPartnersList: #[
+                authorizedPartnersList,
                 #{
-                  partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
-                  partnerName: "Contoso.Finance",
-                  authorizationExpirationTimeInUtc: "2024-01-01T00:00:00Z",
-                },
-                #{
-                  partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
+                  partnerRegistrationImmutableId: partnerRegistrationImmutableId,
                   partnerName: "fabrikam.HR",
-                  authorizationExpirationTimeInUtc: "2024-01-01T00:00:00Z",
+                  authorizationExpirationTimeInUtc: exampleTimestamp,
                 },
               ],
             },
@@ -11357,7 +9448,7 @@ import "./main.tsp";
             tag1: "value11",
             tag2: "value22",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerConfigurations/examplePartnerConfiguration",
+          id: partnerConfigurationId,
           name: "examplePartnerConfiguration",
           type: "Microsoft.EventGrid/partnerConfigurations",
         },
@@ -11369,26 +9460,22 @@ import "./main.tsp";
   #{
     title: "PartnerDestinations Activate",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerDestinationName: "examplePartnerDestination",
-      },
+      path: partnerDestinationPath,
     },
     responses: #[
       #{
         statusCode: 200,
         body: #{
           properties: #{
-            endpointServiceContext: "ContosoCorp.Accounts.User1",
+            endpointServiceContext: source,
             provisioningState: "Succeeded",
             activationState: "Activated",
             endpointBaseUrl: "https://somepartnerhostname",
-            messageForActivation: "Some message to the approver",
+            messageForActivation: messageForActivation,
           },
           location: "westus2",
           tags: null,
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestination",
+          id: partnerDestinationId,
           name: "examplePartnerDestination",
           type: "Microsoft.EventGrid/partnerDestinations",
         },
@@ -11400,11 +9487,7 @@ import "./main.tsp";
   #{
     title: "PartnerDestinations CreateOrUpdate",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerDestinationName: "examplePartnerDestination",
-      },
+      path: partnerDestinationPath,
       body: #{
         tag1: "value1",
         tag2: "value2",
@@ -11415,10 +9498,10 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           properties: #{
-            partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
+            partnerRegistrationImmutableId: partnerRegistrationImmutableId,
             provisioningState: "Succeeded",
             endpointServiceContext: "string",
-            expirationTimeIfNotActivatedUtc: "2024-01-01T00:00:00Z",
+            expirationTimeIfNotActivatedUtc: exampleTimestamp,
             activationState: "NeverActivated",
             endpointBaseUrl: "https://www.example/endpoint",
             messageForActivation: "Sample Activation message",
@@ -11428,7 +9511,7 @@ import "./main.tsp";
             tag1: "value1",
             tag2: "value2",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestination",
+          id: partnerDestinationId,
           name: "examplePartnerDestination",
           type: "Microsoft.EventGrid/partnerDestinations",
         },
@@ -11437,10 +9520,10 @@ import "./main.tsp";
         statusCode: 201,
         body: #{
           properties: #{
-            partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
+            partnerRegistrationImmutableId: partnerRegistrationImmutableId,
             provisioningState: "Succeeded",
             endpointServiceContext: "string",
-            expirationTimeIfNotActivatedUtc: "2024-01-01T00:00:00Z",
+            expirationTimeIfNotActivatedUtc: exampleTimestamp,
             activationState: "NeverActivated",
             endpointBaseUrl: "https://www.example/endpoint",
             messageForActivation: "Sample Activation message",
@@ -11450,7 +9533,7 @@ import "./main.tsp";
             tag1: "value1",
             tag2: "value2",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestination",
+          id: partnerDestinationId,
           name: "examplePartnerDestination",
           type: "Microsoft.EventGrid/partnerDestinations",
         },
@@ -11462,11 +9545,7 @@ import "./main.tsp";
   #{
     title: "PartnerDestinations Delete",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerDestinationName: "examplePartnerDestination",
-      },
+      path: partnerDestinationPath,
     },
     responses: #[
       #{
@@ -11486,29 +9565,13 @@ import "./main.tsp";
     title: "PartnerDestinations Delete",
     since: "2023-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerDestinationName: "examplePartnerDestination",
-      },
+      path: partnerDestinationPath,
     },
     responses: #[
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -11519,27 +9582,23 @@ import "./main.tsp";
   #{
     title: "PartnerDestinations Get",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerDestinationName: "examplePartnerDestination",
-      },
+      path: partnerDestinationPath,
     },
     responses: #[
       #{
         statusCode: 200,
         body: #{
           properties: #{
-            endpointServiceContext: "ContosoCorp.Accounts.User1",
+            endpointServiceContext: source,
             provisioningState: "Succeeded",
             activationState: "NeverActivated",
-            expirationTimeIfNotActivatedUtc: "2024-01-01T00:00:00Z",
+            expirationTimeIfNotActivatedUtc: exampleTimestamp,
             endpointBaseUrl: "https://somepartnerhostname",
-            messageForActivation: "Some message to the approver",
+            messageForActivation: messageForActivation,
           },
           location: "westus2",
           tags: null,
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestination",
+          id: partnerDestinationId,
           name: "examplePartnerDestination",
           type: "Microsoft.EventGrid/partnerDestinations",
         },
@@ -11552,7 +9611,7 @@ import "./main.tsp";
     title: "PartnerDestinations ListByResourceGroup",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
       },
     },
@@ -11563,16 +9622,16 @@ import "./main.tsp";
           value: #[
             #{
               properties: #{
-                endpointServiceContext: "ContosoCorp.Accounts.User1",
+                endpointServiceContext: source,
                 provisioningState: "Succeeded",
                 activationState: "NeverActivated",
-                expirationTimeIfNotActivatedUtc: "2024-01-01T00:00:00Z",
+                expirationTimeIfNotActivatedUtc: exampleTimestamp,
                 endpointBaseUrl: "https://somepartnerhostname",
-                messageForActivation: "Some message to the approver",
+                messageForActivation: messageForActivation,
               },
               location: "westus2",
               tags: null,
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestination",
+              id: partnerDestinationId,
               name: "examplePartnerDestination",
               type: "Microsoft.EventGrid/partnerDestinations",
             },
@@ -11587,7 +9646,7 @@ import "./main.tsp";
     title: "PartnerDestinations ListBySubscription",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
       },
     },
     responses: #[
@@ -11597,16 +9656,16 @@ import "./main.tsp";
           value: #[
             #{
               properties: #{
-                endpointServiceContext: "ContosoCorp.Accounts.User1",
+                endpointServiceContext: source,
                 provisioningState: "Succeeded",
                 activationState: "NeverActivated",
-                expirationTimeIfNotActivatedUtc: "2024-01-01T00:00:00Z",
+                expirationTimeIfNotActivatedUtc: exampleTimestamp,
                 endpointBaseUrl: "https://somepartnerhostname",
-                messageForActivation: "Some message to the approver",
+                messageForActivation: messageForActivation,
               },
               location: "westus2",
               tags: null,
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestination",
+              id: partnerDestinationId,
               name: "examplePartnerDestination",
               type: "Microsoft.EventGrid/partnerDestinations",
             },
@@ -11620,11 +9679,7 @@ import "./main.tsp";
   #{
     title: "PartnerDestinations Update",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerDestinationName: "examplePartnerDestination",
-      },
+      path: partnerDestinationPath,
       body: #{
         tags: #{
           tag1: "value1",
@@ -11640,19 +9695,19 @@ import "./main.tsp";
         statusCode: 201,
         body: #{
           properties: #{
-            endpointServiceContext: "ContosoCorp.Accounts.User1",
+            endpointServiceContext: source,
             provisioningState: "Succeeded",
             activationState: "NeverActivated",
-            expirationTimeIfNotActivatedUtc: "2024-01-01T00:00:00Z",
+            expirationTimeIfNotActivatedUtc: exampleTimestamp,
             endpointBaseUrl: "https://somepartnerhostname",
-            messageForActivation: "Some message to the approver",
+            messageForActivation: messageForActivation,
           },
           location: "westus2",
           tags: #{
             tag1: "value1",
             tag2: "value2",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestination",
+          id: partnerDestinationId,
           name: "examplePartnerDestination",
           type: "Microsoft.EventGrid/partnerDestinations",
         },
@@ -11665,11 +9720,7 @@ import "./main.tsp";
     title: "PartnerDestinations Update",
     since: "2023-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerDestinationName: "examplePartnerDestination",
-      },
+      path: partnerDestinationPath,
       body: #{
         tags: #{
           tag1: "value1",
@@ -11682,19 +9733,19 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           properties: #{
-            endpointServiceContext: "ContosoCorp.Accounts.User1",
+            endpointServiceContext: source,
             provisioningState: "Succeeded",
             activationState: "NeverActivated",
-            expirationTimeIfNotActivatedUtc: "2024-01-01T00:00:00Z",
+            expirationTimeIfNotActivatedUtc: exampleTimestamp,
             endpointBaseUrl: "https://somepartnerhostname",
-            messageForActivation: "Some message to the approver",
+            messageForActivation: messageForActivation,
           },
           location: "westus2",
           tags: #{
             tag1: "value1",
             tag2: "value2",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestination",
+          id: partnerDestinationId,
           name: "examplePartnerDestination",
           type: "Microsoft.EventGrid/partnerDestinations",
         },
@@ -11703,50 +9754,40 @@ import "./main.tsp";
         statusCode: 201,
         body: #{
           properties: #{
-            endpointServiceContext: "ContosoCorp.Accounts.User1",
+            endpointServiceContext: source,
             provisioningState: "Succeeded",
             activationState: "NeverActivated",
-            expirationTimeIfNotActivatedUtc: "2024-01-01T00:00:00Z",
+            expirationTimeIfNotActivatedUtc: exampleTimestamp,
             endpointBaseUrl: "https://somepartnerhostname",
-            messageForActivation: "Some message to the approver",
+            messageForActivation: messageForActivation,
           },
           location: "westus2",
           tags: #{
             tag1: "value1",
             tag2: "value2",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestination",
+          id: partnerDestinationId,
           name: "examplePartnerDestination",
           type: "Microsoft.EventGrid/partnerDestinations",
         },
       },
       #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
+        ...responses,
         body: #{
           properties: #{
-            endpointServiceContext: "ContosoCorp.Accounts.User1",
+            endpointServiceContext: source,
             provisioningState: "Succeeded",
             activationState: "NeverActivated",
-            expirationTimeIfNotActivatedUtc: "2024-01-01T00:00:00Z",
+            expirationTimeIfNotActivatedUtc: exampleTimestamp,
             endpointBaseUrl: "https://somepartnerhostname",
-            messageForActivation: "Some message to the approver",
+            messageForActivation: messageForActivation,
           },
           location: "westus2",
           tags: #{
             tag1: "value1",
             tag2: "value2",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestination",
+          id: partnerDestinationId,
           name: "examplePartnerDestination",
           type: "Microsoft.EventGrid/partnerDestinations",
         },
@@ -11758,11 +9799,7 @@ import "./main.tsp";
   #{
     title: "PartnerNamespaces CreateOrUpdate",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerNamespaceName: "examplePartnerNamespace",
-      },
+      path: partnerNamespacePath,
       body: #{
         location: "westus2",
         tags: #{
@@ -11770,7 +9807,7 @@ import "./main.tsp";
           tag2: "value2",
         },
         properties: #{
-          partnerRegistrationFullyQualifiedId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/examplePartnerRegistration",
+          partnerRegistrationFullyQualifiedId: partnerRegistrationId,
         },
       },
     },
@@ -11780,7 +9817,7 @@ import "./main.tsp";
         body: #{
           properties: #{
             provisioningState: "Succeeded",
-            partnerRegistrationFullyQualifiedId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/examplePartnerRegistration",
+            partnerRegistrationFullyQualifiedId: partnerRegistrationId,
             endpoint: "https://examplePartnerNamespaceName.centraluseuap-1.eventgrid.azure.net/api/events",
           },
           location: "westus2",
@@ -11788,7 +9825,7 @@ import "./main.tsp";
             key1: "value1",
             key2: "value2",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespace",
+          id: partnerNamespaceId,
           name: "examplePartnerNamespace",
           type: "Microsoft.EventGrid/partnerNamespaces",
         },
@@ -11800,11 +9837,7 @@ import "./main.tsp";
   #{
     title: "PartnerNamespaces Delete",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerNamespaceName: "examplePartnerNamespace",
-      },
+      path: partnerNamespacePath,
     },
     responses: #[
       #{
@@ -11824,29 +9857,13 @@ import "./main.tsp";
     title: "PartnerNamespaces Delete",
     since: "2023-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerNamespaceName: "examplePartnerNamespace",
-      },
+      path: partnerNamespacePath,
     },
     responses: #[
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -11857,11 +9874,7 @@ import "./main.tsp";
   #{
     title: "PartnerNamespaces Get",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerNamespaceName: "examplePartnerNamespace",
-      },
+      path: partnerNamespacePath,
     },
     responses: #[
       #{
@@ -11869,7 +9882,7 @@ import "./main.tsp";
         body: #{
           properties: #{
             provisioningState: "Succeeded",
-            partnerRegistrationFullyQualifiedId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/examplePartnerRegistration",
+            partnerRegistrationFullyQualifiedId: partnerRegistrationId,
             endpoint: "https://examplePartnerNamespaceName.centraluseuap-1.eventgrid.azure.net/api/events",
           },
           location: "westus2",
@@ -11878,7 +9891,7 @@ import "./main.tsp";
             key2: "value2",
             key3: "value3",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespace",
+          id: partnerNamespaceId,
           name: "examplePartnerNamespace",
           type: "Microsoft.EventGrid/partnerNamespaces",
         },
@@ -11891,7 +9904,7 @@ import "./main.tsp";
     title: "PartnerNamespaces ListByResourceGroup",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
       },
     },
@@ -11903,7 +9916,7 @@ import "./main.tsp";
             #{
               properties: #{
                 provisioningState: "Succeeded",
-                partnerRegistrationFullyQualifiedId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/examplePartnerRegistration",
+                partnerRegistrationFullyQualifiedId: partnerRegistrationId,
                 endpoint: "https://partnernamespace123.centraluseuap-1.eventgrid.azure.net/api/events",
               },
               location: "westus2",
@@ -11912,7 +9925,7 @@ import "./main.tsp";
                 key2: "value2",
                 key3: "value3",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespace",
+              id: partnerNamespaceId,
               name: "examplePartnerNamespace",
               type: "Microsoft.EventGrid/partnerNamespaces",
             },
@@ -11927,7 +9940,7 @@ import "./main.tsp";
     title: "PartnerNamespaces ListBySubscription",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
       },
     },
     responses: #[
@@ -11938,7 +9951,7 @@ import "./main.tsp";
             #{
               properties: #{
                 provisioningState: "Succeeded",
-                partnerRegistrationFullyQualifiedId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/examplePartnerRegistration",
+                partnerRegistrationFullyQualifiedId: partnerRegistrationId,
                 endpoint: "https://partnernamespace123.centraluseuap-1.eventgrid.azure.net/api/events",
               },
               location: "westus2",
@@ -11947,7 +9960,7 @@ import "./main.tsp";
                 key2: "value2",
                 key3: "value3",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespace",
+              id: partnerNamespaceId,
               name: "examplePartnerNamespace",
               type: "Microsoft.EventGrid/partnerNamespaces",
             },
@@ -11961,11 +9974,7 @@ import "./main.tsp";
   #{
     title: "PartnerNamespaces ListSharedAccessKeys",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerNamespaceName: "examplePartnerNamespace",
-      },
+      path: partnerNamespacePath,
     },
     responses: #[
       #{
@@ -11983,11 +9992,7 @@ import "./main.tsp";
     title: "PartnerNamespaces ListSharedAccessKeys",
     since: "2020-10-15-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerNamespaceName: "examplePartnerNamespace",
-      },
+      path: partnerNamespacePath,
     },
     responses: #[
       #{
@@ -12004,11 +10009,7 @@ import "./main.tsp";
   #{
     title: "PartnerNamespaces RegenerateKey",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerNamespaceName: "examplePartnerNamespace",
-      },
+      path: partnerNamespacePath,
       body: #{
         keyName: "key1",
       },
@@ -12029,11 +10030,7 @@ import "./main.tsp";
     title: "PartnerNamespaces RegenerateKey",
     since: "2020-10-15-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerNamespaceName: "examplePartnerNamespace",
-      },
+      path: partnerNamespacePath,
       body: #{
         keyName: "key1",
       },
@@ -12053,11 +10050,7 @@ import "./main.tsp";
   #{
     title: "PartnerNamespaces Update",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerNamespaceName: "examplePartnerNamespace",
-      },
+      path: partnerNamespacePath,
       body: #{
         tags: #{
           tag1: "value1",
@@ -12073,14 +10066,14 @@ import "./main.tsp";
         body: #{
           properties: #{
             provisioningState: "Succeeded",
-            partnerRegistrationFullyQualifiedId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/examplePartnerRegistration",
+            partnerRegistrationFullyQualifiedId: partnerRegistrationId,
             endpoint: "https://examplePartnerNamespaceName.centraluseuap-1.eventgrid.azure.net/api/events",
           },
           location: "westus2",
           tags: #{
             key1: "value1",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespace",
+          id: partnerNamespaceId,
           name: "examplePartnerNamespace",
           type: "Microsoft.EventGrid/partnerNamespaces",
         },
@@ -12092,21 +10085,17 @@ import "./main.tsp";
   #{
     title: "PartnerRegistrations CreateOrUpdate",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerRegistrationName: "examplePartnerRegistration",
-      },
+      path: partnerRegistrationPath,
       body: #{
         properties: #{
           partnerName: "ContosoCorp",
-          partnerResourceTypeName: "ContosoCorp.Accounts",
-          partnerResourceTypeDisplayName: "ContocoCorp Accounts DisplayName Text",
-          partnerResourceTypeDescription: "ContocoCorp Accounts Description Text",
+          partnerResourceTypeName: partnerResourceTypeName,
+          partnerResourceTypeDisplayName: partnerResourceTypeDisplayName,
+          partnerResourceTypeDescription: partnerResourceTypeDescription,
           setupUri: "https://www.example.com/setup.html",
-          logoUri: "https://www.example.com/logo.png",
+          logoUri: logoUri,
           authorizedAzureSubscriptionIds: #[
-            "d48566a8-2428-4a6c-8347-9675d09fb851",
+            authorizedAzureSubscriptionIds,
           ],
         },
         location: "westus2",
@@ -12124,14 +10113,14 @@ import "./main.tsp";
           properties: #{
             provisioningState: "Succeeded",
             partnerName: "ContosoCorp",
-            partnerResourceTypeName: "ContosoCorp.Accounts",
-            partnerResourceTypeDisplayName: "ContocoCorp Accounts DisplayName Text",
-            partnerResourceTypeDescription: "ContocoCorp Accounts Description Text",
+            partnerResourceTypeName: partnerResourceTypeName,
+            partnerResourceTypeDisplayName: partnerResourceTypeDisplayName,
+            partnerResourceTypeDescription: partnerResourceTypeDescription,
             setupUri: "https://www.example.com/setup.html",
-            logoUri: "https://www.example.com/logo.png",
+            logoUri: logoUri,
             visibilityState: "Hidden",
             authorizedAzureSubscriptionIds: #[
-              "d48566a8-2428-4a6c-8347-9675d09fb851",
+              authorizedAzureSubscriptionIds,
             ],
           },
           location: "westus2",
@@ -12140,7 +10129,7 @@ import "./main.tsp";
             key2: "Value2",
             key3: "Value3",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/examplePartnerRegistration",
+          id: partnerRegistrationId,
           name: "examplePartnerRegistration",
           type: "Microsoft.EventGrid/partnerRegistrations",
         },
@@ -12151,14 +10140,14 @@ import "./main.tsp";
           properties: #{
             provisioningState: "Succeeded",
             partnerName: "ContosoCorp",
-            partnerResourceTypeName: "ContosoCorp.Accounts",
-            partnerResourceTypeDisplayName: "ContocoCorp Accounts DisplayName Text",
-            partnerResourceTypeDescription: "ContocoCorp Accounts Description Text",
+            partnerResourceTypeName: partnerResourceTypeName,
+            partnerResourceTypeDisplayName: partnerResourceTypeDisplayName,
+            partnerResourceTypeDescription: partnerResourceTypeDescription,
             setupUri: "https://www.example.com/setup.html",
-            logoUri: "https://www.example.com/logo.png",
+            logoUri: logoUri,
             visibilityState: "Hidden",
             authorizedAzureSubscriptionIds: #[
-              "d48566a8-2428-4a6c-8347-9675d09fb851",
+              authorizedAzureSubscriptionIds,
             ],
           },
           location: "westus2",
@@ -12167,7 +10156,7 @@ import "./main.tsp";
             key2: "Value2",
             key3: "Value3",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/examplePartnerRegistration",
+          id: partnerRegistrationId,
           name: "examplePartnerRegistration",
           type: "Microsoft.EventGrid/partnerRegistrations",
         },
@@ -12180,11 +10169,7 @@ import "./main.tsp";
     title: "PartnerRegistrations CreateOrUpdate",
     since: "2022-06-15",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerRegistrationName: "examplePartnerRegistration",
-      },
+      path: partnerRegistrationPath,
       body: #{
         location: "westus2",
         tags: #{
@@ -12200,7 +10185,7 @@ import "./main.tsp";
         body: #{
           properties: #{
             provisioningState: "Succeeded",
-            partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
+            partnerRegistrationImmutableId: partnerRegistrationImmutableId,
           },
           location: "westus2",
           tags: #{
@@ -12208,7 +10193,7 @@ import "./main.tsp";
             key2: "Value2",
             key3: "Value3",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/examplePartnerRegistration",
+          id: partnerRegistrationId,
           name: "examplePartnerRegistration",
           type: "Microsoft.EventGrid/partnerRegistrations",
         },
@@ -12218,7 +10203,7 @@ import "./main.tsp";
         body: #{
           properties: #{
             provisioningState: "Succeeded",
-            partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
+            partnerRegistrationImmutableId: partnerRegistrationImmutableId,
           },
           location: "westus2",
           tags: #{
@@ -12226,7 +10211,7 @@ import "./main.tsp";
             key2: "Value2",
             key3: "Value3",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/examplePartnerRegistration",
+          id: partnerRegistrationId,
           name: "examplePartnerRegistration",
           type: "Microsoft.EventGrid/partnerRegistrations",
         },
@@ -12238,11 +10223,7 @@ import "./main.tsp";
   #{
     title: "PartnerRegistrations Delete",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerRegistrationName: "examplePartnerRegistration",
-      },
+      path: partnerRegistrationPath,
     },
     responses: #[
       #{
@@ -12262,29 +10243,13 @@ import "./main.tsp";
     title: "PartnerRegistrations Delete",
     since: "2023-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerRegistrationName: "examplePartnerRegistration",
-      },
+      path: partnerRegistrationPath,
     },
     responses: #[
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -12295,11 +10260,7 @@ import "./main.tsp";
   #{
     title: "PartnerRegistrations Get",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerRegistrationName: "examplePartnerRegistration",
-      },
+      path: partnerRegistrationPath,
     },
     responses: #[
       #{
@@ -12308,11 +10269,11 @@ import "./main.tsp";
           properties: #{
             provisioningState: "Succeeded",
             partnerName: "ContosoCorp",
-            partnerResourceTypeName: "ContosoCorp.Accounts",
-            partnerResourceTypeDisplayName: "ContocoCorp Accounts DisplayName Text",
-            partnerResourceTypeDescription: "ContocoCorp Accounts Description Text",
+            partnerResourceTypeName: partnerResourceTypeName,
+            partnerResourceTypeDisplayName: partnerResourceTypeDisplayName,
+            partnerResourceTypeDescription: partnerResourceTypeDescription,
             setupUri: "https://www.example.com/setup.html",
-            logoUri: "https://www.example.com/logo.png",
+            logoUri: logoUri,
             visibilityState: "Hidden",
             authorizedAzureSubscriptionIds: #[
               "348566c8-1238-3a6c-83bb-6575d12fb00f",
@@ -12324,7 +10285,7 @@ import "./main.tsp";
             key2: "Value2",
             key3: "Value3",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/examplePartnerRegistration",
+          id: partnerRegistrationId,
           name: "examplePartnerRegistration",
           type: "Microsoft.EventGrid/partnerRegistrations",
         },
@@ -12337,11 +10298,7 @@ import "./main.tsp";
     title: "PartnerRegistrations Get",
     since: "2022-06-15",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerRegistrationName: "examplePartnerRegistration",
-      },
+      path: partnerRegistrationPath,
     },
     responses: #[
       #{
@@ -12349,7 +10306,7 @@ import "./main.tsp";
         body: #{
           properties: #{
             provisioningState: "Succeeded",
-            partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
+            partnerRegistrationImmutableId: partnerRegistrationImmutableId,
           },
           location: "westus2",
           tags: #{
@@ -12357,7 +10314,7 @@ import "./main.tsp";
             key2: "Value2",
             key3: "Value3",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/examplePartnerRegistration",
+          id: partnerRegistrationId,
           name: "examplePartnerRegistration",
           type: "Microsoft.EventGrid/partnerRegistrations",
         },
@@ -12378,14 +10335,14 @@ import "./main.tsp";
               properties: #{
                 provisioningState: "Succeeded",
                 partnerName: "ContosoCorp",
-                partnerResourceTypeName: "ContosoCorp.Accounts",
-                partnerResourceTypeDisplayName: "ContocoCorp Accounts DisplayName Text",
-                partnerResourceTypeDescription: "ContocoCorp Accounts Description Text",
+                partnerResourceTypeName: partnerResourceTypeName,
+                partnerResourceTypeDisplayName: partnerResourceTypeDisplayName,
+                partnerResourceTypeDescription: partnerResourceTypeDescription,
                 setupUri: "https://www.example.com/setup.html",
-                logoUri: "https://www.example.com/logo.png",
+                logoUri: logoUri,
                 visibilityState: "Hidden",
                 authorizedAzureSubscriptionIds: #[
-                  "d48566a8-2428-4a6c-8347-9675d09fb851",
+                  authorizedAzureSubscriptionIds,
                 ],
               },
               location: "westus2",
@@ -12394,7 +10351,7 @@ import "./main.tsp";
                 key2: "Value2",
                 key3: "Value3",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/examplePartnerRegistration",
+              id: partnerRegistrationId,
               name: "examplePartnerRegistration",
               type: "Microsoft.EventGrid/partnerRegistrations",
             },
@@ -12409,7 +10366,7 @@ import "./main.tsp";
     title: "PartnerRegistrations ListByResourceGroup",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
       },
     },
@@ -12422,14 +10379,14 @@ import "./main.tsp";
               properties: #{
                 provisioningState: "Succeeded",
                 partnerName: "ContosoCorp",
-                partnerResourceTypeName: "ContosoCorp.Accounts",
-                partnerResourceTypeDisplayName: "ContocoCorp Accounts DisplayName Text",
-                partnerResourceTypeDescription: "ContocoCorp Accounts Description Text",
+                partnerResourceTypeName: partnerResourceTypeName,
+                partnerResourceTypeDisplayName: partnerResourceTypeDisplayName,
+                partnerResourceTypeDescription: partnerResourceTypeDescription,
                 setupUri: "https://www.example.com/setup.html",
-                logoUri: "https://www.example.com/logo.png",
+                logoUri: logoUri,
                 visibilityState: "Hidden",
                 authorizedAzureSubscriptionIds: #[
-                  "d48566a8-2428-4a6c-8347-9675d09fb851",
+                  authorizedAzureSubscriptionIds,
                 ],
               },
               location: "westus2",
@@ -12438,7 +10395,7 @@ import "./main.tsp";
                 key2: "Value2",
                 key3: "Value3",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/examplePartnerRegistration",
+              id: partnerRegistrationId,
               name: "examplePartnerRegistration",
               type: "Microsoft.EventGrid/partnerRegistrations",
             },
@@ -12454,7 +10411,7 @@ import "./main.tsp";
     since: "2022-06-15",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
       },
     },
@@ -12466,7 +10423,7 @@ import "./main.tsp";
             #{
               properties: #{
                 provisioningState: "Succeeded",
-                partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
+                partnerRegistrationImmutableId: partnerRegistrationImmutableId,
               },
               location: "westus2",
               tags: #{
@@ -12474,7 +10431,7 @@ import "./main.tsp";
                 key2: "Value2",
                 key3: "Value3",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/examplePartnerRegistration",
+              id: partnerRegistrationId,
               name: "examplePartnerRegistration",
               type: "Microsoft.EventGrid/partnerRegistrations",
             },
@@ -12489,7 +10446,7 @@ import "./main.tsp";
     title: "PartnerRegistrations ListBySubscription",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
       },
     },
     responses: #[
@@ -12501,14 +10458,14 @@ import "./main.tsp";
               properties: #{
                 provisioningState: "Succeeded",
                 partnerName: "ContosoCorp",
-                partnerResourceTypeName: "ContosoCorp.Accounts",
-                partnerResourceTypeDisplayName: "ContocoCorp Accounts DisplayName Text",
-                partnerResourceTypeDescription: "ContocoCorp Accounts Description Text",
+                partnerResourceTypeName: partnerResourceTypeName,
+                partnerResourceTypeDisplayName: partnerResourceTypeDisplayName,
+                partnerResourceTypeDescription: partnerResourceTypeDescription,
                 setupUri: "https://www.example.com/setup.html",
-                logoUri: "https://www.example.com/logo.png",
+                logoUri: logoUri,
                 visibilityState: "Hidden",
                 authorizedAzureSubscriptionIds: #[
-                  "d48566a8-2428-4a6c-8347-9675d09fb851",
+                  authorizedAzureSubscriptionIds,
                 ],
               },
               location: "westus2",
@@ -12517,7 +10474,7 @@ import "./main.tsp";
                 key2: "Value2",
                 key3: "Value3",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/examplePartnerRegistration",
+              id: partnerRegistrationId,
               name: "examplePartnerRegistration",
               type: "Microsoft.EventGrid/partnerRegistrations",
             },
@@ -12533,7 +10490,7 @@ import "./main.tsp";
     since: "2022-06-15",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
       },
     },
     responses: #[
@@ -12544,7 +10501,7 @@ import "./main.tsp";
             #{
               properties: #{
                 provisioningState: "Succeeded",
-                partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
+                partnerRegistrationImmutableId: partnerRegistrationImmutableId,
               },
               location: "westus2",
               tags: #{
@@ -12552,7 +10509,7 @@ import "./main.tsp";
                 key2: "Value2",
                 key3: "Value3",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/examplePartnerRegistration",
+              id: partnerRegistrationId,
               name: "examplePartnerRegistration",
               type: "Microsoft.EventGrid/partnerRegistrations",
             },
@@ -12566,11 +10523,7 @@ import "./main.tsp";
   #{
     title: "PartnerRegistrations Update",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerRegistrationName: "examplePartnerRegistration",
-      },
+      path: partnerRegistrationPath,
       body: #{
         setupUri: "https://www.example.com/newsetup.html",
         logoUri: "https://www.example.com/newlogo.png",
@@ -12586,21 +10539,21 @@ import "./main.tsp";
           properties: #{
             provisioningState: "Succeeded",
             partnerName: "ContosoCorp",
-            partnerResourceTypeName: "ContosoCorp.Accounts",
-            partnerResourceTypeDisplayName: "ContocoCorp Accounts DisplayName Text",
-            partnerResourceTypeDescription: "ContocoCorp Accounts Description Text",
+            partnerResourceTypeName: partnerResourceTypeName,
+            partnerResourceTypeDisplayName: partnerResourceTypeDisplayName,
+            partnerResourceTypeDescription: partnerResourceTypeDescription,
             setupUri: "https://www.example.com/newsetup.html",
             logoUri: "https://www.example.com/newlogo.png",
             visibilityState: "Hidden",
             authorizedAzureSubscriptionIds: #[
-              "d48566a8-2428-4a6c-8347-9675d09fb851",
+              authorizedAzureSubscriptionIds,
             ],
           },
           location: "westus2",
           tags: #{
             key1: "value1",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/examplePartnerRegistration",
+          id: partnerRegistrationId,
           name: "examplePartnerRegistration",
           type: "Microsoft.EventGrid/partnerRegistrations",
         },
@@ -12613,11 +10566,7 @@ import "./main.tsp";
     title: "PartnerRegistrations Update",
     since: "2022-06-15",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerRegistrationName: "examplePartnerRegistration",
-      },
+      path: partnerRegistrationPath,
       body: #{
         tags: #{
           tag1: "value1",
@@ -12634,14 +10583,14 @@ import "./main.tsp";
         body: #{
           properties: #{
             provisioningState: "Succeeded",
-            partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
+            partnerRegistrationImmutableId: partnerRegistrationImmutableId,
           },
           location: "westus2",
           tags: #{
             tag1: "value1",
             tag2: "value2",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/examplePartnerRegistration",
+          id: partnerRegistrationId,
           name: "examplePartnerRegistration",
           type: "Microsoft.EventGrid/partnerRegistrations",
         },
@@ -12654,11 +10603,7 @@ import "./main.tsp";
     title: "PartnerRegistrations Update",
     since: "2023-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerRegistrationName: "examplePartnerRegistration",
-      },
+      path: partnerRegistrationPath,
       body: #{
         tags: #{
           NewKey: "NewValue",
@@ -12674,10 +10619,10 @@ import "./main.tsp";
         body: #{
           properties: #{
             provisioningState: "Succeeded",
-            partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
+            partnerRegistrationImmutableId: partnerRegistrationImmutableId,
           },
           location: "westus2",
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/examplePartnerRegistration",
+          id: partnerRegistrationId,
           name: "examplePartnerRegistration",
           type: "Microsoft.EventGrid/partnerRegistrations",
           tags: #{
@@ -12693,11 +10638,7 @@ import "./main.tsp";
     title: "PartnerRegistrations Update",
     since: "2025-02-15",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerRegistrationName: "examplePartnerRegistration",
-      },
+      path: partnerRegistrationPath,
       body: #{
         tags: #{
           tag1: "value1",
@@ -12714,14 +10655,14 @@ import "./main.tsp";
         body: #{
           properties: #{
             provisioningState: "Succeeded",
-            partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
+            partnerRegistrationImmutableId: partnerRegistrationImmutableId,
           },
           location: "westus2",
           tags: #{
             tag1: "value1",
             tag2: "value2",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/examplePartnerRegistration",
+          id: partnerRegistrationId,
           name: "examplePartnerRegistration",
           type: "Microsoft.EventGrid/partnerRegistrations",
         },
@@ -12734,11 +10675,7 @@ import "./main.tsp";
     title: "PartnerRegistrations Update",
     since: "2025-04-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerRegistrationName: "examplePartnerRegistration",
-      },
+      path: partnerRegistrationPath,
       body: #{
         tags: #{
           NewKey: "NewValue",
@@ -12754,10 +10691,10 @@ import "./main.tsp";
         body: #{
           properties: #{
             provisioningState: "Succeeded",
-            partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
+            partnerRegistrationImmutableId: partnerRegistrationImmutableId,
           },
           location: "westus2",
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/examplePartnerRegistration",
+          id: partnerRegistrationId,
           name: "examplePartnerRegistration",
           type: "Microsoft.EventGrid/partnerRegistrations",
           tags: #{
@@ -12773,9 +10710,7 @@ import "./main.tsp";
     title: "PartnerTopicEventSubscriptions CreateOrUpdate",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerTopicName: "examplePartnerTopic",
+        ...partnerTopicPath,
         eventSubscriptionName: "exampleEventSubscription",
       },
       body: #{
@@ -12783,14 +10718,10 @@ import "./main.tsp";
           destination: #{
             endpointType: "WebHook",
             properties: #{
-              endpointUrl: "https://requestb.in/15ksip71",
+              endpointUrl: endpointBaseUrl,
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
+          filter: filter,
         },
       },
     },
@@ -12801,15 +10732,11 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             labels: null,
             eventDeliverySchema: "EventGridSchema",
             retryPolicy: #{
@@ -12817,7 +10744,7 @@ import "./main.tsp";
               eventTimeToLiveInMinutes: 1440,
             },
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerTopics/examplePartnerTopic",
+            topic: partnerTopicId,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerTopics/examplePartnerTopic/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
@@ -12833,9 +10760,7 @@ import "./main.tsp";
     since: "2021-10-15-preview",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerTopicName: "examplePartnerTopic",
+        ...partnerTopicPath,
         eventSubscriptionName: "exampleEventSubscription",
       },
       body: #{
@@ -12843,14 +10768,10 @@ import "./main.tsp";
           destination: #{
             endpointType: "WebHook",
             properties: #{
-              endpointUrl: "https://requestb.in/15ksip71",
+              endpointUrl: endpointBaseUrl,
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
+          filter: filter,
         },
       },
     },
@@ -12861,15 +10782,11 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             labels: null,
             eventDeliverySchema: "EventGridSchema",
             retryPolicy: #{
@@ -12877,7 +10794,7 @@ import "./main.tsp";
               eventTimeToLiveInMinutes: 1440,
             },
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerTopics/examplePartnerTopic",
+            topic: partnerTopicId,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerTopics/examplePartnerTopic/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
@@ -12890,15 +10807,11 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             labels: null,
             eventDeliverySchema: "EventGridSchema",
             retryPolicy: #{
@@ -12906,7 +10819,7 @@ import "./main.tsp";
               eventTimeToLiveInMinutes: 1440,
             },
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerTopics/examplePartnerTopic",
+            topic: partnerTopicId,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerTopics/examplePartnerTopic/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
@@ -12921,9 +10834,7 @@ import "./main.tsp";
     title: "PartnerTopicEventSubscriptions Delete",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerTopicName: "examplePartnerTopic",
+        ...partnerTopicPath,
         eventSubscriptionName: "exampleEventSubscription",
       },
     },
@@ -12946,9 +10857,7 @@ import "./main.tsp";
     since: "2023-06-01-preview",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerTopicName: "examplePartnerTopic",
+        ...partnerTopicPath,
         eventSubscriptionName: "exampleEventSubscription",
       },
     },
@@ -12956,19 +10865,7 @@ import "./main.tsp";
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -12980,9 +10877,7 @@ import "./main.tsp";
     title: "PartnerTopicEventSubscriptions Get",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerTopicName: "examplePartnerTopic",
+        ...partnerTopicPath,
         eventSubscriptionName: "exampleEventSubscription",
       },
     },
@@ -12991,22 +10886,20 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           properties: #{
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerTopics/examplePartnerTopic",
+            topic: partnerTopicId,
             provisioningState: "Succeeded",
             destination: #{
               properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+                resourceId: storageAccountId,
                 queueName: "exampleQueue",
               },
               endpointType: "StorageQueue",
             },
             filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
+              ...filter,
               includedEventTypes: #[
                 "Microsoft.Storage.BlobCreated",
-                "Microsoft.Storage.BlobDeleted",
+                includedEventTypes,
               ],
             },
             labels: #[
@@ -13032,9 +10925,7 @@ import "./main.tsp";
     title: "PartnerTopicEventSubscriptions GetDeliveryAttributes",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerTopicName: "examplePartnerTopic",
+        ...partnerTopicPath,
         eventSubscriptionName: "exampleEventSubscription",
       },
     },
@@ -13055,7 +10946,7 @@ import "./main.tsp";
               name: "header2",
               type: "Dynamic",
               properties: #{
-                sourceField: "data.foo",
+                sourceField: sourceField,
               },
             },
             #{
@@ -13077,9 +10968,7 @@ import "./main.tsp";
     title: "PartnerTopicEventSubscriptions GetFullUrl",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerTopicName: "examplePartnerTopic",
+        ...partnerTopicPath,
         eventSubscriptionName: "exampleEventSubscription",
       },
     },
@@ -13087,7 +10976,7 @@ import "./main.tsp";
       #{
         statusCode: 200,
         body: #{
-          endpointUrl: "https://requestb.in/15ksip71",
+          endpointUrl: endpointBaseUrl,
         },
       },
     ],
@@ -13097,11 +10986,7 @@ import "./main.tsp";
   #{
     title: "PartnerTopicEventSubscriptions ListByPartnerTopic",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerTopicName: "examplePartnerTopic",
-      },
+      path: partnerTopicPath,
     },
     responses: #[
       #{
@@ -13110,11 +10995,11 @@ import "./main.tsp";
           value: #[
             #{
               properties: #{
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerTopics/examplePartnerTopic",
+                topic: partnerTopicId,
                 provisioningState: "Succeeded",
                 destination: #{
                   properties: #{
-                    resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+                    resourceId: storageAccountId,
                     queueName: "exampleQueue",
                   },
                   endpointType: "StorageQueue",
@@ -13136,22 +11021,20 @@ import "./main.tsp";
             },
             #{
               properties: #{
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerTopics/examplePartnerTopic",
+                topic: partnerTopicId,
                 provisioningState: "Succeeded",
                 destination: #{
                   properties: #{
-                    resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+                    resourceId: storageAccountId,
                     queueName: "exampleQueue",
                   },
                   endpointType: "StorageQueue",
                 },
                 filter: #{
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
+                  ...filter,
                   includedEventTypes: #[
                     "Microsoft.Storage.BlobCreated",
-                    "Microsoft.Storage.BlobDeleted",
+                    includedEventTypes,
                   ],
                 },
                 labels: #[
@@ -13179,28 +11062,10 @@ import "./main.tsp";
     title: "PartnerTopicEventSubscriptions Update",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerTopicName: "examplePartnerTopic",
+        ...partnerTopicPath,
         eventSubscriptionName: "exampleEventSubscription",
       },
-      body: #{
-        destination: #{
-          endpointType: "WebHook",
-          properties: #{
-            endpointUrl: "https://requestb.in/15ksip71",
-          },
-        },
-        filter: #{
-          isSubjectCaseSensitive: true,
-          subjectBeginsWith: "existingPrefix",
-          subjectEndsWith: "newSuffix",
-        },
-        labels: #[
-          "label1",
-          "label2",
-        ],
-      },
+      body: body,
     },
     responses: #[
       #{
@@ -13209,7 +11074,7 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
@@ -13228,7 +11093,7 @@ import "./main.tsp";
               eventTimeToLiveInMinutes: 1440,
             },
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerTopics/examplePartnerTopic",
+            topic: partnerTopicId,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerTopics/examplePartnerTopic/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
@@ -13242,24 +11107,20 @@ import "./main.tsp";
   #{
     title: "PartnerTopics Activate",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerTopicName: "examplePartnerTopic",
-      },
+      path: partnerTopicPath,
     },
     responses: #[
       #{
         statusCode: 200,
         body: #{
           properties: #{
-            source: "ContosoCorp.Accounts.User1",
+            source: source,
             provisioningState: "Succeeded",
             activationState: "Activated",
           },
           location: "westus2",
           tags: null,
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerTopics/examplePartnerTopic",
+          id: partnerTopicId,
           name: "examplePartnerTopic",
           type: "Microsoft.EventGrid/partnerTopics",
         },
@@ -13271,11 +11132,7 @@ import "./main.tsp";
   #{
     title: "PartnerTopics CreateOrUpdate",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerTopicName: "examplePartnerTopic",
-      },
+      path: partnerTopicPath,
       body: #{
         tag1: "value1",
         tag2: "value2",
@@ -13286,11 +11143,11 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           properties: #{
-            source: "ContosoCorp.Accounts.User1",
+            source: source,
             provisioningState: "Succeeded",
             activationState: "NeverActivated",
-            partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
-            expirationTimeIfNotActivatedUtc: "2024-01-01T00:00:00Z",
+            partnerRegistrationImmutableId: partnerRegistrationImmutableId,
+            expirationTimeIfNotActivatedUtc: exampleTimestamp,
             partnerTopicFriendlyDescription: "Example description",
             messageForActivation: "Example message for activation",
           },
@@ -13299,7 +11156,7 @@ import "./main.tsp";
             tag1: "value1",
             tag2: "value2",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerTopics/examplePartnerTopic",
+          id: partnerTopicId,
           name: "examplePartnerTopic",
           type: "Microsoft.EventGrid/partnerTopics",
         },
@@ -13308,11 +11165,11 @@ import "./main.tsp";
         statusCode: 201,
         body: #{
           properties: #{
-            source: "ContosoCorp.Accounts.User1",
+            source: source,
             provisioningState: "Succeeded",
             activationState: "NeverActivated",
-            partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
-            expirationTimeIfNotActivatedUtc: "2024-01-01T00:00:00Z",
+            partnerRegistrationImmutableId: partnerRegistrationImmutableId,
+            expirationTimeIfNotActivatedUtc: exampleTimestamp,
             partnerTopicFriendlyDescription: "Example description",
             messageForActivation: "Example message for activation",
           },
@@ -13321,7 +11178,7 @@ import "./main.tsp";
             tag1: "value1",
             tag2: "value2",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerTopics/examplePartnerTopic",
+          id: partnerTopicId,
           name: "examplePartnerTopic",
           type: "Microsoft.EventGrid/partnerTopics",
         },
@@ -13333,24 +11190,20 @@ import "./main.tsp";
   #{
     title: "PartnerTopics Deactivate",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerTopicName: "examplePartnerTopic",
-      },
+      path: partnerTopicPath,
     },
     responses: #[
       #{
         statusCode: 200,
         body: #{
           properties: #{
-            source: "ContosoCorp.Accounts.User1",
+            source: source,
             provisioningState: "Succeeded",
             activationState: "Deactivated",
           },
           location: "westus2",
           tags: null,
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerTopics/examplePartnerTopic",
+          id: partnerTopicId,
           name: "examplePartnerTopic",
           type: "Microsoft.EventGrid/partnerTopics",
         },
@@ -13362,11 +11215,7 @@ import "./main.tsp";
   #{
     title: "PartnerTopics Delete",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerTopicName: "examplePartnerTopic",
-      },
+      path: partnerTopicPath,
     },
     responses: #[
       #{
@@ -13386,29 +11235,13 @@ import "./main.tsp";
     title: "PartnerTopics Delete",
     since: "2023-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerTopicName: "examplePartnerTopic",
-      },
+      path: partnerTopicPath,
     },
     responses: #[
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -13419,24 +11252,20 @@ import "./main.tsp";
   #{
     title: "PartnerTopics Get",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerTopicName: "examplePartnerTopic",
-      },
+      path: partnerTopicPath,
     },
     responses: #[
       #{
         statusCode: 200,
         body: #{
           properties: #{
-            source: "ContosoCorp.Accounts.User1",
+            source: source,
             provisioningState: "Succeeded",
             activationState: "NeverActivated",
           },
           location: "westus2",
           tags: null,
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerTopics/examplePartnerTopic",
+          id: partnerTopicId,
           name: "examplePartnerTopic",
           type: "Microsoft.EventGrid/partnerTopics",
         },
@@ -13449,7 +11278,7 @@ import "./main.tsp";
     title: "PartnerTopics ListByResourceGroup",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
       },
     },
@@ -13460,13 +11289,13 @@ import "./main.tsp";
           value: #[
             #{
               properties: #{
-                source: "ContosoCorp.Accounts.User1",
+                source: source,
                 provisioningState: "Succeeded",
                 activationState: "NeverActivated",
               },
               location: "westus2",
               tags: null,
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerTopics/examplePartnerTopic",
+              id: partnerTopicId,
               name: "examplePartnerTopic",
               type: "Microsoft.EventGrid/partnerTopics",
             },
@@ -13481,7 +11310,7 @@ import "./main.tsp";
     title: "PartnerTopics ListBySubscription",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
       },
     },
     responses: #[
@@ -13491,13 +11320,13 @@ import "./main.tsp";
           value: #[
             #{
               properties: #{
-                source: "ContosoCorp.Accounts.User1",
+                source: source,
                 provisioningState: "Succeeded",
                 activationState: "NeverActivated",
               },
               location: "westus2",
               tags: null,
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerTopics/examplePartnerTopic",
+              id: partnerTopicId,
               name: "examplePartnerTopic",
               type: "Microsoft.EventGrid/partnerTopics",
             },
@@ -13511,11 +11340,7 @@ import "./main.tsp";
   #{
     title: "PartnerTopics Update",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        partnerTopicName: "examplePartnerTopic",
-      },
+      path: partnerTopicPath,
       body: #{
         tags: #{
           tag1: "value1",
@@ -13531,7 +11356,7 @@ import "./main.tsp";
         statusCode: 201,
         body: #{
           properties: #{
-            source: "ContosoCorp.Accounts.User1",
+            source: source,
             provisioningState: "Succeeded",
             activationState: "NeverActivated",
           },
@@ -13540,7 +11365,7 @@ import "./main.tsp";
             tag1: "value1",
             tag2: "value2",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerTopics/examplePartnerTopic",
+          id: partnerTopicId,
           name: "examplePartnerTopic",
           type: "Microsoft.EventGrid/partnerTopics",
         },
@@ -13552,12 +11377,7 @@ import "./main.tsp";
   #{
     title: "PermissionBindings CreateOrUpdate",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-        permissionBindingName: "examplePermissionBinding",
-      },
+      path: permissionBindingPath,
       body: #{
         properties: #{
           topicSpaceName: "exampleTopicSpace",
@@ -13576,7 +11396,7 @@ import "./main.tsp";
             permission: "Publisher",
             provisioningState: "Succeeded",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/permissionBindings/examplePermissionBinding",
+          id: permissionBindingId,
           name: "examplePermissionBinding",
           type: "Microsoft.EventGrid/namespaces/permissionBindings",
         },
@@ -13590,7 +11410,7 @@ import "./main.tsp";
             permission: "Publisher",
             provisioningState: "Succeeded",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/permissionBindings/examplePermissionBinding",
+          id: permissionBindingId,
           name: "examplePermissionBinding",
           type: "Microsoft.EventGrid/namespaces/permissionBindings",
         },
@@ -13602,30 +11422,13 @@ import "./main.tsp";
   #{
     title: "PermissionBindings Delete",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-        permissionBindingName: "examplePermissionBinding",
-      },
+      path: permissionBindingPath,
     },
     responses: #[
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -13636,12 +11439,7 @@ import "./main.tsp";
   #{
     title: "PermissionBindings Get",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-        permissionBindingName: "examplePermissionBinding",
-      },
+      path: permissionBindingPath,
     },
     responses: #[
       #{
@@ -13653,7 +11451,7 @@ import "./main.tsp";
             permission: "Publisher",
             provisioningState: "Succeeded",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/permissionBindings/examplePermissionBinding",
+          id: permissionBindingId,
           name: "examplePermissionBinding",
           type: "Microsoft.EventGrid/namespaces/permissionBindings",
         },
@@ -13665,11 +11463,7 @@ import "./main.tsp";
   #{
     title: "PermissionBindings ListByNamespace",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -13683,7 +11477,7 @@ import "./main.tsp";
                 permission: "Publisher",
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/permissionBindings/examplePermissionBinding",
+              id: permissionBindingId,
               name: "examplePermissionBinding",
               type: "Microsoft.EventGrid/namespaces/permissionBindings",
             },
@@ -13699,11 +11493,7 @@ import "./main.tsp";
     title: "PermissionBindings ListByNamespace",
     since: "2023-12-15-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -13717,7 +11507,7 @@ import "./main.tsp";
                 permission: "Publisher",
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/permissionBindings/examplePermissionBinding",
+              id: permissionBindingId,
               name: "examplePermissionBinding",
               type: "Microsoft.EventGrid/namespaces/permissionBindings",
             },
@@ -13733,11 +11523,7 @@ import "./main.tsp";
     title: "PermissionBindings ListByNamespace",
     since: "2024-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -13751,7 +11537,7 @@ import "./main.tsp";
                 permission: "Publisher",
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/permissionBindings/examplePermissionBinding",
+              id: permissionBindingId,
               name: "examplePermissionBinding",
               type: "Microsoft.EventGrid/namespaces/permissionBindings",
             },
@@ -13767,11 +11553,7 @@ import "./main.tsp";
     title: "PermissionBindings ListByNamespace",
     since: "2024-12-15-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -13785,7 +11567,7 @@ import "./main.tsp";
                 permission: "Publisher",
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/permissionBindings/examplePermissionBinding",
+              id: permissionBindingId,
               name: "examplePermissionBinding",
               type: "Microsoft.EventGrid/namespaces/permissionBindings",
             },
@@ -13801,11 +11583,7 @@ import "./main.tsp";
     title: "PermissionBindings ListByNamespace",
     since: "2025-02-15",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -13819,7 +11597,7 @@ import "./main.tsp";
                 permission: "Publisher",
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/permissionBindings/examplePermissionBinding",
+              id: permissionBindingId,
               name: "examplePermissionBinding",
               type: "Microsoft.EventGrid/namespaces/permissionBindings",
             },
@@ -13835,11 +11613,7 @@ import "./main.tsp";
     title: "PermissionBindings ListByNamespace",
     since: "2025-04-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -13853,7 +11627,7 @@ import "./main.tsp";
                 permission: "Publisher",
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/permissionBindings/examplePermissionBinding",
+              id: permissionBindingId,
               name: "examplePermissionBinding",
               type: "Microsoft.EventGrid/namespaces/permissionBindings",
             },
@@ -13868,13 +11642,7 @@ import "./main.tsp";
   #{
     title: "PrivateEndpointConnections Delete",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        parentType: "topics",
-        parentName: "exampletopic",
-        privateEndpointConnectionName: "examplePrivateEndpointConnection",
-      },
+      path: privateEndpointConnectionPath,
     },
     responses: #[
       #{
@@ -13891,28 +11659,10 @@ import "./main.tsp";
     title: "PrivateEndpointConnections Delete",
     since: "2023-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        parentType: "topics",
-        parentName: "exampletopic",
-        privateEndpointConnectionName: "examplePrivateEndpointConnection",
-      },
+      path: privateEndpointConnectionPath,
     },
     responses: #[
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -13923,13 +11673,7 @@ import "./main.tsp";
   #{
     title: "PrivateEndpointConnections Get",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        parentType: "topics",
-        parentName: "exampletopic",
-        privateEndpointConnectionName: "examplePrivateEndpointConnection",
-      },
+      path: privateEndpointConnectionPath,
     },
     responses: #[
       #{
@@ -13937,7 +11681,7 @@ import "./main.tsp";
         body: #{
           properties: #{
             privateEndpoint: #{
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Network/privateEndpoints/bmtpe5",
+              id: id,
             },
             groupIds: #[
               "topic",
@@ -13949,7 +11693,7 @@ import "./main.tsp";
             },
             provisioningState: "Succeeded",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateEndpointConnections/examplePrivateEndpointConnection",
+          id: privateEndpointConnectionId,
           name: "examplePrivateEndpointConnection",
           type: "Microsoft.EventGrid/topics/privateEndpointConnections",
         },
@@ -13962,13 +11706,7 @@ import "./main.tsp";
     title: "PrivateEndpointConnections Get",
     since: "2023-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        parentType: "topics",
-        parentName: "exampletopic",
-        privateEndpointConnectionName: "examplePrivateEndpointConnection",
-      },
+      path: privateEndpointConnectionPath,
     },
     responses: #[
       #{
@@ -13976,7 +11714,7 @@ import "./main.tsp";
         body: #{
           properties: #{
             privateEndpoint: #{
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Network/privateEndpoints/bmtpe5",
+              id: id,
             },
             groupIds: #[
               "topic",
@@ -13988,7 +11726,7 @@ import "./main.tsp";
             },
             provisioningState: "Succeeded",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateEndpointConnections/examplePrivateEndpointConnection",
+          id: privateEndpointConnectionId,
           name: "examplePrivateEndpointConnection",
           type: "Microsoft.EventGrid/topics/privateEndpointConnections",
         },
@@ -14001,13 +11739,7 @@ import "./main.tsp";
     title: "PrivateEndpointConnections Get",
     since: "2025-02-15",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        parentType: "topics",
-        parentName: "exampletopic",
-        privateEndpointConnectionName: "examplePrivateEndpointConnection",
-      },
+      path: privateEndpointConnectionPath,
     },
     responses: #[
       #{
@@ -14015,7 +11747,7 @@ import "./main.tsp";
         body: #{
           properties: #{
             privateEndpoint: #{
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Network/privateEndpoints/bmtpe5",
+              id: id,
             },
             groupIds: #[
               "topic",
@@ -14027,7 +11759,7 @@ import "./main.tsp";
             },
             provisioningState: "Succeeded",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateEndpointConnections/examplePrivateEndpointConnection",
+          id: privateEndpointConnectionId,
           name: "examplePrivateEndpointConnection",
           type: "Microsoft.EventGrid/topics/privateEndpointConnections",
         },
@@ -14040,13 +11772,7 @@ import "./main.tsp";
     title: "PrivateEndpointConnections Get",
     since: "2025-04-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        parentType: "topics",
-        parentName: "exampletopic",
-        privateEndpointConnectionName: "examplePrivateEndpointConnection",
-      },
+      path: privateEndpointConnectionPath,
     },
     responses: #[
       #{
@@ -14054,7 +11780,7 @@ import "./main.tsp";
         body: #{
           properties: #{
             privateEndpoint: #{
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Network/privateEndpoints/bmtpe5",
+              id: id,
             },
             groupIds: #[
               "topic",
@@ -14066,7 +11792,7 @@ import "./main.tsp";
             },
             provisioningState: "Succeeded",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateEndpointConnections/examplePrivateEndpointConnection",
+          id: privateEndpointConnectionId,
           name: "examplePrivateEndpointConnection",
           type: "Microsoft.EventGrid/topics/privateEndpointConnections",
         },
@@ -14078,12 +11804,7 @@ import "./main.tsp";
   #{
     title: "PrivateEndpointConnections ListByResource",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        parentType: "topics",
-        parentName: "exampletopic",
-      },
+      path: parentPath,
     },
     responses: #[
       #{
@@ -14093,7 +11814,7 @@ import "./main.tsp";
             #{
               properties: #{
                 privateEndpoint: #{
-                  id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Network/privateEndpoints/bmtpe5",
+                  id: id,
                 },
                 groupIds: #[
                   "topic",
@@ -14105,7 +11826,7 @@ import "./main.tsp";
                 },
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateEndpointConnections/examplePrivateEndpointConnection",
+              id: privateEndpointConnectionId,
               name: "examplePrivateEndpointConnection",
               type: "Microsoft.EventGrid/topics/privateEndpointConnections",
             },
@@ -14120,12 +11841,7 @@ import "./main.tsp";
     title: "PrivateEndpointConnections ListByResource",
     since: "2023-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        parentType: "topics",
-        parentName: "exampletopic",
-      },
+      path: parentPath,
     },
     responses: #[
       #{
@@ -14135,7 +11851,7 @@ import "./main.tsp";
             #{
               properties: #{
                 privateEndpoint: #{
-                  id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Network/privateEndpoints/bmtpe5",
+                  id: id,
                 },
                 groupIds: #[
                   "topic",
@@ -14147,7 +11863,7 @@ import "./main.tsp";
                 },
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateEndpointConnections/examplePrivateEndpointConnection",
+              id: privateEndpointConnectionId,
               name: "examplePrivateEndpointConnection",
               type: "Microsoft.EventGrid/topics/privateEndpointConnections",
             },
@@ -14162,12 +11878,7 @@ import "./main.tsp";
     title: "PrivateEndpointConnections ListByResource",
     since: "2025-02-15",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        parentType: "topics",
-        parentName: "exampletopic",
-      },
+      path: parentPath,
     },
     responses: #[
       #{
@@ -14177,7 +11888,7 @@ import "./main.tsp";
             #{
               properties: #{
                 privateEndpoint: #{
-                  id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Network/privateEndpoints/bmtpe5",
+                  id: id,
                 },
                 groupIds: #[
                   "topic",
@@ -14189,7 +11900,7 @@ import "./main.tsp";
                 },
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateEndpointConnections/examplePrivateEndpointConnection",
+              id: privateEndpointConnectionId,
               name: "examplePrivateEndpointConnection",
               type: "Microsoft.EventGrid/topics/privateEndpointConnections",
             },
@@ -14204,12 +11915,7 @@ import "./main.tsp";
     title: "PrivateEndpointConnections ListByResource",
     since: "2025-04-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        parentType: "topics",
-        parentName: "exampletopic",
-      },
+      path: parentPath,
     },
     responses: #[
       #{
@@ -14219,7 +11925,7 @@ import "./main.tsp";
             #{
               properties: #{
                 privateEndpoint: #{
-                  id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Network/privateEndpoints/bmtpe5",
+                  id: id,
                 },
                 groupIds: #[
                   "topic",
@@ -14231,7 +11937,7 @@ import "./main.tsp";
                 },
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateEndpointConnections/examplePrivateEndpointConnection",
+              id: privateEndpointConnectionId,
               name: "examplePrivateEndpointConnection",
               type: "Microsoft.EventGrid/topics/privateEndpointConnections",
             },
@@ -14245,18 +11951,12 @@ import "./main.tsp";
   #{
     title: "PrivateEndpointConnections Update",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        parentType: "topics",
-        parentName: "exampletopic",
-        privateEndpointConnectionName: "examplePrivateEndpointConnection",
-      },
+      path: privateEndpointConnectionPath,
       body: #{
         properties: #{
           privateLinkServiceConnectionState: #{
             status: "Approved",
-            description: "approving connection",
+            description: description,
             actionsRequired: "None",
           },
         },
@@ -14268,19 +11968,19 @@ import "./main.tsp";
         body: #{
           properties: #{
             privateEndpoint: #{
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Network/privateEndpoints/bmtpe5",
+              id: id,
             },
             groupIds: #[
               "topic",
             ],
             privateLinkServiceConnectionState: #{
               status: "Approved",
-              description: "approving connection",
+              description: description,
               actionsRequired: "None",
             },
             provisioningState: "Succeeded",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateEndpointConnections/examplePrivateEndpointConnection",
+          id: privateEndpointConnectionId,
           name: "examplePrivateEndpointConnection",
           type: "Microsoft.EventGrid/topics/privateEndpointConnections",
         },
@@ -14290,19 +11990,19 @@ import "./main.tsp";
         body: #{
           properties: #{
             privateEndpoint: #{
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Network/privateEndpoints/bmtpe5",
+              id: id,
             },
             groupIds: #[
               "topic",
             ],
             privateLinkServiceConnectionState: #{
               status: "Approved",
-              description: "approving connection",
+              description: description,
               actionsRequired: "None",
             },
             provisioningState: "Succeeded",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateEndpointConnections/examplePrivateEndpointConnection",
+          id: privateEndpointConnectionId,
           name: "examplePrivateEndpointConnection",
           type: "Microsoft.EventGrid/topics/privateEndpointConnections",
         },
@@ -14315,18 +12015,12 @@ import "./main.tsp";
     title: "PrivateEndpointConnections Update",
     since: "2023-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        parentType: "topics",
-        parentName: "exampletopic",
-        privateEndpointConnectionName: "examplePrivateEndpointConnection",
-      },
+      path: privateEndpointConnectionPath,
       body: #{
         properties: #{
           privateLinkServiceConnectionState: #{
             status: "Approved",
-            description: "approving connection",
+            description: description,
             actionsRequired: "None",
           },
         },
@@ -14338,19 +12032,19 @@ import "./main.tsp";
         body: #{
           properties: #{
             privateEndpoint: #{
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Network/privateEndpoints/bmtpe5",
+              id: id,
             },
             groupIds: #[
               "topic",
             ],
             privateLinkServiceConnectionState: #{
               status: "Approved",
-              description: "approving connection",
+              description: description,
               actionsRequired: "None",
             },
             provisioningState: "Succeeded",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateEndpointConnections/examplePrivateEndpointConnection",
+          id: privateEndpointConnectionId,
           name: "examplePrivateEndpointConnection",
           type: "Microsoft.EventGrid/topics/privateEndpointConnections",
         },
@@ -14360,19 +12054,19 @@ import "./main.tsp";
         body: #{
           properties: #{
             privateEndpoint: #{
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Network/privateEndpoints/bmtpe5",
+              id: id,
             },
             groupIds: #[
               "topic",
             ],
             privateLinkServiceConnectionState: #{
               status: "Approved",
-              description: "approving connection",
+              description: description,
               actionsRequired: "None",
             },
             provisioningState: "Succeeded",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateEndpointConnections/examplePrivateEndpointConnection",
+          id: privateEndpointConnectionId,
           name: "examplePrivateEndpointConnection",
           type: "Microsoft.EventGrid/topics/privateEndpointConnections",
         },
@@ -14385,18 +12079,12 @@ import "./main.tsp";
     title: "PrivateEndpointConnections Update",
     since: "2025-02-15",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        parentType: "topics",
-        parentName: "exampletopic",
-        privateEndpointConnectionName: "examplePrivateEndpointConnection",
-      },
+      path: privateEndpointConnectionPath,
       body: #{
         properties: #{
           privateLinkServiceConnectionState: #{
             status: "Approved",
-            description: "approving connection",
+            description: description,
             actionsRequired: "None",
           },
         },
@@ -14408,19 +12096,19 @@ import "./main.tsp";
         body: #{
           properties: #{
             privateEndpoint: #{
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Network/privateEndpoints/bmtpe5",
+              id: id,
             },
             groupIds: #[
               "topic",
             ],
             privateLinkServiceConnectionState: #{
               status: "Approved",
-              description: "approving connection",
+              description: description,
               actionsRequired: "None",
             },
             provisioningState: "Succeeded",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateEndpointConnections/examplePrivateEndpointConnection",
+          id: privateEndpointConnectionId,
           name: "examplePrivateEndpointConnection",
           type: "Microsoft.EventGrid/topics/privateEndpointConnections",
         },
@@ -14430,19 +12118,19 @@ import "./main.tsp";
         body: #{
           properties: #{
             privateEndpoint: #{
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Network/privateEndpoints/bmtpe5",
+              id: id,
             },
             groupIds: #[
               "topic",
             ],
             privateLinkServiceConnectionState: #{
               status: "Approved",
-              description: "approving connection",
+              description: description,
               actionsRequired: "None",
             },
             provisioningState: "Succeeded",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateEndpointConnections/examplePrivateEndpointConnection",
+          id: privateEndpointConnectionId,
           name: "examplePrivateEndpointConnection",
           type: "Microsoft.EventGrid/topics/privateEndpointConnections",
         },
@@ -14455,18 +12143,12 @@ import "./main.tsp";
     title: "PrivateEndpointConnections Update",
     since: "2025-04-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        parentType: "topics",
-        parentName: "exampletopic",
-        privateEndpointConnectionName: "examplePrivateEndpointConnection",
-      },
+      path: privateEndpointConnectionPath,
       body: #{
         properties: #{
           privateLinkServiceConnectionState: #{
             status: "Approved",
-            description: "approving connection",
+            description: description,
             actionsRequired: "None",
           },
         },
@@ -14478,19 +12160,19 @@ import "./main.tsp";
         body: #{
           properties: #{
             privateEndpoint: #{
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Network/privateEndpoints/bmtpe5",
+              id: id,
             },
             groupIds: #[
               "topic",
             ],
             privateLinkServiceConnectionState: #{
               status: "Approved",
-              description: "approving connection",
+              description: description,
               actionsRequired: "None",
             },
             provisioningState: "Succeeded",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateEndpointConnections/examplePrivateEndpointConnection",
+          id: privateEndpointConnectionId,
           name: "examplePrivateEndpointConnection",
           type: "Microsoft.EventGrid/topics/privateEndpointConnections",
         },
@@ -14500,19 +12182,19 @@ import "./main.tsp";
         body: #{
           properties: #{
             privateEndpoint: #{
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Network/privateEndpoints/bmtpe5",
+              id: id,
             },
             groupIds: #[
               "topic",
             ],
             privateLinkServiceConnectionState: #{
               status: "Approved",
-              description: "approving connection",
+              description: description,
               actionsRequired: "None",
             },
             provisioningState: "Succeeded",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateEndpointConnections/examplePrivateEndpointConnection",
+          id: privateEndpointConnectionId,
           name: "examplePrivateEndpointConnection",
           type: "Microsoft.EventGrid/topics/privateEndpointConnections",
         },
@@ -14524,13 +12206,7 @@ import "./main.tsp";
   #{
     title: "PrivateLinkResources Get",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        parentType: "topics",
-        parentName: "exampletopic",
-        privateLinkResourceName: "examplePrivateLinkResource",
-      },
+      path: privateLinkResourcePath,
     },
     responses: #[
       #{
@@ -14538,15 +12214,15 @@ import "./main.tsp";
         body: #{
           properties: #{
             groupId: "topic",
-            displayName: "Event Grid topic",
+            displayName: displayName,
             requiredMembers: #[
               "topic",
             ],
             requiredZoneNames: #[
-              "privatelink.eventgrid.azure.net",
+              requiredZoneNames,
             ],
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateLinkResources/examplePrivateLinkResource",
+          id: privateLinkResourceId,
           name: "examplePrivateLinkResource",
           type: "Microsoft.EventGrid/topics/privateLinkResources",
         },
@@ -14559,13 +12235,7 @@ import "./main.tsp";
     title: "PrivateLinkResources Get",
     since: "2023-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        parentType: "topics",
-        parentName: "exampletopic",
-        privateLinkResourceName: "examplePrivateLinkResource",
-      },
+      path: privateLinkResourcePath,
     },
     responses: #[
       #{
@@ -14573,15 +12243,15 @@ import "./main.tsp";
         body: #{
           properties: #{
             groupId: "topic",
-            displayName: "Event Grid topic",
+            displayName: displayName,
             requiredMembers: #[
               "topic",
             ],
             requiredZoneNames: #[
-              "privatelink.eventgrid.azure.net",
+              requiredZoneNames,
             ],
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateLinkResources/examplePrivateLinkResource",
+          id: privateLinkResourceId,
           name: "examplePrivateLinkResource",
           type: "Microsoft.EventGrid/topics/privateLinkResources",
         },
@@ -14594,13 +12264,7 @@ import "./main.tsp";
     title: "PrivateLinkResources Get",
     since: "2025-02-15",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        parentType: "topics",
-        parentName: "exampletopic",
-        privateLinkResourceName: "examplePrivateLinkResource",
-      },
+      path: privateLinkResourcePath,
     },
     responses: #[
       #{
@@ -14608,15 +12272,15 @@ import "./main.tsp";
         body: #{
           properties: #{
             groupId: "topic",
-            displayName: "Event Grid topic",
+            displayName: displayName,
             requiredMembers: #[
               "topic",
             ],
             requiredZoneNames: #[
-              "privatelink.eventgrid.azure.net",
+              requiredZoneNames,
             ],
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateLinkResources/examplePrivateLinkResource",
+          id: privateLinkResourceId,
           name: "examplePrivateLinkResource",
           type: "Microsoft.EventGrid/topics/privateLinkResources",
         },
@@ -14629,13 +12293,7 @@ import "./main.tsp";
     title: "PrivateLinkResources Get",
     since: "2025-04-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        parentType: "topics",
-        parentName: "exampletopic",
-        privateLinkResourceName: "examplePrivateLinkResource",
-      },
+      path: privateLinkResourcePath,
     },
     responses: #[
       #{
@@ -14643,15 +12301,15 @@ import "./main.tsp";
         body: #{
           properties: #{
             groupId: "topic",
-            displayName: "Event Grid topic",
+            displayName: displayName,
             requiredMembers: #[
               "topic",
             ],
             requiredZoneNames: #[
-              "privatelink.eventgrid.azure.net",
+              requiredZoneNames,
             ],
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateLinkResources/examplePrivateLinkResource",
+          id: privateLinkResourceId,
           name: "examplePrivateLinkResource",
           type: "Microsoft.EventGrid/topics/privateLinkResources",
         },
@@ -14663,12 +12321,7 @@ import "./main.tsp";
   #{
     title: "PrivateLinkResources ListByResource",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        parentType: "topics",
-        parentName: "exampletopic",
-      },
+      path: parentPath,
     },
     responses: #[
       #{
@@ -14678,15 +12331,15 @@ import "./main.tsp";
             #{
               properties: #{
                 groupId: "topic",
-                displayName: "Event Grid topic",
+                displayName: displayName,
                 requiredMembers: #[
                   "topic",
                 ],
                 requiredZoneNames: #[
-                  "privatelink.eventgrid.azure.net",
+                  requiredZoneNames,
                 ],
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateLinkResources/examplePrivateLinkResource",
+              id: privateLinkResourceId,
               name: "examplePrivateLinkResource",
               type: "Microsoft.EventGrid/topics/privateLinkResources",
             },
@@ -14701,12 +12354,7 @@ import "./main.tsp";
     title: "PrivateLinkResources ListByResource",
     since: "2023-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        parentType: "topics",
-        parentName: "exampletopic",
-      },
+      path: parentPath,
     },
     responses: #[
       #{
@@ -14716,15 +12364,15 @@ import "./main.tsp";
             #{
               properties: #{
                 groupId: "topic",
-                displayName: "Event Grid topic",
+                displayName: displayName,
                 requiredMembers: #[
                   "topic",
                 ],
                 requiredZoneNames: #[
-                  "privatelink.eventgrid.azure.net",
+                  requiredZoneNames,
                 ],
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateLinkResources/examplePrivateLinkResource",
+              id: privateLinkResourceId,
               name: "examplePrivateLinkResource",
               type: "Microsoft.EventGrid/topics/privateLinkResources",
             },
@@ -14739,12 +12387,7 @@ import "./main.tsp";
     title: "PrivateLinkResources ListByResource",
     since: "2025-02-15",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        parentType: "topics",
-        parentName: "exampletopic",
-      },
+      path: parentPath,
     },
     responses: #[
       #{
@@ -14754,15 +12397,15 @@ import "./main.tsp";
             #{
               properties: #{
                 groupId: "topic",
-                displayName: "Event Grid topic",
+                displayName: displayName,
                 requiredMembers: #[
                   "topic",
                 ],
                 requiredZoneNames: #[
-                  "privatelink.eventgrid.azure.net",
+                  requiredZoneNames,
                 ],
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateLinkResources/examplePrivateLinkResource",
+              id: privateLinkResourceId,
               name: "examplePrivateLinkResource",
               type: "Microsoft.EventGrid/topics/privateLinkResources",
             },
@@ -14777,12 +12420,7 @@ import "./main.tsp";
     title: "PrivateLinkResources ListByResource",
     since: "2025-04-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        parentType: "topics",
-        parentName: "exampletopic",
-      },
+      path: parentPath,
     },
     responses: #[
       #{
@@ -14792,15 +12430,15 @@ import "./main.tsp";
             #{
               properties: #{
                 groupId: "topic",
-                displayName: "Event Grid topic",
+                displayName: displayName,
                 requiredMembers: #[
                   "topic",
                 ],
                 requiredZoneNames: #[
-                  "privatelink.eventgrid.azure.net",
+                  requiredZoneNames,
                 ],
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/privateLinkResources/examplePrivateLinkResource",
+              id: privateLinkResourceId,
               name: "examplePrivateLinkResource",
               type: "Microsoft.EventGrid/topics/privateLinkResources",
             },
@@ -14815,9 +12453,7 @@ import "./main.tsp";
     title: "SystemTopicEventSubscriptions CreateOrUpdate",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        systemTopicName: "exampleSystemTopic",
+        ...systemTopicPath,
         eventSubscriptionName: "exampleEventSubscription",
       },
       body: #{
@@ -14825,14 +12461,10 @@ import "./main.tsp";
           destination: #{
             endpointType: "WebHook",
             properties: #{
-              endpointUrl: "https://requestb.in/15ksip71",
+              endpointUrl: endpointBaseUrl,
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
+          filter: filter,
         },
       },
     },
@@ -14843,15 +12475,11 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             labels: null,
             eventDeliverySchema: "EventGridSchema",
             retryPolicy: #{
@@ -14859,7 +12487,7 @@ import "./main.tsp";
               eventTimeToLiveInMinutes: 1440,
             },
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic",
+            topic: systemTopicId,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
@@ -14874,9 +12502,7 @@ import "./main.tsp";
     title: "SystemTopicEventSubscriptions Delete",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        systemTopicName: "exampleSystemTopic",
+        ...systemTopicPath,
         eventSubscriptionName: "exampleEventSubscription",
       },
     },
@@ -14899,9 +12525,7 @@ import "./main.tsp";
     since: "2023-06-01-preview",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        systemTopicName: "exampleSystemTopic",
+        ...systemTopicPath,
         eventSubscriptionName: "exampleEventSubscription",
       },
     },
@@ -14909,19 +12533,7 @@ import "./main.tsp";
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -14933,9 +12545,7 @@ import "./main.tsp";
     title: "SystemTopicEventSubscriptions Get",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        systemTopicName: "exampleSystemTopic",
+        ...systemTopicPath,
         eventSubscriptionName: "exampleEventSubscription",
       },
     },
@@ -14944,22 +12554,20 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           properties: #{
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic",
+            topic: systemTopicId,
             provisioningState: "Succeeded",
             destination: #{
               properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+                resourceId: storageAccountId,
                 queueName: "exampleQueue",
               },
               endpointType: "StorageQueue",
             },
             filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
+              ...filter,
               includedEventTypes: #[
                 "Microsoft.Storage.BlobCreated",
-                "Microsoft.Storage.BlobDeleted",
+                includedEventTypes,
               ],
             },
             labels: #[
@@ -14985,9 +12593,7 @@ import "./main.tsp";
     title: "SystemTopicEventSubscriptions GetDeliveryAttributes",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        systemTopicName: "exampleSystemTopic",
+        ...systemTopicPath,
         eventSubscriptionName: "exampleEventSubscription",
       },
     },
@@ -15008,7 +12614,7 @@ import "./main.tsp";
               name: "header2",
               type: "Dynamic",
               properties: #{
-                sourceField: "data.foo",
+                sourceField: sourceField,
               },
             },
             #{
@@ -15030,9 +12636,7 @@ import "./main.tsp";
     title: "SystemTopicEventSubscriptions GetFullUrl",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        systemTopicName: "exampleSystemTopic",
+        ...systemTopicPath,
         eventSubscriptionName: "exampleEventSubscription",
       },
     },
@@ -15040,7 +12644,7 @@ import "./main.tsp";
       #{
         statusCode: 200,
         body: #{
-          endpointUrl: "https://requestb.in/15ksip71",
+          endpointUrl: endpointBaseUrl,
         },
       },
     ],
@@ -15050,11 +12654,7 @@ import "./main.tsp";
   #{
     title: "SystemTopicEventSubscriptions ListBySystemTopic",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        systemTopicName: "exampleSystemTopic",
-      },
+      path: systemTopicPath,
     },
     responses: #[
       #{
@@ -15063,11 +12663,11 @@ import "./main.tsp";
           value: #[
             #{
               properties: #{
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic",
+                topic: systemTopicId,
                 provisioningState: "Succeeded",
                 destination: #{
                   properties: #{
-                    resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+                    resourceId: storageAccountId,
                     queueName: "exampleQueue",
                   },
                   endpointType: "StorageQueue",
@@ -15089,22 +12689,20 @@ import "./main.tsp";
             },
             #{
               properties: #{
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic",
+                topic: systemTopicId,
                 provisioningState: "Succeeded",
                 destination: #{
                   properties: #{
-                    resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+                    resourceId: storageAccountId,
                     queueName: "exampleQueue",
                   },
                   endpointType: "StorageQueue",
                 },
                 filter: #{
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
+                  ...filter,
                   includedEventTypes: #[
                     "Microsoft.Storage.BlobCreated",
-                    "Microsoft.Storage.BlobDeleted",
+                    includedEventTypes,
                   ],
                 },
                 labels: #[
@@ -15132,28 +12730,10 @@ import "./main.tsp";
     title: "SystemTopicEventSubscriptions Update",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        systemTopicName: "exampleSystemTopic",
+        ...systemTopicPath,
         eventSubscriptionName: "exampleEventSubscription",
       },
-      body: #{
-        destination: #{
-          endpointType: "WebHook",
-          properties: #{
-            endpointUrl: "https://requestb.in/15ksip71",
-          },
-        },
-        filter: #{
-          isSubjectCaseSensitive: true,
-          subjectBeginsWith: "existingPrefix",
-          subjectEndsWith: "newSuffix",
-        },
-        labels: #[
-          "label1",
-          "label2",
-        ],
-      },
+      body: body,
     },
     responses: #[
       #{
@@ -15162,7 +12742,7 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
@@ -15181,7 +12761,7 @@ import "./main.tsp";
               eventTimeToLiveInMinutes: 1440,
             },
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic",
+            topic: systemTopicId,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
@@ -15195,11 +12775,7 @@ import "./main.tsp";
   #{
     title: "SystemTopics CreateOrUpdate",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        systemTopicName: "exampleSystemTopic",
-      },
+      path: systemTopicPath,
       body: #{
         location: "westus2",
         tags: #{
@@ -15215,12 +12791,12 @@ import "./main.tsp";
           properties: #{
             provisioningState: "Succeeded",
             source: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageaccounts/exampleStorageAccount",
-            topicType: "Microsoft.Storage.storageaccounts",
-            metricResourceId: "183c0fb1-17ff-47b6-ac77-5a47420ab01e",
+            topicType: topicType,
+            metricResourceId: metricResourceId,
           },
           location: "westus2",
           tags: null,
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic",
+          id: systemTopicId,
           name: "exampleSystemTopic",
           type: "Microsoft.EventGrid/systemTopics",
         },
@@ -15231,12 +12807,12 @@ import "./main.tsp";
           properties: #{
             provisioningState: "Succeeded",
             source: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageaccounts/exampleStorageAccount",
-            topicType: "Microsoft.Storage.storageaccounts",
-            metricResourceId: "183c0fb1-17ff-47b6-ac77-5a47420ab01e",
+            topicType: topicType,
+            metricResourceId: metricResourceId,
           },
           location: "westus2",
           tags: null,
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic",
+          id: systemTopicId,
           name: "exampleSystemTopic",
           type: "Microsoft.EventGrid/systemTopics",
         },
@@ -15249,15 +12825,11 @@ import "./main.tsp";
     title: "SystemTopics CreateOrUpdate",
     since: "2020-10-15-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        systemTopicName: "exampleSystemTopic",
-      },
+      path: systemTopicPath,
       body: #{
         properties: #{
           source: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageaccounts/exampleStorageAccount",
-          topicType: "Microsoft.Storage.storageaccounts",
+          topicType: topicType,
         },
         location: "westus2",
         tags: #{
@@ -15273,12 +12845,12 @@ import "./main.tsp";
           properties: #{
             provisioningState: "Succeeded",
             source: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageaccounts/exampleStorageAccount",
-            topicType: "Microsoft.Storage.storageaccounts",
-            metricResourceId: "183c0fb1-17ff-47b6-ac77-5a47420ab01e",
+            topicType: topicType,
+            metricResourceId: metricResourceId,
           },
           location: "westus2",
           tags: null,
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic",
+          id: systemTopicId,
           name: "exampleSystemTopic",
           type: "Microsoft.EventGrid/systemTopics",
         },
@@ -15289,12 +12861,12 @@ import "./main.tsp";
           properties: #{
             provisioningState: "Succeeded",
             source: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageaccounts/exampleStorageAccount",
-            topicType: "Microsoft.Storage.storageaccounts",
-            metricResourceId: "183c0fb1-17ff-47b6-ac77-5a47420ab01e",
+            topicType: topicType,
+            metricResourceId: metricResourceId,
           },
           location: "westus2",
           tags: null,
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic",
+          id: systemTopicId,
           name: "exampleSystemTopic",
           type: "Microsoft.EventGrid/systemTopics",
         },
@@ -15307,17 +12879,13 @@ import "./main.tsp";
     title: "SystemTopics CreateOrUpdate",
     since: "2025-07-15-preview",
     request: #{
-      path: #{
-        resourceGroupName: "examplerg",
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        systemTopicName: "exampleSystemTopic",
-      },
+      path: systemTopicPath,
       body: #{
         identity: #{
           type: "UserAssigned",
           userAssignedIdentities: #[
             #{
-              key: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id",
+              key: key,
               value: #{},
             },
           ],
@@ -15327,11 +12895,8 @@ import "./main.tsp";
           encryption: #{
             customerManagedKeyEncryption: #[
               #{
-                keyEncryptionKeyIdentity: #{
-                  type: "UserAssigned",
-                  userAssignedIdentityResourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id",
-                },
-                keyEncryptionKeyUrl: "https://ege2ekeyvault.vault.azure.net/keys/ValidKey1",
+                keyEncryptionKeyIdentity: keyEncryptionKeyIdentity,
+                keyEncryptionKeyUrl: keyEncryptionKeyUrl,
               },
             ],
           },
@@ -15341,7 +12906,7 @@ import "./main.tsp";
             },
           },
           source: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageaccounts/exampleStorageAccount",
-          topicType: "Microsoft.Storage.storageaccounts",
+          topicType: topicType,
         },
         tags: #{
           tag1: "value1",
@@ -15355,35 +12920,16 @@ import "./main.tsp";
         body: #{
           name: "exampleSystemTopic",
           type: "Microsoft.EventGrid/systemTopics",
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic",
-          identity: #{
-            type: "UserAssigned",
-            userAssignedIdentities: #[
-              #{
-                key: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id",
-                value: #{
-                  clientId: "33333333-3333-3333-3333-333333333333",
-                  principalId: "22222222-2222-2222-2222-222222222222",
-                },
-              },
-            ],
-          },
+          id: systemTopicId,
+          identity: identity,
           location: "westus2",
           properties: #{
             encryption: #{
               customerManagedKeyEncryption: #[
-                #{
-                  keyEncryptionKeyIdentity: #{
-                    type: "UserAssigned",
-                    userAssignedIdentityResourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id",
-                  },
-                  keyEncryptionKeyStatus: "Active",
-                  keyEncryptionKeyStatusFriendlyDescription: "Customer Managed Key (CMK) Encryption is 'Active' and running normally.",
-                  keyEncryptionKeyUrl: "https://ege2ekeyvault.vault.azure.net/keys/ValidKey1",
-                },
+                customerManagedKeyEncryption,
               ],
             },
-            metricResourceId: "183c0fb1-17ff-47b6-ac77-5a47420ab01e",
+            metricResourceId: metricResourceId,
             platformCapabilities: #{
               confidentialCompute: #{
                 mode: "Enabled",
@@ -15391,7 +12937,7 @@ import "./main.tsp";
             },
             provisioningState: "Succeeded",
             source: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageaccounts/exampleStorageAccount",
-            topicType: "Microsoft.Storage.storageaccounts",
+            topicType: topicType,
           },
         },
       },
@@ -15400,35 +12946,16 @@ import "./main.tsp";
         body: #{
           name: "exampleSystemTopic",
           type: "Microsoft.EventGrid/systemTopics",
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic",
-          identity: #{
-            type: "UserAssigned",
-            userAssignedIdentities: #[
-              #{
-                key: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id",
-                value: #{
-                  clientId: "33333333-3333-3333-3333-333333333333",
-                  principalId: "22222222-2222-2222-2222-222222222222",
-                },
-              },
-            ],
-          },
+          id: systemTopicId,
+          identity: identity,
           location: "westus2",
           properties: #{
             encryption: #{
               customerManagedKeyEncryption: #[
-                #{
-                  keyEncryptionKeyIdentity: #{
-                    type: "UserAssigned",
-                    userAssignedIdentityResourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id",
-                  },
-                  keyEncryptionKeyStatus: "Active",
-                  keyEncryptionKeyStatusFriendlyDescription: "Customer Managed Key (CMK) Encryption is 'Active' and running normally.",
-                  keyEncryptionKeyUrl: "https://ege2ekeyvault.vault.azure.net/keys/ValidKey1",
-                },
+                customerManagedKeyEncryption,
               ],
             },
-            metricResourceId: "183c0fb1-17ff-47b6-ac77-5a47420ab01e",
+            metricResourceId: metricResourceId,
             platformCapabilities: #{
               confidentialCompute: #{
                 mode: "Enabled",
@@ -15436,7 +12963,7 @@ import "./main.tsp";
             },
             provisioningState: "Succeeded",
             source: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageaccounts/exampleStorageAccount",
-            topicType: "Microsoft.Storage.storageaccounts",
+            topicType: topicType,
           },
         },
       },
@@ -15447,11 +12974,7 @@ import "./main.tsp";
   #{
     title: "SystemTopics Delete",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        systemTopicName: "exampleSystemTopic",
-      },
+      path: systemTopicPath,
     },
     responses: #[
       #{
@@ -15471,29 +12994,13 @@ import "./main.tsp";
     title: "SystemTopics Delete",
     since: "2023-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        systemTopicName: "exampleSystemTopic",
-      },
+      path: systemTopicPath,
     },
     responses: #[
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -15504,11 +13011,7 @@ import "./main.tsp";
   #{
     title: "SystemTopics Get",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        systemTopicName: "exampleSystemTopic",
-      },
+      path: systemTopicPath,
     },
     responses: #[
       #{
@@ -15517,12 +13020,12 @@ import "./main.tsp";
           properties: #{
             provisioningState: "Succeeded",
             source: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageaccounts/exampleStorageAccount",
-            topicType: "Microsoft.Storage.storageaccounts",
-            metricResourceId: "183c0fb1-17ff-47b6-ac77-5a47420ab01e",
+            topicType: topicType,
+            metricResourceId: metricResourceId,
           },
           location: "westus2",
           tags: null,
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic",
+          id: systemTopicId,
           name: "exampleSystemTopic",
           type: "Microsoft.EventGrid/systemTopics",
         },
@@ -15535,11 +13038,7 @@ import "./main.tsp";
     title: "SystemTopics Get",
     since: "2025-07-15-preview",
     request: #{
-      path: #{
-        resourceGroupName: "examplerg",
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        systemTopicName: "exampleSystemTopic",
-      },
+      path: systemTopicPath,
     },
     responses: #[
       #{
@@ -15547,35 +13046,16 @@ import "./main.tsp";
         body: #{
           name: "exampleSystemTopic",
           type: "Microsoft.EventGrid/systemTopics",
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic",
-          identity: #{
-            type: "UserAssigned",
-            userAssignedIdentities: #[
-              #{
-                key: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id",
-                value: #{
-                  clientId: "33333333-3333-3333-3333-333333333333",
-                  principalId: "22222222-2222-2222-2222-222222222222",
-                },
-              },
-            ],
-          },
+          id: systemTopicId,
+          identity: identity,
           location: "westus2",
           properties: #{
             encryption: #{
               customerManagedKeyEncryption: #[
-                #{
-                  keyEncryptionKeyIdentity: #{
-                    type: "UserAssigned",
-                    userAssignedIdentityResourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id",
-                  },
-                  keyEncryptionKeyStatus: "Active",
-                  keyEncryptionKeyStatusFriendlyDescription: "Customer Managed Key (CMK) Encryption is 'Active' and running normally.",
-                  keyEncryptionKeyUrl: "https://ege2ekeyvault.vault.azure.net/keys/ValidKey1",
-                },
+                customerManagedKeyEncryption,
               ],
             },
-            metricResourceId: "183c0fb1-17ff-47b6-ac77-5a47420ab01e",
+            metricResourceId: metricResourceId,
             platformCapabilities: #{
               confidentialCompute: #{
                 mode: "Enabled",
@@ -15583,7 +13063,7 @@ import "./main.tsp";
             },
             provisioningState: "Succeeded",
             source: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageaccounts/exampleStorageAccount",
-            topicType: "Microsoft.Storage.storageaccounts",
+            topicType: topicType,
           },
         },
       },
@@ -15595,7 +13075,7 @@ import "./main.tsp";
     title: "SystemTopics ListByResourceGroup",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
       },
     },
@@ -15608,12 +13088,12 @@ import "./main.tsp";
               properties: #{
                 provisioningState: "Succeeded",
                 source: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageaccounts/exampleStorageAccount",
-                topicType: "Microsoft.Storage.storageaccounts",
-                metricResourceId: "183c0fb1-17ff-47b6-ac77-5a47420ab01e",
+                topicType: topicType,
+                metricResourceId: metricResourceId,
               },
               location: "westus2",
               tags: null,
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic",
+              id: systemTopicId,
               name: "exampleSystemTopic",
               type: "Microsoft.EventGrid/systemTopics",
             },
@@ -15628,7 +13108,7 @@ import "./main.tsp";
     title: "SystemTopics ListBySubscription",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
       },
     },
     responses: #[
@@ -15640,12 +13120,12 @@ import "./main.tsp";
               properties: #{
                 provisioningState: "Succeeded",
                 source: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageaccounts/exampleStorageAccount",
-                topicType: "Microsoft.Storage.storageaccounts",
-                metricResourceId: "183c0fb1-17ff-47b6-ac77-5a47420ab01e",
+                topicType: topicType,
+                metricResourceId: metricResourceId,
               },
               location: "westus2",
               tags: null,
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic",
+              id: systemTopicId,
               name: "exampleSystemTopic",
               type: "Microsoft.EventGrid/systemTopics",
             },
@@ -15659,11 +13139,7 @@ import "./main.tsp";
   #{
     title: "SystemTopics Update",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        systemTopicName: "exampleSystemTopic",
-      },
+      path: systemTopicPath,
       body: #{
         tags: #{
           tag1: "value1",
@@ -15678,12 +13154,12 @@ import "./main.tsp";
           properties: #{
             provisioningState: "Succeeded",
             source: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageaccounts/exampleStorageAccount",
-            topicType: "Microsoft.Storage.storageaccounts",
-            metricResourceId: "183c0fb1-17ff-47b6-ac77-5a47420ab01e",
+            topicType: topicType,
+            metricResourceId: metricResourceId,
           },
           location: "westus2",
           tags: null,
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic",
+          id: systemTopicId,
           name: "exampleSystemTopic",
           type: "Microsoft.EventGrid/systemTopics",
         },
@@ -15694,12 +13170,12 @@ import "./main.tsp";
           properties: #{
             provisioningState: "Succeeded",
             source: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageaccounts/exampleStorageAccount",
-            topicType: "Microsoft.Storage.storageaccounts",
-            metricResourceId: "183c0fb1-17ff-47b6-ac77-5a47420ab01e",
+            topicType: topicType,
+            metricResourceId: metricResourceId,
           },
           location: "westus2",
           tags: null,
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic",
+          id: systemTopicId,
           name: "exampleSystemTopic",
           type: "Microsoft.EventGrid/systemTopics",
         },
@@ -15711,25 +13187,16 @@ import "./main.tsp";
   #{
     title: "TopicEventSubscriptions CreateOrUpdate",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: eventSubscriptionPath,
       body: #{
         properties: #{
           destination: #{
             endpointType: "WebHook",
             properties: #{
-              endpointUrl: "https://requestb.in/15ksip71",
+              endpointUrl: endpointBaseUrl,
             },
           },
-          filter: #{
-            isSubjectCaseSensitive: false,
-            subjectBeginsWith: "ExamplePrefix",
-            subjectEndsWith: "ExampleSuffix",
-          },
+          filter: filter,
         },
       },
     },
@@ -15740,15 +13207,11 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             labels: null,
             eventDeliverySchema: "EventGridSchema",
             retryPolicy: #{
@@ -15756,7 +13219,7 @@ import "./main.tsp";
               eventTimeToLiveInMinutes: 1440,
             },
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
@@ -15769,15 +13232,11 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
-            filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
-            },
+            filter: filter,
             labels: null,
             eventDeliverySchema: "EventGridSchema",
             retryPolicy: #{
@@ -15785,7 +13244,7 @@ import "./main.tsp";
               eventTimeToLiveInMinutes: 1440,
             },
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
@@ -15799,12 +13258,7 @@ import "./main.tsp";
   #{
     title: "TopicEventSubscriptions Delete",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: eventSubscriptionPath,
     },
     responses: #[
       #{
@@ -15824,30 +13278,13 @@ import "./main.tsp";
     title: "TopicEventSubscriptions Delete",
     since: "2023-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: eventSubscriptionPath,
     },
     responses: #[
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -15859,30 +13296,13 @@ import "./main.tsp";
     title: "TopicEventSubscriptions Delete",
     since: "2025-02-15",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: eventSubscriptionPath,
     },
     responses: #[
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -15894,30 +13314,13 @@ import "./main.tsp";
     title: "TopicEventSubscriptions Delete",
     since: "2025-04-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: eventSubscriptionPath,
     },
     responses: #[
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -15928,34 +13331,27 @@ import "./main.tsp";
   #{
     title: "TopicEventSubscriptions Get",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: eventSubscriptionPath,
     },
     responses: #[
       #{
         statusCode: 200,
         body: #{
           properties: #{
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
             provisioningState: "Succeeded",
             destination: #{
               properties: #{
-                resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+                resourceId: storageAccountId,
                 queueName: "exampleQueue",
               },
               endpointType: "StorageQueue",
             },
             filter: #{
-              isSubjectCaseSensitive: false,
-              subjectBeginsWith: "ExamplePrefix",
-              subjectEndsWith: "ExampleSuffix",
+              ...filter,
               includedEventTypes: #[
                 "Microsoft.Storage.BlobCreated",
-                "Microsoft.Storage.BlobDeleted",
+                includedEventTypes,
               ],
             },
             labels: #[
@@ -15980,12 +13376,7 @@ import "./main.tsp";
   #{
     title: "TopicEventSubscriptions GetDeliveryAttributes",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: eventSubscriptionPath,
     },
     responses: #[
       #{
@@ -16004,7 +13395,7 @@ import "./main.tsp";
               name: "header2",
               type: "Dynamic",
               properties: #{
-                sourceField: "data.foo",
+                sourceField: sourceField,
               },
             },
             #{
@@ -16025,18 +13416,13 @@ import "./main.tsp";
   #{
     title: "TopicEventSubscriptions GetFullUrl",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: eventSubscriptionPath,
     },
     responses: #[
       #{
         statusCode: 200,
         body: #{
-          endpointUrl: "https://requestb.in/15ksip71",
+          endpointUrl: endpointBaseUrl,
         },
       },
     ],
@@ -16046,12 +13432,7 @@ import "./main.tsp";
   #{
     title: "TopicEventSubscriptions List",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
+      path: eventSubscriptionPath,
     },
     responses: #[
       #{
@@ -16060,22 +13441,20 @@ import "./main.tsp";
           value: #[
             #{
               properties: #{
-                topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+                topic: topicId,
                 provisioningState: "Succeeded",
                 destination: #{
                   properties: #{
-                    resourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.Storage/storageAccounts/exampleStorageAccount",
+                    resourceId: storageAccountId,
                     queueName: "exampleQueue",
                   },
                   endpointType: "StorageQueue",
                 },
                 filter: #{
-                  isSubjectCaseSensitive: false,
-                  subjectBeginsWith: "ExamplePrefix",
-                  subjectEndsWith: "ExampleSuffix",
+                  ...filter,
                   includedEventTypes: #[
                     "Microsoft.Storage.BlobCreated",
-                    "Microsoft.Storage.BlobDeleted",
+                    includedEventTypes,
                   ],
                 },
                 labels: #[
@@ -16102,29 +13481,8 @@ import "./main.tsp";
   #{
     title: "TopicEventSubscriptions Update",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-        eventSubscriptionName: "exampleEventSubscription",
-      },
-      body: #{
-        destination: #{
-          endpointType: "WebHook",
-          properties: #{
-            endpointUrl: "https://requestb.in/15ksip71",
-          },
-        },
-        filter: #{
-          isSubjectCaseSensitive: true,
-          subjectBeginsWith: "existingPrefix",
-          subjectEndsWith: "newSuffix",
-        },
-        labels: #[
-          "label1",
-          "label2",
-        ],
-      },
+      path: eventSubscriptionPath,
+      body: body,
     },
     responses: #[
       #{
@@ -16133,7 +13491,7 @@ import "./main.tsp";
           properties: #{
             destination: #{
               properties: #{
-                endpointBaseUrl: "https://requestb.in/15ksip71",
+                endpointBaseUrl: endpointBaseUrl,
               },
               endpointType: "WebHook",
             },
@@ -16152,7 +13510,7 @@ import "./main.tsp";
               eventTimeToLiveInMinutes: 1440,
             },
             provisioningState: "Succeeded",
-            topic: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+            topic: topicId,
           },
           id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic/eventSubscriptions/exampleEventSubscription",
           name: "exampleEventSubscription",
@@ -16166,12 +13524,7 @@ import "./main.tsp";
   #{
     title: "TopicSpaces CreateOrUpdate",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-        topicSpaceName: "exampleTopicSpace",
-      },
+      path: topicSpacePath,
       body: #{
         properties: #{
           topicTemplates: #[
@@ -16192,7 +13545,7 @@ import "./main.tsp";
             ],
             provisioningState: "Succeeded",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topicSpaces/exampleTopicSpace",
+          id: topicSpaceId,
           name: "exampleTopicSpace",
           type: "Microsoft.EventGrid/namespaces/topicSpaces",
         },
@@ -16207,7 +13560,7 @@ import "./main.tsp";
             ],
             provisioningState: "Succeeded",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topicSpaces/exampleTopicSpace",
+          id: topicSpaceId,
           name: "exampleTopicSpace",
           type: "Microsoft.EventGrid/namespaces/topicSpaces",
         },
@@ -16219,30 +13572,13 @@ import "./main.tsp";
   #{
     title: "TopicSpaces Delete",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-        topicSpaceName: "exampleTopicSpace",
-      },
+      path: topicSpacePath,
     },
     responses: #[
       #{
         statusCode: 200,
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -16253,12 +13589,7 @@ import "./main.tsp";
   #{
     title: "TopicSpaces Get",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-        topicSpaceName: "exampleTopicSpace",
-      },
+      path: topicSpacePath,
     },
     responses: #[
       #{
@@ -16271,7 +13602,7 @@ import "./main.tsp";
             ],
             provisioningState: "Succeeded",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topicSpaces/exampleTopicSpace",
+          id: topicSpaceId,
           name: "exampleTopicSpace",
           type: "Microsoft.EventGrid/namespaces/topicSpaces",
         },
@@ -16283,11 +13614,7 @@ import "./main.tsp";
   #{
     title: "TopicSpaces ListByNamespace",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -16302,7 +13629,7 @@ import "./main.tsp";
                 ],
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topicSpaces/exampleTopicSpace",
+              id: topicSpaceId,
               name: "exampleTopicSpace",
               type: "Microsoft.EventGrid/namespaces/topicSpaces",
             },
@@ -16318,11 +13645,7 @@ import "./main.tsp";
     title: "TopicSpaces ListByNamespace",
     since: "2023-12-15-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -16337,7 +13660,7 @@ import "./main.tsp";
                 ],
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topicSpaces/exampleTopicSpace",
+              id: topicSpaceId,
               name: "exampleTopicSpace",
               type: "Microsoft.EventGrid/namespaces/topicSpaces",
             },
@@ -16353,11 +13676,7 @@ import "./main.tsp";
     title: "TopicSpaces ListByNamespace",
     since: "2024-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -16372,7 +13691,7 @@ import "./main.tsp";
                 ],
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topicSpaces/exampleTopicSpace",
+              id: topicSpaceId,
               name: "exampleTopicSpace",
               type: "Microsoft.EventGrid/namespaces/topicSpaces",
             },
@@ -16388,11 +13707,7 @@ import "./main.tsp";
     title: "TopicSpaces ListByNamespace",
     since: "2024-12-15-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -16407,7 +13722,7 @@ import "./main.tsp";
                 ],
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topicSpaces/exampleTopicSpace",
+              id: topicSpaceId,
               name: "exampleTopicSpace",
               type: "Microsoft.EventGrid/namespaces/topicSpaces",
             },
@@ -16423,11 +13738,7 @@ import "./main.tsp";
     title: "TopicSpaces ListByNamespace",
     since: "2025-02-15",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -16442,7 +13753,7 @@ import "./main.tsp";
                 ],
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topicSpaces/exampleTopicSpace",
+              id: topicSpaceId,
               name: "exampleTopicSpace",
               type: "Microsoft.EventGrid/namespaces/topicSpaces",
             },
@@ -16458,11 +13769,7 @@ import "./main.tsp";
     title: "TopicSpaces ListByNamespace",
     since: "2025-04-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespace",
-      },
+      path: namespacePath,
     },
     responses: #[
       #{
@@ -16477,7 +13784,7 @@ import "./main.tsp";
                 ],
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/topicSpaces/exampleTopicSpace",
+              id: topicSpaceId,
               name: "exampleTopicSpace",
               type: "Microsoft.EventGrid/namespaces/topicSpaces",
             },
@@ -16493,7 +13800,7 @@ import "./main.tsp";
     title: "TopicTypes Get",
     request: #{
       path: #{
-        topicTypeName: "Microsoft.Storage.StorageAccounts",
+        topicTypeName: topicTypeName,
       },
     },
     responses: #[
@@ -16503,7 +13810,7 @@ import "./main.tsp";
           properties: #{
             description: "Microsoft Storage service events.",
             displayName: "Storage Accounts",
-            provider: "Microsoft.Storage",
+            provider: provider,
             provisioningState: "Succeeded",
             resourceRegionType: "RegionalResource",
           },
@@ -16521,7 +13828,7 @@ import "./main.tsp";
     since: "2025-07-15-preview",
     request: #{
       path: #{
-        topicTypeName: "Microsoft.Storage.StorageAccounts",
+        topicTypeName: topicTypeName,
       },
     },
     responses: #[
@@ -16534,7 +13841,7 @@ import "./main.tsp";
           properties: #{
             description: "Microsoft Storage service events.",
             displayName: "Storage Accounts",
-            provider: "Microsoft.Storage",
+            provider: provider,
             provisioningState: "Succeeded",
             resourceRegionType: "RegionalResource",
           },
@@ -16568,7 +13875,7 @@ import "./main.tsp";
               properties: #{
                 description: "Microsoft Storage service events.",
                 displayName: "Storage Accounts",
-                provider: "Microsoft.Storage",
+                provider: provider,
                 provisioningState: "Succeeded",
                 resourceRegionType: "RegionalResource",
               },
@@ -16611,7 +13918,7 @@ import "./main.tsp";
               properties: #{
                 description: "Microsoft Storage service events.",
                 displayName: "Storage Accounts",
-                provider: "Microsoft.Storage",
+                provider: provider,
                 provisioningState: "Succeeded",
                 resourceRegionType: "RegionalResource",
               },
@@ -16627,7 +13934,7 @@ import "./main.tsp";
     title: "TopicTypes ListEventTypes",
     request: #{
       path: #{
-        topicTypeName: "Microsoft.Storage.StorageAccounts",
+        topicTypeName: topicTypeName,
       },
     },
     responses: #[
@@ -16667,7 +13974,7 @@ import "./main.tsp";
     since: "2025-07-15-preview",
     request: #{
       path: #{
-        topicTypeName: "Microsoft.Storage.StorageAccounts",
+        topicTypeName: topicTypeName,
       },
     },
     responses: #[
@@ -16705,11 +14012,7 @@ import "./main.tsp";
   #{
     title: "Topics CreateOrUpdate",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
       body: #{
         location: "westus2",
         tags: #{
@@ -16723,10 +14026,10 @@ import "./main.tsp";
         statusCode: 201,
         body: #{
           properties: #{
-            endpoint: "https://exampletopic.westus2-1.eventgrid.azure.net/api/events",
+            endpoint: endpoint,
             provisioningState: "Succeeded",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+          id: topicId,
           location: "westus2",
           name: "exampleTopic",
           tags: #{
@@ -16744,11 +14047,7 @@ import "./main.tsp";
     title: "Topics CreateOrUpdate",
     since: "2020-04-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
       body: #{
         location: "westus2",
         tags: #{
@@ -16759,7 +14058,7 @@ import "./main.tsp";
           publicNetworkAccess: "Enabled",
           inboundIpRules: #[
             #{
-              ipMask: "12.18.30.15",
+              ipMask: ipMask,
               action: "Allow",
             },
             #{
@@ -16775,12 +14074,12 @@ import "./main.tsp";
         statusCode: 201,
         body: #{
           properties: #{
-            endpoint: "https://exampletopic.westus2-1.eventgrid.azure.net/api/events",
+            endpoint: endpoint,
             provisioningState: "Succeeded",
             publicNetworkAccess: "Enabled",
             inboundIpRules: #[
               #{
-                ipMask: "12.18.30.15",
+                ipMask: ipMask,
                 action: "Allow",
               },
               #{
@@ -16789,7 +14088,7 @@ import "./main.tsp";
               },
             ],
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+          id: topicId,
           location: "westus2",
           name: "exampleTopic",
           tags: #{
@@ -16807,17 +14106,13 @@ import "./main.tsp";
     title: "Topics CreateOrUpdate",
     since: "2025-07-15-preview",
     request: #{
-      path: #{
-        resourceGroupName: "examplerg",
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
       body: #{
         identity: #{
           type: "UserAssigned",
           userAssignedIdentities: #[
             #{
-              key: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id",
+              key: key,
               value: #{},
             },
           ],
@@ -16827,11 +14122,8 @@ import "./main.tsp";
           encryption: #{
             customerManagedKeyEncryption: #[
               #{
-                keyEncryptionKeyIdentity: #{
-                  type: "UserAssigned",
-                  userAssignedIdentityResourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id",
-                },
-                keyEncryptionKeyUrl: "https://ege2ekeyvault.vault.azure.net/keys/ValidKey1",
+                keyEncryptionKeyIdentity: keyEncryptionKeyIdentity,
+                keyEncryptionKeyUrl: keyEncryptionKeyUrl,
               },
             ],
           },
@@ -16853,35 +14145,16 @@ import "./main.tsp";
         body: #{
           name: "exampleTopic",
           type: "Microsoft.EventGrid/topics",
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-          identity: #{
-            type: "UserAssigned",
-            userAssignedIdentities: #[
-              #{
-                key: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id",
-                value: #{
-                  clientId: "33333333-3333-3333-3333-333333333333",
-                  principalId: "22222222-2222-2222-2222-222222222222",
-                },
-              },
-            ],
-          },
+          id: topicId,
+          identity: identity,
           location: "westus2",
           properties: #{
             encryption: #{
               customerManagedKeyEncryption: #[
-                #{
-                  keyEncryptionKeyIdentity: #{
-                    type: "UserAssigned",
-                    userAssignedIdentityResourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id",
-                  },
-                  keyEncryptionKeyStatus: "Active",
-                  keyEncryptionKeyStatusFriendlyDescription: "Customer Managed Key (CMK) Encryption is 'Active' and running normally.",
-                  keyEncryptionKeyUrl: "https://ege2ekeyvault.vault.azure.net/keys/ValidKey1",
-                },
+                customerManagedKeyEncryption,
               ],
             },
-            endpoint: "https://exampletopic.westus2-1.eventgrid.azure.net/api/events",
+            endpoint: endpoint,
             platformCapabilities: #{
               confidentialCompute: #{
                 mode: "Enabled",
@@ -16902,11 +14175,7 @@ import "./main.tsp";
   #{
     title: "Topics CreateOrUpdateForAzureArc",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
       body: #{
         location: "westus2",
         tags: #{
@@ -16919,7 +14188,7 @@ import "./main.tsp";
           type: "CustomLocation",
         },
         properties: #{
-          inputSchema: "CloudEventSchemaV1_0",
+          inputSchema: inputSchema,
         },
       },
     },
@@ -16928,16 +14197,16 @@ import "./main.tsp";
         statusCode: 201,
         body: #{
           properties: #{
-            endpoint: "https://exampletopic.westus2-1.eventgrid.azure.net/api/events",
+            endpoint: endpoint,
             provisioningState: "Succeeded",
-            inputSchema: "CloudEventSchemaV1_0",
+            inputSchema: inputSchema,
           },
           kind: "AzureArc",
           extendedLocation: #{
             name: "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/examplerg/providers/Microsoft.ExtendedLocation/CustomLocations/exampleCustomLocation",
             type: "CustomLocation",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+          id: topicId,
           location: "westus2",
           name: "exampleTopic",
           tags: #{
@@ -16954,11 +14223,7 @@ import "./main.tsp";
   #{
     title: "Topics Delete",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
     },
     responses: #[
       #{
@@ -16975,11 +14240,7 @@ import "./main.tsp";
     title: "Topics Delete",
     since: "2021-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
     },
     responses: #[
       #{
@@ -16996,11 +14257,7 @@ import "./main.tsp";
     title: "Topics Delete",
     since: "2021-12-01",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
     },
     responses: #[
       #{
@@ -17017,26 +14274,10 @@ import "./main.tsp";
     title: "Topics Delete",
     since: "2023-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
     },
     responses: #[
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -17048,26 +14289,10 @@ import "./main.tsp";
     title: "Topics Delete",
     since: "2025-02-15",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
     },
     responses: #[
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -17079,26 +14304,10 @@ import "./main.tsp";
     title: "Topics Delete",
     since: "2025-04-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
     },
     responses: #[
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
       #{
         statusCode: 204,
       },
@@ -17109,11 +14318,7 @@ import "./main.tsp";
   #{
     title: "Topics Get",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
     },
     responses: #[
       #{
@@ -17123,7 +14328,7 @@ import "./main.tsp";
             endpoint: "https://exampletopic.westcentralus-1.eventgrid.azure.net/api/events",
             provisioningState: "Succeeded",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+          id: topicId,
           location: "westus2",
           name: "exampleTopic",
           tags: #{
@@ -17141,11 +14346,7 @@ import "./main.tsp";
     title: "Topics Get",
     since: "2025-07-15-preview",
     request: #{
-      path: #{
-        resourceGroupName: "examplerg",
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
     },
     responses: #[
       #{
@@ -17153,32 +14354,13 @@ import "./main.tsp";
         body: #{
           name: "exampleTopic",
           type: "Microsoft.EventGrid/topics",
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
-          identity: #{
-            type: "UserAssigned",
-            userAssignedIdentities: #[
-              #{
-                key: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id",
-                value: #{
-                  clientId: "33333333-3333-3333-3333-333333333333",
-                  principalId: "22222222-2222-2222-2222-222222222222",
-                },
-              },
-            ],
-          },
+          id: topicId,
+          identity: identity,
           location: "westus2",
           properties: #{
             encryption: #{
               customerManagedKeyEncryption: #[
-                #{
-                  keyEncryptionKeyIdentity: #{
-                    type: "UserAssigned",
-                    userAssignedIdentityResourceId: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id",
-                  },
-                  keyEncryptionKeyStatus: "Active",
-                  keyEncryptionKeyStatusFriendlyDescription: "Customer Managed Key (CMK) Encryption is 'Active' and running normally.",
-                  keyEncryptionKeyUrl: "https://ege2ekeyvault.vault.azure.net/keys/ValidKey1",
-                },
+                customerManagedKeyEncryption,
               ],
             },
             endpoint: "https://exampletopic.westcentralus-1.eventgrid.azure.net/api/events",
@@ -17203,7 +14385,7 @@ import "./main.tsp";
     title: "Topics ListByResourceGroup",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
       },
     },
@@ -17214,10 +14396,10 @@ import "./main.tsp";
           value: #[
             #{
               properties: #{
-                endpoint: "https://exampletopic.westus2-1.eventgrid.azure.net/api/events",
+                endpoint: endpoint,
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+              id: topicId,
               location: "westus2",
               name: "exampleTopic",
               tags: #{
@@ -17231,7 +14413,7 @@ import "./main.tsp";
                 endpoint: "https://exampletopic.westcentralus-1.eventgrid.azure.net/api/events",
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+              id: topicId,
               location: "westus2",
               name: "exampleTopic",
               tags: #{
@@ -17251,7 +14433,7 @@ import "./main.tsp";
     title: "Topics ListBySubscription",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
       },
     },
     responses: #[
@@ -17261,10 +14443,10 @@ import "./main.tsp";
           value: #[
             #{
               properties: #{
-                endpoint: "https://exampletopic.westus2-1.eventgrid.azure.net/api/events",
+                endpoint: endpoint,
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+              id: topicId,
               location: "westus2",
               name: "exampleTopic",
               tags: #{
@@ -17278,7 +14460,7 @@ import "./main.tsp";
                 endpoint: "https://exampletopic.westcentralus-1.eventgrid.azure.net/api/events",
                 provisioningState: "Succeeded",
               },
-              id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+              id: topicId,
               location: "westus2",
               name: "exampleTopic",
               tags: #{
@@ -17298,9 +14480,9 @@ import "./main.tsp";
     title: "Topics ListEventTypes",
     request: #{
       path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
         resourceGroupName: "examplerg",
-        providerNamespace: "Microsoft.Storage",
+        providerNamespace: provider,
         resourceTypeName: "storageAccounts",
         resourceName: "ExampleStorageAccount",
       },
@@ -17342,11 +14524,11 @@ import "./main.tsp";
     since: "2025-07-15-preview",
     request: #{
       path: #{
-        providerNamespace: "Microsoft.Storage",
+        providerNamespace: provider,
         resourceGroupName: "examplerg",
         resourceName: "ExampleStorageAccount",
         resourceTypeName: "storageAccounts",
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
+        subscriptionId: subscriptionId,
       },
     },
     responses: #[
@@ -17384,11 +14566,7 @@ import "./main.tsp";
   #{
     title: "Topics ListSharedAccessKeys",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
     },
     responses: #[
       #{
@@ -17406,11 +14584,7 @@ import "./main.tsp";
     title: "Topics ListSharedAccessKeys",
     since: "2020-10-15-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
     },
     responses: #[
       #{
@@ -17428,11 +14602,7 @@ import "./main.tsp";
     title: "Topics ListSharedAccessKeys",
     since: "2021-12-01",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
     },
     responses: #[
       #{
@@ -17450,11 +14620,7 @@ import "./main.tsp";
     title: "Topics ListSharedAccessKeys",
     since: "2023-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
     },
     responses: #[
       #{
@@ -17472,11 +14638,7 @@ import "./main.tsp";
     title: "Topics ListSharedAccessKeys",
     since: "2025-02-15",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
     },
     responses: #[
       #{
@@ -17494,11 +14656,7 @@ import "./main.tsp";
     title: "Topics ListSharedAccessKeys",
     since: "2025-04-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
     },
     responses: #[
       #{
@@ -17515,11 +14673,7 @@ import "./main.tsp";
   #{
     title: "Topics RegenerateKey",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
       body: #{
         keyName: "key1",
       },
@@ -17540,11 +14694,7 @@ import "./main.tsp";
     title: "Topics RegenerateKey",
     since: "2020-10-15-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
       body: #{
         keyName: "key1",
       },
@@ -17568,11 +14718,7 @@ import "./main.tsp";
     title: "Topics RegenerateKey",
     since: "2021-12-01",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
       body: #{
         keyName: "key1",
       },
@@ -17593,11 +14739,7 @@ import "./main.tsp";
     title: "Topics RegenerateKey",
     since: "2022-06-15",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
       body: #{
         keyName: "key1",
       },
@@ -17621,11 +14763,7 @@ import "./main.tsp";
     title: "Topics RegenerateKey",
     since: "2023-06-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
       body: #{
         keyName: "key1",
       },
@@ -17638,19 +14776,7 @@ import "./main.tsp";
           key2: "testKey2Value",
         },
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
     ],
   });
 
@@ -17659,11 +14785,7 @@ import "./main.tsp";
     title: "Topics RegenerateKey",
     since: "2025-02-15",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
       body: #{
         keyName: "key1",
       },
@@ -17676,19 +14798,7 @@ import "./main.tsp";
           key2: "<key2>",
         },
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
     ],
   });
 
@@ -17697,11 +14807,7 @@ import "./main.tsp";
     title: "Topics RegenerateKey",
     since: "2025-04-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
       body: #{
         keyName: "key1",
       },
@@ -17714,19 +14820,7 @@ import "./main.tsp";
           key2: "testKey2Value",
         },
       },
-      #{
-        statusCode: 202,
-        headers: #[
-          #{
-            name: "Location",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}",
-          },
-          #{
-            name: "Azure-AsyncOperation",
-            value: "https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}",
-          },
-        ],
-      },
+      responses,
     ],
   });
 
@@ -17734,11 +14828,7 @@ import "./main.tsp";
   #{
     title: "Topics Update",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
       body: #{
         tags: #{
           tag1: "value1",
@@ -17751,10 +14841,10 @@ import "./main.tsp";
         statusCode: 201,
         body: #{
           properties: #{
-            endpoint: "https://exampletopic.westus2-1.eventgrid.azure.net/api/events",
+            endpoint: endpoint,
             provisioningState: "Succeeded",
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+          id: topicId,
           location: "westus2",
           name: "exampleTopic",
           tags: #{
@@ -17772,11 +14862,7 @@ import "./main.tsp";
     title: "Topics Update",
     since: "2020-04-01-preview",
     request: #{
-      path: #{
-        subscriptionId: "00000000-0000-0000-0000-000000000000",
-        resourceGroupName: "examplerg",
-        topicName: "exampleTopic",
-      },
+      path: topicPath,
       body: #{
         tags: #{
           tag1: "value1",
@@ -17786,7 +14872,7 @@ import "./main.tsp";
           publicNetworkAccess: "Enabled",
           inboundIpRules: #[
             #{
-              ipMask: "12.18.30.15",
+              ipMask: ipMask,
               action: "Allow",
             },
             #{
@@ -17805,12 +14891,12 @@ import "./main.tsp";
         statusCode: 201,
         body: #{
           properties: #{
-            endpoint: "https://exampletopic.westus2-1.eventgrid.azure.net/api/events",
+            endpoint: endpoint,
             provisioningState: "Succeeded",
             publicNetworkAccess: "Enabled",
             inboundIpRules: #[
               #{
-                ipMask: "12.18.30.15",
+                ipMask: ipMask,
                 action: "Allow",
               },
               #{
@@ -17819,7 +14905,7 @@ import "./main.tsp";
               },
             ],
           },
-          id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic",
+          id: topicId,
           location: "westus2",
           name: "exampleTopic",
           tags: #{
@@ -17837,7 +14923,7 @@ import "./main.tsp";
     title: "VerifiedPartners Get",
     request: #{
       path: #{
-        verifiedPartnerName: "Contoso.Finance",
+        verifiedPartnerName: partnerName,
       },
     },
     responses: #[
@@ -17845,19 +14931,11 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           properties: #{
-            partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
+            partnerRegistrationImmutableId: partnerRegistrationImmutableId,
             organizationName: "Contoso",
-            partnerDisplayName: "Contoso - Finance Department",
-            partnerTopicDetails: #{
-              description: "This is short description",
-              longDescription: "This is really long long... long description",
-              setupUri: "https://www.example.com/",
-            },
-            partnerDestinationDetails: #{
-              description: "This is custom description",
-              longDescription: "This is long custom description",
-              setupUri: "https://www.example.com/",
-            },
+            partnerDisplayName: partnerDisplayName,
+            partnerTopicDetails: partnerTopicDetails,
+            partnerDestinationDetails: partnerDestinationDetails,
           },
           id: "/providers/Microsoft.EventGrid/verifiedPartners/Contoso.Finance",
           name: "exampleVerifiedPartner",
@@ -17873,7 +14951,7 @@ import "./main.tsp";
     since: "2022-06-15",
     request: #{
       path: #{
-        verifiedPartnerName: "Contoso.Finance",
+        verifiedPartnerName: partnerName,
       },
     },
     responses: #[
@@ -17881,14 +14959,10 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           properties: #{
-            partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
+            partnerRegistrationImmutableId: partnerRegistrationImmutableId,
             organizationName: "Contoso",
-            partnerDisplayName: "Contoso - Finance Department",
-            partnerTopicDetails: #{
-              description: "This is short description",
-              longDescription: "This is really long long... long description",
-              setupUri: "https://www.example.com/",
-            },
+            partnerDisplayName: partnerDisplayName,
+            partnerTopicDetails: partnerTopicDetails,
           },
           id: "/providers/Microsoft.EventGrid/verifiedPartners/Contoso.Finance",
           name: "exampleVerifiedPartner",
@@ -17904,7 +14978,7 @@ import "./main.tsp";
     since: "2023-06-01-preview",
     request: #{
       path: #{
-        verifiedPartnerName: "Contoso.Finance",
+        verifiedPartnerName: partnerName,
       },
     },
     responses: #[
@@ -17912,19 +14986,11 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           properties: #{
-            partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
+            partnerRegistrationImmutableId: partnerRegistrationImmutableId,
             organizationName: "Contoso",
-            partnerDisplayName: "Contoso - Finance Department",
-            partnerTopicDetails: #{
-              description: "This is short description",
-              longDescription: "This is really long long... long description",
-              setupUri: "https://www.example.com/",
-            },
-            partnerDestinationDetails: #{
-              description: "This is custom description",
-              longDescription: "This is long custom description",
-              setupUri: "https://www.example.com/",
-            },
+            partnerDisplayName: partnerDisplayName,
+            partnerTopicDetails: partnerTopicDetails,
+            partnerDestinationDetails: partnerDestinationDetails,
           },
           id: "/providers/Microsoft.EventGrid/verifiedPartners/Contoso.Finance",
           name: "exampleVerifiedPartner",
@@ -17940,7 +15006,7 @@ import "./main.tsp";
     since: "2025-02-15",
     request: #{
       path: #{
-        verifiedPartnerName: "Contoso.Finance",
+        verifiedPartnerName: partnerName,
       },
     },
     responses: #[
@@ -17948,14 +15014,10 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           properties: #{
-            partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
+            partnerRegistrationImmutableId: partnerRegistrationImmutableId,
             organizationName: "Contoso",
-            partnerDisplayName: "Contoso - Finance Department",
-            partnerTopicDetails: #{
-              description: "This is short description",
-              longDescription: "This is really long long... long description",
-              setupUri: "https://www.example.com/",
-            },
+            partnerDisplayName: partnerDisplayName,
+            partnerTopicDetails: partnerTopicDetails,
           },
           id: "/providers/Microsoft.EventGrid/verifiedPartners/Contoso.Finance",
           name: "exampleVerifiedPartner",
@@ -17971,7 +15033,7 @@ import "./main.tsp";
     since: "2025-04-01-preview",
     request: #{
       path: #{
-        verifiedPartnerName: "Contoso.Finance",
+        verifiedPartnerName: partnerName,
       },
     },
     responses: #[
@@ -17979,19 +15041,11 @@ import "./main.tsp";
         statusCode: 200,
         body: #{
           properties: #{
-            partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
+            partnerRegistrationImmutableId: partnerRegistrationImmutableId,
             organizationName: "Contoso",
-            partnerDisplayName: "Contoso - Finance Department",
-            partnerTopicDetails: #{
-              description: "This is short description",
-              longDescription: "This is really long long... long description",
-              setupUri: "https://www.example.com/",
-            },
-            partnerDestinationDetails: #{
-              description: "This is custom description",
-              longDescription: "This is long custom description",
-              setupUri: "https://www.example.com/",
-            },
+            partnerDisplayName: partnerDisplayName,
+            partnerTopicDetails: partnerTopicDetails,
+            partnerDestinationDetails: partnerDestinationDetails,
           },
           id: "/providers/Microsoft.EventGrid/verifiedPartners/Contoso.Finance",
           name: "exampleVerifiedPartner",
@@ -18012,19 +15066,11 @@ import "./main.tsp";
           value: #[
             #{
               properties: #{
-                partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
+                partnerRegistrationImmutableId: partnerRegistrationImmutableId,
                 organizationName: "Contoso",
-                partnerDisplayName: "Contoso - Finance Department",
-                partnerTopicDetails: #{
-                  description: "This is short description",
-                  longDescription: "This is really long long... long description",
-                  setupUri: "https://www.example.com/",
-                },
-                partnerDestinationDetails: #{
-                  description: "This is custom description",
-                  longDescription: "This is long custom description",
-                  setupUri: "https://www.example.com/",
-                },
+                partnerDisplayName: partnerDisplayName,
+                partnerTopicDetails: partnerTopicDetails,
+                partnerDestinationDetails: partnerDestinationDetails,
               },
               id: "/providers/Microsoft.EventGrid/verifiedPartners/Contoso.Finance",
               name: "exampleVerifiedPartner",
@@ -18048,14 +15094,10 @@ import "./main.tsp";
           value: #[
             #{
               properties: #{
-                partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
+                partnerRegistrationImmutableId: partnerRegistrationImmutableId,
                 organizationName: "Contoso",
-                partnerDisplayName: "Contoso - Finance Department",
-                partnerTopicDetails: #{
-                  description: "This is short description",
-                  longDescription: "This is really long long... long description",
-                  setupUri: "https://www.example.com/",
-                },
+                partnerDisplayName: partnerDisplayName,
+                partnerTopicDetails: partnerTopicDetails,
               },
               id: "/providers/Microsoft.EventGrid/verifiedPartners/Contoso.Finance",
               name: "exampleVerifiedPartner",
@@ -18079,19 +15121,11 @@ import "./main.tsp";
           value: #[
             #{
               properties: #{
-                partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
+                partnerRegistrationImmutableId: partnerRegistrationImmutableId,
                 organizationName: "Contoso",
-                partnerDisplayName: "Contoso - Finance Department",
-                partnerTopicDetails: #{
-                  description: "This is short description",
-                  longDescription: "This is really long long... long description",
-                  setupUri: "https://www.example.com/",
-                },
-                partnerDestinationDetails: #{
-                  description: "This is custom description",
-                  longDescription: "This is long custom description",
-                  setupUri: "https://www.example.com/",
-                },
+                partnerDisplayName: partnerDisplayName,
+                partnerTopicDetails: partnerTopicDetails,
+                partnerDestinationDetails: partnerDestinationDetails,
               },
               id: "/providers/Microsoft.EventGrid/verifiedPartners/Contoso.Finance",
               name: "exampleVerifiedPartner",
@@ -18115,14 +15149,10 @@ import "./main.tsp";
           value: #[
             #{
               properties: #{
-                partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
+                partnerRegistrationImmutableId: partnerRegistrationImmutableId,
                 organizationName: "Contoso",
-                partnerDisplayName: "Contoso - Finance Department",
-                partnerTopicDetails: #{
-                  description: "This is short description",
-                  longDescription: "This is really long long... long description",
-                  setupUri: "https://www.example.com/",
-                },
+                partnerDisplayName: partnerDisplayName,
+                partnerTopicDetails: partnerTopicDetails,
               },
               id: "/providers/Microsoft.EventGrid/verifiedPartners/Contoso.Finance",
               name: "exampleVerifiedPartner",
@@ -18146,19 +15176,11 @@ import "./main.tsp";
           value: #[
             #{
               properties: #{
-                partnerRegistrationImmutableId: "66666666-6666-6666-6666-666666666666",
+                partnerRegistrationImmutableId: partnerRegistrationImmutableId,
                 organizationName: "Contoso",
-                partnerDisplayName: "Contoso - Finance Department",
-                partnerTopicDetails: #{
-                  description: "This is short description",
-                  longDescription: "This is really long long... long description",
-                  setupUri: "https://www.example.com/",
-                },
-                partnerDestinationDetails: #{
-                  description: "This is custom description",
-                  longDescription: "This is long custom description",
-                  setupUri: "https://www.example.com/",
-                },
+                partnerDisplayName: partnerDisplayName,
+                partnerTopicDetails: partnerTopicDetails,
+                partnerDestinationDetails: partnerDestinationDetails,
               },
               id: "/providers/Microsoft.EventGrid/verifiedPartners/Contoso.Finance",
               name: "exampleVerifiedPartner",

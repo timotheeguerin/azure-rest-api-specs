@@ -51,7 +51,7 @@ root), so a service's version metadata sits next to its TypeSpec configuration.
 > granularity as today's `readme.md` — one file per service/RP project, not one
 > per namespace. A large service like Compute that spans multiple namespaces and
 > many input files still has a single `service.yaml` at its project root, listing
-> every version (and, for Swagger versions, their `input-files`). This keeps a
+> every version (and, for Swagger versions, their `swagger-files`). This keeps a
 > single authoritative "which versions exist" list per service even when the
 > TypeSpec/Swagger is split across many files.
 
@@ -69,12 +69,12 @@ versions:
   - version: "2024-03-01-preview"
 
   - version: "2021-03-01"
-    input-files:                    # only needed for swagger versions
+    swagger-files: # only needed for swagger versions
       - stable/2021-03-01/compute.json
       - stable/2021-03-01/disk.json
 
   - version: "2020-06-01"
-    input-files:
+    swagger-files:
       - stable/2020-06-01/compute.json
 ```
 
@@ -98,7 +98,7 @@ versions:
 | Service name | Folder path (e.g., `specification/compute/resource-manager/Microsoft.Compute/`) |
 | Service type (ARM / data-plane) | Folder path (`resource-manager/` vs `data-plane/`) |
 | Status (stable / preview) | Version string — contains `-preview` → preview; otherwise → stable |
-| Source (typespec / swagger) | Presence of `input-files` field → swagger; absence → typespec (tooling resolves via `tspconfig.yaml` / `@versioned` enum) |
+| Source (typespec / swagger) | Presence of `swagger-files` field → swagger; absence → typespec (tooling resolves via `tspconfig.yaml` / `@versioned` enum) |
 
 The principle is: **don't repeat information that's already encoded in the repo structure or derivable from conventions.**
 
@@ -108,7 +108,7 @@ The principle is: **don't repeat information that's already encoded in the repo 
 | -------- | --------- |
 | Manually authored | Swagger versions can't be reliably auto-detected; keeps a single source of truth for "which versions exist." |
 | Minimal fields | Only declare what can't be inferred. Service name, type, status, and source are all derivable from context. |
-| `input-files` as the swagger marker | If present, the version is swagger-sourced and these are its spec files. If absent, tooling knows to look at TypeSpec compilation output. |
+| `swagger-files` as the swagger marker | If present, the version is swagger-sourced and these are its spec files. If absent, tooling knows to look at TypeSpec compilation output. |
 | No codegen settings | Code generation config belongs in `tspconfig.yaml` (TypeSpec) or language-specific config files — not mixed into version metadata. |
 | Flat version list | Simple to parse; no "tag" indirection. Ordering is chronological. |
 | YAML format | Human-readable, supports comments, already used for `tspconfig.yaml`. A JSON Schema will be provided for validation. |
