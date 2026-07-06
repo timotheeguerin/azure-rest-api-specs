@@ -1,14 +1,16 @@
-# RFC: Unified Examples File Format
+# RFC: Unified Examples Format
 
-- **Status**: Draft — **decision pending** between two candidate formats (see §4)
+- **Status**: Draft
 - **Authors**: TBD
 - **Created**: 2026-06-03
-- **Updated**: 2026-06-15 (reflects design-meeting decisions)
+- **Updated**: 2026-07-06 (decision made: standalone YAML file; alternatives moved to Annex A)
 
-> **Reading note**: This RFC was originally a single proposal. After the design
-> meeting it became a **bake-off** between two co-equal candidate formats. The
-> original single-proposal document is preserved for reference at
-> [`archive/unified-examples-format.md`](./archive/unified-examples-format.md).
+> **Reading note**: This RFC previously evaluated two co-equal candidate formats
+> (a standalone YAML file and a TypeSpec-first decorator). The decision is now
+> made: **the format is a standalone YAML file per service.** The TypeSpec
+> decorator and other rejected approaches are retained for reference in
+> [Annex A](#annex-a-alternatives-considered). The pre-decision single-proposal
+> document remains at [`archive/unified-examples-format.md`](./archive/unified-examples-format.md).
 
 ## 1. Motivation
 
@@ -47,8 +49,10 @@ parameter that is the most common trivial difference between versions.
    examples for all versions.
 2. **Eliminate duplication** — write an example once; record version-specific
    variations only when they differ.
-3. **Readability first** — a human should be able to read an example and
-   understand the API interaction immediately.
+3. **Readability first** — a reviewer should be able to read an example and
+   understand the API interaction immediately. The primary goal of this proposal
+   is to **improve PR-review and authoring experience**, so the format is
+   optimized to stay clean, terse, and diff-friendly.
 4. **Version-aware** — track which versions an example applies to without a full
    copy per version.
 5. **Stable, source-friendly operation identity** that works across versions.
@@ -60,42 +64,105 @@ parameter that is the most common trivial difference between versions.
 ### Non-Goals
 
 - Backward compatibility with the `x-ms-examples` JSON *format* (tooling handles
-  migration; see §10).
+  migration; see §8).
 
-## 3. Shared Design (applies to both candidates)
+## 3. The Format
 
-The two candidate formats in §4 differ only in **where examples live and how
-they are written**. Everything in this section is common to both.
-
-### 3.1 Operation Identification — TypeSpec FQN (decided)
-
-Operations are identified by their **TypeSpec fully-qualified operation name
-(FQN)**, starting at and including the **service namespace**:
+### 3.1 Location
 
 ```
-Microsoft.EventGrid.CaCertificates.createOrUpdate
-└──── namespace ────┘└─ interface ─┘└─ operation ┘
+specification/<service>/<plane>/<namespace>/
+├── main.tsp
+├── tspconfig.yaml
+└── examples.yaml          ← single file (most services)
 ```
 
-- In the **YAML candidate (A)** the FQN is the top-level key.
-- In the **decorator candidate (B)** the FQN is the augment-decorator target, so
-  it is implicit in the reference itself.
+Most services use a single `examples.yaml`. Large services **may split by
+interface** into `examples/<Interface>.yaml` (e.g. `examples/Channels.yaml`),
+one interface per file. The mapping is predictable — an operation lives in the
+file for its interface — so a reviewer always knows where to find or add an
+example, and diffs stay local.
 
-For legacy Swagger-only services, a generated `operationId → FQN` mapping lets
-them adopt the same identity without a full TypeSpec migration.
+**File-placement rules** (validator-enforced):
 
-> The FQN **includes the namespace** (resolving a review question): it is not
-> just the interface name. For ARM the namespace is the provider namespace
-> (e.g. `Microsoft.EventGrid`).
+- An operation's **entire example set (all version variants) lives in a single
+  file** — YAML has no cross-file key merge, so a key may not be split across
+  files.
+- An interface (and therefore each of its operations) appears in **exactly one
+  file**.
 
-#### Alternatives considered (rejected)
+### 3.2 Structure
 
-| Alternative | Why rejected |
-| ----------- | ------------ |
-| **operationId** (`Accounts_Get`) | OperationIds can collide across versions and are an emitter artifact rather than source identity. **Tooling MAY still accept operationId keys as a transitional migration aid**, but it is not the target. |
-| **HTTP method + path** (`GET .../accounts/{name}`) | Verbose for nested ARM paths; produces unwieldy `$ref` fragments; and crucially **the path is implicit in TypeSpec** — a TypeSpec author has no intuitive way to hand-write the path for an operation, especially in management scenarios. |
+```yaml
+$schema: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/schemas/examples.schema.yaml
+$namespace: Microsoft.EventGrid
 
-### 3.2 Request / Response Shape
+CaCertificates.createOrUpdate:
+  - request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        namespaceName: exampleNamespace
+        caCertificateName: exampleCaCertificate
+      body:
+        properties:
+          description: This is a test certificate
+          encodedCertificate: base64EncodePemFormattedCertificateString
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Succeeded
+          name: exampleCaCertificate
+          type: Microsoft.EventGrid/namespaces/caCertificates
+```
+
+The 99% case — a single example that simply evolves over versions — needs no
+`title`, no id, and no nesting: it is just a list with a base entry plus later
+entries carrying a `since` (§3.6).
+
+**File-level metadata** uses `$`-prefixed keys so that **every bare top-level
+key is unambiguously an operation**:
+
+| Key | Meaning |
+| --- | ------- |
+| `$schema` | Schema URL — gives editors autocomplete and inline validation while authoring. |
+| `$namespace` | Service namespace, prepended to each operation key to form the full identity (§3.4). Declared once, not repeated per key. |
+
+A full, real-scale example is the EventGrid showcase at
+[`examples-reference/examples-fqn.yaml`](../../specification/eventgrid/resource-manager/Microsoft.EventGrid/EventGrid/examples-reference/examples-fqn.yaml)
+(231 operations, **one file**). Note: that showcase predates the `since`-quoting
+(§3.6) and `{api-version}`-normalization (§3.5) rules, so its variant count is
+higher than a compliant file's would be.
+
+### 3.3 Why YAML (not JSON)
+
+- It supports **comments**, which examples benefit from.
+- It is **shorter and more readable** for hand-authoring and PR review than JSON.
+- YAML is already used throughout the repo, and the OpenAPI ecosystem treats
+  YAML as the standard authoring format.
+- It allows **arbitrary string keys** natively (status codes, headers, query
+  parameters, and map-shaped bodies), so the data reads exactly like the wire
+  shape with no encoding tricks.
+
+### 3.4 Operation Identity
+
+Operations are identified by their **TypeSpec operation name relative to the
+service namespace** — the interface and operation:
+
+```yaml
+$namespace: Microsoft.EventGrid
+CaCertificates.createOrUpdate:   # ← full identity: Microsoft.EventGrid.CaCertificates.createOrUpdate
+```
+
+The **namespace is declared once** in `$namespace` and prepended by tooling to
+form the fully-qualified identity used for Swagger linkage (§3.7). This keeps
+every key short and readable while remaining globally unambiguous.
+
+For legacy Swagger-only services, a generated `operationId → identity` mapping
+lets them adopt the same identity without a full TypeSpec migration.
+
+### 3.5 Request / Response Shape
 
 Each example is one complete API interaction. The request is split by parameter
 location; responses are keyed by status code.
@@ -107,47 +174,87 @@ location; responses are keyed by status code.
 | `headers` | Request headers (`If-Match`, …) | Only for non-standard headers |
 | `body` | Request body | Only for operations with a body |
 
-- **`api-version` is implicit** and never written — it is resolved from the
-  version context. This removes the most common trivial version difference.
-- **Placeholders** are the exception, not the rule. The only supported
-  placeholder is `{api-version}`, used where a value must embed the target
-  version (e.g. inside a `Location` header URL).
-- **Response headers** are supported per status code.
-- **Error responses (4xx/5xx) are in scope** — they are ordinary entries in the
-  responses map and require no special mechanism.
-- **Long-running operations (LRO)** are represented by including the initial
-  status code (e.g. `202` with `Azure-AsyncOperation` / `Location` /
-  `Retry-After` headers) alongside the terminal response.
-- **Pagination** is shown with a `value` array and a `nextLink` URL on the first
-  page; consumers follow `nextLink` for subsequent pages.
+- **Status codes are bare integer keys** (`200:`, `404:`). An example is a
+  single concrete interaction, so a concrete numeric code is always correct;
+  range/`default` keys (`2XX`, `default`) are schema concepts and are **not
+  permitted** in examples (validator-enforced). This keeps the responses block
+  free of quotes and mixed key types.
+- **`api-version` is implicit** and never written as a request parameter — it is
+  resolved from the version context. This removes the most common trivial
+  version difference.
+- **`{api-version}` is the single supported placeholder.** Where a value must
+  embed the target version — inside a `Location`/`Azure-AsyncOperation` header,
+  a `nextLink`, or any URL in a body — write `{api-version}` instead of a literal
+  version string. Tooling substitutes the target version on materialization.
+  This is what lets one variant cover every version (see §3.6) instead of one
+  near-duplicate per version.
+- **Error responses (4xx/5xx)** are ordinary entries in the responses map and
+  require no special mechanism.
+- **Long-running operations (LRO)** include the initial status code (e.g. `202`
+  with `Azure-AsyncOperation` / `Location` / `Retry-After` headers) alongside
+  the terminal response.
+- **Pagination** is shown with a `value` array and a `nextLink` URL (using
+  `{api-version}`) on the first page.
 
-### 3.3 Versioning Model
+### 3.6 Versioning Model
 
-Examples are version-aware without full duplication via a **`since`** marker:
+Examples are version-aware without full duplication via a **`since`** marker.
 
-- An example with no `since` applies from the earliest version.
-- `since: <version>` means the variant supersedes any earlier variant with the
-  same title for versions `>= <version>`.
-- When several variants share a title, the highest `since` that is `<=` the
-  target version wins.
+**The common case is a single example that evolves.** The list under an
+operation key is, by default, **one example lineage**: a base entry (no `since`)
+plus later entries that carry a `since` and restate the changed
+request/response.
 
-**No partial overrides (decided).** A changed variant always restates the
-**full** body — we deliberately do *not* support patching a single field. This
-keeps an example readable as a complete request/response without mentally
-applying a chain of diffs. Where duplication becomes heavy, the answer is to
-**generate examples on demand** rather than to add partial-override machinery.
+```yaml
+CaCertificates.get:
+  - request:
+      path: { subscriptionId: ..., resourceGroupName: examplerg, namespaceName: exampleNamespace, caCertificateName: exampleCaCertificate }
+    responses:
+      200:
+        body: { name: exampleCaCertificate, properties: { provisioningState: Succeeded } }
+  - since: "2023-12-15-preview"
+    request:
+      path: { subscriptionId: ..., resourceGroupName: examplerg, namespaceName: exampleNamespace, caCertificateName: exampleCaCertificate }
+    responses:
+      200:
+        body: { name: exampleCaCertificate, properties: { provisioningState: Succeeded, delegatedIdentityTokenExpirationTimeInUtc: "2023-10-12T23:06:43+00:00" } }
+```
 
-**Version-string agnostic.** The model is not opinionated about the version
-string format — date-based, version-number, or mixed schemes all work. Ordering
-is taken from the service's [`service.yaml`](./service-yaml.md), not inferred
-from the string, so data-plane services that do not use date-based versions are
-supported.
+Resolution rules:
 
-### 3.4 Swagger Linkage / Rollout — `x-id` (decided)
+- An entry with no `since` applies from the earliest version.
+- `since: "<version>"` means the variant applies for versions `>= <version>`.
+- Within a lineage, the entry with the **greatest `since` that is `<=` the
+  target version** wins.
+
+**`title` is optional and only for disambiguation.** In the 99% single-example
+case, omit it. Provide a `title` only when an operation genuinely has
+**multiple distinct examples** (e.g. "Create with WebHook" vs "Create with
+Queue"); entries sharing a `title` form one lineage. Untitled entries all belong
+to the single default lineage.
+
+Validator rules per lineage: **at most one entry without `since`** (the base),
+and **`since` values are unique**.
+
+**Version-string handling.** `since` values are **always quoted**
+(`since: "2024-06-01"`) — unquoted date-like versions are parsed by YAML as date
+objects, not strings. Each `since` **must be a version listed in the service's**
+[`service.yaml`](./service-yaml.md) (validator-enforced), which is also the
+**single source of ordering**. There is one linear version order (preview and
+stable are entries in the same list); resolution does not special-case preview
+vs. stable.
+
+**No partial overrides.** A changed variant restates the **full** body — we
+deliberately do not support patching a single field, so an example always reads
+as a complete request/response without mentally applying a chain of diffs. Where
+duplication becomes heavy, the answer is to **generate examples on demand**
+rather than to add partial-override machinery.
+
+### 3.7 Swagger Linkage — `x-id`
 
 Generated Swagger will **no longer embed `x-ms-examples` `$ref` blocks**.
-Instead, every operation carries an **`x-id`** extension whose value is the
-operation FQN:
+Instead, every operation carries an **`x-id`** extension whose value is the full
+operation identity (`$namespace` + operation key):
 
 ```json
 "get": {
@@ -156,442 +263,86 @@ operation FQN:
 }
 ```
 
-`x-id` is the **sole** link between a Swagger operation and the examples. Any
+`x-id` is the **sole** link between a Swagger operation and its examples. Any
 consumer (docs, SDK generators, validation, TCGC, …) joins a Swagger operation
-to its examples by matching `x-id` to the example identity (the YAML key in
-Candidate A, or the decorator target in Candidate B). This decouples examples
-from the Swagger file and removes ~282K embedded `$ref` blocks.
+to its examples by matching `x-id` to the example identity. This decouples
+examples from the Swagger file and removes ~282K embedded `$ref` blocks.
 
-## 4. The Two Candidate Formats
+## 4. Schema
 
-The meeting agreed to evaluate two formats as **co-equal candidates**. The
-current lean is **TypeSpec-first (Candidate B)**, but the decision is **left
-open** pending the trade-offs in §7.
-
-- **Candidate A — Standalone YAML file** (§5)
-- **Candidate B — TypeSpec-first decorator** (§6)
-
-Both use the shared design from §3, so a service can move between them without
-changing operation identity, versioning semantics, or the `x-id` rollout.
-
-## 5. Candidate A — Standalone YAML File
-
-### 5.1 Location
-
-```
-specification/<service>/<plane>/<namespace>/
-├── main.tsp
-├── tspconfig.yaml
-└── examples.yaml          ← single file (most services)
-```
-
-Complex services may split into `examples/*.yaml`; tooling discovers all YAML
-files in the directory. Each operation MUST appear in exactly one file.
-
-### 5.2 Structure
-
-```yaml
-$schema: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/main/schemas/examples.schema.yaml
-title: Microsoft.EventGrid Examples
-
-Microsoft.EventGrid.CaCertificates.createOrUpdate:
-  - title: Create CA certificate
-    request:
-      path:
-        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
-        resourceGroupName: examplerg
-        namespaceName: exampleNamespaceName1
-        caCertificateName: exampleCACertificateName1
-      body:
-        properties:
-          description: This is a test certificate
-          encodedCertificate: base64EncodePemFormattedCertificateString
-    responses:
-      "200":
-        body:
-          properties:
-            provisioningState: Succeeded
-          name: exampleCACertificateName1
-          type: Microsoft.EventGrid/namespaces/caCertificates
-```
-
-A full, real-scale example is the EventGrid showcase at
-[`examples-reference/examples-fqn.yaml`](../../specification/eventgrid/resource-manager/Microsoft.EventGrid/EventGrid/examples-reference/examples-fqn.yaml)
-(231 operations, 413 example entries, 182 `since` variants, **one file**).
-
-### 5.3 Why YAML (not JSON)
-
-YAML is chosen over JSON because (resolving a review question):
-
-- It supports **comments**, which examples benefit from.
-- It is **shorter and more readable** for hand-authoring than JSON.
-- YAML is already used throughout the repo, and the OpenAPI ecosystem treats
-  YAML as the standard authoring format.
-
-### 5.4 Pros / Cons
-
-- **Pros**: works for both TypeSpec and legacy Swagger services; no TypeSpec
-  compilation needed to read/author; trivially diffable; one obvious file.
-- **Cons**: a second artifact to keep in sync with the spec; values are not
-  type-checked against the model at author time (needs a validation tool, §10).
-
-## 6. Candidate B — TypeSpec-first Decorator
-
-Examples are expressed directly in TypeSpec via a new **HTTP-centric example
-decorator**, mirroring the same request/response shape as Candidate A so the two
-are directly comparable.
-
-### 6.1 The `@example` Decorator
-
-```tsp
-@@example(Microsoft.EventGrid.CaCertificates.createOrUpdate,
-  #{
-    title: "Create CA certificate",
-    since: "2024-06-01-preview",          // optional; omit = from earliest version
-    request: #{
-      path: #{
-        subscriptionId: "8f6b6269-84f2-4d09-9e31-1127efcd1e40",
-        resourceGroupName: "examplerg",
-        namespaceName: "exampleNamespaceName1",
-        caCertificateName: "exampleCACertificateName1",
-      },
-      body: #{
-        properties: #{
-          description: "This is a test certificate",
-          encodedCertificate: "base64EncodePemFormattedCertificateString",
-        },
-      },
-    },
-    responses: #[
-      #{ statusCode: 200, body: #{ name: "exampleCACertificateName1" } },
-      #{ statusCode: 201, body: #{ name: "exampleCACertificateName1" } },
-    ],
-  });
-```
-
-> **Why arrays for `responses` (and `headers`/`query`), not maps?** TypeSpec
-> object values (`#{}`) only permit **identifier** property keys — quoted or
-> numeric keys (`"200"`, `Azure-AsyncOperation`, `api-version`) are a compile
-> error. So status codes, headers, and query parameters are modeled as **arrays
-> of entry objects** (`#{ statusCode, ... }`, `#{ name, value }`). This is a
-> real constraint of the TypeSpec value system, verified against the v1.13
-> compiler, and is a distinguishing factor in the bake-off (see §6.6 and §7).
-
-
-Using the **augment** form (`@@example`) keeps examples out of the operation
-definitions, so example data can live in a dedicated file (e.g. `examples.tsp`)
-without cluttering the API surface.
-
-### 6.2 Versioning
-
-A `since` field on the example object selects the variant for a target version —
-identical semantics to Candidate A's `since`. Multiple variants are simply
-multiple `@@example` applications on the same operation:
-
-```tsp
-@@example(Microsoft.EventGrid.Channels.createOrUpdate, #{ title: "Create", /* base */ });
-@@example(Microsoft.EventGrid.Channels.createOrUpdate, #{ title: "Create", since: "2023-06-01-preview", /* updated */ });
-```
-
-> This addresses the meeting's hardest concern: versioning examples that are
-> embedded in TypeSpec. Rather than relying on `@added`/value-level versioning
-> decorators (which cannot version individual values), we reuse the same
-> data-driven `since` marker, expressed as repeated augment decorators.
-
-### 6.3 Reducing duplication with `const` and spread
-
-Because Candidate B is real TypeSpec source (not a data file), it can use
-**`const` value declarations** and the **spread (`...`) operator** to factor out
-values that repeat across many examples — subscription IDs, common path blocks,
-shared response envelopes, etc. This is a capability the YAML candidate only
-approximates with anchors/aliases.
-
-The same `CaCertificates` examples from §6.1, with shared values factored out:
-
-```tsp
-import "./main.tsp";
-
-// Reused scalars — declared once.
-const subscriptionId = "00000000-0000-0000-0000-000000000000";
-
-// A path block shared by every operation under a namespace.
-const namespacePath = #{
-  subscriptionId: subscriptionId,
-  resourceGroupName: "examplerg",
-  namespaceName: "exampleNamespace",
-};
-
-// Common resource-envelope fields reused across responses.
-const caCertEnvelope = #{
-  name: "exampleCaCertificate",
-  type: "Microsoft.EventGrid/namespaces/caCertificates",
-  id: "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespace/caCertificates/exampleCaCertificate",
-};
-
-// Shared properties block (also reused by the versioned variant in §6.4).
-const caCertProps = #{
-  provisioningState: "Succeeded",
-  description: "This is a test Root certificate",
-  encodedCertificate: "base64EncodePemFormattedCertificateString",
-};
-
-// Response body reused by both 200 and 201.
-const caCertCreated = #{
-  ...caCertEnvelope,
-  properties: caCertProps,
-};
-
-@@example(Microsoft.EventGrid.CaCertificates.createOrUpdate,
-  #{
-    title: "Create CA certificate",
-    request: #{
-      path: #{ ...namespacePath, caCertificateName: "exampleCaCertificate" },
-      body: #{
-        properties: #{
-          description: "This is a test certificate",
-          encodedCertificate: "base64EncodePemFormattedCertificateString",
-        },
-      },
-    },
-    responses: #[
-      #{ statusCode: 200, body: caCertCreated },
-      #{ statusCode: 201, body: caCertCreated },
-    ],
-  });
-
-@@example(Microsoft.EventGrid.CaCertificates.get,
-  #{
-    title: "Get CA certificate",
-    request: #{ path: #{ ...namespacePath, caCertificateName: "exampleCaCertificate" } },
-    responses: #[#{ statusCode: 200, body: caCertCreated }],
-  });
-```
-
-Here `namespacePath`, `caCertEnvelope`, and `caCertCreated` are written once and
-reused (and spread-merged) across every operation and response — **one shared
-object per resource type**, with each example overriding only what is specific to
-it. This is the realistic DRY win of the TypeSpec-first candidate.
-
-> **Meaningful de-duplication vs. mechanical blob-hoisting.** A naive pass that
-> hoists *every* repeated blob into a const produces meaningless, numbered names
-> (`path1`…`path10`, `id1`…`id19`, `value1`…`value20`) that match no reusable
-> concept and make the file *harder* to read. The trick that makes automatic
-> de-duplication worthwhile is to **first simplify the values**: collapse each
-> incidental identity to a single canonical value per *semantic role* (one
-> subscription, one resource group, one canonical name per resource type, one
-> timestamp, one GUID per identity role). Once every "topic" or "namespace" id is
-> literally the same string, it can be hoisted into a single, well-named const
-> (`topicId`, `namespacePath`, `exampleTimestamp`) and reused everywhere — exactly
-> the §6.3 pattern, applied mechanically but yielding semantic names. The
-> EventGrid showcase ([§6.5](#65-eventgrid-full-conversion-showcase)) ships both a
-> straight conversion and this de-duplicated variant.
-
-> Note: `const`/spread is a property of the **source representation**. The
-> emitted examples (and the `x-id`-linked output consumers see) are fully
-> expanded — factoring only improves authoring, not the on-the-wire result.
-
-### 6.4 Versioning + shared values
-
-`const`/spread composes with the `since` versioning from §6.2 — a new variant can
-spread the shared base and override only the block that changed (referencing the
-shared `caCertProps`/`caCertCreated` consts from §6.3):
-
-```tsp
-@@example(Microsoft.EventGrid.CaCertificates.get,
-  #{
-    title: "Get CA certificate",
-    since: "2023-06-01-preview",
-    request: #{ path: #{ ...namespacePath, caCertificateName: "exampleCaCertificate" } },
-    responses: #[
-      #{
-        statusCode: 200,
-        body: #{
-          ...caCertCreated,
-          properties: #{
-            ...caCertProps,
-            delegatedIdentityTokenExpirationTimeInUtc: "2023-10-12T23:06:43+00:00",
-          },
-        },
-      },
-    ],
-  });
-```
-
-### 6.5 EventGrid Full Conversion (showcase)
-
-The complete EventGrid example set has been converted to this decorator form in
-two variants, generated from the same normalized data:
-
-- [`examples.tsp`](../../specification/eventgrid/resource-manager/Microsoft.EventGrid/EventGrid/examples.tsp)
-  — a faithful conversion of every example: **18,171 lines**, 231 operations,
-  413 `@@example` applications, 182 `since` variants. Each operation's examples
-  are emitted directly, so the file is easy to read and diff against the source
-  YAML.
-- [`examples-dedup.tsp`](../../specification/eventgrid/resource-manager/Microsoft.EventGrid/EventGrid/examples-dedup.tsp)
-  — the same content with shared **data** hoisted into **107 semantically-named
-  consts** (63 scalars + 44 object blocks) and reused by reference / spread:
-  **15,193 lines** (~16% smaller). Every const owns a meaningful name —
-  `topicId`, `namespacePath`, `caCertificateId`, `exampleTimestamp`,
-  `subscriptionId` — never a numbered placeholder.
-
-**Value canonicalization is what makes the dedup meaningful.** Rather than blindly
-hoisting repeated blobs (which yields `path1`…`path10` noise), the converter first
-*simplifies the values*: each incidental identity is collapsed to a single
-canonical value per semantic role —
-
-- one subscription id, one resource group, normalized provider casing;
-- **one canonical name per resource type** (`exampleTopic`, `exampleNamespace`,
-  `exampleCaCertificate`), applied consistently to standalone name fields *and*
-  to the name segments embedded inside resource ids, so an id, its `name`, and
-  its path parameters all agree;
-- one canonical location, one canonical timestamp, and one GUID per identity role
-  (`principalId`, `tenantId`, `clientId`, …).
-
-Because every "topic id" (or namespace path, or timestamp) is now literally the
-same value, it hoists into a single shared const named after its role. Enum-like
-bare words (`Succeeded`, `WebHook`) and short names are intentionally **left
-inline** — hoisting values that legitimately vary would be misleading.
-
-**Version markers stay literal.** The `since` field is deliberately *never*
-canonicalized or hoisted — version identifiers are meaningful and must stay
-readable inline.
-
-Both files are **demonstration only** (not wired into the build); the proposed
-`@example` decorator is not yet implemented. Their **value literals were
-validated against the TypeSpec v1.13 compiler** by rewriting each `@@example`
-application as a `const` — they parse and type-check as TypeSpec values.
-
-### 6.6 Pros / Cons
-
-- **Pros**: examples live with the source; the operation reference is a real
-  symbol (no string FQN to mistype; rename-safe); values can eventually be
-  **type-checked** against the operation's request/response models by the
-  compiler; the FQN is intrinsic so no separate key is needed; **`const` + spread
-  let authors factor out and canonicalize repeated values** (subscription IDs,
-  common path blocks, shared response envelopes — see §6.3).
-- **Cons**:
-  - The decorator can only apply to **TypeSpec-authored** operations —
-    **retired / Swagger-only versions cannot be expressed this way** and still
-    need the YAML/generated-JSON path.
-  - Non-TypeSpec consumers (e.g. some doc pipelines) still need an emitted
-    intermediate format.
-  - **TypeSpec object values only allow identifier keys.** Status codes,
-    HTTP headers, and query parameters therefore cannot be map keys and are
-    modeled as **arrays of entry objects**; and **JSON bodies that are maps with
-    arbitrary string keys** (e.g. ARM `userAssignedIdentities`, keyed by resource
-    id) cannot be written as native object values at all — they must be encoded
-    as `#[#{ key, value }]` entry arrays, which reads less naturally than the raw
-    JSON the YAML candidate keeps verbatim.
-  - Requires building and shipping the decorator + emitter support.
-
-
-## 7. Bake-off Comparison
-
-| Axis | A — YAML file | B — TypeSpec decorator |
-| ---- | ------------- | ---------------------- |
-| Where examples live | Separate `examples.yaml` | In TypeSpec (`@@example`) |
-| Operation identity | FQN as YAML key (string) | Real operation symbol |
-| Type checking at author time | No (needs validator) | Possible via compiler |
-| Versioning | `since` field | `since` field (repeated `@@example`) |
-| Legacy / retired Swagger-only versions | ✅ supported | ❌ not expressible (needs A as fallback) |
-| Non-TypeSpec / docs consumers | ✅ reads YAML directly | Needs emitted intermediate format |
-| Authoring without TypeSpec context | ✅ | ❌ |
-| Comments / annotations | ✅ (YAML) | ✅ (TypeSpec) |
-| Factor out / canonicalize repeated values | ⚠️ YAML anchors/aliases (clunky) | ✅ `const` + spread (§6.3) |
-| Arbitrary keys (status codes, headers, map bodies) | ✅ native string keys | ⚠️ must use entry arrays; arbitrary-key map bodies can't be native object values |
-| EventGrid scale | 1 file, 11,176 lines, 496 KB | straight: 18,171 lines; de-duplicated: 15,193 lines |
-| Original baseline (EventGrid) | 2,968 JSON files, ~4.2 MB | 2,968 JSON files, ~4.2 MB |
-
-**Current lean**: TypeSpec-first (B), because the operation reference is a real
-symbol and values can be compiler-checked. **Open**: B cannot express retired
-Swagger-only versions, so A is still needed as the fallback for those — which is
-the main reason the decision remains open. A likely outcome is **B for live
-TypeSpec services + A for retired/Swagger-only versions**, but that is not yet
-decided.
-
-## 8. TypeSpec Schema
-
-The logical example model is shared by both candidates. The two candidates
-**encode maps differently**: Candidate A (YAML) uses native string keys for
-status codes / headers / query; Candidate B (the decorator) must use **entry
-arrays**, because TypeSpec object values only allow identifier property keys
-(§6.1). The models below are the decorator's actual argument types (verified
-against the v1.13 compiler); in YAML the same data is a status-code/header map.
+The logical model below is expressed in TypeSpec for precision; it maps directly
+onto the YAML shape (objects → maps, arrays → sequences). A JSON Schema is
+published at the `$schema` URL for editor validation.
 
 ```tsp
 namespace Azure.ApiExamples;
 
-/** A single example representing one complete API interaction. */
+/** Top-level file: `$schema`/`$namespace` metadata plus one entry per operation,
+    keyed by the interface-relative operation name (e.g. `CaCertificates.get`).
+    Each operation maps to a list of variants (§3.6). */
+// file: Record<Example[]>  +  $schema: string, $namespace: string
+
+/** A single example variant representing one complete API interaction. */
 model Example {
-  /** Human-readable title. */
-  title: string;
+  /** Optional human-readable title. Omit for the single-example case; provide it
+      only to disambiguate multiple distinct examples on the same operation. */
+  title?: string;
 
   /** Longer description of what this example demonstrates. */
   description?: string;
 
-  /**
-   * Version from which this variant applies. Omit to apply from the earliest
-   * version. Ordering comes from the service's `service.yaml`.
-   */
+  /** Quoted version from which this variant applies (must be a `service.yaml`
+      version). Omit to apply from the earliest version. */
   since?: string;
 
   request: ExampleRequest;
 
-  /** One entry per returned status code. (YAML: a status-code-keyed map.) */
-  responses: ExampleResponse[];
+  /** Responses keyed by integer status code (e.g. 200, 404). */
+  responses: Record<ExampleResponse>;
 }
 
 model ExampleRequest {
-  /** Path parameters. `api-version` is implicit and MUST NOT be included.
-      Parameter names are always identifiers, so this stays a keyed object. */
+  /** Path parameters. `api-version` is implicit and MUST NOT be included. */
   path?: Record<unknown>;
-  /** Query parameters as entries (names like `$top`/`api-version` aren't identifiers). */
-  query?: NameValue[];
-  /** Request headers as entries (header names aren't identifiers). */
-  headers?: NameValue[];
-  /** Request body. Structure matches the operation's request schema.
-      NB: bodies that are maps with arbitrary string keys must be encoded as
-      `NameValue`-style entry arrays in Candidate B (§6.6). */
+  /** Query parameters (e.g. `$top`, `$filter`). */
+  query?: Record<unknown>;
+  /** Request headers (e.g. `If-Match`). */
+  headers?: Record<unknown>;
+  /** Request body. Structure matches the operation's request schema. */
   body?: unknown;
 }
 
 model ExampleResponse {
-  /** HTTP status code, e.g. 200, 201, 404. */
-  statusCode: int32;
-  /** Response headers as entries. */
-  headers?: NameValue[];
+  /** Response headers (e.g. `Location`, `Azure-AsyncOperation`). */
+  headers?: Record<unknown>;
   /** Response body. Structure matches the operation's response schema. */
   body?: unknown;
 }
-
-/** A name/value pair used for headers and query parameters. */
-model NameValue {
-  name: string;
-  value: unknown;
-}
-
-/** Candidate B: HTTP-centric example decorator (augmentable). */
-extern dec example(target: Operation, example: valueof Example);
 ```
 
-## 9. Migration Strategy
+Because YAML permits arbitrary string keys, status codes, headers, query
+parameters, and map-shaped bodies (e.g. ARM `userAssignedIdentities` keyed by
+resource id) are written as **native maps** — the data reads exactly like the
+wire shape.
+
+## 5. Migration Strategy
 
 ### Phase 1 — Tooling
 
-- Converter that reads existing `x-ms-examples` JSON and produces the chosen
-  format (YAML and/or decorator), deduplicating across versions into `since`
-  variants.
+- Converter that reads existing `x-ms-examples` JSON and produces `examples.yaml`,
+  deduplicating across versions into `since` variants and **normalizing embedded
+  version strings to `{api-version}`** so trivially-versioned variants collapse.
 - Emitter support: emit `x-id` on every operation; (transitional) generate
   `x-ms-examples` JSON from the new format for consumers not yet updated.
-- A validator (§10).
+- A validator (§6).
 
 ### Phase 2 — Migrate services
 
 - **Scope decision (open)**: migrate *all* historical versions, or only from the
   TypeSpec-converted version forward? Because the Swagger toolchain is being
-  retired, one option is to migrate only from the converted version and leave
-  retired Swagger-only versions as-is (these are also the versions Candidate B
-  cannot express). CI validates round-trip correctness for migrated versions.
+  retired, one option is to migrate only from the converted version forward and
+  leave retired Swagger-only versions as-is. CI validates round-trip correctness
+  for migrated versions.
 
 ### Phase 3 — Disable old tooling
 
@@ -604,15 +355,14 @@ extern dec example(target: Operation, example: valueof Example);
 - Remove legacy `x-ms-examples` JSON; the new format is the sole source of
   truth, with JSON generated on demand if still needed.
 
-## 10. Tooling Considerations
+## 6. Tooling Considerations
 
 ### Consumers of examples
 
 1. **SDK test generation** — generates test cases from examples.
 2. **TCGC** — all language generators consume examples via TCGC, so **TCGC must
-   adopt the new format** (parse it and surface real content). The only place
-   that still needs a file path is doc tooling that maps a JSON example to a
-   language sample; that mapping can be done via `x-id` (or a dedicated tool)
+   adopt the new format**. Where a file path is still needed (doc tooling that
+   maps a JSON example to a language sample), the mapping is done via `x-id`
    instead of an embedded `$ref`.
 3. **Documentation** — REST API docs render examples per operation.
 4. **API validation** — examples conform to the schema for each applicable
@@ -623,9 +373,9 @@ extern dec example(target: Operation, example: valueof Example);
 
 | Tool | Purpose |
 | ---- | ------- |
-| `examples-validate` | Validate examples against the schema and API surface. **HTTP-centric**, so it starts as a standalone (or `http`-library) tool; it MAY move into the TypeSpec compiler/`http` library later if that proves clean. |
-| `examples-resolve` | Resolve the applicable example for a target version (apply `since`). |
-| `examples-migrate` | Convert existing JSON examples to the new format. |
+| `examples-validate` | Validate examples against the schema and API surface, enforcing the rules in §3 (integer status keys, quoted `since`, `since` ∈ `service.yaml`, one base + unique `since` per lineage, one-file-per-interface). **HTTP-centric**, so it starts standalone; it MAY move into the TypeSpec compiler/`http` library later. |
+| `examples-resolve` | Resolve the applicable example for a target version (apply `since`, substitute `{api-version}`). |
+| `examples-migrate` | Convert existing JSON examples to the new format, dedup + `{api-version}` normalization. |
 | `examples-scaffold` | Generate faked initial examples from the API surface — **replacing OAV's faked-example generation**. |
 | `examples-emit` | Emit `x-id` (and, transitionally, `x-ms-examples` JSON). |
 | `examples-diff` | Show what changed in an example between versions. |
@@ -636,25 +386,121 @@ How the documentation pipeline consumes examples (whether it relies on built-in
 `$ref` resolution or a different mapping) needs Doc-team review, since `x-id`
 replaces the embedded `$ref`.
 
-## 11. Open Questions
+## 7. Open Questions
 
-1. **Final A-vs-B decision**, and whether the outcome is "B for TypeSpec
-   services + A for retired Swagger-only versions."
-2. **Migration scope** — all historical versions vs. from the converted version
-   forward (§9 Phase 2).
-3. **Decorator authoring ergonomics** at scale (Candidate B) for services with
-   many `since` variants.
-4. **Doc-team pipeline** consumption of `x-id` (§10).
-5. **Data-plane** services with non-ARM URL structures — confirm FQN identity and
-   `service.yaml` ordering cover all cases.
+1. **Migration scope** — all historical versions vs. from the converted version
+   forward (§5 Phase 2).
+2. **Doc-team pipeline** consumption of `x-id` (§6).
+3. **Data-plane** services with non-ARM URL structures — confirm the
+   interface-relative identity and `service.yaml` ordering cover all cases.
 
-## 12. Appendix: Current vs Proposed
+## 8. Appendix: Current vs Proposed
 
 | Aspect | Current (`x-ms-examples`) | Proposed |
 | ------ | ------------------------- | -------- |
-| Format | JSON, per-version copies | YAML file (A) or TypeSpec decorator (B) |
+| Format | JSON, per-version copies | Single YAML file per service |
 | Files (EventGrid) | 2,968 | 1 |
 | Version handling | Full copy per version | `since` variants |
-| Operation identity | operationId `$ref` | FQN via `x-id` |
-| api-version in data | Explicit | Implicit (contextual) |
+| Operation identity | operationId `$ref` | Interface-relative key + `x-id` |
+| api-version in data | Explicit | Implicit / `{api-version}` placeholder |
 | Comments | Not supported | Supported |
+
+---
+
+## Annex A: Alternatives Considered
+
+This annex records approaches that were evaluated and **not** chosen, so the main
+proposal above stays focused. None of these are part of the accepted design.
+
+### A.1 TypeSpec-first `@example` decorator
+
+Examples could instead be expressed directly in TypeSpec via a new HTTP-centric
+augment decorator, mirroring the same request/response shape:
+
+```tsp
+@@example(Microsoft.EventGrid.CaCertificates.createOrUpdate,
+  #{
+    title: "Create CA certificate",
+    since: "2024-06-01-preview",
+    request: #{
+      path: #{ subscriptionId: "…", resourceGroupName: "examplerg", namespaceName: "exampleNamespace", caCertificateName: "exampleCaCertificate" },
+      body: #{ properties: #{ description: "This is a test certificate", encodedCertificate: "…" } },
+    },
+    responses: #[
+      #{ statusCode: 200, body: #{ name: "exampleCaCertificate" } },
+      #{ statusCode: 201, body: #{ name: "exampleCaCertificate" } },
+    ],
+  });
+```
+
+**Pros**: examples live with the source; the operation reference is a real symbol
+(rename-safe, no string to mistype); values can eventually be **type-checked**
+against the operation's request/response models; `const` + spread let authors
+factor out and canonicalize repeated values.
+
+**Cons (why it was not chosen)**:
+
+- The decorator can only apply to **TypeSpec-authored** operations —
+  **retired / Swagger-only versions cannot be expressed this way**, so a YAML
+  fallback would still be required.
+- Non-TypeSpec consumers (some doc pipelines) still need an emitted intermediate
+  format.
+- **TypeSpec object values only allow identifier property keys.** Status codes,
+  headers, query parameters, and **map bodies with arbitrary string keys** (e.g.
+  ARM `userAssignedIdentities`) therefore cannot be written as native maps and
+  must be encoded as **entry arrays** (`#[#{ key, value }]`), which reads less
+  naturally than the raw JSON/YAML the chosen format keeps verbatim. This is a
+  real constraint of the TypeSpec value system (verified against the v1.13
+  compiler) and was the decisive factor against it.
+- Requires building and shipping decorator + emitter support before anything
+  works.
+
+Two full EventGrid conversions of this approach were produced for evaluation and
+remain in the repo for reference only (not wired into the build):
+[`examples.tsp`](../../specification/eventgrid/resource-manager/Microsoft.EventGrid/EventGrid/examples.tsp)
+(straight conversion, ~18k lines) and
+[`examples-dedup.tsp`](../../specification/eventgrid/resource-manager/Microsoft.EventGrid/EventGrid/examples-dedup.tsp)
+(shared data hoisted into ~107 semantically-named `const`s, ~15k lines). Their
+value literals were validated against the TypeSpec v1.13 compiler.
+
+The `const` + spread de-duplication demonstrated there is a property of the
+**source representation only** — the emitted, `x-id`-linked output is always
+fully expanded. Meaningful de-duplication depended on first canonicalizing values
+(one subscription id, one canonical name per resource type, one timestamp per
+role) so hoisted `const`s carried semantic names rather than numbered
+placeholders.
+
+### A.2 Comparison summary (YAML vs TypeSpec decorator)
+
+| Axis | Chosen — YAML file | Rejected — TypeSpec decorator |
+| ---- | ------------------ | ----------------------------- |
+| Where examples live | Separate `examples.yaml` | In TypeSpec (`@@example`) |
+| Operation identity | Interface-relative key + `x-id` | Real operation symbol |
+| Type checking at author time | No (needs validator) | Possible via compiler |
+| Legacy / retired Swagger-only versions | ✅ supported | ❌ not expressible |
+| Non-TypeSpec / docs consumers | ✅ reads YAML directly | Needs emitted intermediate |
+| Authoring without TypeSpec context | ✅ | ❌ |
+| Arbitrary keys (status codes, headers, map bodies) | ✅ native string keys | ⚠️ must use entry arrays |
+| Factor out repeated values | ⚠️ YAML anchors/aliases | ✅ `const` + spread |
+
+The decisive reasons for YAML: it covers **retired/Swagger-only versions** the
+decorator cannot express, it keeps **arbitrary-key data verbatim** (no entry-array
+encoding), and it requires **no compiler/emitter work** to author and review.
+
+### A.3 Rejected operation-identity schemes
+
+| Alternative | Why rejected |
+| ----------- | ------------ |
+| **operationId** (`Accounts_Get`) | OperationIds can collide across versions and are an emitter artifact rather than source identity. Tooling MAY still accept operationId keys as a transitional migration aid. |
+| **HTTP method + path** (`GET .../accounts/{name}`) | Verbose for nested ARM paths; produces unwieldy fragments; the path is implicit in TypeSpec, so an author has no intuitive way to hand-write it. |
+| **Full FQN on every key** (`Microsoft.EventGrid.CaCertificates.get`) | Repeats the constant namespace on all ~231 keys — pure noise for the reader. Replaced by a single `$namespace` header + interface-relative keys (§3.4). |
+
+### A.4 Rejected serialization / structural choices
+
+| Alternative | Why rejected |
+| ----------- | ------------ |
+| **JSON instead of YAML** | No comments, more verbose, harder to review (§3.3). |
+| **Quoted string status keys** (`"200":`) | Extra visual noise on the most-read block; integer keys suffice because ranges/`default` are disallowed in examples (§3.5). |
+| **Explicit `name`/`id` per example lineage** | Unnecessary verbosity for the 99% single-example case; the optional `title` + default-lineage rule covers grouping without a mandatory field (§3.6). |
+| **Nesting variants under a `variants:` key** | Extra structural level for the common single-example case; a flat list with `since` is terser and diffs just as cleanly (§3.6). |
+| **Partial field overrides between versions** | Forces readers to mentally apply a diff chain; full restatement keeps each variant self-contained (§3.6). |

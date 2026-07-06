@@ -6,7 +6,7 @@ This directory contains RFCs for improving the structure of the `azure-rest-api-
 
 | RFC | Status | Summary |
 | --- | ------ | ------- |
-| [Unified Examples Format](./unified-examples-format.md) | Draft (bake-off) | Replace 282K+ individual `x-ms-examples` JSON files with a unified examples format per service — evaluating a standalone YAML file vs. a TypeSpec-first decorator |
+| [Unified Examples Format](./unified-examples-format.md) | Draft | Replace 282K+ individual `x-ms-examples` JSON files with a single YAML examples file per service (alternatives, incl. a TypeSpec-first decorator, in Annex A) |
 | [service.yaml](./service-yaml.md) | Draft | Replace `readme.md` version metadata with a simple `service.yaml` file (version list; name leaves room for future service-level metadata) |
 | [Original Unified Examples proposal (archived)](./archive/unified-examples-format.md) | Superseded | The pre-bake-off single-proposal version, kept for reference |
 
