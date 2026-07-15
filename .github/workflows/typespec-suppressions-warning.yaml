@@ -1,0 +1,26 @@
+name: TypeSpec Suppressions Warning
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - edited
+
+permissions:
+  contents: read
+
+jobs:
+  typespec-suppressions-warning:
+    name: TypeSpec Suppressions Warning
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup Node and install deps
+        uses: ./.github/actions/setup-node-install-deps
+
+      - name: Report TypeSpec suppressions
+        run: node .github/workflows/src/typespec-suppressions-warning.ts 'specification/advisor/resource-manager/Microsoft.Advisor/Advisor/main.tsp'

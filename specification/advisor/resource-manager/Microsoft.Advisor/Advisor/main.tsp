@@ -64,3 +64,6 @@ interface Operations
       ArmResponse<OperationEntityListResult>,
       ArmDefaultErrorResponse
     > {}
+
+#suppress "@azure-tools/typespec-azure-core/documentation-required" "Really?"
+model Test {}
