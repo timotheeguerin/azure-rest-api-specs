@@ -1,0 +1,229 @@
+$namespace: Microsoft.EventGrid
+NetworkSecurityPerimeterConfigurations.get:
+  - since: "2023-12-15-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        resourceType: topics
+        resourceName: exampleResourceName
+        perimeterGuid: 8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter
+        associationName: someAssociation
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Succeeded
+            networkSecurityPerimeter:
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/perimeterrg/providers/Microsoft.Network/networkSecurityPerimeters/somePerimeter
+              perimeterGuid: 8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter
+              location: West US
+            resourceAssociation:
+              name: someAssociation
+              accessMode: Enforced
+            profile:
+              name: someProfile
+              accessRulesVersion: "1"
+              accessRules:
+                - name: ipRule
+                  properties:
+                    direction: Inbound
+                    addressPrefixes:
+                      - 148.0.0.0/8
+              diagnosticSettingsVersion: "1"
+              enabledLogCategories:
+                - NspOutbound
+          id: /subscriptions//resourceGroups/paasrg/providers/Microsoft.EventGrid/topics/egtopic/networkSecurityPerimeterConfigurations/8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter.someAssociation
+          name: 8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter.someAssociation
+          type: Microsoft.EventGrid/topics/networkSecurityPerimeterConfigurations
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        associationName: someAssociation
+        perimeterGuid: 8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter
+        resourceName: exampleResourceName
+        resourceType: topics
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          name: 8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter.someAssociation
+          type: Microsoft.EventGrid/topics/networkSecurityPerimeterConfigurations
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/paasrg/providers/Microsoft.EventGrid/topics/egtopic/networkSecurityPerimeterConfigurations/8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter.someAssociation
+          properties:
+            networkSecurityPerimeter:
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/perimeterrg/providers/Microsoft.Network/networkSecurityPerimeters/somePerimeter
+              location: West US
+              perimeterGuid: 8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter
+            profile:
+              name: someProfile
+              accessRules:
+                - name: ipRule
+                  properties:
+                    addressPrefixes:
+                      - 148.0.0.0/8
+                    direction: Inbound
+              accessRulesVersion: "1"
+              diagnosticSettingsVersion: "1"
+              enabledLogCategories:
+                - NspOutbound
+            provisioningState: Succeeded
+            resourceAssociation:
+              name: someAssociation
+              accessMode: Enforced
+NetworkSecurityPerimeterConfigurations.list:
+  - since: "2023-12-15-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        resourceType: topics
+        resourceName: exampleResourceName
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                provisioningState: Succeeded
+                networkSecurityPerimeter:
+                  id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/perimeterrg/providers/Microsoft.Network/networkSecurityPerimeters/somePerimeter
+                  perimeterGuid: 8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter
+                  location: West US
+                resourceAssociation:
+                  name: someAssociation
+                  accessMode: Enforced
+                profile:
+                  name: someProfile
+                  accessRulesVersion: "1"
+                  accessRules:
+                    - name: ipRule
+                      properties:
+                        direction: Inbound
+                        addressPrefixes:
+                          - 148.0.0.0/8
+                  diagnosticSettingsVersion: "1"
+                  enabledLogCategories:
+                    - NspOutbound
+              id: /subscriptions//resourceGroups/paasrg/providers/Microsoft.EventGrid/topics/egtopic/networkSecurityPerimeterConfigurations/8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter.someAssociation
+              name: 8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter.someAssociation
+              type: Microsoft.EventGrid/topics/networkSecurityPerimeterConfigurations
+  - since: "2025-07-15-preview"
+    request:
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+      path:
+        resourceName: exampleResourceName
+        resourceType: topics
+    responses:
+      200:
+        body:
+          value:
+            - name: 8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter.someAssociation
+              type: Microsoft.EventGrid/topics/networkSecurityPerimeterConfigurations
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/paasrg/providers/Microsoft.EventGrid/topics/egtopic/networkSecurityPerimeterConfigurations/8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter.someAssociation
+              properties:
+                networkSecurityPerimeter:
+                  id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/perimeterrg/providers/Microsoft.Network/networkSecurityPerimeters/somePerimeter
+                  location: West US
+                  perimeterGuid: 8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter
+                profile:
+                  name: someProfile
+                  accessRules:
+                    - name: ipRule
+                      properties:
+                        addressPrefixes:
+                          - 148.0.0.0/8
+                        direction: Inbound
+                  accessRulesVersion: "1"
+                  diagnosticSettingsVersion: "1"
+                  enabledLogCategories:
+                    - NspOutbound
+                provisioningState: Succeeded
+                resourceAssociation:
+                  name: someAssociation
+                  accessMode: Enforced
+NetworkSecurityPerimeterConfigurations.reconcile:
+  - since: "2023-12-15-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        resourceType: topics
+        resourceName: exampleResourceName
+        perimeterGuid: 8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter
+        associationName: someAssociation
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Succeeded
+            networkSecurityPerimeter:
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/perimeterrg/providers/Microsoft.Network/networkSecurityPerimeters/somePerimeter
+              perimeterGuid: 8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter
+              location: West US
+            resourceAssociation:
+              name: someAssociation
+              accessMode: Enforced
+            profile:
+              name: someProfile
+              accessRulesVersion: "1"
+              accessRules:
+                - name: ipRule
+                  properties:
+                    direction: Inbound
+                    addressPrefixes:
+                      - 148.0.0.0/8
+              diagnosticSettingsVersion: "1"
+              enabledLogCategories:
+                - NspOutbound
+          id: /subscriptions//resourceGroups/paasrg/providers/Microsoft.EventGrid/topics/egtopic/networkSecurityPerimeterConfigurations/8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter.someAssociation
+          name: 8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter.someAssociation
+          type: Microsoft.EventGrid/topics/networkSecurityPerimeterConfigurations
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        associationName: someAssociation
+        perimeterGuid: 8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter
+        resourceName: exampleResourceName
+        resourceType: topics
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          name: 8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter.someAssociation
+          type: Microsoft.EventGrid/topics/networkSecurityPerimeterConfigurations
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/paasrg/providers/Microsoft.EventGrid/topics/egtopic/networkSecurityPerimeterConfigurations/8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter.someAssociation
+          properties:
+            networkSecurityPerimeter:
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/perimeterrg/providers/Microsoft.Network/networkSecurityPerimeters/somePerimeter
+              location: West US
+              perimeterGuid: 8f6b6269-84f2-4d09-9e31-1127efcd1e40perimeter
+            profile:
+              name: someProfile
+              accessRules:
+                - name: ipRule
+                  properties:
+                    addressPrefixes:
+                      - 148.0.0.0/8
+                    direction: Inbound
+              accessRulesVersion: "1"
+              diagnosticSettingsVersion: "1"
+              enabledLogCategories:
+                - NspOutbound
+            provisioningState: Succeeded
+            resourceAssociation:
+              name: someAssociation
+              accessMode: Enforced
+      202:
+        headers:
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}

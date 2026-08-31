@@ -1,0 +1,823 @@
+$namespace: Microsoft.EventGrid
+SystemTopics.createOrUpdate:
+  - since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        systemTopicName: exampleSystemTopic1
+      body:
+        location: westus2
+        tags:
+          tag1: value1
+          tag2: value2
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Succeeded
+            source: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+          name: exampleSystemTopic2
+          type: Microsoft.EventGrid/systemTopics
+      201:
+        body:
+          properties:
+            provisioningState: Succeeded
+            source: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+          name: exampleSystemTopic2
+          type: Microsoft.EventGrid/systemTopics
+  - since: "2020-10-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        systemTopicName: exampleSystemTopic1
+      body:
+        properties:
+          source: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+          topicType: microsoft.storage.storageaccounts
+        location: westus2
+        tags:
+          tag1: value1
+          tag2: value2
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Succeeded
+            source: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+          name: exampleSystemTopic2
+          type: Microsoft.EventGrid/systemTopics
+      201:
+        body:
+          properties:
+            provisioningState: Succeeded
+            source: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+          name: exampleSystemTopic2
+          type: Microsoft.EventGrid/systemTopics
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        systemTopicName: exampleSystemTopic1
+      body:
+        properties:
+          source: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+          topicType: microsoft.storage.storageaccounts
+        location: westus2
+        tags:
+          tag1: value1
+          tag2: value2
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Succeeded
+            source: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+          name: exampleSystemTopic2
+          type: Microsoft.EventGrid/systemTopics
+      201:
+        body:
+          properties:
+            provisioningState: Succeeded
+            source: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+          name: exampleSystemTopic2
+          type: Microsoft.EventGrid/systemTopics
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        systemTopicName: exampleSystemTopic1
+      body:
+        properties:
+          source: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+          topicType: microsoft.storage.storageaccounts
+        location: westus2
+        tags:
+          tag1: value1
+          tag2: value2
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Succeeded
+            source: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+          name: exampleSystemTopic2
+          type: Microsoft.EventGrid/systemTopics
+      201:
+        body:
+          properties:
+            provisioningState: Succeeded
+            source: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+          name: exampleSystemTopic2
+          type: Microsoft.EventGrid/systemTopics
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        systemTopicName: exampleSystemTopic1
+      body:
+        properties:
+          source: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+          topicType: microsoft.storage.storageaccounts
+        location: westus2
+        tags:
+          tag1: value1
+          tag2: value2
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Succeeded
+            source: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+          name: exampleSystemTopic2
+          type: Microsoft.EventGrid/systemTopics
+      201:
+        body:
+          properties:
+            provisioningState: Succeeded
+            source: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+          name: exampleSystemTopic2
+          type: Microsoft.EventGrid/systemTopics
+  - since: "2025-07-15-preview"
+    request:
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+      body:
+        identity:
+          type: UserAssigned
+          userAssignedIdentities:
+            /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id: {}
+        location: centraluseuap
+        properties:
+          encryption:
+            customerManagedKeyEncryption:
+              - keyEncryptionKeyIdentity:
+                  type: UserAssigned
+                  userAssignedIdentityResourceId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id
+                keyEncryptionKeyUrl: https://ege2ekeyvault.vault.azure.net/keys/ValidKey1
+          platformCapabilities:
+            confidentialCompute:
+              mode: Enabled
+          source: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+          topicType: microsoft.storage.storageaccounts
+        tags:
+          tag1: value1
+          tag2: value2
+      path:
+        systemTopicName: exampleSystemTopic1
+    responses:
+      200:
+        body:
+          name: exampleSystemTopic1
+          type: Microsoft.EventGrid/systemTopics
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic1
+          identity:
+            type: UserAssigned
+            userAssignedIdentities:
+              /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id:
+                clientId: 11af827c-d951-4766-9c41-15565fa13157
+                principalId: a5435982-c82d-453b-b244-3115b7c8789c
+          location: centraluseuap
+          properties:
+            encryption:
+              customerManagedKeyEncryption:
+                - keyEncryptionKeyIdentity:
+                    type: UserAssigned
+                    userAssignedIdentityResourceId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id
+                  keyEncryptionKeyStatus: Active
+                  keyEncryptionKeyStatusFriendlyDescription: Customer Managed Key (CMK) Encryption
+                    is 'Active' and running normally.
+                  keyEncryptionKeyUrl: https://ege2ekeyvault.vault.azure.net/keys/ValidKey1
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+            platformCapabilities:
+              confidentialCompute:
+                mode: Enabled
+            provisioningState: Succeeded
+            source: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+      201:
+        body:
+          name: exampleSystemTopic1
+          type: Microsoft.EventGrid/systemTopics
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic1
+          identity:
+            type: UserAssigned
+            userAssignedIdentities:
+              /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id:
+                clientId: 11af827c-d951-4766-9c41-15565fa13157
+                principalId: a5435982-c82d-453b-b244-3115b7c8789c
+          location: centraluseuap
+          properties:
+            encryption:
+              customerManagedKeyEncryption:
+                - keyEncryptionKeyIdentity:
+                    type: UserAssigned
+                    userAssignedIdentityResourceId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id
+                  keyEncryptionKeyStatus: Active
+                  keyEncryptionKeyStatusFriendlyDescription: Customer Managed Key (CMK) Encryption
+                    is 'Active' and running normally.
+                  keyEncryptionKeyUrl: https://ege2ekeyvault.vault.azure.net/keys/ValidKey1
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+            platformCapabilities:
+              confidentialCompute:
+                mode: Enabled
+            provisioningState: Succeeded
+            source: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+SystemTopics.delete:
+  - since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        systemTopicName: exampleSystemTopic1
+    responses:
+      200: {}
+      202: {}
+      204: {}
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        systemTopicName: exampleSystemTopic1
+    responses:
+      200: {}
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+      204: {}
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        systemTopicName: exampleSystemTopic1
+    responses:
+      200: {}
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+      204: {}
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        systemTopicName: exampleSystemTopic1
+    responses:
+      200: {}
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+      204: {}
+  - since: "2025-07-15-preview"
+    request:
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+      path:
+        systemTopicName: exampleSystemTopic1
+    responses:
+      200: {}
+      202:
+        headers:
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+      204: {}
+SystemTopics.get:
+  - since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        systemTopicName: exampleSystemTopic2
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Succeeded
+            source: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+          name: exampleSystemTopic2
+          type: Microsoft.EventGrid/systemTopics
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        systemTopicName: exampleSystemTopic2
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Succeeded
+            source: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+          name: exampleSystemTopic2
+          type: Microsoft.EventGrid/systemTopics
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        systemTopicName: exampleSystemTopic2
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Succeeded
+            source: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+          name: exampleSystemTopic2
+          type: Microsoft.EventGrid/systemTopics
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        systemTopicName: exampleSystemTopic2
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Succeeded
+            source: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+          name: exampleSystemTopic2
+          type: Microsoft.EventGrid/systemTopics
+  - since: "2025-07-15-preview"
+    request:
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+      path:
+        systemTopicName: exampleSystemTopic2
+    responses:
+      200:
+        body:
+          name: exampleSystemTopic2
+          type: Microsoft.EventGrid/systemTopics
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+          identity:
+            type: UserAssigned
+            userAssignedIdentities:
+              /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id:
+                clientId: 11af827c-d951-4766-9c41-15565fa13157
+                principalId: a5435982-c82d-453b-b244-3115b7c8789c
+          location: centraluseuap
+          properties:
+            encryption:
+              customerManagedKeyEncryption:
+                - keyEncryptionKeyIdentity:
+                    type: UserAssigned
+                    userAssignedIdentityResourceId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id
+                  keyEncryptionKeyStatus: Active
+                  keyEncryptionKeyStatusFriendlyDescription: Customer Managed Key (CMK) Encryption
+                    is 'Active' and running normally.
+                  keyEncryptionKeyUrl: https://ege2ekeyvault.vault.azure.net/keys/ValidKey1
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+            platformCapabilities:
+              confidentialCompute:
+                mode: Enabled
+            provisioningState: Succeeded
+            source: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+SystemTopics.listByResourceGroup:
+  - since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                provisioningState: Succeeded
+                source: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+                topicType: microsoft.storage.storageaccounts
+                metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+              location: centraluseuap
+              tags: null
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/pubstgrunnerb71cd29e-86fad330-7bac-4238-8cab-9e46b75165aa
+              name: pubstgrunnerb71cd29e-86fad330-7bac-4238-8cab-9e46b75165aa
+              type: Microsoft.EventGrid/systemTopics
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                provisioningState: Succeeded
+                source: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+                topicType: microsoft.storage.storageaccounts
+                metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+              location: centraluseuap
+              tags: null
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/pubstgrunnerb71cd29e-86fad330-7bac-4238-8cab-9e46b75165aa
+              name: pubstgrunnerb71cd29e-86fad330-7bac-4238-8cab-9e46b75165aa
+              type: Microsoft.EventGrid/systemTopics
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                provisioningState: Succeeded
+                source: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+                topicType: microsoft.storage.storageaccounts
+                metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+              location: centraluseuap
+              tags: null
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/pubstgrunnerb71cd29e-86fad330-7bac-4238-8cab-9e46b75165aa
+              name: pubstgrunnerb71cd29e-86fad330-7bac-4238-8cab-9e46b75165aa
+              type: Microsoft.EventGrid/systemTopics
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                provisioningState: Succeeded
+                source: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+                topicType: microsoft.storage.storageaccounts
+                metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+              location: centraluseuap
+              tags: null
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/pubstgrunnerb71cd29e-86fad330-7bac-4238-8cab-9e46b75165aa
+              name: pubstgrunnerb71cd29e-86fad330-7bac-4238-8cab-9e46b75165aa
+              type: Microsoft.EventGrid/systemTopics
+  - since: "2025-07-15-preview"
+    request:
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - name: pubstgrunnerb71cd29e-86fad330-7bac-4238-8cab-9e46b75165aa
+              type: Microsoft.EventGrid/systemTopics
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/pubstgrunnerb71cd29e-86fad330-7bac-4238-8cab-9e46b75165aa
+              location: centraluseuap
+              properties:
+                metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+                provisioningState: Succeeded
+                source: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+                topicType: microsoft.storage.storageaccounts
+              tags: null
+SystemTopics.listBySubscription:
+  - since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                provisioningState: Succeeded
+                source: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+                topicType: microsoft.storage.storageaccounts
+                metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+              location: centraluseuap
+              tags: null
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+              name: exampleSystemTopic2
+              type: Microsoft.EventGrid/systemTopics
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                provisioningState: Succeeded
+                source: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+                topicType: microsoft.storage.storageaccounts
+                metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+              location: centraluseuap
+              tags: null
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+              name: exampleSystemTopic2
+              type: Microsoft.EventGrid/systemTopics
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                provisioningState: Succeeded
+                source: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+                topicType: microsoft.storage.storageaccounts
+                metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+              location: centraluseuap
+              tags: null
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+              name: exampleSystemTopic2
+              type: Microsoft.EventGrid/systemTopics
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                provisioningState: Succeeded
+                source: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+                topicType: microsoft.storage.storageaccounts
+                metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+              location: centraluseuap
+              tags: null
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+              name: exampleSystemTopic2
+              type: Microsoft.EventGrid/systemTopics
+  - since: "2025-07-15-preview"
+    request:
+      query:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - name: exampleSystemTopic2
+              type: Microsoft.EventGrid/systemTopics
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+              location: centraluseuap
+              properties:
+                metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+                provisioningState: Succeeded
+                source: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+                topicType: microsoft.storage.storageaccounts
+              tags: null
+SystemTopics.update:
+  - since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        systemTopicName: exampleSystemTopic1
+      body:
+        tags:
+          tag1: value1
+          tag2: value2
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Succeeded
+            source: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+          name: exampleSystemTopic2
+          type: Microsoft.EventGrid/systemTopics
+      201:
+        body:
+          properties:
+            provisioningState: Succeeded
+            source: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+          name: exampleSystemTopic2
+          type: Microsoft.EventGrid/systemTopics
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        systemTopicName: exampleSystemTopic1
+      body:
+        tags:
+          tag1: value1
+          tag2: value2
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Succeeded
+            source: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+          name: exampleSystemTopic2
+          type: Microsoft.EventGrid/systemTopics
+      201:
+        body:
+          properties:
+            provisioningState: Succeeded
+            source: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+          name: exampleSystemTopic2
+          type: Microsoft.EventGrid/systemTopics
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        systemTopicName: exampleSystemTopic1
+      body:
+        tags:
+          tag1: value1
+          tag2: value2
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Succeeded
+            source: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+          name: exampleSystemTopic2
+          type: Microsoft.EventGrid/systemTopics
+      201:
+        body:
+          properties:
+            provisioningState: Succeeded
+            source: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+          name: exampleSystemTopic2
+          type: Microsoft.EventGrid/systemTopics
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        systemTopicName: exampleSystemTopic1
+      body:
+        tags:
+          tag1: value1
+          tag2: value2
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Succeeded
+            source: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+          name: exampleSystemTopic2
+          type: Microsoft.EventGrid/systemTopics
+      201:
+        body:
+          properties:
+            provisioningState: Succeeded
+            source: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+          name: exampleSystemTopic2
+          type: Microsoft.EventGrid/systemTopics
+  - since: "2025-07-15-preview"
+    request:
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+      path:
+        systemTopicName: exampleSystemTopic1
+      body:
+        tags:
+          tag1: value1
+          tag2: value2
+    responses:
+      200:
+        body:
+          name: exampleSystemTopic2
+          type: Microsoft.EventGrid/systemTopics
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+          location: centraluseuap
+          properties:
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+            provisioningState: Succeeded
+            source: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+          tags: null
+      201:
+        body:
+          name: exampleSystemTopic2
+          type: Microsoft.EventGrid/systemTopics
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/systemTopics/exampleSystemTopic2
+          location: centraluseuap
+          properties:
+            metricResourceId: 183c0fb1-17ff-47b6-ac77-5a47420ab01e
+            provisioningState: Succeeded
+            source: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/microsoft.storage/storageaccounts/pubstgrunnerb71cd29e
+            topicType: microsoft.storage.storageaccounts
+          tags: null

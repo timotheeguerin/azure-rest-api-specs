@@ -1,0 +1,215 @@
+$namespace: Microsoft.EventGrid
+PrivateLinkResources.get:
+  - since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        parentType: topics
+        parentName: exampletopic1
+        privateLinkResourceName: topic
+    responses:
+      200:
+        body:
+          properties:
+            groupId: topic
+            displayName: Event Grid topic
+            requiredMembers:
+              - topic
+            requiredZoneNames:
+              - privatelink.eventgrid.azure.net
+          id: /subscriptions/5B4B650E-28B9-4790-B3AB-DDBD88D727C4/resourceGroups/amh/providers/Microsoft.EventGrid/topics/exampletopic1/privateLinkResources/topic
+          name: topic
+          type: Microsoft.EventGrid/topics/privateLinkResources
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        parentType: topics
+        parentName: exampletopic1
+        privateLinkResourceName: topic
+    responses:
+      200:
+        body:
+          properties:
+            groupId: topic
+            displayName: Event Grid topic
+            requiredMembers:
+              - topic
+            requiredZoneNames:
+              - privatelink.eventgrid.azure.net
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/amh/providers/Microsoft.EventGrid/topics/exampletopic1/privateLinkResources/topic
+          name: topic
+          type: Microsoft.EventGrid/topics/privateLinkResources
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        parentType: topics
+        parentName: exampletopic1
+        privateLinkResourceName: topic
+    responses:
+      200:
+        body:
+          properties:
+            groupId: topic
+            displayName: Event Grid topic
+            requiredMembers:
+              - topic
+            requiredZoneNames:
+              - privatelink.eventgrid.azure.net
+          id: /subscriptions/5B4B650E-28B9-4790-B3AB-DDBD88D727C4/resourceGroups/amh/providers/Microsoft.EventGrid/topics/exampletopic1/privateLinkResources/topic
+          name: topic
+          type: Microsoft.EventGrid/topics/privateLinkResources
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        parentType: topics
+        parentName: exampletopic1
+        privateLinkResourceName: topic
+    responses:
+      200:
+        body:
+          properties:
+            groupId: topic
+            displayName: Event Grid topic
+            requiredMembers:
+              - topic
+            requiredZoneNames:
+              - privatelink.eventgrid.azure.net
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/amh/providers/Microsoft.EventGrid/topics/exampletopic1/privateLinkResources/topic
+          name: topic
+          type: Microsoft.EventGrid/topics/privateLinkResources
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        parentName: exampletopic1
+        parentType: topics
+        privateLinkResourceName: topic
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          name: topic
+          type: Microsoft.EventGrid/topics/privateLinkResources
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/amh/providers/Microsoft.EventGrid/topics/exampletopic1/privateLinkResources/topic
+          properties:
+            displayName: Event Grid topic
+            groupId: topic
+            requiredMembers:
+              - topic
+            requiredZoneNames:
+              - privatelink.eventgrid.azure.net
+PrivateLinkResources.listByResource:
+  - since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        parentType: topics
+        parentName: exampletopic1
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                groupId: topic
+                displayName: Event Grid topic
+                requiredMembers:
+                  - topic
+                requiredZoneNames:
+                  - privatelink.eventgrid.azure.net
+              id: /subscriptions/5B4B650E-28B9-4790-B3AB-DDBD88D727C4/resourceGroups/amh/providers/Microsoft.EventGrid/topics/exampletopic1/privateLinkResources/topic
+              name: topic
+              type: Microsoft.EventGrid/topics/privateLinkResources
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        parentType: topics
+        parentName: exampletopic1
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                groupId: topic
+                displayName: Event Grid topic
+                requiredMembers:
+                  - topic
+                requiredZoneNames:
+                  - privatelink.eventgrid.azure.net
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/amh/providers/Microsoft.EventGrid/topics/exampletopic1/privateLinkResources/topic
+              name: topic
+              type: Microsoft.EventGrid/topics/privateLinkResources
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        parentType: topics
+        parentName: exampletopic1
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                groupId: topic
+                displayName: Event Grid topic
+                requiredMembers:
+                  - topic
+                requiredZoneNames:
+                  - privatelink.eventgrid.azure.net
+              id: /subscriptions/5B4B650E-28B9-4790-B3AB-DDBD88D727C4/resourceGroups/amh/providers/Microsoft.EventGrid/topics/exampletopic1/privateLinkResources/topic
+              name: topic
+              type: Microsoft.EventGrid/topics/privateLinkResources
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        parentType: topics
+        parentName: exampletopic1
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                groupId: topic
+                displayName: Event Grid topic
+                requiredMembers:
+                  - topic
+                requiredZoneNames:
+                  - privatelink.eventgrid.azure.net
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/amh/providers/Microsoft.EventGrid/topics/exampletopic1/privateLinkResources/topic
+              name: topic
+              type: Microsoft.EventGrid/topics/privateLinkResources
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        parentName: exampletopic1
+        parentType: topics
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - name: topic
+              type: Microsoft.EventGrid/topics/privateLinkResources
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/amh/providers/Microsoft.EventGrid/topics/exampletopic1/privateLinkResources/topic
+              properties:
+                displayName: Event Grid topic
+                groupId: topic
+                requiredMembers:
+                  - topic
+                requiredZoneNames:
+                  - privatelink.eventgrid.azure.net

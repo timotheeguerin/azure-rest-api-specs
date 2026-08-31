@@ -1,0 +1,87 @@
+$namespace: Microsoft.EventGrid
+EventChannels.createOrUpdate:
+  - since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+        eventChannelName: exampleEventChannelName1
+      body:
+        properties:
+          source:
+            source: ContosoCorp.Accounts.User1
+          destination:
+            azureSubscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+            resourceGroup: examplerg2
+            partnerTopicName: examplePartnerTopic1
+    responses:
+      200:
+        body:
+          properties:
+            source:
+              source: ContosoCorp.Accounts.User1
+            destination:
+              azureSubscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+              resourceGroup: examplerg2
+              partnerTopicName: examplePartnerTopic1
+            provisioningState: Succeeded
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespace123/eventChannels/exampleEventChannelName1
+          name: exampleEventChannelName1
+          type: Microsoft.EventGrid/partnerNamespaces/eventChannels
+EventChannels.delete:
+  - since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+        eventChannelName: exampleEventChannelName
+    responses:
+      200: {}
+      202: {}
+      204: {}
+EventChannels.get:
+  - since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+        eventChannelName: exampleEventChannelName1
+    responses:
+      200:
+        body:
+          properties:
+            source:
+              source: ContosoCorp.Accounts.User1
+            destination:
+              azureSubscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+              resourceGroup: examplerg2
+              partnerTopicName: examplePartnerTopic1
+            provisioningState: Succeeded
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespace123/eventChannels/exampleEventChannelName1
+          name: exampleEventChannelName1
+          type: Microsoft.EventGrid/partnerNamespaces/eventChannels
+EventChannels.listByPartnerNamespace:
+  - since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: partnerNamespace123
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                source:
+                  source: ContosoCorp.Accounts.User1
+                destination:
+                  azureSubscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+                  resourceGroup: amh
+                  partnerTopicName: examplePartnerTopic1
+                provisioningState: Succeeded
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/amh/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespace123/eventChannels/eventChannel1234
+              name: eventChannel1234
+              type: Microsoft.EventGrid/partnerNamespaces/eventChannels
