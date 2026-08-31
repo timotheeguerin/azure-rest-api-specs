@@ -1,0 +1,674 @@
+$namespace: Microsoft.EventGrid
+Channels.createOrUpdate:
+  - since: "2021-10-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+        channelName: exampleChannelName1
+      body:
+        properties:
+          channelType: PartnerTopic
+          partnerTopicInfo:
+            azureSubscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+            resourceGroupName: examplerg2
+            name: examplePartnerTopic1
+            source: ContosoCorp.Accounts.User1
+          messageForActivation: Example message to approver
+          expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+    responses:
+      200:
+        body:
+          properties:
+            channelType: PartnerTopic
+            partnerTopicInfo:
+              azureSubscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+              resourceGroupName: examplerg2
+              name: examplePartnerTopic1
+              source: ContosoCorp.Accounts.User1
+            messageForActivation: Example message to approver
+            expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1/changes/exampleChannelName1
+          name: exampleChannelName1
+          type: Microsoft.EventGrid/partnerNamespaces/channels
+      201:
+        body:
+          properties:
+            channelType: PartnerTopic
+            partnerTopicInfo:
+              azureSubscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+              resourceGroupName: examplerg2
+              name: examplePartnerTopic1
+              source: ContosoCorp.Accounts.User1
+            messageForActivation: Example message to approver
+            expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1/changes/exampleChannelName1
+          name: exampleChannelName1
+          type: Microsoft.EventGrid/partnerNamespaces/channels
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+        channelName: exampleChannelName1
+      body:
+        properties:
+          channelType: PartnerTopic
+          partnerTopicInfo:
+            azureSubscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+            resourceGroupName: examplerg2
+            name: examplePartnerTopic1
+            source: ContosoCorp.Accounts.User1
+          messageForActivation: Example message to approver
+          expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+    responses:
+      200:
+        body:
+          properties:
+            channelType: PartnerTopic
+            partnerTopicInfo:
+              azureSubscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+              resourceGroupName: examplerg2
+              name: examplePartnerTopic1
+              source: ContosoCorp.Accounts.User1
+            messageForActivation: Example message to approver
+            expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1/changes/exampleChannelName1
+          name: exampleChannelName1
+          type: Microsoft.EventGrid/partnerNamespaces/channels
+      201:
+        body:
+          properties:
+            channelType: PartnerTopic
+            partnerTopicInfo:
+              azureSubscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+              resourceGroupName: examplerg2
+              name: examplePartnerTopic1
+              source: ContosoCorp.Accounts.User1
+            messageForActivation: Example message to approver
+            expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1/changes/exampleChannelName1
+          name: exampleChannelName1
+          type: Microsoft.EventGrid/partnerNamespaces/channels
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+        channelName: exampleChannelName1
+      body:
+        properties:
+          channelType: PartnerTopic
+          partnerTopicInfo:
+            azureSubscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+            resourceGroupName: examplerg2
+            name: examplePartnerTopic1
+            source: ContosoCorp.Accounts.User1
+          messageForActivation: Example message to approver
+          expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+    responses:
+      200:
+        body:
+          properties:
+            channelType: PartnerTopic
+            partnerTopicInfo:
+              azureSubscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+              resourceGroupName: examplerg2
+              name: examplePartnerTopic1
+              source: ContosoCorp.Accounts.User1
+            messageForActivation: Example message to approver
+            expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1/changes/exampleChannelName1
+          name: exampleChannelName1
+          type: Microsoft.EventGrid/partnerNamespaces/channels
+      201:
+        body:
+          properties:
+            channelType: PartnerTopic
+            partnerTopicInfo:
+              azureSubscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+              resourceGroupName: examplerg2
+              name: examplePartnerTopic1
+              source: ContosoCorp.Accounts.User1
+            messageForActivation: Example message to approver
+            expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1/changes/exampleChannelName1
+          name: exampleChannelName1
+          type: Microsoft.EventGrid/partnerNamespaces/channels
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+        channelName: exampleChannelName1
+      body:
+        properties:
+          channelType: PartnerTopic
+          partnerTopicInfo:
+            azureSubscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+            resourceGroupName: examplerg2
+            name: examplePartnerTopic1
+            source: ContosoCorp.Accounts.User1
+          messageForActivation: Example message to approver
+          expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+    responses:
+      200:
+        body:
+          properties:
+            channelType: PartnerTopic
+            partnerTopicInfo:
+              azureSubscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+              resourceGroupName: examplerg2
+              name: examplePartnerTopic1
+              source: ContosoCorp.Accounts.User1
+            messageForActivation: Example message to approver
+            expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1/changes/exampleChannelName1
+          name: exampleChannelName1
+          type: Microsoft.EventGrid/partnerNamespaces/channels
+      201:
+        body:
+          properties:
+            channelType: PartnerTopic
+            partnerTopicInfo:
+              azureSubscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+              resourceGroupName: examplerg2
+              name: examplePartnerTopic1
+              source: ContosoCorp.Accounts.User1
+            messageForActivation: Example message to approver
+            expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1/changes/exampleChannelName1
+          name: exampleChannelName1
+          type: Microsoft.EventGrid/partnerNamespaces/channels
+  - since: "2025-07-15-preview"
+    request:
+      body:
+        properties:
+          channelType: PartnerTopic
+          expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+          messageForActivation: Example message to approver
+          partnerTopicInfo:
+            name: examplePartnerTopic1
+            azureSubscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+            resourceGroupName: examplerg2
+            source: ContosoCorp.Accounts.User1
+      path:
+        channelName: exampleChannelName1
+        partnerNamespaceName: examplePartnerNamespaceName1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          name: exampleChannelName1
+          type: Microsoft.EventGrid/partnerNamespaces/channels
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1/changes/exampleChannelName1
+          properties:
+            channelType: PartnerTopic
+            expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+            messageForActivation: Example message to approver
+            partnerTopicInfo:
+              name: examplePartnerTopic1
+              azureSubscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+              resourceGroupName: examplerg2
+              source: ContosoCorp.Accounts.User1
+      201:
+        body:
+          name: exampleChannelName1
+          type: Microsoft.EventGrid/partnerNamespaces/channels
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1/changes/exampleChannelName1
+          properties:
+            channelType: PartnerTopic
+            expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+            messageForActivation: Example message to approver
+            partnerTopicInfo:
+              name: examplePartnerTopic1
+              azureSubscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+              resourceGroupName: examplerg2
+              source: ContosoCorp.Accounts.User1
+Channels.delete:
+  - since: "2021-10-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+        channelName: exampleEventChannelName1
+    responses:
+      200: {}
+      202: {}
+      204: {}
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+        channelName: exampleEventChannelName1
+    responses:
+      200: {}
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+      204: {}
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+        channelName: exampleEventChannelName1
+    responses:
+      200: {}
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+      204: {}
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+        channelName: exampleEventChannelName1
+    responses:
+      200: {}
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+      204: {}
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        channelName: exampleEventChannelName1
+        partnerNamespaceName: examplePartnerNamespaceName1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200: {}
+      202:
+        headers:
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+      204: {}
+Channels.get:
+  - since: "2021-10-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+        channelName: exampleChannelName1
+    responses:
+      200:
+        body:
+          properties:
+            channelType: PartnerTopic
+            partnerTopicInfo:
+              azureSubscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+              resourceGroupName: examplerg2
+              name: examplePartnerTopic1
+              source: ContosoCorp.Accounts.User1
+            messageForActivation: Example message to approver
+            expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+            readinessState: NeverActivated
+            provisioningState: Succeeded
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1/changes/exampleChannelName1
+          name: exampleChannelName1
+          type: Microsoft.EventGrid/partnerNamespaces/channels
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+        channelName: exampleChannelName1
+    responses:
+      200:
+        body:
+          properties:
+            channelType: PartnerTopic
+            partnerTopicInfo:
+              azureSubscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+              resourceGroupName: examplerg2
+              name: examplePartnerTopic1
+              source: ContosoCorp.Accounts.User1
+            messageForActivation: Example message to approver
+            expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+            readinessState: NeverActivated
+            provisioningState: Succeeded
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1/changes/exampleChannelName1
+          name: exampleChannelName1
+          type: Microsoft.EventGrid/partnerNamespaces/channels
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+        channelName: exampleChannelName1
+    responses:
+      200:
+        body:
+          properties:
+            channelType: PartnerTopic
+            partnerTopicInfo:
+              azureSubscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+              resourceGroupName: examplerg2
+              name: examplePartnerTopic1
+              source: ContosoCorp.Accounts.User1
+            messageForActivation: Example message to approver
+            expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+            readinessState: NeverActivated
+            provisioningState: Succeeded
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1/changes/exampleChannelName1
+          name: exampleChannelName1
+          type: Microsoft.EventGrid/partnerNamespaces/channels
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+        channelName: exampleChannelName1
+    responses:
+      200:
+        body:
+          properties:
+            channelType: PartnerTopic
+            partnerTopicInfo:
+              azureSubscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+              resourceGroupName: examplerg2
+              name: examplePartnerTopic1
+              source: ContosoCorp.Accounts.User1
+            messageForActivation: Example message to approver
+            expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+            readinessState: NeverActivated
+            provisioningState: Succeeded
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1/changes/exampleChannelName1
+          name: exampleChannelName1
+          type: Microsoft.EventGrid/partnerNamespaces/channels
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        channelName: exampleChannelName1
+        partnerNamespaceName: examplePartnerNamespaceName1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          name: exampleChannelName1
+          type: Microsoft.EventGrid/partnerNamespaces/channels
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1/changes/exampleChannelName1
+          properties:
+            channelType: PartnerTopic
+            expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+            messageForActivation: Example message to approver
+            partnerTopicInfo:
+              name: examplePartnerTopic1
+              azureSubscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+              resourceGroupName: examplerg2
+              source: ContosoCorp.Accounts.User1
+            provisioningState: Succeeded
+            readinessState: NeverActivated
+Channels.getFullUrl:
+  - since: "2021-10-15-preview"
+    request:
+      query:
+        scope: subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnernamespaces/examplenamespace
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplenamespace
+        channelName: examplechannel
+    responses:
+      200:
+        body:
+          endpointUrl: https://requestb.in/15ksip71
+  - since: "2023-06-01-preview"
+    request:
+      query:
+        scope: subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnernamespaces/examplenamespace
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplenamespace
+        channelName: examplechannel
+    responses:
+      200:
+        body:
+          endpointUrl: https://requestb.in/15ksip71
+  - since: "2025-02-15"
+    request:
+      query:
+        scope: subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnernamespaces/examplenamespace
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplenamespace
+        channelName: examplechannel
+    responses:
+      200:
+        body:
+          endpointUrl: https://requestb.in/15ksip71
+  - since: "2025-04-01-preview"
+    request:
+      query:
+        scope: subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnernamespaces/examplenamespace
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplenamespace
+        channelName: examplechannel
+    responses:
+      200:
+        body:
+          endpointUrl: https://requestb.in/15ksip71
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        channelName: examplechannel
+        partnerNamespaceName: examplenamespace
+      query:
+        resourceGroupName: examplerg
+        scope: subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnernamespaces/examplenamespace
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          endpointUrl: https://requestb.in/15ksip71
+Channels.listByPartnerNamespace:
+  - since: "2021-10-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                channelType: PartnerTopic
+                partnerTopicInfo:
+                  azureSubscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+                  resourceGroupName: examplerg2
+                  name: examplePartnerTopic1
+                  source: ContosoCorp.Accounts.User1
+                messageForActivation: Example message to approver
+                expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+                readinessState: NeverActivated
+                provisioningState: Succeeded
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1/changes/exampleChannelName1
+              name: exampleChannelName1
+              type: Microsoft.EventGrid/partnerNamespaces/channels
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                channelType: PartnerTopic
+                partnerTopicInfo:
+                  azureSubscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+                  resourceGroupName: examplerg2
+                  name: examplePartnerTopic1
+                  source: ContosoCorp.Accounts.User1
+                messageForActivation: Example message to approver
+                expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+                readinessState: NeverActivated
+                provisioningState: Succeeded
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1/changes/exampleChannelName1
+              name: exampleChannelName1
+              type: Microsoft.EventGrid/partnerNamespaces/channels
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                channelType: PartnerTopic
+                partnerTopicInfo:
+                  azureSubscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+                  resourceGroupName: examplerg2
+                  name: examplePartnerTopic1
+                  source: ContosoCorp.Accounts.User1
+                messageForActivation: Example message to approver
+                expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+                readinessState: NeverActivated
+                provisioningState: Succeeded
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1/changes/exampleChannelName1
+              name: exampleChannelName1
+              type: Microsoft.EventGrid/partnerNamespaces/channels
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                channelType: PartnerTopic
+                partnerTopicInfo:
+                  azureSubscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+                  resourceGroupName: examplerg2
+                  name: examplePartnerTopic1
+                  source: ContosoCorp.Accounts.User1
+                messageForActivation: Example message to approver
+                expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+                readinessState: NeverActivated
+                provisioningState: Succeeded
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1/changes/exampleChannelName1
+              name: exampleChannelName1
+              type: Microsoft.EventGrid/partnerNamespaces/channels
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        partnerNamespaceName: examplePartnerNamespaceName1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - name: exampleChannelName1
+              type: Microsoft.EventGrid/partnerNamespaces/channels
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1/changes/exampleChannelName1
+              properties:
+                channelType: PartnerTopic
+                expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+                messageForActivation: Example message to approver
+                partnerTopicInfo:
+                  name: examplePartnerTopic1
+                  azureSubscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+                  resourceGroupName: examplerg2
+                  source: ContosoCorp.Accounts.User1
+                provisioningState: Succeeded
+                readinessState: NeverActivated
+Channels.update:
+  - since: "2021-10-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+        channelName: exampleChannelName1
+      body:
+        properties:
+          expirationTimeIfNotActivatedUtc: 2022-03-23T23:06:11.785Z
+    responses:
+      200: {}
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+        channelName: exampleChannelName1
+      body:
+        properties:
+          expirationTimeIfNotActivatedUtc: 2022-03-23T23:06:11.785Z
+    responses:
+      200: {}
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+        channelName: exampleChannelName1
+      body:
+        properties:
+          expirationTimeIfNotActivatedUtc: 2022-03-23T23:06:11.785Z
+    responses:
+      200: {}
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+        channelName: exampleChannelName1
+      body:
+        properties:
+          expirationTimeIfNotActivatedUtc: 2022-03-23T23:06:11.785Z
+    responses:
+      200: {}
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        channelName: exampleChannelName1
+        partnerNamespaceName: examplePartnerNamespaceName1
+      body:
+        properties:
+          expirationTimeIfNotActivatedUtc: 2022-03-23T23:06:11.785Z
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200: {}

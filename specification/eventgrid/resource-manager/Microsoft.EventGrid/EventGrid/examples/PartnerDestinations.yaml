@@ -1,0 +1,605 @@
+$namespace: Microsoft.EventGrid
+PartnerDestinations.activate:
+  - since: "2021-10-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerDestinationName: examplePartnerDestination1
+    responses:
+      200:
+        body:
+          properties:
+            endpointServiceContext: ContosoCorp.Accounts.User1
+            provisioningState: Succeeded
+            activationState: Activated
+            endpointBaseUrl: https://somepartnerhostname
+            messageForActivation: Some message to the approver
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestinationName1
+          name: examplePartnerDestinationName1
+          type: Microsoft.EventGrid/partnerDestinations
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerDestinationName: examplePartnerDestination1
+    responses:
+      200:
+        body:
+          properties:
+            endpointServiceContext: ContosoCorp.Accounts.User1
+            provisioningState: Succeeded
+            activationState: Activated
+            endpointBaseUrl: https://somepartnerhostname
+            messageForActivation: Some message to the approver
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestinationName1
+          name: examplePartnerDestinationName1
+          type: Microsoft.EventGrid/partnerDestinations
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        partnerDestinationName: examplePartnerDestination1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          name: examplePartnerDestinationName1
+          type: Microsoft.EventGrid/partnerDestinations
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestinationName1
+          location: centraluseuap
+          properties:
+            activationState: Activated
+            endpointBaseUrl: https://somepartnerhostname
+            endpointServiceContext: ContosoCorp.Accounts.User1
+            messageForActivation: Some message to the approver
+            provisioningState: Succeeded
+          tags: null
+PartnerDestinations.createOrUpdate:
+  - since: "2021-10-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerDestinationName: examplePartnerDestinationName1
+      body:
+        properties:
+          partnerRegistrationImmutableId: 0bd70ee2-7d95-447e-ab1f-c4f320019404
+          endpointServiceContext: This is an example
+          expirationTimeIfNotActivatedUtc: 2022-03-14T19:33:43.430Z
+          endpointBaseUrl: https://www.example/endpoint
+          messageForActivation: Sample Activation message
+        location: westus2
+      query:
+        tags:
+          tag1: value1
+          tag2: value2
+    responses:
+      200:
+        body:
+          properties:
+            partnerRegistrationImmutableId: 0bd70ee2-7d95-447e-ab1f-c4f320019404
+            provisioningState: Succeeded
+            endpointServiceContext: string
+            expirationTimeIfNotActivatedUtc: 2022-03-14T19:33:43.430Z
+            activationState: NeverActivated
+            endpointBaseUrl: https://www.example/endpoint
+            messageForActivation: Sample Activation message
+          location: westus2
+          tags:
+            tag1: value1
+            tag2: value2
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestinationName1
+          name: examplePartnerDestinationName1
+          type: Microsoft.EventGrid/partnerDestinations
+      201:
+        body:
+          properties:
+            partnerRegistrationImmutableId: 0bd70ee2-7d95-447e-ab1f-c4f320019404
+            provisioningState: Succeeded
+            endpointServiceContext: string
+            expirationTimeIfNotActivatedUtc: 2022-03-14T19:33:43.430Z
+            activationState: NeverActivated
+            endpointBaseUrl: https://www.example/endpoint
+            messageForActivation: Sample Activation message
+          location: westus2
+          tags:
+            tag1: value1
+            tag2: value2
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestinationName1
+          name: examplePartnerDestinationName1
+          type: Microsoft.EventGrid/partnerDestinations
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerDestinationName: examplePartnerDestinationName1
+      body:
+        properties:
+          partnerRegistrationImmutableId: 0bd70ee2-7d95-447e-ab1f-c4f320019404
+          endpointServiceContext: This is an example
+          expirationTimeIfNotActivatedUtc: 2022-03-14T19:33:43.430Z
+          endpointBaseUrl: https://www.example/endpoint
+          messageForActivation: Sample Activation message
+        location: westus2
+      query:
+        tags:
+          tag1: value1
+          tag2: value2
+    responses:
+      200:
+        body:
+          properties:
+            partnerRegistrationImmutableId: 0bd70ee2-7d95-447e-ab1f-c4f320019404
+            provisioningState: Succeeded
+            endpointServiceContext: string
+            expirationTimeIfNotActivatedUtc: 2022-03-14T19:33:43.430Z
+            activationState: NeverActivated
+            endpointBaseUrl: https://www.example/endpoint
+            messageForActivation: Sample Activation message
+          location: westus2
+          tags:
+            tag1: value1
+            tag2: value2
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestinationName1
+          name: examplePartnerDestinationName1
+          type: Microsoft.EventGrid/partnerDestinations
+      201:
+        body:
+          properties:
+            partnerRegistrationImmutableId: 0bd70ee2-7d95-447e-ab1f-c4f320019404
+            provisioningState: Succeeded
+            endpointServiceContext: string
+            expirationTimeIfNotActivatedUtc: 2022-03-14T19:33:43.430Z
+            activationState: NeverActivated
+            endpointBaseUrl: https://www.example/endpoint
+            messageForActivation: Sample Activation message
+          location: westus2
+          tags:
+            tag1: value1
+            tag2: value2
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestinationName1
+          name: examplePartnerDestinationName1
+          type: Microsoft.EventGrid/partnerDestinations
+  - since: "2025-07-15-preview"
+    request:
+      body:
+        location: westus2
+        properties:
+          endpointBaseUrl: https://www.example/endpoint
+          endpointServiceContext: This is an example
+          expirationTimeIfNotActivatedUtc: 2022-03-14T19:33:43.430Z
+          messageForActivation: Sample Activation message
+          partnerRegistrationImmutableId: 0bd70ee2-7d95-447e-ab1f-c4f320019404
+      path:
+        partnerDestinationName: examplePartnerDestinationName1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        tags:
+          tag1: value1
+          tag2: value2
+    responses:
+      200:
+        body:
+          name: examplePartnerDestinationName1
+          type: Microsoft.EventGrid/partnerDestinations
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestinationName1
+          location: westus2
+          properties:
+            activationState: NeverActivated
+            endpointBaseUrl: https://www.example/endpoint
+            endpointServiceContext: string
+            expirationTimeIfNotActivatedUtc: 2022-03-14T19:33:43.430Z
+            messageForActivation: Sample Activation message
+            partnerRegistrationImmutableId: 0bd70ee2-7d95-447e-ab1f-c4f320019404
+            provisioningState: Succeeded
+          tags:
+            tag1: value1
+            tag2: value2
+      201:
+        body:
+          name: examplePartnerDestinationName1
+          type: Microsoft.EventGrid/partnerDestinations
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestinationName1
+          location: westus2
+          properties:
+            activationState: NeverActivated
+            endpointBaseUrl: https://www.example/endpoint
+            endpointServiceContext: string
+            expirationTimeIfNotActivatedUtc: 2022-03-14T19:33:43.430Z
+            messageForActivation: Sample Activation message
+            partnerRegistrationImmutableId: 0bd70ee2-7d95-447e-ab1f-c4f320019404
+            provisioningState: Succeeded
+          tags:
+            tag1: value1
+            tag2: value2
+PartnerDestinations.delete:
+  - since: "2021-10-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerDestinationName: examplePartnerDestinationName1
+    responses:
+      200: {}
+      202: {}
+      204: {}
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerDestinationName: examplePartnerDestinationName1
+    responses:
+      200: {}
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+      204: {}
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        partnerDestinationName: examplePartnerDestinationName1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200: {}
+      202:
+        headers:
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+      204: {}
+PartnerDestinations.get:
+  - since: "2021-10-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerDestinationName: examplePartnerDestinationName1
+    responses:
+      200:
+        body:
+          properties:
+            endpointServiceContext: ContosoCorp.Accounts.User1
+            provisioningState: Succeeded
+            activationState: NeverActivated
+            expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+            endpointBaseUrl: https://somepartnerhostname
+            messageForActivation: Some message to the approver
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestinationName1
+          name: examplePartnerDestinationName1
+          type: Microsoft.EventGrid/partnerDestinations
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerDestinationName: examplePartnerDestinationName1
+    responses:
+      200:
+        body:
+          properties:
+            endpointServiceContext: ContosoCorp.Accounts.User1
+            provisioningState: Succeeded
+            activationState: NeverActivated
+            expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+            endpointBaseUrl: https://somepartnerhostname
+            messageForActivation: Some message to the approver
+          location: centraluseuap
+          tags: null
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestinationName1
+          name: examplePartnerDestinationName1
+          type: Microsoft.EventGrid/partnerDestinations
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        partnerDestinationName: examplePartnerDestinationName1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          name: examplePartnerDestinationName1
+          type: Microsoft.EventGrid/partnerDestinations
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestinationName1
+          location: centraluseuap
+          properties:
+            activationState: NeverActivated
+            endpointBaseUrl: https://somepartnerhostname
+            endpointServiceContext: ContosoCorp.Accounts.User1
+            expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+            messageForActivation: Some message to the approver
+            provisioningState: Succeeded
+          tags: null
+PartnerDestinations.listByResourceGroup:
+  - since: "2021-10-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                endpointServiceContext: ContosoCorp.Accounts.User1
+                provisioningState: Succeeded
+                activationState: NeverActivated
+                expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+                endpointBaseUrl: https://somepartnerhostname
+                messageForActivation: Some message to the approver
+              location: centraluseuap
+              tags: null
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestinationName1
+              name: examplePartnerDestinationName1
+              type: Microsoft.EventGrid/partnerDestinations
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                endpointServiceContext: ContosoCorp.Accounts.User1
+                provisioningState: Succeeded
+                activationState: NeverActivated
+                expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+                endpointBaseUrl: https://somepartnerhostname
+                messageForActivation: Some message to the approver
+              location: centraluseuap
+              tags: null
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestinationName1
+              name: examplePartnerDestinationName1
+              type: Microsoft.EventGrid/partnerDestinations
+  - since: "2025-07-15-preview"
+    request:
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - name: examplePartnerDestinationName1
+              type: Microsoft.EventGrid/partnerDestinations
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestinationName1
+              location: centraluseuap
+              properties:
+                activationState: NeverActivated
+                endpointBaseUrl: https://somepartnerhostname
+                endpointServiceContext: ContosoCorp.Accounts.User1
+                expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+                messageForActivation: Some message to the approver
+                provisioningState: Succeeded
+              tags: null
+PartnerDestinations.listBySubscription:
+  - since: "2021-10-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                endpointServiceContext: ContosoCorp.Accounts.User1
+                provisioningState: Succeeded
+                activationState: NeverActivated
+                expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+                endpointBaseUrl: https://somepartnerhostname
+                messageForActivation: Some message to the approver
+              location: centraluseuap
+              tags: null
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestinationName1
+              name: examplePartnerDestinationName1
+              type: Microsoft.EventGrid/partnerDestinations
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                endpointServiceContext: ContosoCorp.Accounts.User1
+                provisioningState: Succeeded
+                activationState: NeverActivated
+                expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+                endpointBaseUrl: https://somepartnerhostname
+                messageForActivation: Some message to the approver
+              location: centraluseuap
+              tags: null
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestinationName1
+              name: examplePartnerDestinationName1
+              type: Microsoft.EventGrid/partnerDestinations
+  - since: "2025-07-15-preview"
+    request:
+      query:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - name: examplePartnerDestinationName1
+              type: Microsoft.EventGrid/partnerDestinations
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestinationName1
+              location: centraluseuap
+              properties:
+                activationState: NeverActivated
+                endpointBaseUrl: https://somepartnerhostname
+                endpointServiceContext: ContosoCorp.Accounts.User1
+                expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+                messageForActivation: Some message to the approver
+                provisioningState: Succeeded
+              tags: null
+PartnerDestinations.update:
+  - since: "2021-10-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerDestinationName: examplePartnerDestinationName1
+      body:
+        tags:
+          tag1: value1
+          tag2: value2
+    responses:
+      200: {}
+      201:
+        body:
+          properties:
+            endpointServiceContext: ContosoCorp.Accounts.User1
+            provisioningState: Succeeded
+            activationState: NeverActivated
+            expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+            endpointBaseUrl: https://somepartnerhostname
+            messageForActivation: Some message to the approver
+          location: centraluseuap
+          tags:
+            tag1: value1
+            tag2: value2
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestinationName1
+          name: examplePartnerDestinationName1
+          type: Microsoft.EventGrid/partnerDestinations
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerDestinationName: examplePartnerDestinationName1
+      body:
+        tags:
+          tag1: value1
+          tag2: value2
+    responses:
+      200:
+        body:
+          properties:
+            endpointServiceContext: ContosoCorp.Accounts.User1
+            provisioningState: Succeeded
+            activationState: NeverActivated
+            expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+            endpointBaseUrl: https://somepartnerhostname
+            messageForActivation: Some message to the approver
+          location: centraluseuap
+          tags:
+            tag1: value1
+            tag2: value2
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestinationName1
+          name: examplePartnerDestinationName1
+          type: Microsoft.EventGrid/partnerDestinations
+      201:
+        body:
+          properties:
+            endpointServiceContext: ContosoCorp.Accounts.User1
+            provisioningState: Succeeded
+            activationState: NeverActivated
+            expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+            endpointBaseUrl: https://somepartnerhostname
+            messageForActivation: Some message to the approver
+          location: centraluseuap
+          tags:
+            tag1: value1
+            tag2: value2
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestinationName1
+          name: examplePartnerDestinationName1
+          type: Microsoft.EventGrid/partnerDestinations
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+        body:
+          properties:
+            endpointServiceContext: ContosoCorp.Accounts.User1
+            provisioningState: Succeeded
+            activationState: NeverActivated
+            expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+            endpointBaseUrl: https://somepartnerhostname
+            messageForActivation: Some message to the approver
+          location: centraluseuap
+          tags:
+            tag1: value1
+            tag2: value2
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestinationName1
+          name: examplePartnerDestinationName1
+          type: Microsoft.EventGrid/partnerDestinations
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        partnerDestinationName: examplePartnerDestinationName1
+      body:
+        tags:
+          tag1: value1
+          tag2: value2
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          name: examplePartnerDestinationName1
+          type: Microsoft.EventGrid/partnerDestinations
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestinationName1
+          location: centraluseuap
+          properties:
+            activationState: NeverActivated
+            endpointBaseUrl: https://somepartnerhostname
+            endpointServiceContext: ContosoCorp.Accounts.User1
+            expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+            messageForActivation: Some message to the approver
+            provisioningState: Succeeded
+          tags:
+            tag1: value1
+            tag2: value2
+      201:
+        body:
+          name: examplePartnerDestinationName1
+          type: Microsoft.EventGrid/partnerDestinations
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestinationName1
+          location: centraluseuap
+          properties:
+            activationState: NeverActivated
+            endpointBaseUrl: https://somepartnerhostname
+            endpointServiceContext: ContosoCorp.Accounts.User1
+            expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+            messageForActivation: Some message to the approver
+            provisioningState: Succeeded
+          tags:
+            tag1: value1
+            tag2: value2
+      202:
+        headers:
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+        body:
+          name: examplePartnerDestinationName1
+          type: Microsoft.EventGrid/partnerDestinations
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerDestinations/examplePartnerDestinationName1
+          location: centraluseuap
+          properties:
+            activationState: NeverActivated
+            endpointBaseUrl: https://somepartnerhostname
+            endpointServiceContext: ContosoCorp.Accounts.User1
+            expirationTimeIfNotActivatedUtc: 2021-10-21T22:50:25.410433Z
+            messageForActivation: Some message to the approver
+            provisioningState: Succeeded
+          tags:
+            tag1: value1
+            tag2: value2

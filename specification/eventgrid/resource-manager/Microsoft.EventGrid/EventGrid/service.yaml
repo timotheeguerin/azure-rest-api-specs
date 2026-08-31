@@ -1,0 +1,25 @@
+title: Microsoft.EventGrid
+versions:
+  - version: 2017-06-15-preview
+  - version: 2017-09-15-preview
+  - version: 2018-01-01
+  - version: 2018-05-01-preview
+  - version: 2018-09-15-preview
+  - version: 2019-01-01
+  - version: 2019-02-01-preview
+  - version: 2019-06-01
+  - version: 2020-01-01-preview
+  - version: 2020-04-01-preview
+  - version: 2020-06-01
+  - version: 2020-10-15-preview
+  - version: 2021-06-01-preview
+  - version: 2021-10-15-preview
+  - version: 2021-12-01
+  - version: 2022-06-15
+  - version: 2023-06-01-preview
+  - version: 2023-12-15-preview
+  - version: 2024-06-01-preview
+  - version: 2024-12-15-preview
+  - version: 2025-02-15
+  - version: 2025-04-01-preview
+  - version: 2025-07-15-preview

@@ -1,0 +1,1051 @@
+$namespace: Microsoft.EventGrid
+Domains.createOrUpdate:
+  - since: "2018-09-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain1
+      body:
+        location: westus2
+        tags:
+          tag1: value1
+          tag2: value2
+    responses:
+      201:
+        body:
+          properties:
+            endpoint: https://exampledomain1.westus2-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1
+          location: westus2
+          name: exampledomain1
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/domains
+  - since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain1
+      body:
+        location: westus2
+        tags:
+          tag1: value1
+          tag2: value2
+        properties:
+          publicNetworkAccess: Enabled
+          inboundIpRules:
+            - ipMask: 12.18.30.15
+              action: Allow
+            - ipMask: 12.18.176.1
+              action: Allow
+    responses:
+      201:
+        body:
+          properties:
+            endpoint: https://exampledomain1.westus2-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+            publicNetworkAccess: Enabled
+            inboundIpRules:
+              - ipMask: 12.18.30.15
+                action: Allow
+              - ipMask: 12.18.176.1
+                action: Allow
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1
+          location: westus2
+          name: exampledomain1
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/domains
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        domainName: exampledomain1
+      body:
+        location: westus2
+        tags:
+          tag1: value1
+          tag2: value2
+        properties:
+          publicNetworkAccess: Enabled
+          inboundIpRules:
+            - ipMask: 12.18.30.15
+              action: Allow
+            - ipMask: 12.18.176.1
+              action: Allow
+    responses:
+      201:
+        body:
+          properties:
+            endpoint: https://exampledomain1.westus2-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+            publicNetworkAccess: Enabled
+            inboundIpRules:
+              - ipMask: 12.18.30.15
+                action: Allow
+              - ipMask: 12.18.176.1
+                action: Allow
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1
+          location: westus2
+          name: exampledomain1
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/domains
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain1
+      body:
+        location: westus2
+        tags:
+          tag1: value1
+          tag2: value2
+        properties:
+          publicNetworkAccess: Enabled
+          inboundIpRules:
+            - ipMask: 12.18.30.15
+              action: Allow
+            - ipMask: 12.18.176.1
+              action: Allow
+    responses:
+      201:
+        body:
+          properties:
+            endpoint: https://exampledomain1.westus2-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+            publicNetworkAccess: Enabled
+            inboundIpRules:
+              - ipMask: 12.18.30.15
+                action: Allow
+              - ipMask: 12.18.176.1
+                action: Allow
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1
+          location: westus2
+          name: exampledomain1
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/domains
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        domainName: exampledomain1
+      body:
+        location: westus2
+        tags:
+          tag1: value1
+          tag2: value2
+        properties:
+          publicNetworkAccess: Enabled
+          inboundIpRules:
+            - ipMask: 12.18.30.15
+              action: Allow
+            - ipMask: 12.18.176.1
+              action: Allow
+    responses:
+      201:
+        body:
+          properties:
+            endpoint: https://exampledomain1.westus2-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+            publicNetworkAccess: Enabled
+            inboundIpRules:
+              - ipMask: 12.18.30.15
+                action: Allow
+              - ipMask: 12.18.176.1
+                action: Allow
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1
+          location: westus2
+          name: exampledomain1
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/domains
+  - since: "2025-07-15-preview"
+    request:
+      body:
+        location: westus2
+        properties:
+          inboundIpRules:
+            - action: Allow
+              ipMask: 12.18.30.15
+            - action: Allow
+              ipMask: 12.18.176.1
+          publicNetworkAccess: Enabled
+        tags:
+          tag1: value1
+          tag2: value2
+      path:
+        domainName: exampledomain1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      201:
+        body:
+          name: exampledomain1
+          type: Microsoft.EventGrid/domains
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1
+          location: westus2
+          properties:
+            endpoint: https://exampledomain1.westus2-1.eventgrid.azure.net/api/events
+            inboundIpRules:
+              - action: Allow
+                ipMask: 12.18.30.15
+              - action: Allow
+                ipMask: 12.18.176.1
+            provisioningState: Succeeded
+            publicNetworkAccess: Enabled
+          tags:
+            tag1: value1
+            tag2: value2
+Domains.delete:
+  - since: "2018-09-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain1
+    responses:
+      202: {}
+      204: {}
+  - since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain1
+    responses:
+      200: {}
+      202: {}
+      204: {}
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        domainName: exampledomain1
+    responses:
+      200: {}
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+      204: {}
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain1
+    responses:
+      200: {}
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+      204: {}
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        domainName: exampledomain1
+    responses:
+      200: {}
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+      204: {}
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        domainName: exampledomain1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200: {}
+      202:
+        headers:
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+      204: {}
+Domains.get:
+  - since: "2018-09-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+    responses:
+      200:
+        body:
+          properties:
+            endpoint: https://exampledomain2.westcentralus-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain2
+          location: westcentralus
+          name: exampledomain2
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/domains
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+    responses:
+      200:
+        body:
+          properties:
+            endpoint: https://exampledomain2.westcentralus-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain2
+          location: westcentralus
+          name: exampledomain2
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/domains
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+    responses:
+      200:
+        body:
+          properties:
+            endpoint: https://exampledomain2.westcentralus-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain2
+          location: westcentralus
+          name: exampledomain2
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/domains
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+    responses:
+      200:
+        body:
+          properties:
+            endpoint: https://exampledomain2.westcentralus-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain2
+          location: westcentralus
+          name: exampledomain2
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/domains
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        domainName: exampledomain2
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          name: exampledomain2
+          type: Microsoft.EventGrid/domains
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain2
+          location: westcentralus
+          properties:
+            endpoint: https://exampledomain2.westcentralus-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+          tags:
+            tag1: value1
+            tag2: value2
+Domains.listByResourceGroup:
+  - since: "2018-09-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                endpoint: https://exampledomain1.westus2-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1
+              location: westus2
+              name: exampledomain1
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/domains
+            - properties:
+                endpoint: https://exampledomain2.westcentralus-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain2
+              location: westcentralus
+              name: exampledomain2
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/domains
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                endpoint: https://exampledomain1.westus2-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1
+              location: westus2
+              name: exampledomain1
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/domains
+            - properties:
+                endpoint: https://exampledomain2.westcentralus-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain2
+              location: westcentralus
+              name: exampledomain2
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/domains
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                endpoint: https://exampledomain1.westus2-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1
+              location: westus2
+              name: exampledomain1
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/domains
+            - properties:
+                endpoint: https://exampledomain2.westcentralus-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain2
+              location: westcentralus
+              name: exampledomain2
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/domains
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                endpoint: https://exampledomain1.westus2-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1
+              location: westus2
+              name: exampledomain1
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/domains
+            - properties:
+                endpoint: https://exampledomain2.westcentralus-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain2
+              location: westcentralus
+              name: exampledomain2
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/domains
+  - since: "2025-07-15-preview"
+    request:
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - name: exampledomain1
+              type: Microsoft.EventGrid/domains
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1
+              location: westus2
+              properties:
+                endpoint: https://exampledomain1.westus2-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              tags:
+                tag1: value1
+                tag2: value2
+            - name: exampledomain2
+              type: Microsoft.EventGrid/domains
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain2
+              location: westcentralus
+              properties:
+                endpoint: https://exampledomain2.westcentralus-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              tags:
+                tag1: value1
+                tag2: value2
+Domains.listBySubscription:
+  - since: "2018-09-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                endpoint: https://exampledomain1.westus2-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1
+              location: westus2
+              name: exampledomain1
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/domains
+            - properties:
+                endpoint: https://exampledomain2.westcentralus-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain2
+              location: westcentralus
+              name: exampledomain2
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/domains
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                endpoint: https://exampledomain1.westus2-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1
+              location: westus2
+              name: exampledomain1
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/domains
+            - properties:
+                endpoint: https://exampledomain2.westcentralus-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain2
+              location: westcentralus
+              name: exampledomain2
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/domains
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                endpoint: https://exampledomain1.westus2-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1
+              location: westus2
+              name: exampledomain1
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/domains
+            - properties:
+                endpoint: https://exampledomain2.westcentralus-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain2
+              location: westcentralus
+              name: exampledomain2
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/domains
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                endpoint: https://exampledomain1.westus2-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1
+              location: westus2
+              name: exampledomain1
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/domains
+            - properties:
+                endpoint: https://exampledomain2.westcentralus-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain2
+              location: westcentralus
+              name: exampledomain2
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/domains
+  - since: "2025-07-15-preview"
+    request:
+      query:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - name: exampledomain1
+              type: Microsoft.EventGrid/domains
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1
+              location: westus2
+              properties:
+                endpoint: https://exampledomain1.westus2-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              tags:
+                tag1: value1
+                tag2: value2
+            - name: exampledomain2
+              type: Microsoft.EventGrid/domains
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain2
+              location: westcentralus
+              properties:
+                endpoint: https://exampledomain2.westcentralus-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              tags:
+                tag1: value1
+                tag2: value2
+Domains.listSharedAccessKeys:
+  - since: "2018-09-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+    responses:
+      200:
+        body:
+          key1: <key1>
+          key2: <key2>
+  - since: "2020-10-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+  - since: "2021-12-01"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+    responses:
+      200:
+        body:
+          key1: <key1>
+          key2: <key2>
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+    responses:
+      200:
+        body:
+          key1: <key1>
+          key2: <key2>
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        domainName: exampledomain2
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+Domains.regenerateKey:
+  - since: "2018-09-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+      body:
+        keyName: key1
+    responses:
+      200:
+        body:
+          key1: <key1>
+          key2: <key2>
+  - since: "2020-10-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+      body:
+        keyName: key1
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+  - since: "2021-12-01"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+      body:
+        keyName: key1
+    responses:
+      200:
+        body:
+          key1: <key1>
+          key2: <key2>
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+      body:
+        keyName: key1
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+      body:
+        keyName: key1
+    responses:
+      200:
+        body:
+          key1: <key1>
+          key2: <key2>
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+      body:
+        keyName: key1
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        domainName: exampledomain2
+      body:
+        keyName: key1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+Domains.update:
+  - since: "2018-09-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain1
+      body:
+        tags:
+          tag1: value1
+          tag2: value2
+    responses:
+      201:
+        body:
+          properties:
+            endpoint: https://exampledomain1.westus2-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1
+          location: westus2
+          name: exampledomain1
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/domains
+  - since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain1
+      body:
+        tags:
+          tag1: value1
+          tag2: value2
+        properties:
+          publicNetworkAccess: Enabled
+          inboundIpRules:
+            - ipMask: 12.18.30.15
+              action: Allow
+            - ipMask: 12.18.176.1
+              action: Allow
+    responses:
+      200: {}
+      201:
+        body:
+          properties:
+            endpoint: https://exampledomain1.westus2-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+            publicNetworkAccess: Enabled
+            inboundIpRules:
+              - ipMask: 12.18.30.15
+                action: Allow
+              - ipMask: 12.18.176.1
+                action: Allow
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1
+          location: westus2
+          name: exampledomain1
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/domains
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        domainName: exampledomain1
+      body:
+        tags:
+          tag1: value1
+          tag2: value2
+        properties:
+          publicNetworkAccess: Enabled
+          inboundIpRules:
+            - ipMask: 12.18.30.15
+              action: Allow
+            - ipMask: 12.18.176.1
+              action: Allow
+    responses:
+      200: {}
+      201:
+        body:
+          properties:
+            endpoint: https://exampledomain1.westus2-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+            publicNetworkAccess: Enabled
+            inboundIpRules:
+              - ipMask: 12.18.30.15
+                action: Allow
+              - ipMask: 12.18.176.1
+                action: Allow
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1
+          location: westus2
+          name: exampledomain1
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/domains
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain1
+      body:
+        tags:
+          tag1: value1
+          tag2: value2
+        properties:
+          publicNetworkAccess: Enabled
+          inboundIpRules:
+            - ipMask: 12.18.30.15
+              action: Allow
+            - ipMask: 12.18.176.1
+              action: Allow
+    responses:
+      200: {}
+      201:
+        body:
+          properties:
+            endpoint: https://exampledomain1.westus2-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+            publicNetworkAccess: Enabled
+            inboundIpRules:
+              - ipMask: 12.18.30.15
+                action: Allow
+              - ipMask: 12.18.176.1
+                action: Allow
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1
+          location: westus2
+          name: exampledomain1
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/domains
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        domainName: exampledomain1
+      body:
+        tags:
+          tag1: value1
+          tag2: value2
+        properties:
+          publicNetworkAccess: Enabled
+          inboundIpRules:
+            - ipMask: 12.18.30.15
+              action: Allow
+            - ipMask: 12.18.176.1
+              action: Allow
+    responses:
+      200: {}
+      201:
+        body:
+          properties:
+            endpoint: https://exampledomain1.westus2-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+            publicNetworkAccess: Enabled
+            inboundIpRules:
+              - ipMask: 12.18.30.15
+                action: Allow
+              - ipMask: 12.18.176.1
+                action: Allow
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1
+          location: westus2
+          name: exampledomain1
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/domains
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        domainName: exampledomain1
+      body:
+        properties:
+          inboundIpRules:
+            - action: Allow
+              ipMask: 12.18.30.15
+            - action: Allow
+              ipMask: 12.18.176.1
+          publicNetworkAccess: Enabled
+        tags:
+          tag1: value1
+          tag2: value2
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200: {}
+      201:
+        body:
+          name: exampledomain1
+          type: Microsoft.EventGrid/domains
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1
+          location: westus2
+          properties:
+            endpoint: https://exampledomain1.westus2-1.eventgrid.azure.net/api/events
+            inboundIpRules:
+              - action: Allow
+                ipMask: 12.18.30.15
+              - action: Allow
+                ipMask: 12.18.176.1
+            provisioningState: Succeeded
+            publicNetworkAccess: Enabled
+          tags:
+            tag1: value1
+            tag2: value2
