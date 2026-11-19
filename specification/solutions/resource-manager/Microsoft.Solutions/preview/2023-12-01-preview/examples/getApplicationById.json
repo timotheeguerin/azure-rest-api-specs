@@ -48,5 +48,7 @@
         }
       }
     }
-  }
+  },
+  "operationId": "Applications_GetById",
+  "title": "Gets the managed application"
 }

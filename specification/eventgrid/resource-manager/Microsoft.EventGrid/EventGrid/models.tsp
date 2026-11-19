@@ -1,12 +1,10 @@
 import "@typespec/rest";
 import "@typespec/http";
-import "@typespec/versioning";
 import "@azure-tools/typespec-azure-resource-manager";
 import "@azure-tools/typespec-azure-core";
 
 using TypeSpec.Rest;
 using TypeSpec.Http;
-using TypeSpec.Versioning;
 using Azure.ResourceManager;
 using Azure.Core;
 using Azure.ResourceManager.Foundations;
@@ -2438,11 +2436,13 @@ model InlineEventProperties {
   /**
    * The documentationUrl for the inline event.
    */
+  #suppress "@azure-tools/typespec-client-generator-core/csharp-no-url-suffix" "Name kept for backward compatibility"
   documentationUrl?: string;
 
   /**
    * The dataSchemaUrl for the inline event.
    */
+  #suppress "@azure-tools/typespec-client-generator-core/csharp-no-url-suffix" "Name kept for backward compatibility"
   dataSchemaUrl?: string;
 }
 
@@ -2566,6 +2566,7 @@ model EventSubscriptionFullUrl {
   /**
    * The URL that represents the endpoint of the destination of an event subscription.
    */
+  #suppress "@azure-tools/typespec-client-generator-core/csharp-no-url-suffix" "Name kept for backward compatibility"
   endpointUrl?: string;
 }
 
@@ -2737,12 +2738,6 @@ model DomainProperties {
    * Data Residency Boundary of the resource.
    */
   dataResidencyBoundary?: DataResidencyBoundary;
-
-  /**
-   * This is an optional property used to specify if trusted azure services should bypass network rules.
-   */
-  @added(Versions.v2025_10_15_preview)
-  trustedServiceAccessEnabled?: boolean;
 }
 
 /**
@@ -2961,12 +2956,6 @@ model DomainUpdateParameterProperties {
    * The eventTypeInfo for the domain.
    */
   eventTypeInfo?: EventTypeInfo;
-
-  /**
-   * This is an optional property used to specify if trusted azure services should bypass network rules.
-   */
-  @added(Versions.v2025_10_15_preview)
-  trustedServiceAccessEnabled?: boolean;
 }
 
 /**
@@ -3590,10 +3579,51 @@ model NamespaceProperties {
   minimumTlsVersionAllowed?: TlsVersion;
 
   /**
-   * This is an optional property used to specify if trusted azure services should bypass network rules.
+   * Auto-scale configuration for the namespace resource
    */
-  @added(Versions.v2025_10_15_preview)
-  trustedServiceAccessEnabled?: boolean;
+  autoScaleConfiguration?: AutoScaleConfiguration;
+}
+
+/**
+ * Auto-scale configuration for the namespace resource.
+ */
+model AutoScaleConfiguration {
+  /**
+   * Indicates whether auto-scaling is enabled for the namespace. When enabled, the namespace will automatically scale
+   * between minimumThroughputUnits and maximumThroughputUnits based on usage patterns.
+   */
+  enableAutoScale?: boolean;
+
+  /**
+   * Minimum number of Throughput Units for auto-scaling. Valid only when EnableAutoScale is true.
+   */
+  minimumThroughputUnits?: int32;
+
+  /**
+   * Maximum number of Throughput Units for auto-scaling. Valid only when EnableAutoScale is true.
+   */
+  maximumThroughputUnits?: int32;
+}
+
+/**
+ * UpdateAutoScaleConfiguration definition.
+ */
+model UpdateAutoScaleConfiguration {
+  /**
+   * Indicates whether auto-scaling is enabled for the namespace. When enabled, the namespace will automatically scale
+   * between minimumThroughputUnits and maximumThroughputUnits based on usage patterns.
+   */
+  enableAutoScale?: boolean;
+
+  /**
+   * Minimum number of Throughput Units for auto-scaling. Valid only when EnableAutoScale is true.
+   */
+  minimumThroughputUnits?: int32;
+
+  /**
+   * Maximum number of Throughput Units for auto-scaling. Valid only when EnableAutoScale is true.
+   */
+  maximumThroughputUnits?: int32;
 }
 
 /**
@@ -3637,6 +3667,7 @@ model CustomDomainConfiguration {
    * versioned URL of the following format https://{key-vault-name}.vault.azure.net/certificates/{certificate-name}/{version-id}, or unversioned URL of the following format (e.g.,
    * https://contosovault.vault.azure.net/certificates/contosocert, we support unversioned certificate URL only (e.g., https://contosovault.vault.azure.net/certificates/contosocert)
    */
+  #suppress "@azure-tools/typespec-client-generator-core/csharp-no-url-suffix" "Name kept for backward compatibility"
   certificateUrl?: string;
 
   /**
@@ -3812,6 +3843,7 @@ model IssuerCertificateInfo {
   /**
    * Keyvault certificate URL in https://keyvaultname.vault.azure.net/certificates/certificateName/certificateVersion format.
    */
+  #suppress "@azure-tools/typespec-client-generator-core/csharp-no-url-suffix" "Name kept for backward compatibility"
   certificateUrl: string;
 
   /**
@@ -3866,11 +3898,13 @@ model WebhookAuthenticationSettings {
   /**
    * The URL endpoint where the Event Grid service sends authenticated webhook requests using the specified managed identity.
    */
+  #suppress "@azure-tools/typespec-client-generator-core/csharp-no-url-suffix" "Name kept for backward compatibility"
   endpointUrl: url;
 
   /**
    * The base URL endpoint where the Event Grid service sends authenticated webhook requests using the specified managed identity.
    */
+  #suppress "@azure-tools/typespec-client-generator-core/csharp-no-url-suffix" "Name kept for backward compatibility"
   endpointBaseUrl?: url;
 
   /**
@@ -3984,6 +4018,11 @@ model NamespaceUpdateParameterProperties {
    */
   @identifiers(#[])
   inboundIpRules?: InboundIpRule[];
+
+  /**
+   * Auto-scale configuration for the namespace resource
+   */
+  autoScaleConfiguration?: UpdateAutoScaleConfiguration;
 }
 
 /**
@@ -4322,6 +4361,7 @@ model PartnerDestinationProperties {
   /**
    * Endpoint Base URL of the partner destination
    */
+  #suppress "@azure-tools/typespec-client-generator-core/csharp-no-url-suffix" "Name kept for backward compatibility"
   endpointBaseUrl?: url;
 
   /**
@@ -4891,6 +4931,7 @@ model CustomerManagedKeyEncryption {
    * responsibility to update the URL with the new version by updating the namespace resource. When URL without version is used, Event Grid will query and get latest version and will
    * be used automatically.
    */
+  #suppress "@azure-tools/typespec-client-generator-core/csharp-no-url-suffix" "Name kept for backward compatibility"
   keyEncryptionKeyUrl: string;
 
   /**
@@ -5052,12 +5093,6 @@ model TopicProperties {
    * Represents the platform capabilities of the resource, including Azure Confidential Compute related properties.
    */
   platformCapabilities?: PlatformCapabilities;
-
-  /**
-   * This is an optional property used to specify if trusted azure services should bypass network rules.
-   */
-  @added(Versions.v2025_10_15_preview)
-  trustedServiceAccessEnabled?: boolean;
 }
 
 /**
@@ -5136,12 +5171,6 @@ model TopicUpdateParameterProperties {
    * The eventTypeInfo for the topic.
    */
   eventTypeInfo?: EventTypeInfo;
-
-  /**
-   * This boolean is used to enable or disable trust mode. Default value is false. When the property is set to true, trusted services will bypass network firewalls.
-   */
-  @added(Versions.v2025_10_15_preview)
-  trustedServiceAccessEnabled?: boolean;
 }
 
 /**
@@ -5187,6 +5216,7 @@ model EventTypeProperties {
   /**
    * URL of the schema for this event type.
    */
+  #suppress "@azure-tools/typespec-client-generator-core/csharp-no-url-suffix" "Name kept for backward compatibility"
   schemaUrl?: string;
 
   /**
@@ -5399,6 +5429,7 @@ model SubscriptionFullUrl {
   /**
    * The URL that represents the endpoint of the destination of an event subscription.
    */
+  #suppress "@azure-tools/typespec-client-generator-core/csharp-no-url-suffix" "Name kept for backward compatibility"
   endpointUrl?: string;
 }
 
@@ -5409,11 +5440,13 @@ model WebhookPartnerDestinationProperties {
   /**
    * The URL that represents the endpoint of the partner destination.
    */
+  #suppress "@azure-tools/typespec-client-generator-core/csharp-no-url-suffix" "Name kept for backward compatibility"
   endpointUrl?: url;
 
   /**
    * The base URL that represents the endpoint of the partner destination.
    */
+  #suppress "@azure-tools/typespec-client-generator-core/csharp-no-url-suffix" "Name kept for backward compatibility"
   endpointBaseUrl?: url;
 
   /**
@@ -5436,7 +5469,6 @@ model PartnerClientAuthentication {
 /**
  * Properties of a Microsoft Entra ID Partner Client Authentication.
  */
-#suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
 #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
 model AzureADPartnerClientAuthenticationProperties {
   /**
@@ -5954,12 +5986,14 @@ model WebHookEventSubscriptionDestinationProperties {
   /**
    * The URL that represents the endpoint of the destination of an event subscription.
    */
+  #suppress "@azure-tools/typespec-client-generator-core/csharp-no-url-suffix" "Name kept for backward compatibility"
   @secret
   endpointUrl?: string;
 
   /**
    * The base URL that represents the endpoint of the destination of an event subscription.
    */
+  #suppress "@azure-tools/typespec-client-generator-core/csharp-no-url-suffix" "Name kept for backward compatibility"
   @visibility(Lifecycle.Read)
   endpointBaseUrl?: string;
 
