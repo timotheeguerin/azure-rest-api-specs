@@ -1,31 +1,33 @@
 {
   "parameters": {
-    "subscriptionId": "00000000-1111-2222-3333-444444444444",
-    "location": "location",
+    "$skipToken": "string",
     "api-version": "2024-10-01-preview",
-    "$skipToken": "string"
+    "location": "location",
+    "subscriptionId": "00000000-1111-2222-3333-444444444444"
   },
   "responses": {
     "200": {
-      "headers": {},
       "body": {
+        "nextLink": "https://management.azure.com/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/providers/Microsoft.MachineLearningServices/locations/eastus/ptuQuotas?api-version=2025-07-01-preview&$skip=2",
         "value": [
           {
             "modelCollection": "string",
             "quota": 1,
             "usageDetails": [
               {
-                "resourceGroup": "string",
-                "workspaceName": "string",
+                "collectionQuotaUsage": 1,
                 "deploymentName": "string",
+                "resourceGroup": "string",
                 "usage": 1,
-                "collectionQuotaUsage": 1
+                "workspaceName": "string"
               }
             ]
           }
-        ],
-        "nextLink": "string"
-      }
+        ]
+      },
+      "headers": {}
     }
-  }
+  },
+  "operationId": "PTUQuota_List",
+  "title": "List MaaS PTU usage and quota."
 }

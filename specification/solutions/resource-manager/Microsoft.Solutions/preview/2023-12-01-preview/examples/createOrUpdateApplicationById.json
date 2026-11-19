@@ -51,5 +51,7 @@
         }
       }
     }
-  }
+  },
+  "operationId": "Applications_CreateOrUpdateById",
+  "title": "Creates or updates a managed application"
 }

@@ -1,57 +1,59 @@
 {
   "parameters": {
-    "subscriptionId": "subid",
-    "resourceGroupName": "rg",
-    "applicationName": "myManagedApplication",
     "api-version": "2023-12-01-preview",
+    "applicationName": "myManagedApplication",
     "parameters": {
+      "kind": "ServiceCatalog",
       "properties": {
         "applicationDefinitionId": "/subscriptions/subid/resourceGroups/rg/providers/Microsoft.Solutions/applicationDefinitions/myAppDef",
         "managedResourceGroupId": "/subscriptions/subid/resourceGroups/myManagedRG"
-      },
-      "kind": "ServiceCatalog"
-    }
+      }
+    },
+    "resourceGroupName": "rg",
+    "subscriptionId": "subid"
   },
   "responses": {
     "200": {
-      "headers": {},
       "body": {
         "name": "myManagedApplication",
-        "id": "/subscriptions/subid/resourceGroups/rg/providers/Microsoft.Solutions/applications/myManagedApplication",
         "type": "Microsoft.Solutions/applications",
-        "managedBy": null,
-        "plan": null,
+        "id": "/subscriptions/subid/resourceGroups/rg/providers/Microsoft.Solutions/applications/myManagedApplication",
         "identity": null,
         "kind": "ServiceCatalog",
-        "sku": null,
+        "managedBy": null,
+        "plan": null,
         "properties": {
           "applicationDefinitionId": "/subscriptions/subid/resourceGroups/rg/providers/Microsoft.Solutions/applicationDefinitions/myAppDef",
           "managedResourceGroupId": "/subscriptions/subid/resourceGroups/myManagedRG",
           "outputs": null,
           "parameters": null,
           "provisioningState": "Created"
-        }
-      }
+        },
+        "sku": null
+      },
+      "headers": {}
     },
     "201": {
-      "headers": {},
       "body": {
         "name": "myManagedApplication",
-        "id": "/subscriptions/subid/resourceGroups/rg/providers/Microsoft.Solutions/applications/myManagedApplication",
         "type": "Microsoft.Solutions/applications",
-        "managedBy": null,
-        "plan": null,
+        "id": "/subscriptions/subid/resourceGroups/rg/providers/Microsoft.Solutions/applications/myManagedApplication",
         "identity": null,
         "kind": "ServiceCatalog",
-        "sku": null,
+        "managedBy": null,
+        "plan": null,
         "properties": {
           "applicationDefinitionId": "/subscriptions/subid/resourceGroups/rg/providers/Microsoft.Solutions/applicationDefinitions/myAppDef",
           "managedResourceGroupId": "/subscriptions/subid/resourceGroups/myManagedRG",
           "outputs": null,
           "parameters": null,
           "provisioningState": "Created"
-        }
-      }
+        },
+        "sku": null
+      },
+      "headers": {}
     }
-  }
+  },
+  "operationId": "Applications_CreateOrUpdate",
+  "title": "Create or update managed application"
 }

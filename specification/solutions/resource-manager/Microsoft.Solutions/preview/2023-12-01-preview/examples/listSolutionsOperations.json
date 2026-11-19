@@ -4,31 +4,33 @@
   },
   "responses": {
     "200": {
-      "headers": {},
       "body": {
         "value": [
           {
-            "name": "SolutionsOperation1",
-            "isDataAction": false,
+            "name": "SolutionsOpeartion1",
             "display": {
-              "provider": "Microsoft.ResourceProvider",
-              "resource": "Resource1",
+              "description": "Description of the operation",
               "operation": "Read",
-              "description": "Description of the operation"
-            }
+              "provider": "Microsoft.ResourceProvider",
+              "resource": "Resource1"
+            },
+            "isDataAction": false
           },
           {
-            "name": "SolutionssOperation2",
-            "isDataAction": false,
+            "name": "SolutionssOpeartion2",
             "display": {
-              "provider": "Microsoft.ResourceProvider",
-              "resource": "Resource2",
+              "description": "Description of the operation",
               "operation": "Write",
-              "description": "Description of the operation"
-            }
+              "provider": "Microsoft.ResourceProvider",
+              "resource": "Resource2"
+            },
+            "isDataAction": false
           }
         ]
-      }
+      },
+      "headers": {}
     }
-  }
+  },
+  "operationId": "ListOperations",
+  "title": "List Solutions operations"
 }

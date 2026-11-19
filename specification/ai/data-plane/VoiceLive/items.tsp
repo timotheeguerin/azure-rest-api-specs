@@ -262,7 +262,7 @@ model ResponseCancelledDetails extends ResponseStatusDetails {
   // Narrow the discriminator to a literal in each child:
   type: "cancelled";
 
-  #suppress "@azure-tools/typespec-azure-core/no-unnamed-union" "Keeping inline union to avoid breaking changes."
+  #suppress "@azure-tools/typespec-azure-core/no-unnamed-types" "Keeping inline union to avoid breaking changes."
   reason: "turn_detected" | "client_cancelled" | string;
 }
 
@@ -270,7 +270,7 @@ model ResponseCancelledDetails extends ResponseStatusDetails {
 @usage(ResponseUsage)
 model ResponseIncompleteDetails extends ResponseStatusDetails {
   type: "incomplete";
-  #suppress "@azure-tools/typespec-azure-core/no-unnamed-union" "Keeping inline union to avoid breaking changes."
+  #suppress "@azure-tools/typespec-azure-core/no-unnamed-types" "Keeping inline union to avoid breaking changes."
   reason: "max_output_tokens" | "content_filter" | string;
 }
 
@@ -530,11 +530,8 @@ model ResponseWebSearchCallItem extends ResponseItem {
   /** The type of the item. Always 'web_search_call'. */
   type: ItemType.web_search_call;
 
-  /** The unique ID of the web search tool call. */
-  id?: string;
-
   /** The status of the web search tool call. */
-  #suppress "@azure-tools/typespec-azure-core/no-unnamed-union" "Keeping inline union to match source."
+  #suppress "@azure-tools/typespec-azure-core/no-unnamed-types" "Keeping inline union to match source."
   status: "in_progress" | "searching" | "completed" | "failed" | string;
 }
 
@@ -567,14 +564,11 @@ model ResponseFileSearchCallItem extends ResponseItem {
   /** The type of the item. Always 'file_search_call'. */
   type: ItemType.file_search_call;
 
-  /** The unique ID of the file search tool call. */
-  id?: string;
-
   /** The queries used for the file search. */
   queries?: string[];
 
   /** The status of the file search tool call. */
-  #suppress "@azure-tools/typespec-azure-core/no-unnamed-union" "Keeping inline union to match source."
+  #suppress "@azure-tools/typespec-azure-core/no-unnamed-types" "Keeping inline union to match source."
   status:
     | "in_progress"
     | "searching"
