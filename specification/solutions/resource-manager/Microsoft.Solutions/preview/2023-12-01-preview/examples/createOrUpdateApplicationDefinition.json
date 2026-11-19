@@ -1,13 +1,9 @@
 {
   "parameters": {
-    "subscriptionId": "subid",
-    "resourceGroupName": "rg",
-    "applicationDefinitionName": "myManagedApplicationDef",
     "api-version": "2023-12-01-preview",
+    "applicationDefinitionName": "myManagedApplicationDef",
     "parameters": {
       "properties": {
-        "lockLevel": "None",
-        "displayName": "myManagedApplicationDef",
         "description": "myManagedApplicationDef description",
         "authorizations": [
           {
@@ -15,20 +11,23 @@
             "roleDefinitionId": "validroleguid"
           }
         ],
+        "displayName": "myManagedApplicationDef",
+        "lockLevel": "None",
         "packageFileUri": "https://path/to/packagezipfile"
       }
-    }
+    },
+    "resourceGroupName": "rg",
+    "subscriptionId": "subid"
   },
   "responses": {
     "200": {
-      "headers": {},
       "body": {
         "name": "myManagedApplicationDef",
-        "id": "/subscriptions/subid/resourceGroups/rg/providers/Microsoft.Solutions/applicationDefinitions/myManagedApplicationDef",
         "type": "Microsoft.Solutions/applicationDefinitions",
+        "id": "/subscriptions/subid/resourceGroups/rg/providers/Microsoft.Solutions/applicationDefinitions/myManagedApplicationDef",
         "managedBy": null,
-        "sku": null,
         "properties": {
+          "description": "myManagedApplicationDef description",
           "artifacts": [
             {
               "name": "CreateUiDefinition",
@@ -47,22 +46,22 @@
               "roleDefinitionId": "validroleguid"
             }
           ],
-          "description": "myManagedApplicationDef description",
           "displayName": "myManagedApplicationDef",
           "lockLevel": "None",
           "packageFileUri": "https://path/to/packagezipfile"
-        }
-      }
+        },
+        "sku": null
+      },
+      "headers": {}
     },
     "201": {
-      "headers": {},
       "body": {
         "name": "myManagedApplicationDef",
-        "id": "/subscriptions/subid/resourceGroups/rg/providers/Microsoft.Solutions/applicationDefinitions/myManagedApplicationDef",
         "type": "Microsoft.Solutions/applicationDefinitions",
+        "id": "/subscriptions/subid/resourceGroups/rg/providers/Microsoft.Solutions/applicationDefinitions/myManagedApplicationDef",
         "managedBy": null,
-        "sku": null,
         "properties": {
+          "description": "myManagedApplicationDef description",
           "artifacts": [
             {
               "name": "CreateUiDefinition",
@@ -81,12 +80,15 @@
               "roleDefinitionId": "validroleguid"
             }
           ],
-          "description": "myManagedApplicationDef description",
           "displayName": "myManagedApplicationDef",
           "lockLevel": "None",
           "packageFileUri": "https://path/to/packagezipfile"
-        }
-      }
+        },
+        "sku": null
+      },
+      "headers": {}
     }
-  }
+  },
+  "operationId": "ApplicationDefinitions_CreateOrUpdate",
+  "title": "Create or update managed application definition"
 }
