@@ -7,16 +7,15 @@
       "body": {
         "value": [
           {
-            "id": "/providers/Microsoft.Billing/paymentMethods/ABCDABCDABC0",
             "name": "ABCDABCDABC0",
             "type": "Microsoft.Billing/paymentMethods",
+            "id": "/providers/Microsoft.Billing/paymentMethods/ABCDABCDABC0",
             "properties": {
               "accountHolderName": "abc",
-              "expiration": "1/2035",
-              "lastFourDigits": "1270",
-              "family": "CreditCard",
-              "paymentMethodType": "mc",
               "displayName": "Master Card",
+              "expiration": "1/2035",
+              "family": "CreditCard",
+              "lastFourDigits": "1270",
               "logos": [
                 {
                   "mimeType": "image/png",
@@ -27,20 +26,20 @@
                   "url": "https://contoso.com/staticresourceservice/images/v4/logo_mc.svg"
                 }
               ],
+              "paymentMethodType": "mc",
               "status": "active"
             }
           },
           {
-            "id": "/providers/Microsoft.Billing/paymentMethods/ABCDABCDABC1",
             "name": "ABCDABCDABC1",
             "type": "Microsoft.Billing/paymentMethods",
+            "id": "/providers/Microsoft.Billing/paymentMethods/ABCDABCDABC1",
             "properties": {
               "accountHolderName": "abc",
-              "expiration": "1/2025",
-              "lastFourDigits": "7373",
-              "family": "CreditCard",
-              "paymentMethodType": "visa",
               "displayName": "Visa",
+              "expiration": "1/2025",
+              "family": "CreditCard",
+              "lastFourDigits": "7373",
               "logos": [
                 {
                   "mimeType": "image/png",
@@ -51,11 +50,14 @@
                   "url": "https://contoso.com/staticresourceservice/images/v4/logo_visa.svg"
                 }
               ],
+              "paymentMethodType": "visa",
               "status": "active"
             }
           }
         ]
       }
     }
-  }
+  },
+  "operationId": "PaymentMethods_ListByUser",
+  "title": "ListPaymentMethodOwnedByUser"
 }

@@ -9,410 +9,412 @@
           {
             "name": "Microsoft.ServiceFabric/clusters/read",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Clusters",
+              "description": "Read any Cluster",
               "operation": "Read Cluster",
-              "description": "Read any Cluster"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Clusters"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/clusters/write",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Clusters",
+              "description": "Create or Update any Cluster",
               "operation": "Create or Update Cluster",
-              "description": "Create or Update any Cluster"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Clusters"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/clusters/delete",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Clusters",
+              "description": "Delete any Cluster",
               "operation": "Delete Cluster",
-              "description": "Delete any Cluster"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Clusters"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/clusters/applicationTypes/read",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Application Types",
+              "description": "Read any Application Type",
               "operation": "Read Application Type",
-              "description": "Read any Application Type"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Application Types"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/clusters/applicationTypes/write",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Application Types",
+              "description": "Create or Update any Application Type",
               "operation": "Create or Update Application Type",
-              "description": "Create or Update any Application Type"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Application Types"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/clusters/applicationTypes/delete",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Application Types",
+              "description": "Delete any Application Type",
               "operation": "Delete Application Type",
-              "description": "Delete any Application Type"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Application Types"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/clusters/applicationTypes/versions/read",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Application Type Versions",
+              "description": "Read any Application Type Version",
               "operation": "Read Application Type Version",
-              "description": "Read any Application Type Version"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Application Type Versions"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/clusters/applicationTypes/versions/write",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Application Type Versions",
+              "description": "Create or Update any Application Type Version",
               "operation": "Create or Update Application Type Version",
-              "description": "Create or Update any Application Type Version"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Application Type Versions"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/clusters/applicationTypes/versions/delete",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Application Type Versions",
+              "description": "Delete any Application Type Version",
               "operation": "Delete Application Type Version",
-              "description": "Delete any Application Type Version"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Application Type Versions"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/clusters/applications/read",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Applications",
+              "description": "Read any Application",
               "operation": "Read Application",
-              "description": "Read any Application"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Applications"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/clusters/applications/write",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Applications",
+              "description": "Create or Update any Application",
               "operation": "Create or Update Application",
-              "description": "Create or Update any Application"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Applications"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/clusters/applications/delete",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Applications",
+              "description": "Delete any Application",
               "operation": "Delete Application",
-              "description": "Delete any Application"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Applications"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/clusters/applications/services/read",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Services",
+              "description": "Read any Service",
               "operation": "Read Service",
-              "description": "Read any Service"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Services"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/clusters/applications/services/write",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Services",
+              "description": "Create or Update any Service",
               "operation": "Create or Update Service",
-              "description": "Create or Update any Service"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Services"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/clusters/applications/services/delete",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Services",
+              "description": "Delete any Service",
               "operation": "Delete Service",
-              "description": "Delete any Service"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Services"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/clusters/statuses/read",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Cluster Statuses",
+              "description": "Read any Cluster Status",
               "operation": "Read Cluster Status",
-              "description": "Read any Cluster Status"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Cluster Statuses"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/clusters/nodes/read",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Nodes",
+              "description": "Read any Node",
               "operation": "Read Node",
-              "description": "Read any Node"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Nodes"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/clusters/applications/services/statuses/read",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Service Statuses",
+              "description": "Read any Service Status",
               "operation": "Read Service Status",
-              "description": "Read any Service Status"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Service Statuses"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/clusters/applications/services/partitions/read",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Partitions",
+              "description": "Read any Partition",
               "operation": "Read Partition",
-              "description": "Read any Partition"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Partitions"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/clusters/applications/services/partitions/replicas/read",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Replicas",
+              "description": "Read any Replica",
               "operation": "Read Replica",
-              "description": "Read any Replica"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Replicas"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/locations/operationresults/read",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Operation Results",
+              "description": "Read any Operation Results",
               "operation": "Read Operation Results",
-              "description": "Read any Operation Results"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Operation Results"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/locations/operations/read",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Operations By Location",
+              "description": "Read any Operations by location",
               "operation": "Read Operations By Location",
-              "description": "Read any Operations by location"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Operations By Location"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/operations/read",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Available Operations",
+              "description": "Read any Available Operations",
               "operation": "Read Available Operations",
-              "description": "Read any Available Operations"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Available Operations"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/register/action",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Register Action",
+              "description": "Register any Action",
               "operation": "Register Action",
-              "description": "Register any Action"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Register Action"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/locations/clusterVersions/read",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Cluster Versions",
+              "description": "Read any Cluster Version",
               "operation": "Read Cluster Version",
-              "description": "Read any Cluster Version"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Cluster Versions"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/locations/environments/clusterVersions/read",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Cluster Versions By Environment",
+              "description": "Read any Cluster Version for a specific environment",
               "operation": "Read Cluster Version By Environment",
-              "description": "Read any Cluster Version for a specific environment"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Cluster Versions By Environment"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/managedclusters/read",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Managed Clusters",
+              "description": "Read any Managed Clusters",
               "operation": "Read Managed Clusters",
-              "description": "Read any Managed Clusters"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Managed Clusters"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/managedclusters/write",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Managed Clusters",
+              "description": "Create or Update any Managed Clusters",
               "operation": "Create or Update Managed Clusters",
-              "description": "Create or Update any Managed Clusters"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Managed Clusters"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/managedclusters/delete",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Managed Clusters",
+              "description": "Delete any Managed Clusters",
               "operation": "Delete Managed Clusters",
-              "description": "Delete any Managed Clusters"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Managed Clusters"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/managedclusters/nodetypes/read",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Node Types",
+              "description": "Read any Node Type",
               "operation": "Read Node Type",
-              "description": "Read any Node Type"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Node Types"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/managedclusters/nodetypes/write",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Node Types",
+              "description": "Create or Update any Node Type",
               "operation": "Create or Update Node Type",
-              "description": "Create or Update any Node Type"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Node Types"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/managedclusters/nodetypes/delete",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Node Types",
+              "description": "Delete Node Type",
               "operation": "Delete Node Type",
-              "description": "Delete Node Type"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Node Types"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/managedclusters/nodetypes/skus/read",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Node Types",
+              "description": "Read Node Type supported SKUs",
               "operation": "Read Node Type SKUs",
-              "description": "Read Node Type supported SKUs"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Node Types"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/managedclusters/applicationTypes/read",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Application Types",
+              "description": "Read any Application Type",
               "operation": "Read Application Type",
-              "description": "Read any Application Type"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Application Types"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/managedclusters/applicationTypes/write",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Application Types",
+              "description": "Create or Update any Application Type",
               "operation": "Create or Update Application Type",
-              "description": "Create or Update any Application Type"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Application Types"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/managedclusters/applicationTypes/delete",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Application Types",
+              "description": "Delete any Application Type",
               "operation": "Delete Application Type",
-              "description": "Delete any Application Type"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Application Types"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/managedclusters/applicationTypes/versions/read",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Application Type Versions",
+              "description": "Read any Application Type Version",
               "operation": "Read Application Type Version",
-              "description": "Read any Application Type Version"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Application Type Versions"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/managedclusters/applicationTypes/versions/write",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Application Type Versions",
+              "description": "Create or Update any Application Type Version",
               "operation": "Create or Update Application Type Version",
-              "description": "Create or Update any Application Type Version"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Application Type Versions"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/managedclusters/applicationTypes/versions/delete",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Application Type Versions",
+              "description": "Delete any Application Type Version",
               "operation": "Delete Application Type Version",
-              "description": "Delete any Application Type Version"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Application Type Versions"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/managedclusters/applications/read",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Applications",
+              "description": "Read any Application",
               "operation": "Read Application",
-              "description": "Read any Application"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Applications"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/managedclusters/applications/write",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Applications",
+              "description": "Create or Update any Application",
               "operation": "Create or Update Application",
-              "description": "Create or Update any Application"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Applications"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/managedclusters/applications/delete",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Applications",
+              "description": "Delete any Application",
               "operation": "Delete Application",
-              "description": "Delete any Application"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Applications"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/managedclusters/applications/services/read",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Services",
+              "description": "Read any Service",
               "operation": "Read Service",
-              "description": "Read any Service"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Services"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/managedclusters/applications/services/write",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Services",
+              "description": "Create or Update any Service",
               "operation": "Create or Update Service",
-              "description": "Create or Update any Service"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Services"
             }
           },
           {
             "name": "Microsoft.ServiceFabric/managedclusters/applications/services/delete",
             "display": {
-              "provider": "Microsoft ServiceFabric",
-              "resource": "Services",
+              "description": "Delete any Service",
               "operation": "Delete Service",
-              "description": "Delete any Service"
+              "provider": "Microsoft ServiceFabric",
+              "resource": "Services"
             }
           }
         ]
       }
     }
-  }
+  },
+  "operationId": "Operations_List",
+  "title": "List available operations"
 }

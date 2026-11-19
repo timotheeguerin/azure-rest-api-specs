@@ -1,15 +1,11 @@
 {
   "parameters": {
-    "subscriptionId": "00000000-0000-0000-0000-000000000000",
-    "api-version": "2025-09-01",
-    "resourceGroupName": "demo",
-    "containerGroupProfileName": "demo1",
     "ContainerGroupProfile": {
       "location": "westeurope",
-      "zones": [
-        "1"
-      ],
       "properties": {
+        "confidentialComputeProperties": {
+          "ccePolicy": "eyJhbGxvd19hbGwiOiB0cnVlLCAiY29udGFpbmVycyI6IHsibGVuZ3RoIjogMCwgImVsZW1lbnRzIjogbnVsbH19"
+        },
         "containers": [
           {
             "name": "accdemo",
@@ -29,89 +25,93 @@
                 }
               },
               "securityContext": {
-                "privileged": false,
                 "capabilities": {
                   "add": [
                     "CAP_NET_ADMIN"
                   ]
-                }
+                },
+                "privileged": false
               }
             }
           }
         ],
         "imageRegistryCredentials": [],
         "ipAddress": {
+          "type": "Public",
           "ports": [
             {
-              "protocol": "TCP",
-              "port": 8000
+              "port": 8000,
+              "protocol": "TCP"
             }
-          ],
-          "type": "Public"
+          ]
         },
         "osType": "Linux",
-        "sku": "Confidential",
-        "confidentialComputeProperties": {
-          "ccePolicy": "eyJhbGxvd19hbGwiOiB0cnVlLCAiY29udGFpbmVycyI6IHsibGVuZ3RoIjogMCwgImVsZW1lbnRzIjogbnVsbH19"
-        }
-      }
-    }
+        "sku": "Confidential"
+      },
+      "zones": [
+        "1"
+      ]
+    },
+    "api-version": "2025-09-01",
+    "containerGroupProfileName": "demo1",
+    "resourceGroupName": "demo",
+    "subscriptionId": "00000000-0000-0000-0000-000000000000"
   },
   "responses": {
     "200": {
       "body": {
+        "name": "demo1",
+        "type": "Microsoft.ContainerInstance/containerGroupProfiles",
+        "id": "/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/test-rg/providers/Microsoft.ContainerInstance/containerGroupProfiles/demo1",
+        "location": "westeurope",
         "properties": {
-          "sku": "Confidential",
+          "confidentialComputeProperties": {
+            "ccePolicy": "eyJhbGxvd19hbGwiOiB0cnVlLCAiY29udGFpbmVycyI6IHsibGVuZ3RoIjogMCwgImVsZW1lbnRzIjogbnVsbH19"
+          },
           "containers": [
             {
               "name": "accdemo",
               "properties": {
-                "image": "confiimage",
                 "command": [],
+                "environmentVariables": [],
+                "image": "confiimage",
                 "ports": [
                   {
                     "port": 8000
                   }
                 ],
-                "environmentVariables": [],
                 "resources": {
                   "requests": {
-                    "memoryInGB": 1.5,
-                    "cpu": 1.0
+                    "cpu": 1,
+                    "memoryInGB": 1.5
                   }
                 },
                 "securityContext": {
-                  "privileged": false,
                   "capabilities": {
                     "add": [
                       "CAP_NET_ADMIN"
                     ]
-                  }
+                  },
+                  "privileged": false
                 }
               }
             }
           ],
+          "imageRegistryCredentials": [],
+          "initContainers": [],
           "ipAddress": {
+            "type": "Public",
             "ports": [
               {
-                "protocol": "TCP",
-                "port": 8000
+                "port": 8000,
+                "protocol": "TCP"
               }
-            ],
-            "type": "Public"
+            ]
           },
-          "initContainers": [],
-          "imageRegistryCredentials": [],
           "osType": "Linux",
-          "confidentialComputeProperties": {
-            "ccePolicy": "eyJhbGxvd19hbGwiOiB0cnVlLCAiY29udGFpbmVycyI6IHsibGVuZ3RoIjogMCwgImVsZW1lbnRzIjogbnVsbH19"
-          },
-          "revision": 0
+          "revision": 0,
+          "sku": "Confidential"
         },
-        "id": "/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/test-rg/providers/Microsoft.ContainerInstance/containerGroupProfiles/demo1",
-        "name": "demo1",
-        "type": "Microsoft.ContainerInstance/containerGroupProfiles",
-        "location": "westeurope",
         "zones": [
           "1"
         ]
@@ -119,62 +119,64 @@
     },
     "201": {
       "body": {
+        "name": "demo1",
+        "type": "Microsoft.ContainerInstance/containerGroupProfiles",
+        "id": "/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/test-rg/providers/Microsoft.ContainerInstance/containerGroupProfiles/demo1",
+        "location": "westeurope",
         "properties": {
-          "sku": "Confidential",
+          "confidentialComputeProperties": {
+            "ccePolicy": "eyJhbGxvd19hbGwiOiB0cnVlLCAiY29udGFpbmVycyI6IHsibGVuZ3RoIjogMCwgImVsZW1lbnRzIjogbnVsbH19"
+          },
           "containers": [
             {
               "name": "accdemo",
               "properties": {
-                "image": "confiimage",
                 "command": [],
+                "environmentVariables": [],
+                "image": "confiimage",
                 "ports": [
                   {
                     "port": 8000
                   }
                 ],
-                "environmentVariables": [],
                 "resources": {
                   "requests": {
-                    "memoryInGB": 1.5,
-                    "cpu": 1.0
+                    "cpu": 1,
+                    "memoryInGB": 1.5
                   }
                 },
                 "securityContext": {
-                  "privileged": false,
                   "capabilities": {
                     "add": [
                       "CAP_NET_ADMIN"
                     ]
-                  }
+                  },
+                  "privileged": false
                 }
               }
             }
           ],
+          "imageRegistryCredentials": [],
+          "initContainers": [],
           "ipAddress": {
+            "type": "Public",
             "ports": [
               {
-                "protocol": "TCP",
-                "port": 8000
+                "port": 8000,
+                "protocol": "TCP"
               }
-            ],
-            "type": "Public"
+            ]
           },
-          "initContainers": [],
-          "imageRegistryCredentials": [],
           "osType": "Linux",
-          "confidentialComputeProperties": {
-            "ccePolicy": "eyJhbGxvd19hbGwiOiB0cnVlLCAiY29udGFpbmVycyI6IHsibGVuZ3RoIjogMCwgImVsZW1lbnRzIjogbnVsbH19"
-          },
-          "revision": 1
+          "revision": 1,
+          "sku": "Confidential"
         },
-        "id": "/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/test-rg/providers/Microsoft.ContainerInstance/containerGroupProfiles/demo1",
-        "name": "demo1",
-        "type": "Microsoft.ContainerInstance/containerGroupProfiles",
-        "location": "westeurope",
         "zones": [
           "1"
         ]
       }
     }
-  }
+  },
+  "operationId": "CGProfile_CreateOrUpdate",
+  "title": "ConfidentialContainerGroupProfile"
 }

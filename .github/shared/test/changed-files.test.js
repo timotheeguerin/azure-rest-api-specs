@@ -24,6 +24,8 @@ import {
   scenario,
   stable,
   swagger,
+  tsp,
+  tspconfig,
   typespec,
 } from "../src/changed-files.js";
 import { debugLogger } from "../src/logger.js";
@@ -58,6 +60,30 @@ describe("changedFiles", () => {
     mockDiff.mockResolvedValue("");
     await expect(getChangedFiles()).resolves.toEqual([]);
     expect(mockDiff).toHaveBeenCalledWith(["--name-only", "HEAD^", "HEAD"]);
+  });
+
+  it("getChangedFiles accepts gitOptions parameter", async () => {
+    const files = ["file1.json", "file2.json"];
+    mockDiff.mockResolvedValue(files.join("\n"));
+
+    await expect(getChangedFiles({ gitOptions: ["--no-renames"] })).resolves.toEqual(files);
+    expect(mockDiff).toHaveBeenCalledWith(["--name-only", "--no-renames", "HEAD^", "HEAD"]);
+  });
+
+  it("getChangedFiles accepts multiple gitOptions", async () => {
+    const files = ["file1.json"];
+    mockDiff.mockResolvedValue(files.join("\n"));
+
+    await expect(
+      getChangedFiles({ gitOptions: ["--no-renames", "--find-copies"] }),
+    ).resolves.toEqual(files);
+    expect(mockDiff).toHaveBeenCalledWith([
+      "--name-only",
+      "--no-renames",
+      "--find-copies",
+      "HEAD^",
+      "HEAD",
+    ]);
   });
 
   const files = [
@@ -145,6 +171,22 @@ describe("changedFiles", () => {
 
     expect(files.filter(readme)).toEqual(expected);
     expect(filesResolved.filter(readme)).toEqual(expected.map((f) => resolve(f)));
+  });
+
+  it("filter:tsp", () => {
+    const expected = [
+      "not-spec/contosowidgetmanager/Contoso.Management/main.tsp",
+      "specification/contosowidgetmanager/Contoso.Management/main.tsp",
+    ];
+    expect(files.filter(tsp)).toEqual(expected);
+  });
+
+  it("filter:tspconfig", () => {
+    const expected = [
+      "not-spec/contosowidgetmanager/Contoso.Management/tspconfig.yaml",
+      "specification/contosowidgetmanager/Contoso.Management/tspconfig.yaml",
+    ];
+    expect(files.filter(tspconfig)).toEqual(expected);
   });
 
   it("filter:typespec", () => {
@@ -380,6 +422,71 @@ describe("changedFiles", () => {
       await getChangedFilesStatuses(options);
       expect(simpleGit.simpleGit).toHaveBeenCalledWith("/custom/path");
       expect(mockDiff).toHaveBeenCalledWith(["--name-status", "origin/main", "feature-branch"]);
+    });
+
+    it("should accept gitOptions parameter", async () => {
+      mockDiff.mockResolvedValue("A\tfile1.json\nM\tfile2.json");
+      const result = await getChangedFilesStatuses({ gitOptions: ["--no-renames"] });
+      expect(result).toEqual({
+        additions: ["file1.json"],
+        modifications: ["file2.json"],
+        deletions: [],
+        renames: [],
+        total: 2,
+      });
+      expect(mockDiff).toHaveBeenCalledWith(["--name-status", "--no-renames", "HEAD^", "HEAD"]);
+    });
+
+    it("should accept multiple gitOptions", async () => {
+      mockDiff.mockResolvedValue("A\tfile1.json");
+      const result = await getChangedFilesStatuses({
+        gitOptions: ["--no-renames", "--find-copies"],
+      });
+      expect(result).toEqual({
+        additions: ["file1.json"],
+        modifications: [],
+        deletions: [],
+        renames: [],
+        total: 1,
+      });
+      expect(mockDiff).toHaveBeenCalledWith([
+        "--name-status",
+        "--no-renames",
+        "--find-copies",
+        "HEAD^",
+        "HEAD",
+      ]);
+    });
+
+    it("should log categories selectively with a logger", async () => {
+      // When only some categories are populated and a logger is provided, the per-category
+      // if-blocks whose category is empty should take their false branch.
+      const gitOutput = [
+        "A\tspecification/service1/readme.md",
+        "A\tspecification/service2/main.tsp",
+      ].join("\n");
+
+      mockDiff.mockResolvedValue(gitOutput);
+      const result = await getChangedFilesStatuses({ logger: debugLogger });
+      expect(result).toEqual({
+        additions: ["specification/service1/readme.md", "specification/service2/main.tsp"],
+        modifications: [],
+        deletions: [],
+        renames: [],
+        total: 2,
+      });
+
+      // Also test with no additions so the additions log block's false branch is covered
+      const gitOutputNoAdditions = "M\tspecification/service1/readme.md";
+      mockDiff.mockResolvedValue(gitOutputNoAdditions);
+      const result2 = await getChangedFilesStatuses({ logger: debugLogger });
+      expect(result2).toEqual({
+        additions: [],
+        modifications: ["specification/service1/readme.md"],
+        deletions: [],
+        renames: [],
+        total: 1,
+      });
     });
   });
 });

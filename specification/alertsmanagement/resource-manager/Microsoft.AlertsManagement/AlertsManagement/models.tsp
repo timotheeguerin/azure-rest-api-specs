@@ -383,6 +383,11 @@ union Type {
    * PrometheusRangeQuery
    */
   PrometheusRangeQuery: "PrometheusRangeQuery",
+
+  /**
+   * PrometheusEnrichmentItem
+   */
+  PrometheusEnrichmentItem: "PrometheusEnrichmentItem",
 }
 
 /**
@@ -677,6 +682,7 @@ model ProxyResource {
 /**
  * An error response from the service.
  */
+#suppress "@azure-tools/typespec-client-generator-core/csharp-model-suffix" "Name kept for backward compatibility"
 @error
 model AlertsManagementErrorResponse {
   /**
@@ -943,6 +949,7 @@ model AlertEnrichmentsList is Azure.Core.Page<AlertEnrichmentResponse>;
  * The alert's enrichments.
  */
 #suppress "@azure-tools/typespec-azure-core/composition-over-inheritance" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+#suppress "@azure-tools/typespec-client-generator-core/csharp-model-suffix" "Name kept for backward compatibility"
 model AlertEnrichmentResponse
   extends Azure.ResourceManager.Foundations.ProxyResource {
   /**
@@ -1124,7 +1131,7 @@ model MonitorServiceDetails {
 /**
  * Prometheus enrichment object.
  */
-model PrometheusEnrichmentItem is AlertEnrichmentItem {
+model PrometheusEnrichmentItem extends AlertEnrichmentItem {
   /**
    * Link to Prometheus query API (Url format).
    */
@@ -1144,6 +1151,8 @@ model PrometheusEnrichmentItem is AlertEnrichmentItem {
    * The Prometheus expression query.
    */
   query: string;
+
+  type: Type.PrometheusEnrichmentItem;
 }
 
 alias PrometheusEnrichmentItemProperties = {
@@ -1185,7 +1194,7 @@ model PrometheusInstantQuery extends AlertEnrichmentItem {
   /**
    * The enrichment type.
    */
-  type: "PrometheusInstantQuery";
+  type: Type.PrometheusInstantQuery;
 }
 
 /**
@@ -1217,5 +1226,5 @@ model PrometheusRangeQuery extends AlertEnrichmentItem {
   /**
    * The enrichment type.
    */
-  type: "PrometheusRangeQuery";
+  type: Type.PrometheusRangeQuery;
 }

@@ -23,5 +23,7 @@
         }
       ]
     }
-  }
+  },
+  "operationId": "BillingPermissions_CheckAccessByDepartment",
+  "title": "CheckAccessByDepartment"
 }

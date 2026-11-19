@@ -1,8 +1,8 @@
 {
   "parameters": {
-    "subscriptionId": "subid",
-    "resourceGroupName": "rg1",
     "api-version": "2025-05-01",
+    "resourceGroupName": "rg1",
+    "subscriptionId": "00000000-0000-0000-0000-000000000000",
     "virtualWANName": "wan1"
   },
   "responses": {
@@ -10,8 +10,8 @@
       "description": "Request successful.",
       "body": {
         "vpnServerConfigurationResourceIds": [
-          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/vpnServerConfigurations/vpnconfig1",
-          "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/vpnServerConfigurations/vpnconfig2"
+          "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.Network/vpnServerConfigurations/vpnconfig1",
+          "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.Network/vpnServerConfigurations/vpnconfig2"
         ]
       }
     },
@@ -20,5 +20,7 @@
         "location": "https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Network/locations/{location}/operationResults/{operationId}?api-version={api-version}"
       }
     }
-  }
+  },
+  "operationId": "VpnServerConfigurationsAssociatedWithVirtualWan_List",
+  "title": "GetVirtualWanVpnServerConfigurations"
 }

@@ -1,9 +1,9 @@
 {
   "parameters": {
     "api-version": "2025-05-01",
-    "subscriptionId": "subid",
+    "bastionHostName": "bastionhostdeveloper",
     "resourceGroupName": "rg2",
-    "bastionHostName": "bastionhostdeveloper"
+    "subscriptionId": "00000000-0000-0000-0000-000000000000"
   },
   "responses": {
     "200": {},
@@ -13,5 +13,7 @@
       }
     },
     "204": {}
-  }
+  },
+  "operationId": "BastionHosts_Delete",
+  "title": "Delete Developer Bastion Host"
 }

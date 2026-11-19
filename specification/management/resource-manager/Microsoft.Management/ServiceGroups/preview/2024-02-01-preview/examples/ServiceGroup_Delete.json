@@ -10,5 +10,7 @@
       }
     },
     "204": {}
-  }
+  },
+  "operationId": "DeleteServiceGroup",
+  "title": "DeleteServiceGroup"
 }

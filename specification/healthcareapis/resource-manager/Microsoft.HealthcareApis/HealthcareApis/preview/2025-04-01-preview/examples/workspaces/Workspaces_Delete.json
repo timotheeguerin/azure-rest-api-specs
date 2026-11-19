@@ -1,9 +1,9 @@
 {
   "parameters": {
-    "subscriptionId": "subid",
+    "api-version": "2025-04-01-preview",
     "resourceGroupName": "testRG",
-    "workspaceName": "workspace1",
-    "api-version": "2025-04-01-preview"
+    "subscriptionId": "subid",
+    "workspaceName": "workspace1"
   },
   "responses": {
     "200": {},
@@ -13,5 +13,7 @@
       }
     },
     "204": {}
-  }
+  },
+  "operationId": "Workspaces_Delete",
+  "title": "Delete a workspace"
 }

@@ -1,5 +1,6 @@
 import "@typespec/rest";
 import "./helpers.tsp";
+import "./meshmember.tsp";
 
 using TypeSpec.Http;
 using TypeSpec.Rest;
@@ -64,6 +65,12 @@ model FleetMemberProperties {
   @visibility(Lifecycle.Read)
   @doc("Status information of the last operation for fleet member.")
   status?: FleetMemberStatus;
+
+  @added(Versions.v2026_03_02_preview)
+  @removed(Versions.v2026_06_01)
+  @visibility(Lifecycle.Read)
+  @doc("The Mesh Member Properties associated with this Fleet Member.")
+  meshProperties?: MeshProperties;
 }
 
 @added(Versions.v2025_03_01)
@@ -112,7 +119,6 @@ interface FleetMembers {
   @sharedRoute
   @added(Versions.v2023_03_15_preview)
   @removed(Versions.v2023_06_15_preview)
-  @patch(#{ implicitOptionality: true })
   update is ArmCustomPatchSync<
     FleetMember,
     Azure.ResourceManager.Foundations.ResourceUpdateModel<
@@ -124,6 +130,7 @@ interface FleetMembers {
   >;
 
   #suppress "@azure-tools/typespec-azure-core/no-openapi" "Use operationId to keep same name as deprecated sync operation"
+  #suppress "@azure-tools/typespec-azure-core/no-openapi-client-extensions" "Existing use of the 'x-ms-long-running-operation-options' OpenAPI extension predates the no-openapi-client-extensions rule; suppressed pending migration to Azure.Core long-running operation templates."
   @sharedRoute
   @added(Versions.v2023_06_15_preview)
   @operationId("FleetMembers_Update")
@@ -131,7 +138,6 @@ interface FleetMembers {
     "x-ms-long-running-operation-options",
     #{ `final-state-via`: "original-uri" }
   )
-  @patch(#{ implicitOptionality: true })
   updateAsync is ArmCustomPatchAsync<
     FleetMember,
     Azure.ResourceManager.Foundations.ResourceUpdateModel<

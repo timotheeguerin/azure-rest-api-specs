@@ -26,5 +26,7 @@
         "Retry-After": "10"
       }
     }
-  }
+  },
+  "operationId": "Invoices_DownloadDocumentsByBillingAccount",
+  "title": "InvoicesDownloadDocumentsByBillingAccount"
 }

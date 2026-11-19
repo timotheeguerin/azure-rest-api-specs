@@ -1,14 +1,7 @@
 {
   "parameters": {
-    "subscriptionId": "00000000-0000-0000-0000-000000000000",
-    "api-version": "2025-09-01",
-    "resourceGroupName": "demo",
-    "containerGroupProfileName": "demo1",
     "ContainerGroupProfile": {
       "location": "eastus2",
-      "zones": [
-        "1"
-      ],
       "properties": {
         "containers": [
           {
@@ -33,13 +26,13 @@
         ],
         "imageRegistryCredentials": [],
         "ipAddress": {
+          "type": "Private",
           "ports": [
             {
-              "protocol": "TCP",
-              "port": 80
+              "port": 80,
+              "protocol": "TCP"
             }
-          ],
-          "type": "Private"
+          ]
         },
         "osType": "Linux",
         "extensions": [
@@ -47,14 +40,14 @@
             "name": "kube-proxy",
             "properties": {
               "extensionType": "kube-proxy",
-              "version": "1.0",
+              "protectedSettings": {
+                "kubeConfig": "<kubeconfig encoded string>"
+              },
               "settings": {
                 "clusterCidr": "10.240.0.0/16",
                 "kubeVersion": "v1.9.10"
               },
-              "protectedSettings": {
-                "kubeConfig": "<kubeconfig encoded string>"
-              }
+              "version": "1.0"
             }
           },
           {
@@ -65,46 +58,60 @@
             }
           }
         ]
-      }
-    }
+      },
+      "zones": [
+        "1"
+      ]
+    },
+    "api-version": "2025-09-01",
+    "containerGroupProfileName": "demo1",
+    "resourceGroupName": "demo",
+    "subscriptionId": "00000000-0000-0000-0000-000000000000"
   },
   "responses": {
     "200": {
       "body": {
+        "name": "demo1",
+        "type": "Microsoft.ContainerInstance/containerGroupProfiles",
+        "id": "/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/test-rg/providers/Microsoft.ContainerInstance/containerGroupProfiles/demo1",
+        "location": "eastus2",
         "properties": {
-          "sku": "Standard",
           "containers": [
             {
               "name": "demo1",
               "properties": {
-                "image": "nginx",
                 "command": [],
+                "environmentVariables": [],
+                "image": "nginx",
                 "ports": [
                   {
                     "port": 80
                   }
                 ],
-                "environmentVariables": [],
                 "resources": {
                   "requests": {
-                    "memoryInGB": 1.5,
-                    "cpu": 1.0
+                    "cpu": 1,
+                    "memoryInGB": 1.5
                   }
                 }
               }
             }
           ],
+          "imageRegistryCredentials": [],
           "initContainers": [],
+          "osType": "Linux",
+          "revision": 0,
+          "sku": "Standard",
           "extensions": [
             {
               "name": "kube-proxy",
               "properties": {
                 "extensionType": "kube-proxy",
-                "version": "1.0",
                 "settings": {
                   "clusterCidr": "10.240.0.0/16",
                   "kubeVersion": "v1.9.10"
-                }
+                },
+                "version": "1.0"
               }
             },
             {
@@ -114,15 +121,8 @@
                 "version": "1.0"
               }
             }
-          ],
-          "imageRegistryCredentials": [],
-          "osType": "Linux",
-          "revision": 0
+          ]
         },
-        "id": "/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/test-rg/providers/Microsoft.ContainerInstance/containerGroupProfiles/demo1",
-        "name": "demo1",
-        "type": "Microsoft.ContainerInstance/containerGroupProfiles",
-        "location": "eastus2",
         "zones": [
           "1"
         ]
@@ -130,40 +130,47 @@
     },
     "201": {
       "body": {
+        "name": "demo1",
+        "type": "Microsoft.ContainerInstance/containerGroupProfiles",
+        "id": "/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/test-rg/providers/Microsoft.ContainerInstance/containerGroupProfiles/demo1",
+        "location": "eastus2",
         "properties": {
-          "sku": "Standard",
           "containers": [
             {
               "name": "demo1",
               "properties": {
-                "image": "nginx",
                 "command": [],
+                "environmentVariables": [],
+                "image": "nginx",
                 "ports": [
                   {
                     "port": 80
                   }
                 ],
-                "environmentVariables": [],
                 "resources": {
                   "requests": {
-                    "memoryInGB": 1.5,
-                    "cpu": 1.0
+                    "cpu": 1,
+                    "memoryInGB": 1.5
                   }
                 }
               }
             }
           ],
+          "imageRegistryCredentials": [],
           "initContainers": [],
+          "osType": "Linux",
+          "revision": 1,
+          "sku": "Standard",
           "extensions": [
             {
               "name": "kube-proxy",
               "properties": {
                 "extensionType": "kube-proxy",
-                "version": "1.0",
                 "settings": {
                   "clusterCidr": "10.240.0.0/16",
                   "kubeVersion": "v1.9.10"
-                }
+                },
+                "version": "1.0"
               }
             },
             {
@@ -173,19 +180,14 @@
                 "version": "1.0"
               }
             }
-          ],
-          "imageRegistryCredentials": [],
-          "osType": "Linux",
-          "revision": 1
+          ]
         },
-        "id": "/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/test-rg/providers/Microsoft.ContainerInstance/containerGroupProfiles/demo1",
-        "name": "demo1",
-        "type": "Microsoft.ContainerInstance/containerGroupProfiles",
-        "location": "eastus2",
         "zones": [
           "1"
         ]
       }
     }
-  }
+  },
+  "operationId": "CGProfile_CreateOrUpdate",
+  "title": "ContainerGroupProfileCreateWithExtensions"
 }

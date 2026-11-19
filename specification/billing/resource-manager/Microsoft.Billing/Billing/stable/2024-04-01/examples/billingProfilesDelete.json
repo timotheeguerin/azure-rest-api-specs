@@ -4,6 +4,7 @@
     "billingAccountName": "00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31",
     "billingProfileName": "xxxx-xxxx-xxx-xxx",
     "parameters": {
+      "type": "Microsoft.Billing/billingAccounts/billingProfiles",
       "properties": {
         "billTo": {
           "addressLine1": "Test Address1",
@@ -14,11 +15,11 @@
           "country": "US",
           "email": "abc@contoso.com",
           "firstName": "Test",
+          "isValidAddress": true,
           "lastName": "User",
           "phoneNumber": "000-000-0000",
           "postalCode": "00000",
-          "region": "WA",
-          "isValidAddress": true
+          "region": "WA"
         },
         "displayName": "Billing Profile 1",
         "enabledAzurePlans": [
@@ -40,14 +41,13 @@
           "country": "US",
           "email": "abc@contoso.com",
           "firstName": "Test",
+          "isValidAddress": true,
           "lastName": "User",
           "phoneNumber": "000-000-0000",
           "postalCode": "00000",
-          "region": "WA",
-          "isValidAddress": true
+          "region": "WA"
         }
-      },
-      "type": "Microsoft.Billing/billingAccounts/billingProfiles"
+      }
     }
   },
   "responses": {
@@ -58,5 +58,7 @@
       }
     },
     "204": {}
-  }
+  },
+  "operationId": "BillingProfiles_Delete",
+  "title": "BillingProfilesDelete"
 }

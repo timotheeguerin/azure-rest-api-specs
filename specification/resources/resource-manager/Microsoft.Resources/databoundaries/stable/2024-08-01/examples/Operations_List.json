@@ -5,40 +5,42 @@
   "responses": {
     "200": {
       "body": {
+        "nextLink": null,
         "value": [
           {
             "name": "/providers/Microsoft.Resources/dataBoundaries/Write",
-            "isDataAction": false,
             "display": {
-              "provider": "Microsoft.Resources",
-              "resource": "dataBoundaries",
+              "description": "Puts Data Boundary",
               "operation": "Put Data Boundary",
-              "description": "Puts Data Boundary"
-            }
+              "provider": "Microsoft.Resources",
+              "resource": "dataBoundaries"
+            },
+            "isDataAction": false
           },
           {
             "name": "/providers/Microsoft.Resources/dataBoundaries/Read",
-            "isDataAction": false,
             "display": {
-              "provider": "Microsoft.Resources",
-              "resource": "dataBoundaries",
+              "description": "Gets Tenant Data Boundary",
               "operation": "Get Tenant Data Boundary",
-              "description": "Gets Tenant Data Boundary"
-            }
+              "provider": "Microsoft.Resources",
+              "resource": "dataBoundaries"
+            },
+            "isDataAction": false
           },
           {
             "name": "/{scope}/providers/Microsoft.Resources/dataBoundaries/Read",
-            "isDataAction": false,
             "display": {
-              "provider": "Microsoft.Resources",
-              "resource": "dataBoundaries",
+              "description": "Get Data Boundary At Scope",
               "operation": "Get Data Boundary At Scope",
-              "description": "Get Data Boundary At Scope"
-            }
+              "provider": "Microsoft.Resources",
+              "resource": "dataBoundaries"
+            },
+            "isDataAction": false
           }
-        ],
-        "nextLink": null
+        ]
       }
     }
-  }
+  },
+  "operationId": "Operations_List",
+  "title": "Operation List"
 }

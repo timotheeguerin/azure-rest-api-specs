@@ -1,19 +1,17 @@
 {
   "parameters": {
-    "subscriptionId": "00000000-0000-0000-0000-000000000000",
     "api-version": "2025-09-01",
+    "containerGroupName": "demo1",
     "resourceGroupName": "demo",
-    "containerGroupName": "demo1"
+    "subscriptionId": "00000000-0000-0000-0000-000000000000"
   },
   "responses": {
     "200": {
       "body": {
+        "name": "demo1",
+        "type": "Microsoft.ContainerInstance/containerGroups",
         "id": "/subscriptions/subid/resourceGroups/demo/providers/Microsoft.ContainerInstance/containerGroups/demo1",
         "location": "WestUs",
-        "zones": [
-          "1"
-        ],
-        "name": "demo1",
         "properties": {
           "containers": [
             {
@@ -35,8 +33,8 @@
                 },
                 "volumeMounts": [
                   {
-                    "mountPath": "/mnt/volume1",
                     "name": "volume1",
+                    "mountPath": "/mnt/volume1",
                     "readOnly": false
                   }
                 ]
@@ -50,29 +48,31 @@
             }
           ],
           "ipAddress": {
+            "type": "Public",
             "ip": "10.0.0.1",
             "ports": [
               {
                 "port": 80,
                 "protocol": "TCP"
               }
-            ],
-            "type": "Public"
+            ]
           },
           "osType": "Linux",
           "provisioningState": "Succeeded",
           "volumes": [
             {
+              "name": "volume1",
               "azureFile": {
                 "readOnly": false,
                 "shareName": "share1",
                 "storageAccountName": "storage1"
-              },
-              "name": "volume1"
+              }
             }
           ]
         },
-        "type": "Microsoft.ContainerInstance/containerGroups"
+        "zones": [
+          "1"
+        ]
       }
     },
     "202": {
@@ -81,5 +81,7 @@
       }
     },
     "204": {}
-  }
+  },
+  "operationId": "ContainerGroups_Delete",
+  "title": "ContainerGroupsDelete"
 }

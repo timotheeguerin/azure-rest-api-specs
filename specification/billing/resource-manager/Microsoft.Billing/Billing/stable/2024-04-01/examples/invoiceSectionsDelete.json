@@ -13,5 +13,7 @@
       }
     },
     "204": {}
-  }
+  },
+  "operationId": "InvoiceSections_Delete",
+  "title": "InvoiceSectionsDelete"
 }

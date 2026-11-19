@@ -24,5 +24,7 @@
         }
       ]
     }
-  }
+  },
+  "operationId": "BillingPermissions_CheckAccessByInvoiceSection",
+  "title": "CheckAccessByInvoiceSection"
 }

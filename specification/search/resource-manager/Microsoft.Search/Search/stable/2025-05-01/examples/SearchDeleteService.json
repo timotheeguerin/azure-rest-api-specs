@@ -1,13 +1,14 @@
 {
   "parameters": {
-    "searchServiceName": "mysearchservice",
-    "resourceGroupName": "rg1",
     "api-version": "2025-05-01",
-    "subscriptionId": "subid"
+    "resourceGroupName": "rg1",
+    "searchServiceName": "mysearchservice",
+    "subscriptionId": "00000000-0000-0000-0000-000000000000"
   },
   "responses": {
     "200": {},
-    "204": {},
-    "404": {}
-  }
+    "204": {}
+  },
+  "operationId": "Services_Delete",
+  "title": "SearchDeleteService"
 }

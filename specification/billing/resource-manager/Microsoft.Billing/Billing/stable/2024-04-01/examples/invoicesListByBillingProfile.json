@@ -3,16 +3,17 @@
     "api-version": "2024-04-01",
     "billingAccountName": "00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31",
     "billingProfileName": "xxxx-xxxx-xxx-xxx",
-    "periodStartDate": "2023-01-01",
-    "periodEndDate": "2023-06-30"
+    "periodEndDate": "2023-06-30",
+    "periodStartDate": "2023-01-01"
   },
   "responses": {
     "200": {
       "body": {
         "value": [
           {
-            "id": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31/invoices/G123456789",
             "name": "G123456789",
+            "type": "Microsoft.Billing/billingAccounts/invoices",
+            "id": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31/invoices/G123456789",
             "properties": {
               "amountDue": {
                 "currency": "USD",
@@ -32,17 +33,17 @@
                 "currency": "USD",
                 "value": 0
               },
+              "documentType": "Invoice",
               "documents": [
                 {
-                  "kind": "Invoice",
-                  "name": "12345678"
+                  "name": "12345678",
+                  "kind": "Invoice"
                 },
                 {
-                  "kind": "TaxReceipt",
-                  "name": "22345678"
+                  "name": "22345678",
+                  "kind": "TaxReceipt"
                 }
               ],
-              "documentType": "Invoice",
               "dueDate": "2023-02-16T17:32:28Z",
               "freeAzureCreditApplied": {
                 "currency": "USD",
@@ -54,11 +55,11 @@
               "isMonthlyInvoice": false,
               "purchaseOrderNumber": "123456",
               "rebillDetails": {
-                "invoiceDocumentId": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31/invoices/I000002",
                 "creditNoteDocumentId": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31/invoices/CreditNote2",
+                "invoiceDocumentId": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31/invoices/I000002",
                 "rebillDetails": {
-                  "invoiceDocumentId": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31/invoices/I000001",
-                  "creditNoteDocumentId": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31/invoices/CreditNote"
+                  "creditNoteDocumentId": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31/invoices/CreditNote",
+                  "invoiceDocumentId": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31/invoices/I000001"
                 }
               },
               "status": "Due",
@@ -74,12 +75,12 @@
                 "currency": "USD",
                 "value": 7.53
               }
-            },
-            "type": "Microsoft.Billing/billingAccounts/invoices"
+            }
           },
           {
-            "id": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31/invoices/G987654321",
             "name": "G987654321",
+            "type": "Microsoft.Billing/billingAccounts/invoices",
+            "id": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31/invoices/G987654321",
             "properties": {
               "amountDue": {
                 "currency": "USD",
@@ -99,17 +100,17 @@
                 "currency": "USD",
                 "value": 0
               },
+              "documentType": "Invoice",
               "documents": [
                 {
-                  "kind": "Invoice",
-                  "name": "12345678"
+                  "name": "12345678",
+                  "kind": "Invoice"
                 },
                 {
-                  "kind": "TaxReceipt",
-                  "name": "22345678"
+                  "name": "22345678",
+                  "kind": "TaxReceipt"
                 }
               ],
-              "documentType": "Invoice",
               "dueDate": "2023-01-16T17:32:28Z",
               "freeAzureCreditApplied": {
                 "currency": "USD",
@@ -133,11 +134,11 @@
               ],
               "purchaseOrderNumber": "123455",
               "rebillDetails": {
-                "invoiceDocumentId": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31/invoices/I000002",
                 "creditNoteDocumentId": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31/invoices/CreditNote2",
+                "invoiceDocumentId": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31/invoices/I000002",
                 "rebillDetails": {
-                  "invoiceDocumentId": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31/invoices/I000001",
-                  "creditNoteDocumentId": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31/invoices/CreditNote"
+                  "creditNoteDocumentId": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31/invoices/CreditNote",
+                  "invoiceDocumentId": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31/invoices/I000001"
                 }
               },
               "status": "Paid",
@@ -153,11 +154,12 @@
                 "currency": "USD",
                 "value": 7.53
               }
-            },
-            "type": "Microsoft.Billing/billingAccounts/invoices"
+            }
           }
         ]
       }
     }
-  }
+  },
+  "operationId": "Invoices_ListByBillingProfile",
+  "title": "InvoicesListByBillingProfile"
 }

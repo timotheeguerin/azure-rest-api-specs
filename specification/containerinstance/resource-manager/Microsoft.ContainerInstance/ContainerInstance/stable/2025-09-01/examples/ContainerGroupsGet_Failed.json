@@ -1,16 +1,17 @@
 {
   "parameters": {
-    "subscriptionId": "00000000-0000-0000-0000-000000000000",
-    "resourceGroupName": "demo",
+    "api-version": "2025-09-01",
     "containerGroupName": "demo1",
-    "api-version": "2025-09-01"
+    "resourceGroupName": "demo",
+    "subscriptionId": "00000000-0000-0000-0000-000000000000"
   },
   "responses": {
     "200": {
       "body": {
+        "name": "demo1",
+        "type": "Microsoft.ContainerInstance/containerGroups",
         "id": "/subscriptions/subid/resourceGroups/demo/providers/Microsoft.ContainerInstance/containerGroups/demo1",
         "location": "WestUs",
-        "name": "demo1",
         "properties": {
           "containers": [
             {
@@ -20,30 +21,30 @@
                 "environmentVariables": [],
                 "image": "nginx",
                 "instanceView": {
-                  "restartCount": 0,
                   "currentState": {
-                    "state": "Waiting",
+                    "detailStatus": "",
                     "startTime": "2017-08-08T00:09:10Z",
-                    "detailStatus": ""
+                    "state": "Waiting"
                   },
                   "events": [
                     {
+                      "name": "Pulling",
+                      "type": "Normal",
                       "count": 1,
                       "firstTimestamp": "2017-08-08T00:09:01Z",
                       "lastTimestamp": "2017-08-08T00:09:01Z",
-                      "message": "pulling image \"nginx\"",
-                      "name": "Pulling",
-                      "type": "Normal"
+                      "message": "pulling image \"nginx\""
                     },
                     {
+                      "name": "Pulled",
+                      "type": "Normal",
                       "count": 1,
                       "firstTimestamp": "2017-08-08T00:09:10Z",
                       "lastTimestamp": "2017-08-08T00:09:10Z",
-                      "message": "Successfully pulled image \"nginx\"",
-                      "name": "Pulled",
-                      "type": "Normal"
+                      "message": "Successfully pulled image \"nginx\""
                     }
-                  ]
+                  ],
+                  "restartCount": 0
                 },
                 "ports": [
                   {
@@ -58,8 +59,8 @@
                 },
                 "volumeMounts": [
                   {
-                    "mountPath": "/mnt/volume1",
                     "name": "volume1",
+                    "mountPath": "/mnt/volume1",
                     "readOnly": false
                   }
                 ]
@@ -75,41 +76,42 @@
           "instanceView": {
             "events": [
               {
+                "name": "FailedMount",
+                "type": "Normal",
                 "count": 1,
                 "firstTimestamp": "2017-10-08T00:19:10Z",
                 "lastTimestamp": "2017-10-08T00:19:10Z",
-                "message": "Output: mount error(2): Permission denied",
-                "name": "FailedMount",
-                "type": "Normal"
+                "message": "Output: mount error(2): Permission denied"
               }
             ],
             "state": "Pending"
           },
           "ipAddress": {
+            "type": "Public",
             "ip": "10.0.0.1",
             "ports": [
               {
                 "port": 80,
                 "protocol": "TCP"
               }
-            ],
-            "type": "Public"
+            ]
           },
           "osType": "Linux",
           "provisioningState": "Failed",
           "volumes": [
             {
+              "name": "volume1",
               "azureFile": {
                 "readOnly": false,
                 "shareName": "share1",
                 "storageAccountName": "storage1"
-              },
-              "name": "volume1"
+              }
             }
           ]
-        },
-        "type": "Microsoft.ContainerInstance/containerGroups"
+        }
       }
     }
-  }
+  },
+  "operationId": "ContainerGroups_Get",
+  "title": "ContainerGroupsGet_Failed"
 }

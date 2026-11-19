@@ -1,10 +1,10 @@
 {
   "parameters": {
-    "subscriptionId": "subid",
-    "resourceGroupName": "testRG",
-    "workspaceName": "workspace1",
+    "api-version": "2025-04-01-preview",
     "dicomServiceName": "blue",
-    "api-version": "2025-04-01-preview"
+    "resourceGroupName": "testRG",
+    "subscriptionId": "subid",
+    "workspaceName": "workspace1"
   },
   "responses": {
     "200": {},
@@ -14,5 +14,7 @@
       }
     },
     "204": {}
-  }
+  },
+  "operationId": "DicomServices_Delete",
+  "title": "Delete a dicomservice"
 }

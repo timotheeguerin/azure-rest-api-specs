@@ -23,5 +23,7 @@
         ]
       }
     }
-  }
+  },
+  "operationId": "BillingPermissions_ListByCustomerAtBillingAccount",
+  "title": "BillingPermissionsListByCustomerAtBillingAccount"
 }

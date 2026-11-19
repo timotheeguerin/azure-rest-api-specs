@@ -1,21 +1,21 @@
 {
   "parameters": {
     "api-version": "2024-04-01",
-    "transferName": "aabb123",
     "parameters": {
       "properties": {
         "productDetails": [
           {
-            "productType": "AzureSubscription",
-            "productId": "subscriptionId"
+            "productId": "subscriptionId",
+            "productType": "AzureSubscription"
           },
           {
-            "productType": "AzureReservation",
-            "productId": "reservedInstanceId"
+            "productId": "reservedInstanceId",
+            "productType": "AzureReservation"
           }
         ]
       }
-    }
+    },
+    "transferName": "aabb123"
   },
   "responses": {
     "200": {
@@ -24,18 +24,20 @@
           {
             "properties": {
               "productId": "subscriptionId",
-              "status": "Failed",
               "results": [
                 {
-                  "level": "Error",
                   "code": "NotIntendedRecipient",
+                  "level": "Error",
                   "message": "Intended recipient is different."
                 }
-              ]
+              ],
+              "status": "Failed"
             }
           }
         ]
       }
     }
-  }
+  },
+  "operationId": "RecipientTransfers_Validate",
+  "title": "ValidateTransfer"
 }

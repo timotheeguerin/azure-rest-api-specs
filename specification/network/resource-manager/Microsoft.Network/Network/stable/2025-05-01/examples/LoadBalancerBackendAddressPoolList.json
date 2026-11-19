@@ -1,9 +1,9 @@
 {
   "parameters": {
-    "subscriptionId": "subid",
-    "resourceGroupName": "testrg",
+    "api-version": "2025-05-01",
     "loadBalancerName": "lb",
-    "api-version": "2025-05-01"
+    "resourceGroupName": "testrg",
+    "subscriptionId": "00000000-0000-0000-0000-000000000000"
   },
   "responses": {
     "200": {
@@ -11,25 +11,27 @@
         "value": [
           {
             "name": "backend",
-            "id": "/subscriptions/subid/resourceGroups/testrg/providers/Microsoft.Network/loadBalancers/lb/backendAddressPools/backend",
-            "etag": "W/\"00000000-0000-0000-0000-000000000000\"",
             "type": "Microsoft.Network/loadBalancers/backendAddressPools",
+            "etag": "W/\"00000000-0000-0000-0000-000000000000\"",
+            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testrg/providers/Microsoft.Network/loadBalancers/lb/backendAddressPools/backend",
             "properties": {
-              "provisioningState": "Succeeded",
               "backendIPConfigurations": [
                 {
-                  "id": "/subscriptions/subid/resourceGroups/testrg/providers/Microsoft.Network/networkInterfaces/nic/ipConfigurations/default-ip-config"
+                  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testrg/providers/Microsoft.Network/networkInterfaces/nic/ipConfigurations/default-ip-config"
                 }
               ],
               "loadBalancingRules": [
                 {
-                  "id": "/subscriptions/subid/resourceGroups/testrg/providers/Microsoft.Network/loadBalancers/lb/loadBalancingRules/rulelb"
+                  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testrg/providers/Microsoft.Network/loadBalancers/lb/loadBalancingRules/rulelb"
                 }
-              ]
+              ],
+              "provisioningState": "Succeeded"
             }
           }
         ]
       }
     }
-  }
+  },
+  "operationId": "LoadBalancerBackendAddressPools_List",
+  "title": "LoadBalancerBackendAddressPoolList"
 }

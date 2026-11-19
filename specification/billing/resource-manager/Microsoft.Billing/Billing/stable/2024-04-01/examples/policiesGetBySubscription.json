@@ -6,20 +6,22 @@
   "responses": {
     "200": {
       "body": {
-        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Billing/policies/default",
         "name": "default",
+        "type": "Microsoft.Billing/policies",
+        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Billing/policies/default",
         "properties": {
           "policies": [
             {
               "name": "ViewCharges",
-              "value": "Allowed",
               "policyType": "SystemControlled",
-              "scope": "/subscriptions/00000000-0000-0000-0000-000000000000"
+              "scope": "/subscriptions/00000000-0000-0000-0000-000000000000",
+              "value": "Allowed"
             }
           ]
-        },
-        "type": "Microsoft.Billing/policies"
+        }
       }
     }
-  }
+  },
+  "operationId": "Policies_GetBySubscription",
+  "title": "PoliciesGetBySubscription"
 }

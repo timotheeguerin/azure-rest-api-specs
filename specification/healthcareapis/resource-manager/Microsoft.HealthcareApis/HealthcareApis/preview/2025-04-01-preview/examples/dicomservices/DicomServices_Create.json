@@ -1,46 +1,51 @@
 {
   "parameters": {
-    "subscriptionId": "subid",
-    "resourceGroupName": "testRG",
-    "workspaceName": "workspace1",
-    "dicomServiceName": "blue",
     "api-version": "2025-04-01-preview",
+    "dicomServiceName": "blue",
     "dicomservice": {
       "location": "westus",
       "properties": {
+        "enableDataPartitions": false,
         "storageConfiguration": {
-          "storageResourceId": "/subscriptions/ab309d4e-4c2e-4241-be2e-08e1c8dd4246/resourceGroups/rgname/providers/Microsoft.Storage/storageAccounts/accountname",
           "fileSystemName": "fileSystemName",
           "storageIndexingConfiguration": {
             "storageEventQueueName": "storage-events"
-          }
-        },
-        "enableDataPartitions": false
+          },
+          "storageResourceId": "/subscriptions/ab309d4e-4c2e-4241-be2e-08e1c8dd4246/resourceGroups/rgname/providers/Microsoft.Storage/storageAccounts/accountname"
+        }
       }
-    }
+    },
+    "resourceGroupName": "testRG",
+    "subscriptionId": "subid",
+    "workspaceName": "workspace1"
   },
   "responses": {
     "200": {
       "body": {
         "name": "blue",
-        "id": "/subscriptions/subid/resourceGroups/testRG/providers/Microsoft.HealthcareApis/workspaces/workspace1/dicomservices/blue",
-        "location": "westus",
         "type": "Microsoft.HealthcareApis/workspaces/dicomservices",
+        "id": "/subscriptions/subid/resourceGroups/testRG/providers/Microsoft.HealthcareApis/workspaces/workspace1/dicomservices/blue",
+        "identity": {
+          "type": "UserAssigned",
+          "userAssignedIdentities": {
+            "/subscriptions/subid/resourcegroups/testRG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/test-mi": {}
+          }
+        },
+        "location": "westus",
         "properties": {
           "authenticationConfiguration": {
-            "authority": "https://login.microsoftonline.com/abfde7b2-df0f-47e6-aabf-2462b07508dc",
             "audiences": [
               "https://azurehealthcareapis.com/",
               "https://azurehealthcareapis.com"
-            ]
+            ],
+            "authority": "https://login.microsoftonline.com/abfde7b2-df0f-47e6-aabf-2462b07508dc"
           },
           "corsConfiguration": {
-            "origins": [
-              "*"
-            ],
+            "allowCredentials": false,
             "headers": [
               "*"
             ],
+            "maxAge": 1440,
             "methods": [
               "DELETE",
               "GET",
@@ -49,30 +54,25 @@
               "POST",
               "PUT"
             ],
-            "maxAge": 1440,
-            "allowCredentials": false
+            "origins": [
+              "*"
+            ]
           },
-          "provisioningState": "Succeeded",
-          "serviceUrl": null,
-          "eventState": "Disabled",
+          "enableDataPartitions": false,
           "encryption": {
             "customerManagedKeyEncryption": {
               "keyEncryptionKeyUrl": "https://mykeyvault.vault.azure.net/keys/myEncryptionKey/myKeyVersion"
             }
           },
+          "eventState": "Disabled",
+          "provisioningState": "Succeeded",
+          "serviceUrl": null,
           "storageConfiguration": {
-            "storageResourceId": "/subscriptions/ab309d4e-4c2e-4241-be2e-08e1c8dd4246/resourceGroups/rgname/providers/Microsoft.Storage/storageAccounts/accountname",
             "fileSystemName": "fileSystemName",
             "storageIndexingConfiguration": {
               "storageEventQueueName": "storage-events"
-            }
-          },
-          "enableDataPartitions": false
-        },
-        "identity": {
-          "type": "UserAssigned",
-          "userAssignedIdentities": {
-            "/subscriptions/subid/resourcegroups/testRG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/test-mi": {}
+            },
+            "storageResourceId": "/subscriptions/ab309d4e-4c2e-4241-be2e-08e1c8dd4246/resourceGroups/rgname/providers/Microsoft.Storage/storageAccounts/accountname"
           }
         }
       }
@@ -80,67 +80,69 @@
     "201": {
       "body": {
         "name": "blue",
-        "id": "/subscriptions/subid/resourceGroups/testRG/providers/Microsoft.HealthcareApis/workspaces/workspace1/dicomservices/blue",
-        "location": "westus",
         "type": "Microsoft.HealthcareApis/workspaces/dicomservices",
+        "id": "/subscriptions/subid/resourceGroups/testRG/providers/Microsoft.HealthcareApis/workspaces/workspace1/dicomservices/blue",
+        "identity": {
+          "type": "SystemAssigned",
+          "principalId": "2f1f372f-edcf-43f5-aedb-173da3cc5c1e",
+          "tenantId": "abfde7b2-df0f-47e6-aabf-2462b07508dc"
+        },
+        "location": "westus",
         "properties": {
           "authenticationConfiguration": {
-            "authority": "https://login.microsoftonline.com/abfde7b2-df0f-47e6-aabf-2462b07508dc",
             "audiences": [
               "https://azurehealthcareapis.com/",
               "https://azurehealthcareapis.com"
-            ]
+            ],
+            "authority": "https://login.microsoftonline.com/abfde7b2-df0f-47e6-aabf-2462b07508dc"
           },
-          "provisioningState": "Creating",
-          "serviceUrl": null,
-          "eventState": "Disabled",
+          "enableDataPartitions": false,
           "encryption": {
             "customerManagedKeyEncryption": {
               "keyEncryptionKeyUrl": "https://mykeyvault.vault.azure.net/keys/myEncryptionKey/myKeyVersion"
             }
           },
-          "storageConfiguration": {},
-          "enableDataPartitions": false
-        },
-        "identity": {
-          "principalId": "2f1f372f-edcf-43f5-aedb-173da3cc5c1e",
-          "tenantId": "abfde7b2-df0f-47e6-aabf-2462b07508dc",
-          "type": "SystemAssigned"
+          "eventState": "Disabled",
+          "provisioningState": "Creating",
+          "serviceUrl": null,
+          "storageConfiguration": {}
         }
       }
     },
     "202": {
       "body": {
         "name": "blue",
-        "id": "/subscriptions/subid/resourceGroups/testRG/providers/Microsoft.HealthcareApis/workspaces/workspace1/dicomservices/blue",
-        "location": "westus",
         "type": "Microsoft.HealthcareApis/workspaces/dicomservices",
-        "properties": {
-          "authenticationConfiguration": {
-            "authority": "https://login.microsoftonline.com/abfde7b2-df0f-47e6-aabf-2462b07508dc",
-            "audiences": [
-              "https://azurehealthcareapis.com/",
-              "https://azurehealthcareapis.com"
-            ]
-          },
-          "provisioningState": "Accepted",
-          "serviceUrl": null,
-          "eventState": "Disabled",
-          "encryption": {
-            "customerManagedKeyEncryption": {
-              "keyEncryptionKeyUrl": "https://mykeyvault.vault.azure.net/keys/myEncryptionKey/myKeyVersion"
-            }
-          },
-          "storageConfiguration": {},
-          "enableDataPartitions": false
-        },
+        "id": "/subscriptions/subid/resourceGroups/testRG/providers/Microsoft.HealthcareApis/workspaces/workspace1/dicomservices/blue",
         "identity": {
           "type": "UserAssigned",
           "userAssignedIdentities": {
             "/subscriptions/subid/resourcegroups/testRG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/test-mi": {}
           }
+        },
+        "location": "westus",
+        "properties": {
+          "authenticationConfiguration": {
+            "audiences": [
+              "https://azurehealthcareapis.com/",
+              "https://azurehealthcareapis.com"
+            ],
+            "authority": "https://login.microsoftonline.com/abfde7b2-df0f-47e6-aabf-2462b07508dc"
+          },
+          "enableDataPartitions": false,
+          "encryption": {
+            "customerManagedKeyEncryption": {
+              "keyEncryptionKeyUrl": "https://mykeyvault.vault.azure.net/keys/myEncryptionKey/myKeyVersion"
+            }
+          },
+          "eventState": "Disabled",
+          "provisioningState": "Accepted",
+          "serviceUrl": null,
+          "storageConfiguration": {}
         }
       }
     }
-  }
+  },
+  "operationId": "DicomServices_CreateOrUpdate",
+  "title": "Create or update a Dicom Service"
 }

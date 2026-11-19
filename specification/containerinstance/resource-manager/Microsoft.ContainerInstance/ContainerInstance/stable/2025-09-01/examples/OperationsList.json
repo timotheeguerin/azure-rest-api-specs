@@ -9,15 +9,17 @@
           {
             "name": "Microsoft.ContainerInstance/containerGroups/read",
             "display": {
-              "provider": "Microsoft Container Instance",
-              "resource": "Container Group",
+              "description": "Get all container goups.",
               "operation": "Get Container Groups",
-              "description": "Get all container goups."
+              "provider": "Microsoft Container Instance",
+              "resource": "Container Group"
             },
             "origin": "User"
           }
         ]
       }
     }
-  }
+  },
+  "operationId": "Operations_List",
+  "title": "OperationsList"
 }

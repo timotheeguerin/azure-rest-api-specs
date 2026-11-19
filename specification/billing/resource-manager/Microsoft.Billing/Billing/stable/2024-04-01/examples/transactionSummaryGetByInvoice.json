@@ -15,5 +15,7 @@
         "total": 5400
       }
     }
-  }
+  },
+  "operationId": "Transactions_GetTransactionSummaryByInvoice",
+  "title": "TransactionSummaryGetByInvoice"
 }

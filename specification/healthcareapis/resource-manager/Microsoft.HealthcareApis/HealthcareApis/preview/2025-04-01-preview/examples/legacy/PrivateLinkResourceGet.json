@@ -1,17 +1,17 @@
 {
   "parameters": {
     "api-version": "2025-04-01-preview",
-    "subscriptionId": "subid",
+    "groupName": "fhir",
     "resourceGroupName": "rgname",
     "resourceName": "service1",
-    "groupName": "fhir"
+    "subscriptionId": "subid"
   },
   "responses": {
     "200": {
       "body": {
-        "id": "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.HealthcareApis/services/service1/privateLinkResources/fhir",
         "name": "fhir",
         "type": "Microsoft.HealthcareApis/services/privateLinkResources",
+        "id": "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.HealthcareApis/services/service1/privateLinkResources/fhir",
         "properties": {
           "groupId": "fhir",
           "requiredMembers": [
@@ -23,5 +23,7 @@
         }
       }
     }
-  }
+  },
+  "operationId": "PrivateLinkResources_Get",
+  "title": "PrivateLinkResources_Get"
 }

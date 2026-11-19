@@ -9,13 +9,15 @@
           {
             "name": "Microsoft.RedHatOpenShift/openShiftClusters/read",
             "display": {
+              "operation": "Read OpenShift cluster",
               "provider": "Azure Red Hat OpenShift",
-              "resource": "openShiftClusters",
-              "operation": "Read OpenShift cluster"
+              "resource": "openShiftClusters"
             }
           }
         ]
       }
     }
-  }
+  },
+  "operationId": "Operations_List",
+  "title": "Lists all of the available RP operations."
 }

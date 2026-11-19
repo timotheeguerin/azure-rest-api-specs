@@ -1,14 +1,15 @@
 {
   "parameters": {
     "api-version": "2024-04-01",
-    "subscriptionId": "11111111-1111-1111-1111-111111111111",
-    "invoiceName": "E123456789"
+    "invoiceName": "E123456789",
+    "subscriptionId": "11111111-1111-1111-1111-111111111111"
   },
   "responses": {
     "200": {
       "body": {
-        "id": "/providers/Microsoft.Billing/billingAccounts/default/billingSubscriptions/11111111-1111-1111-1111-111111111111/invoices/E123456789",
         "name": "E123456789",
+        "type": "Microsoft.Billing/billingAccounts/billingSubscriptions/invoices",
+        "id": "/providers/Microsoft.Billing/billingAccounts/default/billingSubscriptions/11111111-1111-1111-1111-111111111111/invoices/E123456789",
         "properties": {
           "amountDue": {
             "currency": "USD",
@@ -27,9 +28,10 @@
           "status": "Due",
           "subscriptionDisplayName": "Contoso Operations Billing",
           "subscriptionId": "11111111-1111-1111-1111-111111111111"
-        },
-        "type": "Microsoft.Billing/billingAccounts/billingSubscriptions/invoices"
+        }
       }
     }
-  }
+  },
+  "operationId": "Invoices_GetByBillingSubscription",
+  "title": "InvoicesGetByBillingSubscription"
 }

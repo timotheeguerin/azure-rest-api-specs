@@ -8,5 +8,7 @@
   "responses": {
     "200": {},
     "204": {}
-  }
+  },
+  "operationId": "BillingRoleAssignments_DeleteByBillingProfile",
+  "title": "BillingRoleAssignmentDeleteByBillingProfile"
 }

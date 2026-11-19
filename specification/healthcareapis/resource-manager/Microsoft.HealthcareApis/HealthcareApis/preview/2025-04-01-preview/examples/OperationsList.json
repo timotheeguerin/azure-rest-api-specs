@@ -24,10 +24,10 @@
           {
             "name": "Microsoft.HealthcareApis/locations/operationresults/read",
             "display": {
-              "provider": "Microsoft.HealthcareApis",
-              "resource": "operationresults",
+              "description": "Get the status of an asynchronous operation",
               "operation": "read",
-              "description": "Get the status of an asynchronous operation"
+              "provider": "Microsoft.HealthcareApis",
+              "resource": "operationresults"
             },
             "origin": "user,system"
           },
@@ -99,15 +99,17 @@
           {
             "name": "Microsoft.HealthcareApis/Operations/read",
             "display": {
-              "provider": "Microsoft.HealthcareApis",
-              "resource": "operations",
+              "description": "Get the list of operations supported by this Resource Provider.",
               "operation": "read",
-              "description": "Get the list of operations supported by this Resource Provider."
+              "provider": "Microsoft.HealthcareApis",
+              "resource": "operations"
             },
             "origin": "user,system"
           }
         ]
       }
     }
-  }
+  },
+  "operationId": "Operations_List",
+  "title": "List operations"
 }

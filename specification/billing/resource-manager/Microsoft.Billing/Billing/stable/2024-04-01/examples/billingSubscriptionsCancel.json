@@ -15,5 +15,7 @@
         "retry-after": "10"
       }
     }
-  }
+  },
+  "operationId": "BillingSubscriptions_Cancel",
+  "title": "BillingSubscriptionsCancel"
 }

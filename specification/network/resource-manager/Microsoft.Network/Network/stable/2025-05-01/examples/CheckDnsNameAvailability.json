@@ -1,9 +1,9 @@
 {
   "parameters": {
     "api-version": "2025-05-01",
-    "subscriptionId": "subid",
+    "domainNameLabel": "testdns",
     "location": "westus",
-    "domainNameLabel": "testdns"
+    "subscriptionId": "00000000-0000-0000-0000-000000000000"
   },
   "responses": {
     "200": {
@@ -11,5 +11,7 @@
         "available": false
       }
     }
-  }
+  },
+  "operationId": "CheckDnsNameAvailability",
+  "title": "Check Dns Name Availability"
 }

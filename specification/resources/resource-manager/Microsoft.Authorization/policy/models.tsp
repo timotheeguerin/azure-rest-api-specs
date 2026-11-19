@@ -58,6 +58,24 @@ union SelectorKind {
    * The selector kind to filter policies by the policy definition reference ID.
    */
   policyDefinitionReferenceId: "policyDefinitionReferenceId",
+
+  /**
+   * The selector kind to filter policies by the resource rollout percentage.
+   */
+  @added(Versions.v2026_06_01)
+  resourceRolloutPercentage: "resourceRolloutPercentage",
+
+  /**
+   * The selector kind to filter policies by the user principal ID.
+   */
+  @added(Versions.v2025_12_01_preview)
+  userPrincipalId: "userPrincipalId",
+
+  /**
+   * The selector kind to filter policies by the security group membership ID.
+   */
+  @added(Versions.v2025_12_01_preview)
+  groupPrincipalId: "groupPrincipalId",
 }
 
 /**
@@ -248,6 +266,7 @@ union PolicyAction {
 
   /**
    * The effective outcome of policy evaluation is to allow the request.
+   */
   Allow: "Allow",
 
   /**
@@ -267,6 +286,64 @@ union PolicyAction {
 }
 
 /**
+ * The compliance state of the resource against the policy. Possible values are NotSpecified, NonCompliant, Partial, Conflict, NotApplicable, Compliant, Error, Unknown, Exempt, and Protected.
+ */
+@added(Versions.v2026_07_01)
+union ComplianceState {
+  string,
+
+  /**
+   * Indicates a policy evaluation result for which no specific value is set by the evaluator.
+   */
+  NotSpecified: "NotSpecified",
+
+  /**
+   * Indicates a non-compliant policy evaluation.
+   */
+  NonCompliant: "NonCompliant",
+
+  /**
+   * Indicates a partially completed policy evaluation.
+   */
+  Partial: "Partial",
+
+  /**
+   * Indicates a policy evaluation result, where the Policy definitions conflicted so that the evaluation couldn't complete.
+   */
+  Conflict: "Conflict",
+
+  /**
+   * Indicates a policy evaluation result, where the Policy is not applicable.
+   */
+  NotApplicable: "NotApplicable",
+
+  /**
+   * Indicates a policy evaluation result, where the Policy is compliant.
+   */
+  Compliant: "Compliant",
+
+  /**
+   * Indicates a policy evaluation result, where the Policy evaluation resulted in an error.
+   */
+  Error: "Error",
+
+  /**
+   * Indicates a policy evaluation result that is unknown.
+   */
+  Unknown: "Unknown",
+
+  /**
+   * Indicates a policy evaluation result, where the Policy is exempt.
+   */
+  Exempt: "Exempt",
+
+  /**
+   * Indicates a policy evaluation result, where the resource is protected.
+   */
+  Protected: "Protected",
+}
+
+/**
  * The identity type. This is the only required field when adding a system or user assigned identity to a resource.
  */
 #suppress "@azure-tools/typespec-azure-core/no-enum" "For backward compatibility"
@@ -277,7 +354,7 @@ enum ResourceIdentityType {
   SystemAssigned,
 
   /**
-   * Indicates that a system assigned identity is associated with the resource.
+   * Indicates that a user assigned identity is associated with the resource.
    */
   UserAssigned,
 
@@ -464,6 +541,14 @@ model Selector {
    * The list of values to filter out.
    */
   notIn?: string[];
+
+  /**
+   * The percent of total resources that will be governed by the policy.
+   */
+  @added(Versions.v2026_06_01)
+  @maxValue(100)
+  @minValue(0)
+  progress?: int32;
 }
 
 /**
@@ -1110,6 +1195,12 @@ model ExternalEvaluationEndpointInvocationResult {
   additionalInfo?: unknown;
 
   /**
+   * The compliance state of the resource against the policy. Possible values are NotSpecified, NonCompliant, Conflict, NotApplicable, Compliant, Error, Unknown, and Exempt.
+   */
+  @added(Versions.v2026_07_01)
+  complianceState?: ComplianceState;
+
+  /**
    * The expiration of the results.
    */
   expiration?: utcDateTime;
@@ -1176,29 +1267,14 @@ model PolicyLogInfo {
   policySetDefinitionName?: string;
 
   /**
-   * The policy set definition display name.
-   */
-  policySetDefinitionDisplayName?: string;
-
-  /**
    * The policy set definition version.
    */
   policySetDefinitionVersion?: string;
 
   /**
-   * The policy set definition category.
-   */
-  policySetDefinitionCategory?: string;
-
-  /**
    * The policy definition name.
    */
   policyDefinitionName?: string;
-
-  /**
-   * The policy definition display name.
-   */
-  policyDefinitionDisplayName?: string;
 
   /**
    * The policy definition version.
@@ -1211,11 +1287,6 @@ model PolicyLogInfo {
   policyDefinitionEffect?: string;
 
   /**
-   * An array of policy definition group names.
-   */
-  policyDefinitionGroupNames?: string[];
-
-  /**
    * The policy assignment Id.
    */
   policyAssignmentId?: string;
@@ -1226,11 +1297,6 @@ model PolicyLogInfo {
   policyAssignmentName?: string;
 
   /**
-   * The policy assignment display name.
-   */
-  policyAssignmentDisplayName?: string;
-
-  /**
    * The policy assignment version.
    */
   policyAssignmentVersion?: string;
@@ -1239,24 +1305,625 @@ model PolicyLogInfo {
    * The policy assignment scope.
    */
   policyAssignmentScope?: string;
+}
+
+/**
+ * The policy exemption category. Possible values are Waiver and Mitigated.
+ */
+@added(Versions.v2025_12_01_preview)
+@added(Versions.v2026_01_01_preview)
+union ExemptionCategory {
+  string,
 
   /**
-   * The resource location.
+   * This category of exemptions usually means the scope is not applicable for the policy.
    */
-  resourceLocation?: string;
+  Waiver: "Waiver",
 
   /**
-   * The management group ancestors.
+   * This category of exemptions usually means the mitigation actions have been applied to the scope.
    */
-  ancestors?: string;
+  Mitigated: "Mitigated",
+}
+
+/**
+ * The option to validate whether the exemption or enrollment is at or under the assignment scope.
+ */
+@added(Versions.v2025_12_01_preview)
+union AssignmentScopeValidation {
+  string,
 
   /**
-   * The policy compliance reason code.
+   * This option will validate the exemption is at or under the assignment scope.
    */
-  complianceReasonCode?: string;
+  Default: "Default",
 
   /**
-   * An array of policy exemption Ids.
+   * This option will bypass the validation the exemption scope is at or under the policy assignment scope.
    */
-  policyExemptionIds?: string[];
+  DoNotValidate: "DoNotValidate",
+}
+
+/**
+ * The mode indicating how the policy exemption is managed. Possible values are Admin and UserSelfServe.
+ */
+@added(Versions.v2025_12_01_preview)
+union ExemptionManagementMode {
+  string,
+
+  /**
+   * This mode means the exemption is managed by an administrator and requires permission for the policy exemption action.
+   */
+  Admin: "Admin",
+
+  /**
+   * This mode means the exemption is managed by the user it applies to, through the self-serve exemption settings on the policy assignment.
+   */
+  UserSelfServe: "UserSelfServe",
+}
+
+/**
+ * The policy exemption properties.
+ */
+#suppress "@azure-tools/typespec-azure-resource-manager/arm-resource-provisioning-state" "For backward compatibility"
+@added(Versions.v2025_12_01_preview)
+@added(Versions.v2026_01_01_preview)
+model PolicyExemptionProperties {
+  /**
+   * The ID of the policy assignment that is being exempted.
+   */
+  policyAssignmentId: string;
+
+  /**
+   * The policy definition reference ID list when the associated policy assignment is an assignment of a policy set definition.
+   */
+  policyDefinitionReferenceIds?: string[];
+
+  /**
+   * The policy exemption category. Possible values are Waiver and Mitigated.
+   */
+  exemptionCategory: ExemptionCategory;
+
+  /**
+   * The expiration date and time (in UTC ISO 8601 format yyyy-MM-ddTHH:mm:ssZ) of the policy exemption.
+   */
+  expiresOn?: utcDateTime;
+
+  /**
+   * The display name of the policy exemption.
+   */
+  displayName?: string;
+
+  /**
+   * The description of the policy exemption.
+   */
+  description?: string;
+
+  /**
+   * The policy exemption metadata. Metadata is an open ended object and is typically a collection of key value pairs.
+   */
+  #suppress "@azure-tools/typespec-azure-core/no-unknown" "For backward compatibility"
+  metadata?: unknown;
+
+  /**
+   * The resource selector list to filter policies by resource properties.
+   */
+  @identifiers(#["name"])
+  resourceSelectors?: ResourceSelector[];
+
+  /**
+   * The option whether validate the exemption is at or under the assignment scope.
+   */
+  assignmentScopeValidation?: AssignmentScopeValidation;
+
+  /**
+   * The mode indicating how the policy exemption is managed.
+   */
+  exemptionManagementMode?: ExemptionManagementMode = ExemptionManagementMode.Admin;
+}
+
+/**
+ * The policy exemption for Patch request.
+ */
+@added(Versions.v2025_12_01_preview)
+@added(Versions.v2026_01_01_preview)
+model PolicyExemptionUpdate {
+  /**
+   * The policy exemption properties for Patch request.
+   */
+  properties?: PolicyExemptionUpdateProperties;
+}
+
+/**
+ * The policy exemption properties for Patch request.
+ */
+@added(Versions.v2025_12_01_preview)
+@added(Versions.v2026_01_01_preview)
+model PolicyExemptionUpdateProperties {
+  /**
+   * The resource selector list to filter policies by resource properties.
+   */
+  @identifiers(#["name"])
+  resourceSelectors?: ResourceSelector[];
+
+  /**
+   * The option whether validate the exemption is at or under the assignment scope.
+   */
+  assignmentScopeValidation?: AssignmentScopeValidation;
+
+  /**
+   * The mode indicating how the policy exemption is managed.
+   */
+  exemptionManagementMode?: ExemptionManagementMode;
+}
+
+/**
+ * The policy enrollment properties.
+ */
+#suppress "@azure-tools/typespec-azure-resource-manager/arm-resource-provisioning-state" "Policy resources are modeled without provisioningState to keep consistency with existing policy resource contracts"
+@added(Versions.v2026_01_01_preview)
+model PolicyEnrollmentProperties {
+  /**
+   * The ID of the policy assignment that is being enrolled.
+   */
+  policyAssignmentId: Azure.Core.armResourceIdentifier<[
+    {
+      type: "Microsoft.Authorization/policyAssignments";
+    }
+  ]>;
+
+  /**
+   * The policy assignment instance ID associated with this enrollment.
+   * The value is set to the instance ID of the policy assignment the policyAssignmentId references when the enrollment is created or updated.
+   * The format is a GUID string.
+   */
+  @visibility(Lifecycle.Read)
+  policyAssignmentInstanceId?: Azure.Core.uuid;
+
+  /**
+   * The policy definition reference IDs for policy definitions in an assigned policy set definition.
+   * These IDs correspond to a subset of `policyDefinitions[*].policyDefinitionReferenceId` in the policy set definition.
+   * When specified and not empty, only the referenced policy definitions will be enrolled to. Otherwise, the entire policy set is enrolled to
+   */
+  policyDefinitionReferenceIds?: string[];
+
+  /**
+   * The display name of the policy enrollment.
+   */
+  displayName?: string;
+
+  /**
+   * The description of the policy enrollment.
+   */
+  description?: string;
+
+  /**
+   * The policy enrollment metadata. Metadata is an open ended object and is typically a collection of key value pairs.
+   */
+  #suppress "@azure-tools/typespec-azure-core/no-unknown" "For backward compatibility"
+  metadata?: unknown;
+
+  /**
+   * The option whether to validate the enrollment is at or under the assignment scope.
+   */
+  assignmentScopeValidation?: AssignmentScopeValidation;
+
+  /**
+   * The resource selector list to filter policies by resource properties.
+   */
+  @identifiers(#[])
+  resourceSelectors?: ResourceSelector[];
+}
+
+/**
+ * The policy enrollment for Patch request.
+ */
+@added(Versions.v2026_01_01_preview)
+model PolicyEnrollmentUpdate {
+  /**
+   * The policy enrollment properties for Patch request.
+   */
+  properties?: PolicyEnrollmentUpdateProperties;
+}
+
+/**
+ * The policy enrollment properties for Patch request.
+ */
+@added(Versions.v2026_01_01_preview)
+model PolicyEnrollmentUpdateProperties {
+  /**
+   * The option whether to validate the enrollment is at or under the assignment scope.
+   */
+  assignmentScopeValidation?: AssignmentScopeValidation;
+
+  /**
+   * The resource selector list to filter policies by resource properties.
+   */
+  @identifiers(#[])
+  resourceSelectors?: ResourceSelector[];
+}
+
+/**
+ * The variable properties.
+ */
+#suppress "@azure-tools/typespec-azure-resource-manager/arm-resource-provisioning-state" "For backward compatibility"
+@added(Versions.v2025_12_01_preview)
+@added(Versions.v2026_01_01_preview)
+model PolicyVariableProperties {
+  /**
+   * Variable column definitions.
+   */
+  @identifiers(#["columnName"])
+  columns: PolicyVariableColumn[];
+}
+
+/**
+ * The variable column.
+ */
+@added(Versions.v2025_12_01_preview)
+@added(Versions.v2026_01_01_preview)
+model PolicyVariableColumn {
+  /**
+   * The name of this policy variable column.
+   */
+  columnName: string;
+}
+
+/**
+ * The variable value properties.
+ */
+#suppress "@azure-tools/typespec-azure-resource-manager/arm-resource-provisioning-state" "For backward compatibility"
+@added(Versions.v2025_12_01_preview)
+@added(Versions.v2026_01_01_preview)
+model PolicyVariableValueProperties {
+  /**
+   * Variable value column value array.
+   */
+  @identifiers(#["columnName"])
+  values: PolicyVariableValueColumnValue[];
+}
+
+/**
+ * The name value tuple for this variable value column.
+ */
+@added(Versions.v2025_12_01_preview)
+@added(Versions.v2026_01_01_preview)
+model PolicyVariableValueColumnValue {
+  /**
+   * Column name for the variable value
+   */
+  columnName: string;
+
+  /**
+   * Column value for the variable value; this can be an integer, double, boolean, null or a string.
+   */
+  #suppress "@azure-tools/typespec-azure-core/no-unknown" "For backward compatibility"
+  columnValue: unknown;
+}
+
+/**
+ * The type of the alias.
+ */
+#suppress "@azure-tools/typespec-azure-core/no-enum" "For backward compatibility"
+@added(Versions.v2025_11_01)
+enum AliasType {
+  /**
+   * Alias type is unknown (same as not providing alias type).
+   */
+  NotSpecified,
+
+  /**
+   * Alias value is not secret.
+   */
+  PlainText,
+
+  /**
+   * Alias value is secret.
+   */
+  Mask,
+}
+
+/**
+ * The type of alias pattern.
+ */
+#suppress "@azure-tools/typespec-azure-core/no-enum" "For backward compatibility"
+@added(Versions.v2025_11_01)
+enum AliasPatternType {
+  /**
+   * NotSpecified is not allowed.
+   */
+  NotSpecified,
+
+  /**
+   * Extract is the only allowed value.
+   */
+  Extract,
+}
+
+/**
+ * The type of the token that the alias path is referring to.
+ */
+@added(Versions.v2025_11_01)
+union AliasPathTokenType {
+  string,
+
+  /**
+   * The token type is not specified.
+   */
+  NotSpecified: "NotSpecified",
+
+  /**
+   * The token type can be anything.
+   */
+  Any: "Any",
+
+  /**
+   * The token type is string.
+   */
+  String: "String",
+
+  /**
+   * The token type is object.
+   */
+  Object: "Object",
+
+  /**
+   * The token type is array.
+   */
+  Array: "Array",
+
+  /**
+   * The token type is integer.
+   */
+  Integer: "Integer",
+
+  /**
+   * The token type is number.
+   */
+  Number: "Number",
+
+  /**
+   * The token type is boolean.
+   */
+  Boolean: "Boolean",
+}
+
+/**
+ * The attributes of the token that the alias path is referring to.
+ */
+@added(Versions.v2025_11_01)
+union AliasPathAttributes {
+  string,
+
+  /**
+   * The token that the alias path is referring to has no attributes.
+   */
+  None: "None",
+
+  /**
+   * The token that the alias path is referring to is modifiable by policies with 'modify' effect.
+   */
+  Modifiable: "Modifiable",
+}
+
+/**
+ * The type of the pattern for an alias path.
+ */
+@added(Versions.v2025_11_01)
+model AliasPattern {
+  /**
+   * The alias pattern phrase.
+   */
+  phrase?: string;
+
+  /**
+   * The alias pattern variable.
+   */
+  variable?: string;
+
+  /**
+   * The pattern for an alias path.
+   */
+  type?: AliasPatternType;
+}
+
+/**
+ * The alias path metadata.
+ */
+@added(Versions.v2025_11_01)
+model AliasPathMetadata {
+  /**
+   * The type of the token that the alias path is referring to.
+   */
+  type?: AliasPathTokenType;
+
+  /**
+   * The attributes of the token that the alias path is referring to.
+   */
+  attributes?: AliasPathAttributes;
+}
+
+/**
+ * The type of the paths for alias.
+ */
+@added(Versions.v2025_11_01)
+model AliasPath {
+  /**
+   * The path of an alias.
+   */
+  path?: string;
+
+  /**
+   * The API versions.
+   */
+  apiVersions?: string[];
+
+  /**
+   * The pattern for an alias path.
+   */
+  pattern?: AliasPattern;
+
+  /**
+   * The metadata of the alias path. If missing, fall back to the default metadata of the alias.
+   */
+  @visibility(Lifecycle.Read)
+  metadata?: AliasPathMetadata;
+}
+
+/**
+ * The alias type.
+ */
+@added(Versions.v2025_11_01)
+model Alias {
+  /**
+   * The alias name.
+   */
+  name?: string;
+
+  /**
+   * The paths for an alias.
+   */
+  @identifiers(#[])
+  paths?: AliasPath[];
+
+  /**
+   * The type of the alias.
+   */
+  type?: AliasType;
+
+  /**
+   * The default path for an alias.
+   */
+  defaultPath?: string;
+
+  /**
+   * The default pattern for an alias.
+   */
+  defaultPattern?: AliasPattern;
+
+  /**
+   * The default alias path metadata. Applies to the default path and to any alias path that doesn't have metadata.
+   */
+  defaultMetadata?: AliasPathMetadata;
+}
+
+/**
+ * The custom resource function definition.
+ */
+@added(Versions.v2025_11_01)
+model DataManifestCustomResourceFunctionDefinition {
+  /**
+   * The function name as it will appear in the policy rule. eg - 'vault'.
+   */
+  name?: string;
+
+  /**
+   * The fully qualified control plane resource type that this function represents. eg - 'Microsoft.KeyVault/vaults'.
+   */
+  fullyQualifiedResourceType?: string;
+
+  /**
+   * The top-level properties that can be selected on the function's output. eg - [ \"name\", \"location\" ] if vault().name and vault().location are supported.
+   */
+  defaultProperties?: string[];
+
+  /**
+   * A value indicating whether the custom properties within the property bag are allowed. Needs api-version to be specified in the policy rule eg - vault('2019-06-01').
+   */
+  allowCustomProperties?: boolean;
+}
+
+/**
+ * The resource functions supported by a manifest.
+ */
+@added(Versions.v2025_11_01)
+model DataManifestResourceFunctionsDefinition {
+  /**
+   * The standard resource functions (subscription and/or resourceGroup).
+   */
+  standard?: string[];
+
+  /**
+   * An array of data manifest custom resource definitions.
+   */
+  @identifiers(#["name", "fullyQualifiedResourceType"])
+  custom?: DataManifestCustomResourceFunctionDefinition[];
+}
+
+/**
+ * The data effect definition.
+ */
+@added(Versions.v2025_11_01)
+model DataEffect {
+  /**
+   * The data effect name.
+   */
+  name?: string;
+
+  /**
+   * The data effect details schema.
+   */
+  #suppress "@azure-tools/typespec-azure-core/no-unknown" "For backward compatibility"
+  detailsSchema?: unknown;
+}
+
+/**
+ * The resource type aliases definition.
+ */
+@added(Versions.v2025_11_01)
+model ResourceTypeAliases {
+  /**
+   * The resource type name.
+   */
+  resourceType?: string;
+
+  /**
+   * The aliases for property names.
+   */
+  @identifiers(#["name"])
+  aliases?: Alias[];
+}
+
+/**
+ * The properties of the data policy manifest.
+ */
+#suppress "@azure-tools/typespec-azure-resource-manager/arm-resource-provisioning-state" "For backward compatibility"
+@added(Versions.v2025_11_01)
+model DataPolicyManifestProperties {
+  /**
+   * The list of namespaces for the data policy manifest.
+   */
+  namespaces?: string[];
+
+  /**
+   * The policy mode of the data policy manifest.
+   */
+  policyMode?: string;
+
+  /**
+   * A value indicating whether policy mode is allowed only in built-in definitions.
+   */
+  isBuiltInOnly?: boolean;
+
+  /**
+   * An array of resource type aliases.
+   */
+  @identifiers(#["resourceType"])
+  resourceTypeAliases?: ResourceTypeAliases[];
+
+  /**
+   * The effect definition.
+   */
+  @identifiers(#["name"])
+  effects?: DataEffect[];
+
+  /**
+   * The non-alias field accessor values that can be used in the policy rule.
+   */
+  fieldValues?: string[];
+
+  /**
+   * The resource functions definition specified in the data manifest.
+   */
+  resourceFunctions?: DataManifestResourceFunctionsDefinition;
 }

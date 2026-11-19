@@ -1,27 +1,27 @@
 {
   "parameters": {
-    "subscriptionId": "subid",
+    "api-version": "2025-04-01-preview",
     "resourceGroupName": "testRG",
-    "workspaceName": "workspace1",
-    "api-version": "2025-04-01-preview"
+    "subscriptionId": "subid",
+    "workspaceName": "workspace1"
   },
   "responses": {
     "200": {
       "body": {
-        "nextLink": "string",
+        "nextLink": "https://nextlink.url",
         "value": [
           {
             "name": "fhirservice1",
-            "id": "/subscriptions/subid/resourceGroups/testRG/providers/Microsoft.HealthcareApis/workspaces/workspace1/fhirservices/fhirservice1",
             "type": "Microsoft.HealthcareApis/workspaces/fhirservices",
+            "id": "/subscriptions/subid/resourceGroups/testRG/providers/Microsoft.HealthcareApis/workspaces/workspace1/fhirservices/fhirservice1",
             "properties": {
               "provisioningState": "Creating"
             }
           },
           {
             "name": "fhirservice2",
-            "id": "/subscriptions/subid/resourceGroups/testRG/providers/Microsoft.HealthcareApis/workspaces/workspace1/fhirservices/fhirservice2",
             "type": "Microsoft.HealthcareApis/workspaces/fhirservices",
+            "id": "/subscriptions/subid/resourceGroups/testRG/providers/Microsoft.HealthcareApis/workspaces/workspace1/fhirservices/fhirservice2",
             "properties": {
               "provisioningState": "Creating"
             }
@@ -29,5 +29,7 @@
         ]
       }
     }
-  }
+  },
+  "operationId": "FhirServices_ListByWorkspace",
+  "title": "List fhirservices"
 }

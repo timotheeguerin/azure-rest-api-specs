@@ -1,42 +1,44 @@
 {
   "parameters": {
-    "subscriptionId": "00000000-0000-0000-0000-000000000000",
-    "resourceGroupName": "resRg",
-    "clusterName": "myCluster",
+    "api-version": "2023-11-01-preview",
     "applicationName": "myApp",
+    "clusterName": "myCluster",
+    "resourceGroupName": "resRg",
     "serviceName": "myService",
-    "api-version": "2023-11-01-preview"
+    "subscriptionId": "00000000-0000-0000-0000-000000000000"
   },
   "responses": {
     "200": {
-      "headers": {},
       "body": {
-        "type": "services",
-        "location": "eastus",
-        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/resRg/providers/Microsoft.ServiceFabric/clusters/myCluster/applications/myApp/services/myService",
         "name": "myCluster",
-        "tags": {},
+        "type": "services",
         "etag": "W/\"636462502183671258\"",
+        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/resRg/providers/Microsoft.ServiceFabric/clusters/myCluster/applications/myApp/services/myService",
+        "location": "eastus",
         "properties": {
-          "provisioningState": "Updating",
-          "serviceKind": "Stateless",
-          "placementConstraints": "NodeType==frontend",
-          "serviceTypeName": "myServiceType",
+          "defaultMoveCost": "Medium",
+          "instanceCount": 5,
           "partitionDescription": {
             "partitionScheme": "Singleton"
           },
+          "placementConstraints": "NodeType==frontend",
+          "provisioningState": "Updating",
+          "serviceKind": "Stateless",
           "serviceLoadMetrics": [
             {
               "name": "metric1",
               "weight": "Low"
             }
           ],
+          "servicePackageActivationMode": "SharedProcess",
           "servicePlacementPolicies": [],
-          "defaultMoveCost": "Medium",
-          "instanceCount": 5,
-          "servicePackageActivationMode": "SharedProcess"
-        }
-      }
+          "serviceTypeName": "myServiceType"
+        },
+        "tags": {}
+      },
+      "headers": {}
     }
-  }
+  },
+  "operationId": "Services_Get",
+  "title": "Get a service"
 }

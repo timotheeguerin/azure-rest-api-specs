@@ -1,9 +1,9 @@
 {
   "parameters": {
     "api-version": "2025-05-01",
-    "subscriptionId": "subid",
+    "networkVirtualApplianceName": "nva",
     "resourceGroupName": "rg1",
-    "networkVirtualApplianceName": "nva"
+    "subscriptionId": "00000000-0000-0000-0000-000000000000"
   },
   "responses": {
     "200": {
@@ -18,5 +18,7 @@
     "204": {
       "description": "Request successful. Resource with the specified name does not exist."
     }
-  }
+  },
+  "operationId": "NetworkVirtualAppliances_Delete",
+  "title": "Delete NetworkVirtualAppliance"
 }

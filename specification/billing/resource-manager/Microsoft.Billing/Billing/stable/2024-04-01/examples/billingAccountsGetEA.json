@@ -6,29 +6,30 @@
   "responses": {
     "200": {
       "body": {
-        "id": "/providers/Microsoft.Billing/billingAccounts/6575495",
         "name": "6575495",
+        "type": "Microsoft.Billing/billingAccounts",
+        "id": "/providers/Microsoft.Billing/billingAccounts/6575495",
         "properties": {
           "agreementType": "EnterpriseAgreement",
           "enrollmentDetails": {
-            "startDate": "2018-05-01T17:32:28Z",
-            "endDate": "2019-05-31T17:32:28Z",
-            "currency": "USD",
-            "channel": "EaDirect",
-            "language": "en",
-            "countryCode": "US",
             "billingCycle": "Monthly",
-            "extendedTermOption": "Opted-Out",
-            "supportLevel": "Standard",
-            "supportCoverage": "1/26/2021 - 6/30/2021",
+            "channel": "EaDirect",
             "cloud": "Azure Commercial",
-            "markupStatus": "Published",
+            "countryCode": "US",
+            "currency": "USD",
+            "endDate": "2019-05-31T17:32:28Z",
+            "extendedTermOption": "Opted-Out",
             "indirectRelationshipInfo": {
               "billingAccountName": "pcn.12345",
               "billingProfileName": "",
               "displayName": "Test partner"
             },
-            "invoiceRecipient": "abc@contoso.com"
+            "invoiceRecipient": "abc@contoso.com",
+            "markupStatus": "Published",
+            "startDate": "2018-05-01T17:32:28Z",
+            "supportCoverage": "1/26/2021 - 6/30/2021",
+            "supportLevel": "Standard",
+            "language": "en"
           },
           "soldTo": {
             "addressLine1": "Test Address",
@@ -39,9 +40,10 @@
             "postalCode": "00000",
             "region": "WA"
           }
-        },
-        "type": "Microsoft.Billing/billingAccounts"
+        }
       }
     }
-  }
+  },
+  "operationId": "BillingAccounts_Get",
+  "title": "BillingAccountsGetEA"
 }

@@ -1,43 +1,45 @@
 {
   "parameters": {
-    "subscriptionId": "00000000-0000-0000-0000-000000000000",
-    "resourceGroupName": "resRg",
-    "clusterName": "myCluster",
+    "api-version": "2023-11-01-preview",
     "applicationName": "myApp",
-    "api-version": "2023-11-01-preview"
+    "clusterName": "myCluster",
+    "resourceGroupName": "resRg",
+    "subscriptionId": "00000000-0000-0000-0000-000000000000"
   },
   "responses": {
     "200": {
-      "headers": {},
       "body": {
+        "nextLink": "http://examplelink.com",
         "value": [
           {
-            "type": "services",
-            "location": "eastus",
-            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/resRg/providers/Microsoft.ServiceFabric/clusters/myCluster/applications/myApp/services/myService",
             "name": "myCluster",
-            "tags": {},
+            "type": "services",
             "etag": "W/\"636462502183671257\"",
+            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/resRg/providers/Microsoft.ServiceFabric/clusters/myCluster/applications/myApp/services/myService",
+            "location": "eastus",
             "properties": {
-              "provisioningState": "Updating",
-              "serviceKind": "Stateless",
-              "serviceTypeName": "myServiceType",
+              "instanceCount": 1,
               "partitionDescription": {
                 "partitionScheme": "Singleton"
               },
+              "provisioningState": "Updating",
+              "serviceKind": "Stateless",
               "serviceLoadMetrics": [
                 {
                   "name": "metric1",
                   "weight": "Low"
                 }
               ],
-              "instanceCount": 1,
-              "servicePackageActivationMode": "SharedProcess"
-            }
+              "servicePackageActivationMode": "SharedProcess",
+              "serviceTypeName": "myServiceType"
+            },
+            "tags": {}
           }
-        ],
-        "nextLink": ""
-      }
+        ]
+      },
+      "headers": {}
     }
-  }
+  },
+  "operationId": "Services_List",
+  "title": "Get a list of service resources"
 }

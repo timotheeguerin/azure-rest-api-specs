@@ -1,95 +1,97 @@
 {
   "parameters": {
-    "resourceName": "service2",
-    "resourceGroupName": "rg1",
     "api-version": "2025-04-01-preview",
-    "subscriptionId": "subid",
+    "resourceGroupName": "rg1",
+    "resourceName": "service2",
     "serviceDescription": {
-      "location": "westus2",
-      "tags": {},
       "kind": "fhir-R4",
+      "location": "westus2",
       "properties": {
         "accessPolicies": [
           {
             "objectId": "c487e7d1-3210-41a3-8ccc-e9372b78da47"
           }
         ]
-      }
-    }
+      },
+      "tags": {}
+    },
+    "subscriptionId": "subid"
   },
   "responses": {
     "200": {
       "body": {
-        "id": "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.HealthcareApis/services/service2",
         "name": "service2",
         "type": "Microsoft.HealthcareApis/services",
         "etag": "etagvalue",
-        "location": "westus2",
+        "id": "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.HealthcareApis/services/service2",
         "kind": "fhir-R4",
-        "tags": {},
+        "location": "westus2",
         "properties": {
           "accessPolicies": [
             {
               "objectId": "c487e7d1-3210-41a3-8ccc-e9372b78da47"
             }
           ],
-          "cosmosDbConfiguration": {
-            "offerThroughput": 1000
-          },
           "authenticationConfiguration": {
-            "authority": "https://login.microsoftonline.com/abfde7b2-df0f-47e6-aabf-2462b07508dc",
             "audience": "https://azurehealthcareapis.com",
+            "authority": "https://login.microsoftonline.com/abfde7b2-df0f-47e6-aabf-2462b07508dc",
             "smartProxyEnabled": false
           },
           "corsConfiguration": {
-            "origins": [],
+            "allowCredentials": false,
             "headers": [],
-            "methods": [],
             "maxAge": null,
-            "allowCredentials": false
+            "methods": [],
+            "origins": []
           },
-          "provisioningState": "Creating",
+          "cosmosDbConfiguration": {
+            "offerThroughput": 1000
+          },
           "privateEndpointConnections": [],
+          "provisioningState": "Creating",
           "publicNetworkAccess": "Disabled"
-        }
+        },
+        "tags": {}
       }
     },
     "201": {
       "body": {
-        "id": "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.HealthcareApis/services/service2",
         "name": "service2",
         "type": "Microsoft.HealthcareApis/services",
         "etag": "etagvalue",
-        "location": "westus2",
+        "id": "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.HealthcareApis/services/service2",
         "kind": "fhir-R4",
-        "tags": {},
+        "location": "westus2",
         "properties": {
           "accessPolicies": [
             {
               "objectId": "c487e7d1-3210-41a3-8ccc-e9372b78da47"
             }
           ],
-          "cosmosDbConfiguration": {
-            "offerThroughput": 1000,
-            "keyVaultKeyUri": null
-          },
           "authenticationConfiguration": {
-            "authority": "https://login.microsoftonline.com/abfde7b2-df0f-47e6-aabf-2462b07508dc",
             "audience": "https://azurehealthcareapis.com",
+            "authority": "https://login.microsoftonline.com/abfde7b2-df0f-47e6-aabf-2462b07508dc",
             "smartProxyEnabled": false
           },
           "corsConfiguration": {
-            "origins": [],
+            "allowCredentials": false,
             "headers": [],
-            "methods": [],
             "maxAge": null,
-            "allowCredentials": false
+            "methods": [],
+            "origins": []
           },
-          "provisioningState": "Creating",
+          "cosmosDbConfiguration": {
+            "keyVaultKeyUri": null,
+            "offerThroughput": 1000
+          },
           "privateEndpointConnections": [],
+          "provisioningState": "Creating",
           "publicNetworkAccess": "Disabled"
-        }
+        },
+        "tags": {}
       }
     }
-  }
+  },
+  "operationId": "Services_CreateOrUpdate",
+  "title": "Create or Update a service with minimum parameters"
 }

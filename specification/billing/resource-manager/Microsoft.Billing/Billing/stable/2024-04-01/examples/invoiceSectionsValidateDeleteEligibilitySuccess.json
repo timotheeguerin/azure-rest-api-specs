@@ -9,5 +9,7 @@
     "200": {
       "body": {}
     }
-  }
+  },
+  "operationId": "InvoiceSections_ValidateDeleteEligibility",
+  "title": "InvoiceSectionsValidateDeleteEligibilitySuccess"
 }

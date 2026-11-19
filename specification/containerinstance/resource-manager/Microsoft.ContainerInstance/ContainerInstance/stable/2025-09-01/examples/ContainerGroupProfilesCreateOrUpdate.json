@@ -1,14 +1,7 @@
 {
   "parameters": {
-    "subscriptionId": "00000000-0000-0000-0000-000000000000",
-    "api-version": "2025-09-01",
-    "resourceGroupName": "demo",
-    "containerGroupProfileName": "demo1",
     "ContainerGroupProfile": {
       "location": "west us",
-      "zones": [
-        "1"
-      ],
       "properties": {
         "containers": [
           {
@@ -25,11 +18,11 @@
               "resources": {
                 "requests": {
                   "cpu": 1,
-                  "memoryInGB": 1.5,
                   "gpu": {
                     "count": 1,
                     "sku": "K80"
-                  }
+                  },
+                  "memoryInGB": 1.5
                 }
               },
               "volumeMounts": [
@@ -54,24 +47,24 @@
         ],
         "diagnostics": {
           "logAnalytics": {
-            "workspaceId": "workspaceid",
-            "workspaceKey": "workspaceKey",
             "logType": "ContainerInsights",
             "metadata": {
               "pod-uuid": "test-metadata-value"
             },
+            "workspaceId": "workspaceid",
+            "workspaceKey": "workspaceKey",
             "workspaceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg/providers/microsoft.operationalinsights/workspaces/workspace"
           }
         },
         "imageRegistryCredentials": [],
         "ipAddress": {
+          "type": "Public",
           "ports": [
             {
-              "protocol": "TCP",
-              "port": 80
+              "port": 80,
+              "protocol": "TCP"
             }
-          ],
-          "type": "Public"
+          ]
         },
         "osType": "Linux",
         "volumes": [
@@ -79,8 +72,8 @@
             "name": "volume1",
             "azureFile": {
               "shareName": "shareName",
-              "storageAccountName": "accountName",
-              "storageAccountKey": "accountKey"
+              "storageAccountKey": "accountKey",
+              "storageAccountName": "accountName"
             }
           },
           {
@@ -95,20 +88,24 @@
             }
           }
         ]
-      }
-    }
+      },
+      "zones": [
+        "1"
+      ]
+    },
+    "api-version": "2025-09-01",
+    "containerGroupProfileName": "demo1",
+    "resourceGroupName": "demo",
+    "subscriptionId": "00000000-0000-0000-0000-000000000000"
   },
   "responses": {
     "200": {
       "body": {
+        "name": "demo1",
+        "type": "Microsoft.ContainerInstance/containerGroupProfiles",
         "id": "/subscriptions/subid/resourceGroups/demo/providers/Microsoft.ContainerInstance/containerGroupProfiles/demo1",
         "location": "WestUs",
-        "zones": [
-          "1"
-        ],
-        "name": "demo1",
         "properties": {
-          "sku": "Standard",
           "containers": [
             {
               "name": "demo1",
@@ -124,11 +121,11 @@
                 "resources": {
                   "requests": {
                     "cpu": 1,
-                    "memoryInGB": 1.5,
                     "gpu": {
                       "count": 1,
                       "sku": "K80"
-                    }
+                    },
+                    "memoryInGB": 1.5
                   }
                 },
                 "volumeMounts": [
@@ -153,25 +150,27 @@
           ],
           "diagnostics": {
             "logAnalytics": {
-              "workspaceId": "workspaceid",
               "logType": "ContainerInsights",
               "metadata": {
                 "pod-uuid": "test-metadata-value"
-              }
+              },
+              "workspaceId": "workspaceid"
             }
           },
           "imageRegistryCredentials": [],
           "ipAddress": {
+            "type": "Public",
             "ip": "10.0.0.1",
             "ports": [
               {
                 "port": 80,
                 "protocol": "TCP"
               }
-            ],
-            "type": "Public"
+            ]
           },
           "osType": "Linux",
+          "revision": 0,
+          "sku": "Standard",
           "volumes": [
             {
               "name": "volume1",
@@ -188,22 +187,20 @@
               "name": "volume3",
               "secret": {}
             }
-          ],
-          "revision": 0
+          ]
         },
-        "type": "Microsoft.ContainerInstance/containerGroupProfiles"
+        "zones": [
+          "1"
+        ]
       }
     },
     "201": {
       "body": {
+        "name": "demo1",
+        "type": "Microsoft.ContainerInstance/containerGroupProfiles",
         "id": "/subscriptions/subid/resourceGroups/demo/providers/Microsoft.ContainerInstance/containerGroupProfiles/demo1",
         "location": "WestUs",
-        "zones": [
-          "1"
-        ],
-        "name": "demo1",
         "properties": {
-          "sku": "Standard",
           "containers": [
             {
               "name": "demo1",
@@ -219,11 +216,11 @@
                 "resources": {
                   "requests": {
                     "cpu": 1,
-                    "memoryInGB": 1.5,
                     "gpu": {
                       "count": 1,
                       "sku": "K80"
-                    }
+                    },
+                    "memoryInGB": 1.5
                   }
                 },
                 "volumeMounts": [
@@ -246,27 +243,29 @@
               }
             }
           ],
+          "diagnostics": {
+            "logAnalytics": {
+              "logType": "ContainerInsights",
+              "metadata": {
+                "pod-uuid": "test-metadata-value"
+              },
+              "workspaceId": "workspaceid"
+            }
+          },
           "imageRegistryCredentials": [],
           "ipAddress": {
+            "type": "Public",
             "ip": "10.0.0.1",
             "ports": [
               {
                 "port": 80,
                 "protocol": "TCP"
               }
-            ],
-            "type": "Public"
+            ]
           },
           "osType": "Linux",
-          "diagnostics": {
-            "logAnalytics": {
-              "workspaceId": "workspaceid",
-              "logType": "ContainerInsights",
-              "metadata": {
-                "pod-uuid": "test-metadata-value"
-              }
-            }
-          },
+          "revision": 1,
+          "sku": "Standard",
           "volumes": [
             {
               "name": "volume1",
@@ -283,11 +282,14 @@
               "name": "volume3",
               "secret": {}
             }
-          ],
-          "revision": 1
+          ]
         },
-        "type": "Microsoft.ContainerInstance/containerGroupProfiles"
+        "zones": [
+          "1"
+        ]
       }
     }
-  }
+  },
+  "operationId": "CGProfile_CreateOrUpdate",
+  "title": "ContainerGroupProfilesCreateOrUpdate"
 }

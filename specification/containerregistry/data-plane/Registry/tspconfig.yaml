@@ -11,7 +11,6 @@ linter:
 
 options:
   "@azure-tools/typespec-autorest":
-    azure-resource-provider-folder: "data-plane"
     emitter-output-dir: "{project-root}"
     examples-dir: "{project-root}/examples"
     output-file: "{version-status}/{version}/containerregistry.json"
@@ -32,16 +31,6 @@ options:
     generate-test: false
     generate-sample: false
     flavor: "azure"
-  "@azure-tools/typespec-csharp":
-    namespace: "Azure.Containers.ContainerRegistry"
-    package-name: "Azure.Containers.ContainerRegistry"
-    emitter-output-dir: "{output-dir}/{service-dir}/{namespace}"
-    package-version: "1.1.1"
-    clear-output-folder: true
-    model-namespace: false
-    generate-test: false
-    generate-sample: false
-    flavor: "azure"
   "@azure-tools/typespec-ts":
     emitter-output-dir: "{output-dir}/{service-dir}/container-registry"
     service-dir: "sdk/containerregistry/"
@@ -53,13 +42,7 @@ options:
     generate-test: false
     generate-sample: false
     flavor: "azure"
-  "@azure-tools/typespec-go":
-    containing-module: "github.com/Azure/azure-sdk-for-go/sdk/containers/azcontainerregistry"
-    emitter-output-dir: "{output-dir}/{service-dir}/azcontainerregistry"
-    module-name: "github.com/Azure/azure-sdk-for-go/sdk/containers/azcontainerregistry"
-    package-name: "azcontainerregistry"
-    package-version: "0.2.4"
-    inject-spans: true
-    generate-test: false
-    generate-sample: false
-    flavor: "azure"
+  "@azure-typespec/http-client-csharp":
+    emitter-output-dir: "{output-dir}/{service-dir}/{namespace}"
+    namespace: Azure.Containers.ContainerRegistry
+    model-namespace: false

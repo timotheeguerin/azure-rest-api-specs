@@ -8,8 +8,9 @@
       "body": {
         "value": [
           {
-            "id": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31/billingProfiles/xxxx-xxxx-xxx-xxx",
             "name": "xxxx-xxxx-xxx-xxx",
+            "type": "Microsoft.Billing/billingAccounts/billingProfiles",
+            "id": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31/billingProfiles/xxxx-xxxx-xxx-xxx",
             "properties": {
               "billTo": {
                 "addressLine1": "Test Address1",
@@ -20,11 +21,11 @@
                 "country": "US",
                 "email": "abc@contoso.com",
                 "firstName": "Test",
+                "isValidAddress": true,
                 "lastName": "User",
                 "phoneNumber": "000-000-0000",
                 "postalCode": "00000",
-                "region": "WA",
-                "isValidAddress": true
+                "region": "WA"
               },
               "currency": "USD",
               "displayName": "Billing Profile 1",
@@ -45,11 +46,11 @@
                 "country": "US",
                 "email": "abc@contoso.com",
                 "firstName": "Test",
+                "isValidAddress": true,
                 "lastName": "User",
                 "phoneNumber": "000-000-0000",
                 "postalCode": "00000",
-                "region": "WA",
-                "isValidAddress": true
+                "region": "WA"
               },
               "soldTo": {
                 "addressLine1": "Test Address1",
@@ -60,32 +61,32 @@
                 "country": "US",
                 "email": "abc@contoso.com",
                 "firstName": "Test",
+                "isValidAddress": true,
                 "lastName": "User",
                 "phoneNumber": "000-000-0000",
                 "postalCode": "00000",
-                "region": "WA",
-                "isValidAddress": true
+                "region": "WA"
               },
               "spendingLimit": "On",
               "spendingLimitDetails": [
                 {
+                  "type": "FreeAccount",
                   "amount": 200,
                   "currency": "USD",
-                  "startDate": "2018-01-01T00:00:00.0000000Z",
                   "endDate": "2019-01-01T00:00:00.0000000Z",
-                  "type": "FreeAccount",
+                  "startDate": "2018-01-01T00:00:00.0000000Z",
                   "status": "Active"
                 }
               ],
               "status": "Warned",
               "statusReasonCode": "PastDue",
               "systemId": "11111111-1111-1111-1111-111111111111"
-            },
-            "type": "Microsoft.Billing/billingAccounts/billingProfiles"
+            }
           },
           {
-            "id": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31/billingProfiles/yyyy-yyyy-yyy-yyy",
             "name": "yyyy-yyyy-yyy-yyy",
+            "type": "Microsoft.Billing/billingAccounts/billingProfiles",
+            "id": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31/billingProfiles/yyyy-yyyy-yyy-yyy",
             "properties": {
               "billTo": {
                 "addressLine1": "Test Address1",
@@ -96,11 +97,11 @@
                 "country": "US",
                 "email": "abc@contoso.com",
                 "firstName": "Test",
+                "isValidAddress": true,
                 "lastName": "User",
                 "phoneNumber": "000-000-0000",
                 "postalCode": "00000",
-                "region": "WA",
-                "isValidAddress": true
+                "region": "WA"
               },
               "currency": "USD",
               "displayName": "Billing Profile 2",
@@ -121,11 +122,11 @@
                 "country": "US",
                 "email": "abc@contoso.com",
                 "firstName": "Test",
+                "isValidAddress": true,
                 "lastName": "User",
                 "phoneNumber": "000-000-0000",
                 "postalCode": "00000",
-                "region": "WA",
-                "isValidAddress": true
+                "region": "WA"
               },
               "soldTo": {
                 "addressLine1": "Test Address1",
@@ -136,21 +137,21 @@
                 "country": "US",
                 "email": "abc@contoso.com",
                 "firstName": "Test",
+                "isValidAddress": true,
                 "lastName": "User",
                 "phoneNumber": "000-000-0000",
                 "postalCode": "00000",
-                "region": "WA",
-                "isValidAddress": true
+                "region": "WA"
               },
               "status": "UnderReview",
               "statusReasonCode": "UnusualActivity",
               "systemId": "22222222-2222-2222-2222-222222222222"
-            },
-            "type": "Microsoft.Billing/billingAccounts/billingProfiles"
+            }
           },
           {
-            "id": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31/billingProfiles/zzzz-zzzz-zzz-zzz",
             "name": "zzzz-zzzz-zzz-zzz",
+            "type": "Microsoft.Billing/billingAccounts/billingProfiles",
+            "id": "/providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-000000000000:00000000-0000-0000-0000-000000000000_2019-05-31/billingProfiles/zzzz-zzzz-zzz-zzz",
             "properties": {
               "billTo": {
                 "addressLine1": "Test Address1",
@@ -161,11 +162,11 @@
                 "country": "US",
                 "email": "abc@contoso.com",
                 "firstName": "Test",
+                "isValidAddress": true,
                 "lastName": "User",
                 "phoneNumber": "000-000-0000",
                 "postalCode": "00000",
-                "region": "WA",
-                "isValidAddress": true
+                "region": "WA"
               },
               "currency": "USD",
               "displayName": "Billing Profile 1",
@@ -186,11 +187,11 @@
                 "country": "US",
                 "email": "abc@contoso.com",
                 "firstName": "Test",
+                "isValidAddress": true,
                 "lastName": "User",
                 "phoneNumber": "000-000-0000",
                 "postalCode": "00000",
-                "region": "WA",
-                "isValidAddress": true
+                "region": "WA"
               },
               "soldTo": {
                 "addressLine1": "Test Address1",
@@ -201,19 +202,20 @@
                 "country": "US",
                 "email": "abc@contoso.com",
                 "firstName": "Test",
+                "isValidAddress": true,
                 "lastName": "User",
                 "phoneNumber": "000-000-0000",
                 "postalCode": "00000",
-                "region": "WA",
-                "isValidAddress": true
+                "region": "WA"
               },
               "status": "Active",
               "systemId": "33333333-3333-3333-3333-333333333333"
-            },
-            "type": "Microsoft.Billing/billingAccounts/billingProfiles"
+            }
           }
         ]
       }
     }
-  }
+  },
+  "operationId": "BillingProfiles_ListByBillingAccount",
+  "title": "BillingProfilesListByBillingAccount"
 }

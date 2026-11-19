@@ -1,54 +1,56 @@
 {
   "parameters": {
-    "subscriptionId": "subid",
-    "resourceGroupName": "rg",
+    "api-version": "2023-12-01-preview",
     "applicationName": "myManagedApplication",
-    "api-version": "2023-12-01-preview"
+    "resourceGroupName": "rg",
+    "subscriptionId": "subid"
   },
   "responses": {
-    "404": {},
     "200": {
-      "headers": {},
       "body": {
         "name": "myManagedApplication",
-        "id": "/subscriptions/subid/resourceGroups/rg/providers/Microsoft.Solutions/applications/myManagedApplication",
         "type": "Microsoft.Solutions/applications",
-        "managedBy": null,
-        "plan": null,
+        "id": "/subscriptions/subid/resourceGroups/rg/providers/Microsoft.Solutions/applications/myManagedApplication",
         "identity": null,
         "kind": "ServiceCatalog",
-        "sku": null,
+        "managedBy": null,
+        "plan": null,
         "properties": {
           "applicationDefinitionId": "/subscriptions/subid/resourceGroups/rg/providers/Microsoft.Solutions/managedApplicationDefinitions/myAppDef",
-          "managedResourceGroupId": "/subscriptions/subid/resourceGroups/myManagedRG",
-          "outputs": null,
-          "parameters": null,
-          "provisioningState": "Created",
-          "billingDetails": null,
-          "jitAccessPolicy": null,
-          "publisherTenantId": null,
+          "artifacts": [],
           "authorizations": [
             {
               "principalId": "validprincipalguid",
               "roleDefinitionId": "validroleguid"
             }
           ],
-          "managementMode": "Managed",
-          "customerSupport": null,
-          "supportUrls": null,
-          "artifacts": [],
+          "billingDetails": null,
           "createdBy": {
+            "applicationId": "ClientApplicationId",
             "oid": "ClientOid",
-            "puid": "ClientPuid",
-            "applicationId": "ClientApplicationId"
+            "puid": "ClientPuid"
           },
+          "customerSupport": null,
+          "jitAccessPolicy": null,
+          "managedResourceGroupId": "/subscriptions/subid/resourceGroups/myManagedRG",
+          "managementMode": "Managed",
+          "outputs": null,
+          "parameters": null,
+          "provisioningState": "Created",
+          "publisherTenantId": null,
+          "supportUrls": null,
           "updatedBy": {
+            "applicationId": "ClientApplicationId",
             "oid": "ClientOid",
-            "puid": "ClientPuid",
-            "applicationId": "ClientApplicationId"
+            "puid": "ClientPuid"
           }
-        }
-      }
-    }
-  }
+        },
+        "sku": null
+      },
+      "headers": {}
+    },
+    "404": {}
+  },
+  "operationId": "Applications_Get",
+  "title": "Get a managed application"
 }

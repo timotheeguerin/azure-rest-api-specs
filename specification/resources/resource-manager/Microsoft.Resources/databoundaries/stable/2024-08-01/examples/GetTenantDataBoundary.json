@@ -1,7 +1,7 @@
 {
   "parameters": {
-    "api-version": "2024-08-01",
-    "default": "default"
+    "default": "default",
+    "api-version": "2024-08-01"
   },
   "responses": {
     "200": {
@@ -14,5 +14,7 @@
         }
       }
     }
-  }
+  },
+  "operationId": "DataBoundaries_GetTenant",
+  "title": "Get data boundary for tenant"
 }

@@ -1,33 +1,35 @@
 {
   "parameters": {
-    "resourceGroupName": "testrg",
     "api-version": "2025-05-01",
-    "subscriptionId": "subid",
+    "defaultSecurityRuleName": "AllowVnetInBound",
     "networkSecurityGroupName": "nsg1",
-    "defaultSecurityRuleName": "AllowVnetInBound"
+    "resourceGroupName": "testrg",
+    "subscriptionId": "00000000-0000-0000-0000-000000000000"
   },
   "responses": {
     "200": {
       "body": {
         "name": "AllowVnetInBound",
-        "id": "/subscriptions/subid/resourceGroups/testrg/providers/Microsoft.Network/networkSecurityGroups/nsg1/defaultSecurityRules/AllowVnetInBound",
+        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testrg/providers/Microsoft.Network/networkSecurityGroups/nsg1/defaultSecurityRules/AllowVnetInBound",
         "properties": {
-          "provisioningState": "Succeeded",
           "description": "Allow inbound traffic from all VMs in VNET",
-          "protocol": "*",
-          "sourcePortRange": "*",
-          "destinationPortRange": "*",
-          "sourceAddressPrefix": "VirtualNetwork",
-          "destinationAddressPrefix": "VirtualNetwork",
           "access": "Allow",
-          "priority": 65000,
-          "direction": "Inbound",
-          "sourcePortRanges": [],
+          "destinationAddressPrefix": "VirtualNetwork",
+          "destinationAddressPrefixes": [],
+          "destinationPortRange": "*",
           "destinationPortRanges": [],
+          "direction": "Inbound",
+          "priority": 65000,
+          "provisioningState": "Succeeded",
+          "sourceAddressPrefix": "VirtualNetwork",
           "sourceAddressPrefixes": [],
-          "destinationAddressPrefixes": []
+          "sourcePortRange": "*",
+          "sourcePortRanges": [],
+          "protocol": "*"
         }
       }
     }
-  }
+  },
+  "operationId": "DefaultSecurityRules_Get",
+  "title": "DefaultSecurityRuleGet"
 }

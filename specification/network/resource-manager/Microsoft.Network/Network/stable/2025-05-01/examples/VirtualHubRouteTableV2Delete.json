@@ -1,9 +1,9 @@
 {
   "parameters": {
-    "routeTableName": "virtualHubRouteTable1a",
-    "resourceGroupName": "rg1",
     "api-version": "2025-05-01",
-    "subscriptionId": "subid",
+    "resourceGroupName": "rg1",
+    "routeTableName": "virtualHubRouteTable1a",
+    "subscriptionId": "00000000-0000-0000-0000-000000000000",
     "virtualHubName": "virtualHub1"
   },
   "responses": {
@@ -14,5 +14,7 @@
       }
     },
     "204": {}
-  }
+  },
+  "operationId": "VirtualHubRouteTableV2s_Delete",
+  "title": "VirtualHubRouteTableV2Delete"
 }

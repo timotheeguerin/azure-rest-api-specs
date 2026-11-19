@@ -1,12 +1,10 @@
 {
   "parameters": {
-    "body": [
-      {
-        "Name": "isxbox",
-        "Type": "ResourceProviderTestHost/TestResourceType"
-      }
-    ],
-    "api-version": "2022-12-01"
+    "api-version": "2022-12-01",
+    "body": {
+      "name": "isxbox",
+      "type": "ResourceProviderTestHost/TestResourceType"
+    }
   },
   "responses": {
     "200": {
@@ -16,5 +14,7 @@
         "status": "Allowed"
       }
     }
-  }
+  },
+  "operationId": "checkResourceName",
+  "title": "CheckValidityForAResourceName"
 }

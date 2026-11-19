@@ -1,24 +1,24 @@
 {
   "parameters": {
     "api-version": "2025-07-25",
-    "subscriptionId": "00000000-0000-0000-0000-000000000000",
-    "location": "location"
+    "location": "location",
+    "subscriptionId": "00000000-0000-0000-0000-000000000000"
   },
   "responses": {
     "200": {
       "body": {
         "value": [
           {
-            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resourceGroupName/providers/resourceProviderNamespace/resourceType/resourceName",
             "name": "4.14",
             "type": "Microsoft.RedHatOpenShift/PlatformWorkloadIdentityRoleSet",
+            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resourceGroupName/providers/resourceProviderNamespace/resourceType/resourceName",
             "properties": {
               "openShiftVersion": "4.14",
               "platformWorkloadIdentityRoles": [
                 {
                   "operatorName": "aro-operator",
-                  "roleDefinitionName": "Azure Red Hat OpenShift Service Operator",
-                  "roleDefinitionId": "/providers/Microsoft.Authorization/roleDefinitions/00000000-0000-0000-0000-000000000000"
+                  "roleDefinitionId": "/providers/Microsoft.Authorization/roleDefinitions/00000000-0000-0000-0000-000000000000",
+                  "roleDefinitionName": "Azure Red Hat OpenShift Service Operator"
                 }
               ]
             }
@@ -26,5 +26,7 @@
         ]
       }
     }
-  }
+  },
+  "operationId": "PlatformWorkloadIdentityRoleSets_List",
+  "title": "Lists a mapping of OpenShift versions to identity requirements, which include operatorName, roleDefinitionName, roleDefinitionId, and serviceAccounts."
 }

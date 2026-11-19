@@ -20,5 +20,7 @@
         ]
       }
     }
-  }
+  },
+  "operationId": "BillingPermissions_ListByEnrollmentAccount",
+  "title": "BillingPermissionsListByEnrollmentAccount"
 }

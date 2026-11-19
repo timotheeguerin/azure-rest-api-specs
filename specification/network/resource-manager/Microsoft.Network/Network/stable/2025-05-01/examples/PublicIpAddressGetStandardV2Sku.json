@@ -1,32 +1,27 @@
 {
   "parameters": {
     "api-version": "2025-05-01",
-    "subscriptionId": "subid",
+    "publicIpAddressName": "testDNS-ip",
     "resourceGroupName": "rg1",
-    "publicIpAddressName": "testDNS-ip"
+    "subscriptionId": "00000000-0000-0000-0000-000000000000"
   },
   "responses": {
     "200": {
       "body": {
         "name": "testDNS-ip",
-        "sku": {
-          "name": "StandardV2"
-        },
-        "id": "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/publicIPAddresses/testDNS-ip",
+        "type": "Microsoft.Network/publicIPAddresses",
+        "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.Network/publicIPAddresses/testDNS-ip",
         "location": "westus",
         "properties": {
-          "provisioningState": "Succeeded",
-          "publicIPAddressVersion": "IPv4",
-          "publicIPAllocationMethod": "Dynamic",
+          "ddosSettings": {
+            "ddosProtectionPlan": {
+              "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.Network/ddosProtectionPlans/test-plan"
+            },
+            "protectionMode": "Enabled"
+          },
           "idleTimeoutInMinutes": 4,
           "ipConfiguration": {
-            "id": "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/networkInterfaces/testDNS649/ipConfigurations/ipconfig1"
-          },
-          "ddosSettings": {
-            "protectionMode": "Enabled",
-            "ddosProtectionPlan": {
-              "id": "/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/ddosProtectionPlans/test-plan"
-            }
+            "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.Network/networkInterfaces/testDNS649/ipConfigurations/ipconfig1"
           },
           "ipTags": [
             {
@@ -37,10 +32,17 @@
               "ipTagType": "FirstPartyUsage",
               "tag": "Storage"
             }
-          ]
+          ],
+          "provisioningState": "Succeeded",
+          "publicIPAddressVersion": "IPv4",
+          "publicIPAllocationMethod": "Dynamic"
         },
-        "type": "Microsoft.Network/publicIPAddresses"
+        "sku": {
+          "name": "StandardV2"
+        }
       }
     }
-  }
+  },
+  "operationId": "PublicIPAddresses_Get",
+  "title": "Get public IP address with StandardV2 sku"
 }
