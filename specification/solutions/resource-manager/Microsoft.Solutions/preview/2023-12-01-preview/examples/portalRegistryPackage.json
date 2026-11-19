@@ -2,24 +2,26 @@
   "parameters": {
     "api-version": "2023-12-01-preview",
     "parameters": {
-      "publisher": "publisherId",
       "offer": "offerId",
-      "plan": "planId"
+      "plan": "planId",
+      "publisher": "publisherId"
     }
   },
   "responses": {
     "200": {
-      "headers": {},
       "body": {
-        "publisher": "publisherId",
         "offer": "offerId",
-        "plan": "planId",
-        "version": "planVersion",
         "packageLinks": {
           "createUiDefinitionLink": "createUiDefinitionLink",
           "deploymentTemplateLink": "deploymentTemplateLink"
-        }
-      }
+        },
+        "plan": "planId",
+        "publisher": "publisherId",
+        "version": "planVersion"
+      },
+      "headers": {}
     }
-  }
+  },
+  "operationId": "PortalRegistryPackage",
+  "title": "Generates a registry package"
 }

@@ -1,12 +1,14 @@
 {
   "parameters": {
-    "subscriptionId": "subid",
-    "resourceGroupName": "rg",
+    "api-version": "2023-12-01-preview",
     "applicationDefinitionName": "myManagedApplicationDef",
-    "api-version": "2023-12-01-preview"
+    "resourceGroupName": "rg",
+    "subscriptionId": "subid"
   },
   "responses": {
     "200": {},
     "204": {}
-  }
+  },
+  "operationId": "ApplicationDefinitions_Delete",
+  "title": "delete managed application definition"
 }

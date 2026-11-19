@@ -53,5 +53,7 @@
         }
       }
     }
-  }
+  },
+  "operationId": "Applications_UpdateById",
+  "title": "Updates an existing managed application"
 }
