@@ -1,0 +1,781 @@
+$namespace: Microsoft.EventGrid
+PartnerNamespaces.createOrUpdate:
+  - since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+      body:
+        location: westus
+        tags:
+          tag1: value1
+          tag2: value2
+        properties:
+          partnerRegistrationFullyQualifiedId: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+    responses:
+      201:
+        body:
+          properties:
+            provisioningState: Succeeded
+            partnerRegistrationFullyQualifiedId: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+            endpoint: https://examplePartnerNamespaceName1.centraluseuap-1.eventgrid.azure.net/api/events
+          location: westus
+          tags:
+            key1: value1
+            key2: value2
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1
+          name: examplePartnerNamespaceName1
+          type: Microsoft.EventGrid/partnerNamespaces
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+      body:
+        location: westus
+        tags:
+          tag1: value1
+          tag2: value2
+        properties:
+          partnerRegistrationFullyQualifiedId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+    responses:
+      201:
+        body:
+          properties:
+            provisioningState: Succeeded
+            partnerRegistrationFullyQualifiedId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+            endpoint: https://examplePartnerNamespaceName1.centraluseuap-1.eventgrid.azure.net/api/events
+          location: westus
+          tags:
+            key1: value1
+            key2: value2
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1
+          name: examplePartnerNamespaceName1
+          type: Microsoft.EventGrid/partnerNamespaces
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+      body:
+        location: westus
+        tags:
+          tag1: value1
+          tag2: value2
+        properties:
+          partnerRegistrationFullyQualifiedId: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+    responses:
+      201:
+        body:
+          properties:
+            provisioningState: Succeeded
+            partnerRegistrationFullyQualifiedId: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+            endpoint: https://examplePartnerNamespaceName1.centraluseuap-1.eventgrid.azure.net/api/events
+          location: westus
+          tags:
+            key1: value1
+            key2: value2
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1
+          name: examplePartnerNamespaceName1
+          type: Microsoft.EventGrid/partnerNamespaces
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+      body:
+        location: westus
+        tags:
+          tag1: value1
+          tag2: value2
+        properties:
+          partnerRegistrationFullyQualifiedId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+    responses:
+      201:
+        body:
+          properties:
+            provisioningState: Succeeded
+            partnerRegistrationFullyQualifiedId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+            endpoint: https://examplePartnerNamespaceName1.centraluseuap-1.eventgrid.azure.net/api/events
+          location: westus
+          tags:
+            key1: value1
+            key2: value2
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1
+          name: examplePartnerNamespaceName1
+          type: Microsoft.EventGrid/partnerNamespaces
+  - since: "2025-07-15-preview"
+    request:
+      body:
+        location: westus
+        properties:
+          partnerRegistrationFullyQualifiedId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+        tags:
+          tag1: value1
+          tag2: value2
+      path:
+        partnerNamespaceName: examplePartnerNamespaceName1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      201:
+        body:
+          name: examplePartnerNamespaceName1
+          type: Microsoft.EventGrid/partnerNamespaces
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1
+          location: westus
+          properties:
+            endpoint: https://examplePartnerNamespaceName1.centraluseuap-1.eventgrid.azure.net/api/events
+            partnerRegistrationFullyQualifiedId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+            provisioningState: Succeeded
+          tags:
+            key1: value1
+            key2: value2
+PartnerNamespaces.delete:
+  - since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+    responses:
+      200: {}
+      202: {}
+      204: {}
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+    responses:
+      200: {}
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+      204: {}
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+    responses:
+      200: {}
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+      204: {}
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+    responses:
+      200: {}
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+      204: {}
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        partnerNamespaceName: examplePartnerNamespaceName1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200: {}
+      202:
+        headers:
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+      204: {}
+PartnerNamespaces.get:
+  - since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Succeeded
+            partnerRegistrationFullyQualifiedId: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+            endpoint: https://examplePartnerNamespaceName1.centraluseuap-1.eventgrid.azure.net/api/events
+          location: Central US EUAP
+          tags:
+            key1: value1
+            key2: value2
+            key3: value3
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1
+          name: examplePartnerNamespaceName1
+          type: Microsoft.EventGrid/partnerNamespaces
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Succeeded
+            partnerRegistrationFullyQualifiedId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+            endpoint: https://examplePartnerNamespaceName1.centraluseuap-1.eventgrid.azure.net/api/events
+          location: Central US EUAP
+          tags:
+            key1: value1
+            key2: value2
+            key3: value3
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1
+          name: examplePartnerNamespaceName1
+          type: Microsoft.EventGrid/partnerNamespaces
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Succeeded
+            partnerRegistrationFullyQualifiedId: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+            endpoint: https://examplePartnerNamespaceName1.centraluseuap-1.eventgrid.azure.net/api/events
+          location: Central US EUAP
+          tags:
+            key1: value1
+            key2: value2
+            key3: value3
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1
+          name: examplePartnerNamespaceName1
+          type: Microsoft.EventGrid/partnerNamespaces
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Succeeded
+            partnerRegistrationFullyQualifiedId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+            endpoint: https://examplePartnerNamespaceName1.centraluseuap-1.eventgrid.azure.net/api/events
+          location: Central US EUAP
+          tags:
+            key1: value1
+            key2: value2
+            key3: value3
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1
+          name: examplePartnerNamespaceName1
+          type: Microsoft.EventGrid/partnerNamespaces
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        partnerNamespaceName: examplePartnerNamespaceName1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          name: examplePartnerNamespaceName1
+          type: Microsoft.EventGrid/partnerNamespaces
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1
+          location: Central US EUAP
+          properties:
+            endpoint: https://examplePartnerNamespaceName1.centraluseuap-1.eventgrid.azure.net/api/events
+            partnerRegistrationFullyQualifiedId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+            provisioningState: Succeeded
+          tags:
+            key1: value1
+            key2: value2
+            key3: value3
+PartnerNamespaces.listByResourceGroup:
+  - since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                provisioningState: Succeeded
+                partnerRegistrationFullyQualifiedId: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+                endpoint: https://partnernamespace123.centraluseuap-1.eventgrid.azure.net/api/events
+              location: Central US EUAP
+              tags:
+                key1: value1
+                key2: value2
+                key3: value3
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespace123
+              name: partnerNamespace123
+              type: Microsoft.EventGrid/partnerNamespaces
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                provisioningState: Succeeded
+                partnerRegistrationFullyQualifiedId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+                endpoint: https://partnernamespace123.centraluseuap-1.eventgrid.azure.net/api/events
+              location: Central US EUAP
+              tags:
+                key1: value1
+                key2: value2
+                key3: value3
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespace123
+              name: partnerNamespace123
+              type: Microsoft.EventGrid/partnerNamespaces
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                provisioningState: Succeeded
+                partnerRegistrationFullyQualifiedId: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+                endpoint: https://partnernamespace123.centraluseuap-1.eventgrid.azure.net/api/events
+              location: Central US EUAP
+              tags:
+                key1: value1
+                key2: value2
+                key3: value3
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespace123
+              name: partnerNamespace123
+              type: Microsoft.EventGrid/partnerNamespaces
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                provisioningState: Succeeded
+                partnerRegistrationFullyQualifiedId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+                endpoint: https://partnernamespace123.centraluseuap-1.eventgrid.azure.net/api/events
+              location: Central US EUAP
+              tags:
+                key1: value1
+                key2: value2
+                key3: value3
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespace123
+              name: partnerNamespace123
+              type: Microsoft.EventGrid/partnerNamespaces
+  - since: "2025-07-15-preview"
+    request:
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - name: partnerNamespace123
+              type: Microsoft.EventGrid/partnerNamespaces
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespace123
+              location: Central US EUAP
+              properties:
+                endpoint: https://partnernamespace123.centraluseuap-1.eventgrid.azure.net/api/events
+                partnerRegistrationFullyQualifiedId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+                provisioningState: Succeeded
+              tags:
+                key1: value1
+                key2: value2
+                key3: value3
+PartnerNamespaces.listBySubscription:
+  - since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                provisioningState: Succeeded
+                partnerRegistrationFullyQualifiedId: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/amh/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+                endpoint: https://partnernamespace123.centraluseuap-1.eventgrid.azure.net/api/events
+              location: Central US EUAP
+              tags:
+                key1: value1
+                key2: value2
+                key3: value3
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/amh/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespace123
+              name: partnerNamespace123
+              type: Microsoft.EventGrid/partnerNamespaces
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                provisioningState: Succeeded
+                partnerRegistrationFullyQualifiedId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/amh/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+                endpoint: https://partnernamespace123.centraluseuap-1.eventgrid.azure.net/api/events
+              location: Central US EUAP
+              tags:
+                key1: value1
+                key2: value2
+                key3: value3
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/amh/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespace123
+              name: partnerNamespace123
+              type: Microsoft.EventGrid/partnerNamespaces
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                provisioningState: Succeeded
+                partnerRegistrationFullyQualifiedId: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/amh/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+                endpoint: https://partnernamespace123.centraluseuap-1.eventgrid.azure.net/api/events
+              location: Central US EUAP
+              tags:
+                key1: value1
+                key2: value2
+                key3: value3
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/amh/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespace123
+              name: partnerNamespace123
+              type: Microsoft.EventGrid/partnerNamespaces
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                provisioningState: Succeeded
+                partnerRegistrationFullyQualifiedId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/amh/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+                endpoint: https://partnernamespace123.centraluseuap-1.eventgrid.azure.net/api/events
+              location: Central US EUAP
+              tags:
+                key1: value1
+                key2: value2
+                key3: value3
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/amh/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespace123
+              name: partnerNamespace123
+              type: Microsoft.EventGrid/partnerNamespaces
+  - since: "2025-07-15-preview"
+    request:
+      query:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - name: partnerNamespace123
+              type: Microsoft.EventGrid/partnerNamespaces
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/amh/providers/Microsoft.EventGrid/partnerNamespaces/partnerNamespace123
+              location: Central US EUAP
+              properties:
+                endpoint: https://partnernamespace123.centraluseuap-1.eventgrid.azure.net/api/events
+                partnerRegistrationFullyQualifiedId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/amh/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+                provisioningState: Succeeded
+              tags:
+                key1: value1
+                key2: value2
+                key3: value3
+PartnerNamespaces.listSharedAccessKeys:
+  - since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+    responses:
+      200:
+        body:
+          key1: <key1>
+          key2: <key2>
+  - since: "2020-10-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        partnerNamespaceName: examplePartnerNamespaceName1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+PartnerNamespaces.regenerateKey:
+  - since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+      body:
+        keyName: key1
+    responses:
+      200:
+        body:
+          key1: <key1>
+          key2: <key2>
+  - since: "2020-10-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+      body:
+        keyName: key1
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+      body:
+        keyName: key1
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+      body:
+        keyName: key1
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+      body:
+        keyName: key1
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        partnerNamespaceName: examplePartnerNamespaceName1
+      body:
+        keyName: key1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+PartnerNamespaces.update:
+  - since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+      body:
+        tags:
+          tag1: value1
+    responses:
+      200: {}
+      201:
+        body:
+          properties:
+            provisioningState: Succeeded
+            partnerRegistrationFullyQualifiedId: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+            endpoint: https://examplePartnerNamespaceName1.centraluseuap-1.eventgrid.azure.net/api/events
+          location: Central US EUAP
+          tags:
+            key1: value1
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1
+          name: examplePartnerNamespaceName1
+          type: Microsoft.EventGrid/partnerNamespaces
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+      body:
+        tags:
+          tag1: value1
+    responses:
+      200: {}
+      201:
+        body:
+          properties:
+            provisioningState: Succeeded
+            partnerRegistrationFullyQualifiedId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+            endpoint: https://examplePartnerNamespaceName1.centraluseuap-1.eventgrid.azure.net/api/events
+          location: Central US EUAP
+          tags:
+            key1: value1
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1
+          name: examplePartnerNamespaceName1
+          type: Microsoft.EventGrid/partnerNamespaces
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+      body:
+        tags:
+          tag1: value1
+    responses:
+      200: {}
+      201:
+        body:
+          properties:
+            provisioningState: Succeeded
+            partnerRegistrationFullyQualifiedId: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+            endpoint: https://examplePartnerNamespaceName1.centraluseuap-1.eventgrid.azure.net/api/events
+          location: Central US EUAP
+          tags:
+            key1: value1
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1
+          name: examplePartnerNamespaceName1
+          type: Microsoft.EventGrid/partnerNamespaces
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        partnerNamespaceName: examplePartnerNamespaceName1
+      body:
+        tags:
+          tag1: value1
+    responses:
+      200: {}
+      201:
+        body:
+          properties:
+            provisioningState: Succeeded
+            partnerRegistrationFullyQualifiedId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+            endpoint: https://examplePartnerNamespaceName1.centraluseuap-1.eventgrid.azure.net/api/events
+          location: Central US EUAP
+          tags:
+            key1: value1
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1
+          name: examplePartnerNamespaceName1
+          type: Microsoft.EventGrid/partnerNamespaces
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        partnerNamespaceName: examplePartnerNamespaceName1
+      body:
+        tags:
+          tag1: value1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200: {}
+      201:
+        body:
+          name: examplePartnerNamespaceName1
+          type: Microsoft.EventGrid/partnerNamespaces
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerNamespaces/examplePartnerNamespaceName1
+          location: Central US EUAP
+          properties:
+            endpoint: https://examplePartnerNamespaceName1.centraluseuap-1.eventgrid.azure.net/api/events
+            partnerRegistrationFullyQualifiedId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/partnerRegistrations/ContosoCorpAccount1
+            provisioningState: Succeeded
+          tags:
+            key1: value1

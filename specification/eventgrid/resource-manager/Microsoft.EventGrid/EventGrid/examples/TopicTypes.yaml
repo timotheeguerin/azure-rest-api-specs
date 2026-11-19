@@ -1,0 +1,125 @@
+$namespace: Microsoft.EventGrid
+TopicTypes.get:
+  - request:
+      path:
+        topicTypeName: Microsoft.Storage.StorageAccounts
+    responses:
+      200:
+        body:
+          properties:
+            description: Microsoft Storage service events.
+            displayName: Storage Accounts
+            provider: Microsoft.Storage
+            provisioningState: Succeeded
+            resourceRegionType: RegionalResource
+          id: providers/Microsoft.EventGrid/topicTypes/Microsoft.Storage.StorageAccounts
+          name: Microsoft.Storage.StorageAccounts
+          type: Microsoft.EventGrid/topicTypes
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        topicTypeName: Microsoft.Storage.StorageAccounts
+    responses:
+      200:
+        body:
+          name: Microsoft.Storage.StorageAccounts
+          type: Microsoft.EventGrid/topicTypes
+          id: /providers/Microsoft.EventGrid/topicTypes/Microsoft.Storage.StorageAccounts
+          properties:
+            description: Microsoft Storage service events.
+            displayName: Storage Accounts
+            provider: Microsoft.Storage
+            provisioningState: Succeeded
+            resourceRegionType: RegionalResource
+TopicTypes.list:
+  - request: {}
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                description: Microsoft EventHubs service events.
+                displayName: EventHubs Namespace
+                provider: Microsoft.Eventhub
+                provisioningState: Succeeded
+                resourceRegionType: RegionalResource
+              id: providers/Microsoft.EventGrid/topicTypes/Microsoft.Eventhub.Namespaces
+              name: Microsoft.Eventhub.Namespaces
+              type: Microsoft.EventGrid/topicTypes
+            - properties:
+                description: Microsoft Storage service events.
+                displayName: Storage Accounts
+                provider: Microsoft.Storage
+                provisioningState: Succeeded
+                resourceRegionType: RegionalResource
+              id: providers/Microsoft.EventGrid/topicTypes/Microsoft.Storage.StorageAccounts
+              name: Microsoft.Storage.StorageAccounts
+              type: Microsoft.EventGrid/topicTypes
+  - since: "2025-07-15-preview"
+    request: {}
+    responses:
+      200:
+        body:
+          value:
+            - name: Microsoft.Eventhub.Namespaces
+              type: Microsoft.EventGrid/topicTypes
+              id: /providers/Microsoft.EventGrid/topicTypes/Microsoft.Eventhub.Namespaces
+              properties:
+                description: Microsoft EventHubs service events.
+                displayName: EventHubs Namespace
+                provider: Microsoft.Eventhub
+                provisioningState: Succeeded
+                resourceRegionType: RegionalResource
+            - name: Microsoft.Storage.StorageAccounts
+              type: Microsoft.EventGrid/topicTypes
+              id: /providers/Microsoft.EventGrid/topicTypes/Microsoft.Storage.StorageAccounts
+              properties:
+                description: Microsoft Storage service events.
+                displayName: Storage Accounts
+                provider: Microsoft.Storage
+                provisioningState: Succeeded
+                resourceRegionType: RegionalResource
+TopicTypes.listEventTypes:
+  - request:
+      path:
+        topicTypeName: Microsoft.Storage.StorageAccounts
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                displayName: Blob Created
+                description: Raised when a blob is created.
+                schemaUrl: tbd
+              id: providers/Microsoft.EventGrid/topicTypes/Microsoft.Storage.StorageAccounts/eventTypes/Microsoft.Storage.BlobCreated
+              name: Microsoft.Storage.BlobCreated
+              type: Microsoft.EventGrid/topicTypes/eventTypes
+            - properties:
+                description: Raised when a blob is deleted.
+                schemaUrl: tbd
+                displayName: Blob Deleted
+              id: providers/Microsoft.EventGrid/topicTypes/Microsoft.Storage.StorageAccounts/eventTypes/Microsoft.Storage.BlobDeleted
+              name: Microsoft.Storage.BlobDeleted
+              type: Microsoft.EventGrid/topicTypes/eventTypes
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        topicTypeName: Microsoft.Storage.StorageAccounts
+    responses:
+      200:
+        body:
+          value:
+            - name: Microsoft.Storage.BlobCreated
+              type: Microsoft.EventGrid/topicTypes/eventTypes
+              id: /providers/Microsoft.EventGrid/topicTypes/Microsoft.Storage.StorageAccounts/eventTypes/Microsoft.Storage.BlobCreated
+              properties:
+                description: Raised when a blob is created.
+                displayName: Blob Created
+                schemaUrl: tbd
+            - name: Microsoft.Storage.BlobDeleted
+              type: Microsoft.EventGrid/topicTypes/eventTypes
+              id: /providers/Microsoft.EventGrid/topicTypes/Microsoft.Storage.StorageAccounts/eventTypes/Microsoft.Storage.BlobDeleted
+              properties:
+                description: Raised when a blob is deleted.
+                displayName: Blob Deleted
+                schemaUrl: tbd

@@ -1,0 +1,1362 @@
+$namespace: Microsoft.EventGrid
+Topics.createOrUpdate:
+  - title: Topics_CreateOrUpdate
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        topicName: exampletopic1
+      body:
+        location: westus2
+        tags:
+          tag1: value1
+          tag2: value2
+    responses:
+      201:
+        body:
+          properties:
+            endpoint: https://exampletopic1.westus2-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1
+          location: westus2
+          name: exampletopic1
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/topics
+  - title: Topics_CreateOrUpdate
+    since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        topicName: exampletopic1
+      body:
+        location: westus2
+        tags:
+          tag1: value1
+          tag2: value2
+        properties:
+          publicNetworkAccess: Enabled
+          inboundIpRules:
+            - ipMask: 12.18.30.15
+              action: Allow
+            - ipMask: 12.18.176.1
+              action: Allow
+    responses:
+      201:
+        body:
+          properties:
+            endpoint: https://exampletopic1.westus2-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+            publicNetworkAccess: Enabled
+            inboundIpRules:
+              - ipMask: 12.18.30.15
+                action: Allow
+              - ipMask: 12.18.176.1
+                action: Allow
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1
+          location: westus2
+          name: exampletopic1
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/topics
+  - title: Topics_CreateOrUpdate
+    since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        topicName: exampletopic1
+      body:
+        location: westus2
+        tags:
+          tag1: value1
+          tag2: value2
+        properties:
+          publicNetworkAccess: Enabled
+          inboundIpRules:
+            - ipMask: 12.18.30.15
+              action: Allow
+            - ipMask: 12.18.176.1
+              action: Allow
+    responses:
+      201:
+        body:
+          properties:
+            endpoint: https://exampletopic1.westus2-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+            publicNetworkAccess: Enabled
+            inboundIpRules:
+              - ipMask: 12.18.30.15
+                action: Allow
+              - ipMask: 12.18.176.1
+                action: Allow
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1
+          location: westus2
+          name: exampletopic1
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/topics
+  - title: Topics_CreateOrUpdate
+    since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        topicName: exampletopic1
+      body:
+        location: westus2
+        tags:
+          tag1: value1
+          tag2: value2
+        properties:
+          publicNetworkAccess: Enabled
+          inboundIpRules:
+            - ipMask: 12.18.30.15
+              action: Allow
+            - ipMask: 12.18.176.1
+              action: Allow
+    responses:
+      201:
+        body:
+          properties:
+            endpoint: https://exampletopic1.westus2-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+            publicNetworkAccess: Enabled
+            inboundIpRules:
+              - ipMask: 12.18.30.15
+                action: Allow
+              - ipMask: 12.18.176.1
+                action: Allow
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1
+          location: westus2
+          name: exampletopic1
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/topics
+  - title: Topics_CreateOrUpdate
+    since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        topicName: exampletopic1
+      body:
+        location: westus2
+        tags:
+          tag1: value1
+          tag2: value2
+        properties:
+          publicNetworkAccess: Enabled
+          inboundIpRules:
+            - ipMask: 12.18.30.15
+              action: Allow
+            - ipMask: 12.18.176.1
+              action: Allow
+    responses:
+      201:
+        body:
+          properties:
+            endpoint: https://exampletopic1.westus2-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+            publicNetworkAccess: Enabled
+            inboundIpRules:
+              - ipMask: 12.18.30.15
+                action: Allow
+              - ipMask: 12.18.176.1
+                action: Allow
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1
+          location: westus2
+          name: exampletopic1
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/topics
+  - title: Topics_CreateOrUpdate
+    since: "2025-07-15-preview"
+    request:
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+      body:
+        identity:
+          type: UserAssigned
+          userAssignedIdentities:
+            /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id: {}
+        location: westus2
+        properties:
+          encryption:
+            customerManagedKeyEncryption:
+              - keyEncryptionKeyIdentity:
+                  type: UserAssigned
+                  userAssignedIdentityResourceId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id
+                keyEncryptionKeyUrl: https://ege2ekeyvault.vault.azure.net/keys/ValidKey1
+          platformCapabilities:
+            confidentialCompute:
+              mode: Enabled
+        tags:
+          tag1: value1
+          tag2: value2
+      path:
+        topicName: exampletopic1
+    responses:
+      201:
+        body:
+          name: exampletopic1
+          type: Microsoft.EventGrid/topics
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1
+          identity:
+            type: UserAssigned
+            userAssignedIdentities:
+              /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id:
+                clientId: 11af827c-d951-4766-9c41-15565fa13157
+                principalId: a5435982-c82d-453b-b244-3115b7c8789c
+          location: westus2
+          properties:
+            encryption:
+              customerManagedKeyEncryption:
+                - keyEncryptionKeyIdentity:
+                    type: UserAssigned
+                    userAssignedIdentityResourceId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id
+                  keyEncryptionKeyStatus: Active
+                  keyEncryptionKeyStatusFriendlyDescription: Customer Managed Key (CMK) Encryption
+                    is 'Active' and running normally.
+                  keyEncryptionKeyUrl: https://ege2ekeyvault.vault.azure.net/keys/ValidKey1
+            endpoint: https://exampletopic1.westus2-1.eventgrid.azure.net/api/events
+            platformCapabilities:
+              confidentialCompute:
+                mode: Enabled
+            provisioningState: Succeeded
+          tags:
+            tag1: value1
+            tag2: value2
+  - title: Topics_CreateOrUpdateForAzureArc
+    since: "2020-10-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        topicName: exampletopic1
+      body:
+        location: westus2
+        tags:
+          tag1: value1
+          tag2: value2
+        kind: AzureArc
+        extendedLocation:
+          name: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourcegroups/examplerg/providers/Microsoft.ExtendedLocation/CustomLocations/exampleCustomLocation
+          type: CustomLocation
+        properties:
+          inputSchema: CloudEventSchemaV1_0
+    responses:
+      201:
+        body:
+          properties:
+            endpoint: https://exampletopic1.westus2-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+            inputSchema: CloudEventSchemaV1_0
+          kind: AzureArc
+          extendedLocation:
+            name: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourcegroups/examplerg/providers/Microsoft.ExtendedLocation/CustomLocations/exampleCustomLocation
+            type: CustomLocation
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1
+          location: westus2
+          name: exampletopic1
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/topics
+  - title: Topics_CreateOrUpdateForAzureArc
+    since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        topicName: exampletopic1
+      body:
+        location: westus2
+        tags:
+          tag1: value1
+          tag2: value2
+        kind: AzureArc
+        extendedLocation:
+          name: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourcegroups/examplerg/providers/Microsoft.ExtendedLocation/CustomLocations/exampleCustomLocation
+          type: CustomLocation
+        properties:
+          inputSchema: CloudEventSchemaV1_0
+    responses:
+      201:
+        body:
+          properties:
+            endpoint: https://exampletopic1.westus2-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+            inputSchema: CloudEventSchemaV1_0
+          kind: AzureArc
+          extendedLocation:
+            name: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourcegroups/examplerg/providers/Microsoft.ExtendedLocation/CustomLocations/exampleCustomLocation
+            type: CustomLocation
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1
+          location: westus2
+          name: exampletopic1
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/topics
+  - title: Topics_CreateOrUpdateForAzureArc
+    since: "2025-07-15-preview"
+    request:
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+      body:
+        extendedLocation:
+          name: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourcegroups/examplerg/providers/Microsoft.ExtendedLocation/CustomLocations/exampleCustomLocation
+          type: CustomLocation
+        kind: AzureArc
+        location: westus2
+        properties:
+          inputSchema: CloudEventSchemaV1_0
+        tags:
+          tag1: value1
+          tag2: value2
+      path:
+        topicName: exampletopic1
+    responses:
+      201:
+        body:
+          name: exampletopic1
+          type: Microsoft.EventGrid/topics
+          extendedLocation:
+            name: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourcegroups/examplerg/providers/Microsoft.ExtendedLocation/CustomLocations/exampleCustomLocation
+            type: CustomLocation
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1
+          kind: AzureArc
+          location: westus2
+          properties:
+            endpoint: https://exampletopic1.westus2-1.eventgrid.azure.net/api/events
+            inputSchema: CloudEventSchemaV1_0
+            provisioningState: Succeeded
+          tags:
+            tag1: value1
+            tag2: value2
+Topics.delete:
+  - request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        topicName: exampletopic1
+    responses:
+      202: {}
+      204: {}
+  - since: "2021-06-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg1
+        topicName: exampletopic1
+    responses:
+      202: {}
+      204: {}
+  - since: "2021-12-01"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        topicName: exampletopic1
+    responses:
+      202: {}
+      204: {}
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg1
+        topicName: exampletopic1
+    responses:
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+      204: {}
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        topicName: exampletopic
+    responses:
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+      204: {}
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg1
+        topicName: exampletopic1
+    responses:
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+      204: {}
+  - since: "2025-07-15-preview"
+    request:
+      query:
+        resourceGroupName: examplerg1
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+      path:
+        topicName: exampletopic1
+    responses:
+      202:
+        headers:
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+      204: {}
+Topics.get:
+  - request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        topicName: exampletopic2
+    responses:
+      200:
+        body:
+          properties:
+            endpoint: https://exampletopic2.westcentralus-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2
+          location: westcentralus
+          name: exampletopic2
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/topics
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        topicName: exampletopic2
+    responses:
+      200:
+        body:
+          properties:
+            endpoint: https://exampletopic2.westcentralus-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2
+          location: westcentralus
+          name: exampletopic2
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/topics
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        topicName: exampletopic2
+    responses:
+      200:
+        body:
+          properties:
+            endpoint: https://exampletopic2.westcentralus-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2
+          location: westcentralus
+          name: exampletopic2
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/topics
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        topicName: exampletopic2
+    responses:
+      200:
+        body:
+          properties:
+            endpoint: https://exampletopic2.westcentralus-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2
+          location: westcentralus
+          name: exampletopic2
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/topics
+  - since: "2025-07-15-preview"
+    request:
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+      path:
+        topicName: exampletopic2
+    responses:
+      200:
+        body:
+          name: exampletopic2
+          type: Microsoft.EventGrid/topics
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2
+          identity:
+            type: UserAssigned
+            userAssignedIdentities:
+              /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id:
+                clientId: 11af827c-d951-4766-9c41-15565fa13157
+                principalId: a5435982-c82d-453b-b244-3115b7c8789c
+          location: westcentralus
+          properties:
+            encryption:
+              customerManagedKeyEncryption:
+                - keyEncryptionKeyIdentity:
+                    type: UserAssigned
+                    userAssignedIdentityResourceId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/azureeventgridrunnerrgcentraluseuap/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id
+                  keyEncryptionKeyStatus: Active
+                  keyEncryptionKeyStatusFriendlyDescription: Customer Managed Key (CMK) Encryption
+                    is 'Active' and running normally.
+                  keyEncryptionKeyUrl: https://ege2ekeyvault.vault.azure.net/keys/ValidKey1
+            endpoint: https://exampletopic2.westcentralus-1.eventgrid.azure.net/api/events
+            platformCapabilities:
+              confidentialCompute:
+                mode: Enabled
+            provisioningState: Succeeded
+          tags:
+            tag1: value1
+            tag2: value2
+Topics.listByResourceGroup:
+  - request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                endpoint: https://exampletopic1.westus2-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1
+              location: westus2
+              name: exampletopic1
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/topics
+            - properties:
+                endpoint: https://exampletopic2.westcentralus-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2
+              location: westcentralus
+              name: exampletopic2
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/topics
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                endpoint: https://exampletopic1.westus2-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1
+              location: westus2
+              name: exampletopic1
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/topics
+            - properties:
+                endpoint: https://exampletopic2.westcentralus-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2
+              location: westcentralus
+              name: exampletopic2
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/topics
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                endpoint: https://exampletopic1.westus2-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1
+              location: westus2
+              name: exampletopic1
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/topics
+            - properties:
+                endpoint: https://exampletopic2.westcentralus-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2
+              location: westcentralus
+              name: exampletopic2
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/topics
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                endpoint: https://exampletopic1.westus2-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1
+              location: westus2
+              name: exampletopic1
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/topics
+            - properties:
+                endpoint: https://exampletopic2.westcentralus-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2
+              location: westcentralus
+              name: exampletopic2
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/topics
+  - since: "2025-07-15-preview"
+    request:
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - name: exampletopic1
+              type: Microsoft.EventGrid/topics
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1
+              location: westus2
+              properties:
+                endpoint: https://exampletopic1.westus2-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              tags:
+                tag1: value1
+                tag2: value2
+            - name: exampletopic2
+              type: Microsoft.EventGrid/topics
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2
+              location: westcentralus
+              properties:
+                endpoint: https://exampletopic2.westcentralus-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              tags:
+                tag1: value1
+                tag2: value2
+Topics.listBySubscription:
+  - request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                endpoint: https://exampletopic1.westus2-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1
+              location: westus2
+              name: exampletopic1
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/topics
+            - properties:
+                endpoint: https://exampletopic2.westcentralus-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2
+              location: westcentralus
+              name: exampletopic2
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/topics
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                endpoint: https://exampletopic1.westus2-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1
+              location: westus2
+              name: exampletopic1
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/topics
+            - properties:
+                endpoint: https://exampletopic2.westcentralus-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2
+              location: westcentralus
+              name: exampletopic2
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/topics
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                endpoint: https://exampletopic1.westus2-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1
+              location: westus2
+              name: exampletopic1
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/topics
+            - properties:
+                endpoint: https://exampletopic2.westcentralus-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2
+              location: westcentralus
+              name: exampletopic2
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/topics
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                endpoint: https://exampletopic1.westus2-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1
+              location: westus2
+              name: exampletopic1
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/topics
+            - properties:
+                endpoint: https://exampletopic2.westcentralus-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2
+              location: westcentralus
+              name: exampletopic2
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/topics
+  - since: "2025-07-15-preview"
+    request:
+      query:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - name: exampletopic1
+              type: Microsoft.EventGrid/topics
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1
+              location: westus2
+              properties:
+                endpoint: https://exampletopic1.westus2-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              tags:
+                tag1: value1
+                tag2: value2
+            - name: exampletopic2
+              type: Microsoft.EventGrid/topics
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic2
+              location: westcentralus
+              properties:
+                endpoint: https://exampletopic2.westcentralus-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              tags:
+                tag1: value1
+                tag2: value2
+Topics.listEventTypes:
+  - request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        providerNamespace: Microsoft.Storage
+        resourceTypeName: storageAccounts
+        resourceName: ExampleStorageAccount
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                description: Raised when a blob is created.
+                schemaUrl: tbd
+                displayName: Blob Created
+              id: providers/Microsoft.EventGrid/topicTypes/Microsoft.Storage.StorageAccounts/eventTypes/Microsoft.Storage.BlobCreated
+              name: Microsoft.Storage.BlobCreated
+              type: Microsoft.EventGrid/topicTypes/eventTypes
+            - properties:
+                description: Raised when a blob is deleted.
+                schemaUrl: tbd
+                displayName: Blob Deleted
+              id: providers/Microsoft.EventGrid/topicTypes/Microsoft.Storage.StorageAccounts/eventTypes/Microsoft.Storage.BlobDeleted
+              name: Microsoft.Storage.BlobDeleted
+              type: Microsoft.EventGrid/topicTypes/eventTypes
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        providerNamespace: Microsoft.Storage
+        resourceTypeName: storageAccounts
+        resourceName: ExampleStorageAccount
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                description: Raised when a blob is created.
+                schemaUrl: tbd
+                displayName: Blob Created
+              id: providers/Microsoft.EventGrid/topicTypes/Microsoft.Storage.StorageAccounts/eventTypes/Microsoft.Storage.BlobCreated
+              name: Microsoft.Storage.BlobCreated
+              type: Microsoft.EventGrid/topicTypes/eventTypes
+            - properties:
+                description: Raised when a blob is deleted.
+                schemaUrl: tbd
+                displayName: Blob Deleted
+              id: providers/Microsoft.EventGrid/topicTypes/Microsoft.Storage.StorageAccounts/eventTypes/Microsoft.Storage.BlobDeleted
+              name: Microsoft.Storage.BlobDeleted
+              type: Microsoft.EventGrid/topicTypes/eventTypes
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        providerNamespace: Microsoft.Storage
+        resourceTypeName: storageAccounts
+        resourceName: ExampleStorageAccount
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                description: Raised when a blob is created.
+                schemaUrl: tbd
+                displayName: Blob Created
+              id: providers/Microsoft.EventGrid/topicTypes/Microsoft.Storage.StorageAccounts/eventTypes/Microsoft.Storage.BlobCreated
+              name: Microsoft.Storage.BlobCreated
+              type: Microsoft.EventGrid/topicTypes/eventTypes
+            - properties:
+                description: Raised when a blob is deleted.
+                schemaUrl: tbd
+                displayName: Blob Deleted
+              id: providers/Microsoft.EventGrid/topicTypes/Microsoft.Storage.StorageAccounts/eventTypes/Microsoft.Storage.BlobDeleted
+              name: Microsoft.Storage.BlobDeleted
+              type: Microsoft.EventGrid/topicTypes/eventTypes
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        providerNamespace: Microsoft.Storage
+        resourceTypeName: storageAccounts
+        resourceName: ExampleStorageAccount
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                description: Raised when a blob is created.
+                schemaUrl: tbd
+                displayName: Blob Created
+              id: providers/Microsoft.EventGrid/topicTypes/Microsoft.Storage.StorageAccounts/eventTypes/Microsoft.Storage.BlobCreated
+              name: Microsoft.Storage.BlobCreated
+              type: Microsoft.EventGrid/topicTypes/eventTypes
+            - properties:
+                description: Raised when a blob is deleted.
+                schemaUrl: tbd
+                displayName: Blob Deleted
+              id: providers/Microsoft.EventGrid/topicTypes/Microsoft.Storage.StorageAccounts/eventTypes/Microsoft.Storage.BlobDeleted
+              name: Microsoft.Storage.BlobDeleted
+              type: Microsoft.EventGrid/topicTypes/eventTypes
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        providerNamespace: Microsoft.Storage
+        resourceName: ExampleStorageAccount
+        resourceTypeName: storageAccounts
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - name: Microsoft.Storage.BlobCreated
+              type: Microsoft.EventGrid/topicTypes/eventTypes
+              id: /providers/Microsoft.EventGrid/topicTypes/Microsoft.Storage.StorageAccounts/eventTypes/Microsoft.Storage.BlobCreated
+              properties:
+                description: Raised when a blob is created.
+                displayName: Blob Created
+                schemaUrl: tbd
+            - name: Microsoft.Storage.BlobDeleted
+              type: Microsoft.EventGrid/topicTypes/eventTypes
+              id: /providers/Microsoft.EventGrid/topicTypes/Microsoft.Storage.StorageAccounts/eventTypes/Microsoft.Storage.BlobDeleted
+              properties:
+                description: Raised when a blob is deleted.
+                displayName: Blob Deleted
+                schemaUrl: tbd
+Topics.listSharedAccessKeys:
+  - request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        topicName: exampletopic2
+    responses:
+      200:
+        body:
+          key1: <key1>
+          key2: <key2>
+  - since: "2020-10-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        topicName: exampletopic2
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+  - since: "2021-12-01"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        topicName: exampletopic2
+    responses:
+      200:
+        body:
+          key1: <key1>
+          key2: <key2>
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        topicName: exampletopic2
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        topicName: exampletopic2
+    responses:
+      200:
+        body:
+          key1: <key1>
+          key2: <key2>
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        topicName: exampletopic2
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+  - since: "2025-07-15-preview"
+    request:
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+      path:
+        topicName: exampletopic2
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+Topics.regenerateKey:
+  - request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        topicName: exampletopic2
+      body:
+        keyName: key1
+    responses:
+      200:
+        body:
+          key1: <key1>
+          key2: <key2>
+  - since: "2020-10-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        topicName: exampletopic2
+      body:
+        keyName: key1
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+      202: {}
+  - since: "2021-12-01"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        topicName: exampletopic2
+      body:
+        keyName: key1
+    responses:
+      200:
+        body:
+          key1: <key1>
+          key2: <key2>
+  - since: "2022-06-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        topicName: exampletopic2
+      body:
+        keyName: key1
+    responses:
+      200:
+        body:
+          key1: <key1>
+          key2: <key2>
+      202: {}
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        topicName: exampletopic2
+      body:
+        keyName: key1
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        topicName: exampletopic2
+      body:
+        keyName: key1
+    responses:
+      200:
+        body:
+          key1: <key1>
+          key2: <key2>
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        topicName: exampletopic2
+      body:
+        keyName: key1
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+  - since: "2025-07-15-preview"
+    request:
+      body:
+        keyName: key1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+      path:
+        topicName: exampletopic2
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+      202:
+        headers:
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+Topics.update:
+  - since: "2017-09-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        topicName: exampletopic1
+      body:
+        tags:
+          tag1: value1
+          tag2: value2
+    responses:
+      201:
+        body:
+          properties:
+            endpoint: https://exampletopic1.westus2-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1
+          location: westus2
+          name: exampletopic1
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/topics
+  - since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        topicName: exampletopic1
+      body:
+        tags:
+          tag1: value1
+          tag2: value2
+        properties:
+          publicNetworkAccess: Enabled
+          inboundIpRules:
+            - ipMask: 12.18.30.15
+              action: Allow
+            - ipMask: 12.18.176.1
+              action: Allow
+    responses:
+      200: {}
+      201:
+        body:
+          properties:
+            endpoint: https://exampletopic1.westus2-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+            publicNetworkAccess: Enabled
+            inboundIpRules:
+              - ipMask: 12.18.30.15
+                action: Allow
+              - ipMask: 12.18.176.1
+                action: Allow
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1
+          location: westus2
+          name: exampletopic1
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/topics
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        topicName: exampletopic1
+      body:
+        tags:
+          tag1: value1
+          tag2: value2
+        properties:
+          publicNetworkAccess: Enabled
+          inboundIpRules:
+            - ipMask: 12.18.30.15
+              action: Allow
+            - ipMask: 12.18.176.1
+              action: Allow
+    responses:
+      200: {}
+      201:
+        body:
+          properties:
+            endpoint: https://exampletopic1.westus2-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+            publicNetworkAccess: Enabled
+            inboundIpRules:
+              - ipMask: 12.18.30.15
+                action: Allow
+              - ipMask: 12.18.176.1
+                action: Allow
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1
+          location: westus2
+          name: exampletopic1
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/topics
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        topicName: exampletopic1
+      body:
+        tags:
+          tag1: value1
+          tag2: value2
+        properties:
+          publicNetworkAccess: Enabled
+          inboundIpRules:
+            - ipMask: 12.18.30.15
+              action: Allow
+            - ipMask: 12.18.176.1
+              action: Allow
+    responses:
+      200: {}
+      201:
+        body:
+          properties:
+            endpoint: https://exampletopic1.westus2-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+            publicNetworkAccess: Enabled
+            inboundIpRules:
+              - ipMask: 12.18.30.15
+                action: Allow
+              - ipMask: 12.18.176.1
+                action: Allow
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1
+          location: westus2
+          name: exampletopic1
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/topics
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        topicName: exampletopic1
+      body:
+        tags:
+          tag1: value1
+          tag2: value2
+        properties:
+          publicNetworkAccess: Enabled
+          inboundIpRules:
+            - ipMask: 12.18.30.15
+              action: Allow
+            - ipMask: 12.18.176.1
+              action: Allow
+    responses:
+      200: {}
+      201:
+        body:
+          properties:
+            endpoint: https://exampletopic1.westus2-1.eventgrid.azure.net/api/events
+            provisioningState: Succeeded
+            publicNetworkAccess: Enabled
+            inboundIpRules:
+              - ipMask: 12.18.30.15
+                action: Allow
+              - ipMask: 12.18.176.1
+                action: Allow
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1
+          location: westus2
+          name: exampletopic1
+          tags:
+            tag1: value1
+            tag2: value2
+          type: Microsoft.EventGrid/topics
+  - since: "2025-07-15-preview"
+    request:
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+      path:
+        topicName: exampletopic1
+      body:
+        properties:
+          inboundIpRules:
+            - action: Allow
+              ipMask: 12.18.30.15
+            - action: Allow
+              ipMask: 12.18.176.1
+          publicNetworkAccess: Enabled
+        tags:
+          tag1: value1
+          tag2: value2
+    responses:
+      200: {}
+      201:
+        body:
+          name: exampletopic1
+          type: Microsoft.EventGrid/topics
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampletopic1
+          location: westus2
+          properties:
+            endpoint: https://exampletopic1.westus2-1.eventgrid.azure.net/api/events
+            inboundIpRules:
+              - action: Allow
+                ipMask: 12.18.30.15
+              - action: Allow
+                ipMask: 12.18.176.1
+            provisioningState: Succeeded
+            publicNetworkAccess: Enabled
+          tags:
+            tag1: value1
+            tag2: value2

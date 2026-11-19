@@ -1,0 +1,396 @@
+$namespace: Microsoft.EventGrid
+DomainTopics.createOrUpdate:
+  - since: "2019-02-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain1
+        domainTopicName: exampledomaintopic1
+    responses:
+      201:
+        body:
+          properties:
+            provisioningState: Succeeded
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1/topics/exampledomaintopic1
+          name: exampledomaintopic1
+          type: Microsoft.EventGrid/domains/topics
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        domainName: exampledomain1
+        domainTopicName: exampledomaintopic1
+    responses:
+      201:
+        body:
+          properties:
+            provisioningState: Succeeded
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1/topics/exampledomaintopic1
+          name: exampledomaintopic1
+          type: Microsoft.EventGrid/domains/topics
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain1
+        domainTopicName: exampledomaintopic1
+    responses:
+      201:
+        body:
+          properties:
+            provisioningState: Succeeded
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1/topics/exampledomaintopic1
+          name: exampledomaintopic1
+          type: Microsoft.EventGrid/domains/topics
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        domainName: exampledomain1
+        domainTopicName: exampledomaintopic1
+    responses:
+      201:
+        body:
+          properties:
+            provisioningState: Succeeded
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1/topics/exampledomaintopic1
+          name: exampledomaintopic1
+          type: Microsoft.EventGrid/domains/topics
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        domainName: exampledomain1
+        domainTopicName: exampledomaintopic1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      201:
+        body:
+          name: exampledomaintopic1
+          type: Microsoft.EventGrid/domains/topics
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1/topics/exampledomaintopic1
+          properties:
+            provisioningState: Succeeded
+DomainTopics.delete:
+  - since: "2019-02-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain1
+        domainTopicName: exampledomaintopic1
+    responses:
+      202: {}
+      204: {}
+  - since: "2020-04-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain1
+        domainTopicName: exampledomaintopic1
+    responses:
+      200: {}
+      202: {}
+      204: {}
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        domainName: exampledomain1
+        domainTopicName: exampledomaintopic1
+    responses:
+      200: {}
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+      204: {}
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain1
+        domainTopicName: exampledomaintopic1
+    responses:
+      200: {}
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+      204: {}
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        domainName: exampledomain1
+        domainTopicName: exampledomaintopic1
+    responses:
+      200: {}
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+      204: {}
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        domainName: exampledomain1
+        domainTopicName: exampledomaintopic1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200: {}
+      202:
+        headers:
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+      204: {}
+DomainTopics.get:
+  - since: "2018-09-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+        topicName: topic1
+    responses:
+      200:
+        body:
+          properties: {}
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain2/topics/topic1
+          location: westcentralus
+          name: topic1
+          type: Microsoft.EventGrid/domains/topics
+  - since: "2019-02-01-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+      query:
+        topicName: topic1
+    responses:
+      200:
+        body:
+          properties: {}
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain2/topics/topic1
+          location: westcentralus
+          name: topic1
+          type: Microsoft.EventGrid/domains/topics
+  - since: "2019-06-01"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+        domainTopicName: topic1
+    responses:
+      200:
+        body:
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain2/topics/topic1
+          name: topic1
+          properties:
+            provisioningState: Succeeded
+          type: Microsoft.EventGrid/domains/topics
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+        domainTopicName: topic1
+    responses:
+      200:
+        body:
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain2/topics/topic1
+          name: topic1
+          properties:
+            provisioningState: Succeeded
+          type: Microsoft.EventGrid/domains/topics
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+        domainTopicName: topic1
+    responses:
+      200:
+        body:
+          id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain2/topics/topic1
+          name: topic1
+          properties:
+            provisioningState: Succeeded
+          type: Microsoft.EventGrid/domains/topics
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+        domainTopicName: topic1
+    responses:
+      200:
+        body:
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain2/topics/topic1
+          name: topic1
+          properties:
+            provisioningState: Succeeded
+          type: Microsoft.EventGrid/domains/topics
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        domainName: exampledomain2
+        domainTopicName: topic1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          name: topic1
+          type: Microsoft.EventGrid/domains/topics
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain2/topics/topic1
+          properties:
+            provisioningState: Succeeded
+DomainTopics.listByDomain:
+  - since: "2018-09-15-preview"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                endpoint: https://exampledomain1.westus2-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain1
+              location: westus2
+              name: exampledomain1
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/domains
+            - properties:
+                endpoint: https://exampledomain2.westcentralus-1.eventgrid.azure.net/api/events
+                provisioningState: Succeeded
+              id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/examplerg/providers/Microsoft.EventGrid/domains/exampledomain2
+              location: westcentralus
+              name: exampledomain2
+              tags:
+                tag1: value1
+                tag2: value2
+              type: Microsoft.EventGrid/domains
+  - since: "2019-06-01"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+    responses:
+      200:
+        body:
+          value:
+            - id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/devexprg/providers/Microsoft.EventGrid/domains/domainCli100/topics/domainCli100topic1
+              name: domainCli100topic1
+              properties:
+                provisioningState: Succeeded
+              type: Microsoft.EventGrid/domains/topics
+            - id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/devexprg/providers/Microsoft.EventGrid/domains/domainCli100/topics/domainCli100topic2
+              name: domainCli100topic2
+              properties:
+                provisioningState: Succeeded
+              type: Microsoft.EventGrid/domains/topics
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+    responses:
+      200:
+        body:
+          value:
+            - id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/devexprg/providers/Microsoft.EventGrid/domains/domainCli100/topics/domainCli100topic1
+              name: domainCli100topic1
+              properties:
+                provisioningState: Succeeded
+              type: Microsoft.EventGrid/domains/topics
+            - id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/devexprg/providers/Microsoft.EventGrid/domains/domainCli100/topics/domainCli100topic2
+              name: domainCli100topic2
+              properties:
+                provisioningState: Succeeded
+              type: Microsoft.EventGrid/domains/topics
+  - since: "2025-02-15"
+    request:
+      path:
+        subscriptionId: 5b4b650e-28b9-4790-b3ab-ddbd88d727c4
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+    responses:
+      200:
+        body:
+          value:
+            - id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/devexprg/providers/Microsoft.EventGrid/domains/domainCli100/topics/domainCli100topic1
+              name: domainCli100topic1
+              properties:
+                provisioningState: Succeeded
+              type: Microsoft.EventGrid/domains/topics
+            - id: /subscriptions/5b4b650e-28b9-4790-b3ab-ddbd88d727c4/resourceGroups/devexprg/providers/Microsoft.EventGrid/domains/domainCli100/topics/domainCli100topic2
+              name: domainCli100topic2
+              properties:
+                provisioningState: Succeeded
+              type: Microsoft.EventGrid/domains/topics
+  - since: "2025-04-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        domainName: exampledomain2
+    responses:
+      200:
+        body:
+          value:
+            - id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/devexprg/providers/Microsoft.EventGrid/domains/domainCli100/topics/domainCli100topic1
+              name: domainCli100topic1
+              properties:
+                provisioningState: Succeeded
+              type: Microsoft.EventGrid/domains/topics
+            - id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/devexprg/providers/Microsoft.EventGrid/domains/domainCli100/topics/domainCli100topic2
+              name: domainCli100topic2
+              properties:
+                provisioningState: Succeeded
+              type: Microsoft.EventGrid/domains/topics
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        domainName: exampledomain2
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - name: domainCli100topic1
+              type: Microsoft.EventGrid/domains/topics
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/devexprg/providers/Microsoft.EventGrid/domains/domainCli100/topics/domainCli100topic1
+              properties:
+                provisioningState: Succeeded
+            - name: domainCli100topic2
+              type: Microsoft.EventGrid/domains/topics
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/devexprg/providers/Microsoft.EventGrid/domains/domainCli100/topics/domainCli100topic2
+              properties:
+                provisioningState: Succeeded

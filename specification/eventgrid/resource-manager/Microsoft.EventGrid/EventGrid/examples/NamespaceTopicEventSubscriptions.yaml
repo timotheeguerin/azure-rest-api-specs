@@ -1,0 +1,441 @@
+$namespace: Microsoft.EventGrid
+NamespaceTopicEventSubscriptions.createOrUpdate:
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        namespaceName: examplenamespace2
+        topicName: examplenamespacetopic2
+        eventSubscriptionName: examplenamespacetopicEventSub2
+      body:
+        properties:
+          deliveryConfiguration:
+            deliveryMode: Queue
+            queue:
+              receiveLockDurationInSeconds: 60
+              maxDeliveryCount: 4
+              eventTimeToLive: P1D
+          eventDeliverySchema: CloudEventSchemaV1_0
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Succeeded
+            deliveryConfiguration:
+              deliveryMode: Queue
+              queue:
+                receiveLockDurationInSeconds: 60
+                maxDeliveryCount: 4
+                eventTimeToLive: P1D
+            eventDeliverySchema: CloudEventSchemaV1_0
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/examplenamespace2/topics/examplenamespacetopic2/eventSubscriptions/examplenamespacetopicEventSub2
+          name: examplenamespacetopicEventSub2
+          type: Microsoft.EventGrid/namespaces/topics/eventsubscriptions
+          systemData: null
+      201:
+        body:
+          properties:
+            provisioningState: Creating
+            deliveryConfiguration:
+              deliveryMode: Queue
+              queue:
+                receiveLockDurationInSeconds: 60
+                maxDeliveryCount: 4
+                eventTimeToLive: P1D
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/examplenamespace2/topics/examplenamespacetopic2/eventSubscriptions/examplenamespacetopicEventSub2
+          name: examplenamespacetopicEventSub2
+          type: Microsoft.EventGrid/namespaces/topics/eventsubscriptions
+          systemData: null
+  - since: "2025-07-15-preview"
+    request:
+      body:
+        properties:
+          deliveryConfiguration:
+            deliveryMode: Queue
+            queue:
+              eventTimeToLive: P1D
+              maxDeliveryCount: 4
+              receiveLockDurationInSeconds: 60
+          eventDeliverySchema: CloudEventSchemaV1_0
+      path:
+        eventSubscriptionName: examplenamespacetopicEventSub2
+        namespaceName: examplenamespace2
+        topicName: examplenamespacetopic2
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          name: examplenamespacetopicEventSub2
+          type: Microsoft.EventGrid/namespaces/topics/eventsubscriptions
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/examplenamespace2/topics/examplenamespacetopic2/eventSubscriptions/examplenamespacetopicEventSub2
+          properties:
+            deliveryConfiguration:
+              deliveryMode: Queue
+              queue:
+                eventTimeToLive: P1D
+                maxDeliveryCount: 4
+                receiveLockDurationInSeconds: 60
+            eventDeliverySchema: CloudEventSchemaV1_0
+            provisioningState: Succeeded
+          systemData: null
+      201:
+        body:
+          name: examplenamespacetopicEventSub2
+          type: Microsoft.EventGrid/namespaces/topics/eventsubscriptions
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/examplenamespace2/topics/examplenamespacetopic2/eventSubscriptions/examplenamespacetopicEventSub2
+          properties:
+            deliveryConfiguration:
+              deliveryMode: Queue
+              queue:
+                eventTimeToLive: P1D
+                maxDeliveryCount: 4
+                receiveLockDurationInSeconds: 60
+            provisioningState: Creating
+          systemData: null
+NamespaceTopicEventSubscriptions.delete:
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        namespaceName: examplenamespace2
+        topicName: examplenamespacetopic2
+        eventSubscriptionName: examplenamespacetopicEventSub2
+    responses:
+      200: {}
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+      204: {}
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        eventSubscriptionName: examplenamespacetopicEventSub2
+        namespaceName: examplenamespace2
+        topicName: examplenamespacetopic2
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200: {}
+      202:
+        headers:
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+      204: {}
+NamespaceTopicEventSubscriptions.get:
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        namespaceName: examplenamespace2
+        topicName: examplenamespacetopic2
+        eventSubscriptionName: examplenamespacetopicEventSub1
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Succeeded
+            deliveryConfiguration:
+              deliveryMode: Queue
+              queue:
+                receiveLockDurationInSeconds: 60
+                maxDeliveryCount: 4
+                eventTimeToLive: P1D
+            eventDeliverySchema: CloudEventSchemaV1_0
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/examplenamespace2/topics/examplenamespacetopic2/eventSubscriptions/examplenamespacetopicEventSub2
+          name: examplenamespacetopicEventSub2
+          type: Microsoft.EventGrid/namespaces/topics/eventsubscriptions
+          systemData: null
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        eventSubscriptionName: examplenamespacetopicEventSub1
+        namespaceName: examplenamespace2
+        topicName: examplenamespacetopic2
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          name: examplenamespacetopicEventSub2
+          type: Microsoft.EventGrid/namespaces/topics/eventsubscriptions
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/examplenamespace2/topics/examplenamespacetopic2/eventSubscriptions/examplenamespacetopicEventSub2
+          properties:
+            deliveryConfiguration:
+              deliveryMode: Queue
+              queue:
+                eventTimeToLive: P1D
+                maxDeliveryCount: 4
+                receiveLockDurationInSeconds: 60
+            eventDeliverySchema: CloudEventSchemaV1_0
+            provisioningState: Succeeded
+          systemData: null
+NamespaceTopicEventSubscriptions.getDeliveryAttributes:
+  - since: "2023-12-15-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        namespaceName: exampleNamespace
+        topicName: exampleNamespaceTopic
+        eventSubscriptionName: exampleEventSubscriptionName
+    responses:
+      200:
+        body:
+          value:
+            - name: header1
+              type: Static
+              properties:
+                value: NormalValue
+                isSecret: false
+            - name: header2
+              type: Dynamic
+              properties:
+                sourceField: data.foo
+            - name: header3
+              type: Static
+              properties:
+                value: mySecretValue
+                isSecret: true
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        eventSubscriptionName: exampleEventSubscriptionName
+        namespaceName: exampleNamespace
+        topicName: exampleNamespaceTopic
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - name: header1
+              type: Static
+              properties:
+                isSecret: false
+                value: NormalValue
+            - name: header2
+              type: Dynamic
+              properties:
+                sourceField: data.foo
+            - name: header3
+              type: Static
+              properties:
+                isSecret: true
+                value: mySecretValue
+NamespaceTopicEventSubscriptions.getFullUrl:
+  - since: "2024-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        namespaceName: exampleNamespaceName1
+        topicName: exampleDomainTopic1
+        eventSubscriptionName: examplesubscription1
+    responses:
+      200:
+        body:
+          endpointUrl: https://requestb.in/15ksip71
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        eventSubscriptionName: examplesubscription1
+        namespaceName: exampleNamespaceName1
+        topicName: exampleDomainTopic1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          endpointUrl: https://requestb.in/15ksip71
+NamespaceTopicEventSubscriptions.listByNamespaceTopic:
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        namespaceName: examplenamespace2
+        topicName: examplenamespacetopic2
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                provisioningState: Succeeded
+                deliveryConfiguration:
+                  deliveryMode: Queue
+                  queue:
+                    receiveLockDurationInSeconds: 50
+                    maxDeliveryCount: 5
+                    eventTimeToLive: P1D
+                eventDeliverySchema: CloudEventSchemaV1_0
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/examplenamespace2/topics/examplenamespacetopic2/eventSubscriptions/examplenamespacetopicEventSub1
+              name: examplenamespacetopicEventSub1
+              type: Microsoft.EventGrid/namespaces/topics/eventsubscriptions
+              systemData: null
+            - properties:
+                provisioningState: Succeeded
+                deliveryConfiguration:
+                  deliveryMode: Queue
+                  queue:
+                    receiveLockDurationInSeconds: 60
+                    maxDeliveryCount: 4
+                    eventTimeToLive: P1D
+                eventDeliverySchema: CloudEventSchemaV1_0
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/examplenamespace2/topics/examplenamespacetopic2/eventSubscriptions/examplenamespacetopicEventSub2
+              name: examplenamespacetopicEventSub2
+              type: Microsoft.EventGrid/namespaces/topics/eventsubscriptions
+              systemData: null
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        namespaceName: examplenamespace2
+        topicName: examplenamespacetopic2
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - name: examplenamespacetopicEventSub1
+              type: Microsoft.EventGrid/namespaces/topics/eventsubscriptions
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/examplenamespace2/topics/examplenamespacetopic2/eventSubscriptions/examplenamespacetopicEventSub1
+              properties:
+                deliveryConfiguration:
+                  deliveryMode: Queue
+                  queue:
+                    eventTimeToLive: P1D
+                    maxDeliveryCount: 5
+                    receiveLockDurationInSeconds: 50
+                eventDeliverySchema: CloudEventSchemaV1_0
+                provisioningState: Succeeded
+              systemData: null
+            - name: examplenamespacetopicEventSub2
+              type: Microsoft.EventGrid/namespaces/topics/eventsubscriptions
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/examplenamespace2/topics/examplenamespacetopic2/eventSubscriptions/examplenamespacetopicEventSub2
+              properties:
+                deliveryConfiguration:
+                  deliveryMode: Queue
+                  queue:
+                    eventTimeToLive: P1D
+                    maxDeliveryCount: 4
+                    receiveLockDurationInSeconds: 60
+                eventDeliverySchema: CloudEventSchemaV1_0
+                provisioningState: Succeeded
+              systemData: null
+NamespaceTopicEventSubscriptions.update:
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        namespaceName: exampleNamespaceName1
+        topicName: exampleNamespaceTopicName1
+        eventSubscriptionName: exampleNamespaceTopicEventSubscriptionName1
+      body:
+        properties:
+          deliveryConfiguration:
+            deliveryMode: Queue
+            queue:
+              receiveLockDurationInSeconds: 60
+              maxDeliveryCount: 3
+              eventTimeToLive: P1D
+          eventDeliverySchema: CloudEventSchemaV1_0
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Succeeded
+            deliveryConfiguration:
+              deliveryMode: Queue
+              queue:
+                receiveLockDurationInSeconds: 60
+                maxDeliveryCount: 3
+                eventTimeToLive: P1D
+            eventDeliverySchema: CloudEventSchemaV1_0
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/examplenamespace2/topics/exampleNamespaceTopicName1/eventSubscriptions/exampleNamespaceTopicEventSubscriptionName1
+          name: exampleNamespaceTopicEventSubscriptionName1
+          type: Microsoft.EventGrid/namespaces/topics/eventsubscriptions
+          systemData: null
+      202:
+        headers:
+          Azure-AsyncOperation: https://management.windowsazure.com/subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespaceName1/topics/exampleNamespaceTopicName1/eventSubscriptions/exampleNamespaceTopicEventSubscriptionName1/operationStatus/7B023877-A473-457B-B462-562F97048FB6?api-version={api-version}
+          Location: https://management.windowsazure.com/subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespaceName1/topics/exampleNamespaceTopicName1/eventSubscriptions/exampleNamespaceTopicEventSubscriptionName1/operationResults/7B023877-A473-457B-B462-562F97048FB6?api-version={api-version}
+          Retry-After: "60"
+        body:
+          properties:
+            provisioningState: Updating
+            deliveryConfiguration:
+              deliveryMode: Queue
+              queue:
+                receiveLockDurationInSeconds: 60
+                maxDeliveryCount: 3
+                eventTimeToLive: P1D
+            eventDeliverySchema: CloudEventSchemaV1_0
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/examplenamespace2/topics/exampleNamespaceTopicName1/eventSubscriptions/exampleNamespaceTopicEventSubscriptionName1
+          name: exampleNamespaceTopicEventSubscriptionName1
+          type: Microsoft.EventGrid/namespaces/topics/eventsubscriptions
+          systemData: null
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        eventSubscriptionName: exampleNamespaceTopicEventSubscriptionName1
+        namespaceName: exampleNamespaceName1
+        topicName: exampleNamespaceTopicName1
+      body:
+        properties:
+          deliveryConfiguration:
+            deliveryMode: Queue
+            queue:
+              eventTimeToLive: P1D
+              maxDeliveryCount: 3
+              receiveLockDurationInSeconds: 60
+          eventDeliverySchema: CloudEventSchemaV1_0
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          name: exampleNamespaceTopicEventSubscriptionName1
+          type: Microsoft.EventGrid/namespaces/topics/eventsubscriptions
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/examplenamespace2/topics/exampleNamespaceTopicName1/eventSubscriptions/exampleNamespaceTopicEventSubscriptionName1
+          properties:
+            deliveryConfiguration:
+              deliveryMode: Queue
+              queue:
+                eventTimeToLive: P1D
+                maxDeliveryCount: 3
+                receiveLockDurationInSeconds: 60
+            eventDeliverySchema: CloudEventSchemaV1_0
+            provisioningState: Succeeded
+          systemData: null
+      202:
+        headers:
+          Azure-AsyncOperation: https://management.windowsazure.com/subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespaceName1/topics/exampleNamespaceTopicName1/eventSubscriptions/exampleNamespaceTopicEventSubscriptionName1/operationStatus/7B023877-A473-457B-B462-562F97048FB6?api-version={api-version}
+          Location: https://management.windowsazure.com/subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespaceName1/topics/exampleNamespaceTopicName1/eventSubscriptions/exampleNamespaceTopicEventSubscriptionName1/operationResults/7B023877-A473-457B-B462-562F97048FB6?api-version={api-version}
+          Retry-After: "60"
+        body:
+          name: exampleNamespaceTopicEventSubscriptionName1
+          type: Microsoft.EventGrid/namespaces/topics/eventsubscriptions
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/examplenamespace2/topics/exampleNamespaceTopicName1/eventSubscriptions/exampleNamespaceTopicEventSubscriptionName1
+          properties:
+            deliveryConfiguration:
+              deliveryMode: Queue
+              queue:
+                eventTimeToLive: P1D
+                maxDeliveryCount: 3
+                receiveLockDurationInSeconds: 60
+            eventDeliverySchema: CloudEventSchemaV1_0
+            provisioningState: Updating
+          systemData: null

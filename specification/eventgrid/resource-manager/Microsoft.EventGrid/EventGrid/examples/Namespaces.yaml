@@ -1,0 +1,469 @@
+$namespace: Microsoft.EventGrid
+Namespaces.createOrUpdate:
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        namespaceName: exampleNamespaceName1
+      body:
+        location: westus
+        tags:
+          tag1: value11
+          tag2: value22
+        properties:
+          topicSpacesConfiguration:
+            state: Enabled
+            routeTopicResourceId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic1
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Creating
+            topicSpacesConfiguration:
+              state: Enabled
+              routeTopicResourceId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic1
+              hostname: null
+          location: westus
+          tags:
+            key1: value11
+            key2: value22
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespaceName1
+          name: exampleNamespaceName1
+          type: Microsoft.EventGrid/Namespaces
+      201:
+        body:
+          properties:
+            provisioningState: Creating
+            topicSpacesConfiguration:
+              state: Enabled
+              routeTopicResourceId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic1
+              hostname: null
+          location: westus
+          tags:
+            key1: value11
+            key2: value22
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespaceName1
+          name: exampleNamespaceName1
+          type: Microsoft.EventGrid/Namespaces
+  - since: "2025-07-15-preview"
+    request:
+      body:
+        location: westus
+        properties:
+          topicSpacesConfiguration:
+            routeTopicResourceId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic1
+            state: Enabled
+        tags:
+          tag1: value11
+          tag2: value22
+      path:
+        namespaceName: exampleNamespaceName1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          name: exampleNamespaceName1
+          type: Microsoft.EventGrid/Namespaces
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespaceName1
+          location: westus
+          properties:
+            provisioningState: Creating
+            topicSpacesConfiguration:
+              hostname: null
+              routeTopicResourceId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic1
+              state: Enabled
+          tags:
+            key1: value11
+            key2: value22
+      201:
+        body:
+          name: exampleNamespaceName1
+          type: Microsoft.EventGrid/Namespaces
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespaceName1
+          location: westus
+          properties:
+            provisioningState: Creating
+            topicSpacesConfiguration:
+              hostname: null
+              routeTopicResourceId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic1
+              state: Enabled
+          tags:
+            key1: value11
+            key2: value22
+Namespaces.delete:
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        namespaceName: exampleNamespaceName1
+    responses:
+      200: {}
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+      204: {}
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        namespaceName: exampleNamespaceName1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200: {}
+      202:
+        headers:
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+      204: {}
+Namespaces.get:
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        namespaceName: exampleNamespaceName1
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Succeeded
+            topicSpacesConfiguration:
+              state: Enabled
+              routeTopicResourceId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic1
+              hostname: exampleNamespaceName1.westus-1.mqtt.eventgrid-int.azure.net
+          location: West US
+          tags:
+            key1: value1
+            key2: value2
+            key3: value3
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespaceName1
+          name: exampleNamespaceName1
+          type: Microsoft.EventGrid/namespaces
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        namespaceName: exampleNamespaceName1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          name: exampleNamespaceName1
+          type: Microsoft.EventGrid/namespaces
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespaceName1
+          location: West US
+          properties:
+            provisioningState: Succeeded
+            topicSpacesConfiguration:
+              hostname: exampleNamespaceName1.westus-1.mqtt.eventgrid-int.azure.net
+              routeTopicResourceId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic1
+              state: Enabled
+          tags:
+            key1: value1
+            key2: value2
+            key3: value3
+Namespaces.listByResourceGroup:
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                provisioningState: Succeeded
+                topicSpacesConfiguration:
+                  state: Enabled
+                  routeTopicResourceId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic1
+                  hostname: exampleNamespaceName1.westus-1.mqtt.eventgrid-int.azure.net
+              location: West US
+              tags:
+                key1: value1
+                key2: value2
+                key3: value3
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespaceName1
+              name: exampleNamespaceName1
+              type: Microsoft.EventGrid/namespaces
+          nextLink: https://xyz.net/subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/microsoft.eventgrid/namespaces?{api-version}&%24skiptoken=7ZjtaqQwFIbvRWp%2f1dHJ6GgHypK1yro707F%2bdOn%2bUxPdMJhIkmqh9N43cYfeg6CE%2bB45mI%2bHlxz9MCh%2bl0dCL8I4fBi%2fo7woc%2bNg%2fJVyEAfbrgZiIda1jKENx4K98QaLzUQoYpOwCJUbiqUt3mrRcDJIwqiwkRt4%2b30VWMAFgeVW%2b8YKdq5v3e99Dzn3bR14W3vgbCQIc2H3pOFMsFZu8Iip7DhBtmQDacQ3PfqoctRrH4ADgLV1rK1nDRyPBE%2b3N%2bKixmQXTB9Mrzb92gRgDtXd3FW6B3WWPGrt49F5fYS%2ffP7SJxf4dZk7pBvYZYVK2ypRZKFSwFEyyV%2b01Co6K7X3PE%2bnPIexigKl4lQnwy7SL%2bxgeIIlDKGcTslrB6cu5SZoJ6dpwziCbqqC8ll1QQtDeqp5k81zbFTPK9rh67znhfSEXkO9DNV0Vl%2b9fz2MYy19pJuHbm%2fUnqlNMu6uEMFKcdEU83NZ%2fAijpyKDx9WSC7fk9wz%2bSY4z0tWWi7alPiGjMjun0Qpy0SAjqEud9ZTUBc5ya53%2fFFcrLh4izBO4Ylw0xrm80YZcWS7%2bG%2fInTOGTrnVWTy7Yk593RsV72HUcd5XEqND%2fShRRmJ2Mz38%3d
+  - since: "2025-07-15-preview"
+    request:
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          nextLink: https://xyz.net/subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/microsoft.eventgrid/namespaces?{api-version}&%24skiptoken=7ZjtaqQwFIbvRWp%2f1dHJ6GgHypK1yro707F%2bdOn%2bUxPdMJhIkmqh9N43cYfeg6CE%2bB45mI%2bHlxz9MCh%2bl0dCL8I4fBi%2fo7woc%2bNg%2fJVyEAfbrgZiIda1jKENx4K98QaLzUQoYpOwCJUbiqUt3mrRcDJIwqiwkRt4%2b30VWMAFgeVW%2b8YKdq5v3e99Dzn3bR14W3vgbCQIc2H3pOFMsFZu8Iip7DhBtmQDacQ3PfqoctRrH4ADgLV1rK1nDRyPBE%2b3N%2bKixmQXTB9Mrzb92gRgDtXd3FW6B3WWPGrt49F5fYS%2ffP7SJxf4dZk7pBvYZYVK2ypRZKFSwFEyyV%2b01Co6K7X3PE%2bnPIexigKl4lQnwy7SL%2bxgeIIlDKGcTslrB6cu5SZoJ6dpwziCbqqC8ll1QQtDeqp5k81zbFTPK9rh67znhfSEXkO9DNV0Vl%2b9fz2MYy19pJuHbm%2fUnqlNMu6uEMFKcdEU83NZ%2fAijpyKDx9WSC7fk9wz%2bSY4z0tWWi7alPiGjMjun0Qpy0SAjqEud9ZTUBc5ya53%2fFFcrLh4izBO4Ylw0xrm80YZcWS7%2bG%2fInTOGTrnVWTy7Yk593RsV72HUcd5XEqND%2fShRRmJ2Mz38%3d
+          value:
+            - name: exampleNamespaceName1
+              type: Microsoft.EventGrid/namespaces
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespaceName1
+              location: West US
+              properties:
+                provisioningState: Succeeded
+                topicSpacesConfiguration:
+                  hostname: exampleNamespaceName1.westus-1.mqtt.eventgrid-int.azure.net
+                  routeTopicResourceId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic1
+                  state: Enabled
+              tags:
+                key1: value1
+                key2: value2
+                key3: value3
+Namespaces.listBySubscription:
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          value:
+            - properties:
+                provisioningState: Succeeded
+                topicSpacesConfiguration:
+                  state: Enabled
+                  routeTopicResourceId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic1
+                  hostname: exampleNamespaceName1.westus-1.mqtt.eventgrid-int.azure.net
+              location: West US
+              tags:
+                key1: value1
+                key2: value2
+                key3: value3
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespaceName1
+              name: exampleNamespaceName1
+              type: Microsoft.EventGrid/namespaces
+          nextLink: https://xyz.net/subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/providers/microsoft.eventgrid/namespaces?{api-version}&%24skiptoken=7ZjtaqQwFIbvRWp%2f1dHJ6GgHypK1yro707F%2bdOn%2bUxPdMJhIkmqh9N43cYfeg6CE%2bB45mI%2bHlxz9MCh%2bl0dCL8I4fBi%2fo7woc%2bNg%2fJVyEAfbrgZiIda1jKENx4K98QaLzUQoYpOwCJUbiqUt3mrRcDJIwqiwkRt4%2b30VWMAFgeVW%2b8YKdq5v3e99Dzn3bR14W3vgbCQIc2H3pOFMsFZu8Iip7DhBtmQDacQ3PfqoctRrH4ADgLV1rK1nDRyPBE%2b3N%2bKixmQXTB9Mrzb92gRgDtXd3FW6B3WWPGrt49F5fYS%2ffP7SJxf4dZk7pBvYZYVK2ypRZKFSwFEyyV%2b01Co6K7X3PE%2bnPIexigKl4lQnwy7SL%2bxgeIIlDKGcTslrB6cu5SZoJ6dpwziCbqqC8ll1QQtDeqp5k81zbFTPK9rh67znhfSEXkO9DNV0Vl%2b9fz2MYy19pJuHbm%2fUnqlNMu6uEMFKcdEU83NZ%2fAijpyKDx9WSC7fk9wz%2bSY4z0tWWi7alPiGjMjun0Qpy0SAjqEud9ZTUBc5ya53%2fFFcrLh4izBO4Ylw0xrm80YZcWS7%2bG%2fInTOGTrnVWTy7Yk593RsV72HUcd5XEqND%2fShRRmJ2Mz38%3d
+  - since: "2025-07-15-preview"
+    request:
+      query:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          nextLink: https://xyz.net/subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/providers/microsoft.eventgrid/namespaces?{api-version}&%24skiptoken=7ZjtaqQwFIbvRWp%2f1dHJ6GgHypK1yro707F%2bdOn%2bUxPdMJhIkmqh9N43cYfeg6CE%2bB45mI%2bHlxz9MCh%2bl0dCL8I4fBi%2fo7woc%2bNg%2fJVyEAfbrgZiIda1jKENx4K98QaLzUQoYpOwCJUbiqUt3mrRcDJIwqiwkRt4%2b30VWMAFgeVW%2b8YKdq5v3e99Dzn3bR14W3vgbCQIc2H3pOFMsFZu8Iip7DhBtmQDacQ3PfqoctRrH4ADgLV1rK1nDRyPBE%2b3N%2bKixmQXTB9Mrzb92gRgDtXd3FW6B3WWPGrt49F5fYS%2ffP7SJxf4dZk7pBvYZYVK2ypRZKFSwFEyyV%2b01Co6K7X3PE%2bnPIexigKl4lQnwy7SL%2bxgeIIlDKGcTslrB6cu5SZoJ6dpwziCbqqC8ll1QQtDeqp5k81zbFTPK9rh67znhfSEXkO9DNV0Vl%2b9fz2MYy19pJuHbm%2fUnqlNMu6uEMFKcdEU83NZ%2fAijpyKDx9WSC7fk9wz%2bSY4z0tWWi7alPiGjMjun0Qpy0SAjqEud9ZTUBc5ya53%2fFFcrLh4izBO4Ylw0xrm80YZcWS7%2bG%2fInTOGTrnVWTy7Yk593RsV72HUcd5XEqND%2fShRRmJ2Mz38%3d
+          value:
+            - name: exampleNamespaceName1
+              type: Microsoft.EventGrid/namespaces
+              id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespaceName1
+              location: West US
+              properties:
+                provisioningState: Succeeded
+                topicSpacesConfiguration:
+                  hostname: exampleNamespaceName1.westus-1.mqtt.eventgrid-int.azure.net
+                  routeTopicResourceId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic1
+                  state: Enabled
+              tags:
+                key1: value1
+                key2: value2
+                key3: value3
+Namespaces.listSharedAccessKeys:
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        namespaceName: exampleNamespaceName1
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        namespaceName: exampleNamespaceName1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+Namespaces.regenerateKey:
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        namespaceName: exampleNamespaceName1
+      body:
+        keyName: key1
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        namespaceName: exampleNamespaceName1
+      body:
+        keyName: key1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          key1: testKey1Value
+          key2: testKey2Value
+      202:
+        headers:
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+Namespaces.update:
+  - since: "2023-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        namespaceName: exampleNamespaceName1
+      body:
+        tags:
+          tag1: value1Updated
+    responses:
+      200:
+        body:
+          properties:
+            provisioningState: Succeeded
+            topicSpacesConfiguration:
+              state: Enabled
+              routeTopicResourceId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic1
+              hostname: exampleNamespaceName1.westus-1.mqtt.eventgrid-int.azure.net
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespaceName1
+          name: exampleNamespaceName1
+          type: Microsoft.EventGrid/namespaces
+          location: westus
+      202:
+        headers:
+          Azure-AsyncOperation: https://management.windowsazure.com/subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/exampleNamespaceName1/providers/Microsoft.EventGrid/namespaces/exampleNamespaceName1/operationStatus/7B023877-A473-457B-B462-562F97048FB6?api-version={api-version}
+          Location: https://management.windowsazure.com/subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/exampleNamespaceName1/providers/Microsoft.EventGrid/namespaces/exampleNamespaceName1/operationResults/7B023877-A473-457B-B462-562F97048FB6?api-version={api-version}
+          Retry-After: "60"
+        body:
+          properties:
+            provisioningState: Succeeded
+            topicSpacesConfiguration:
+              state: Enabled
+              routeTopicResourceId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic1
+              hostname: exampleNamespaceName1.westus-1.mqtt.eventgrid-int.azure.net
+          location: West US
+          tags:
+            key1: value1Updated
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespaceName1
+          name: exampleNamespaceName1
+          type: Microsoft.EventGrid/namespaces
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        namespaceName: exampleNamespaceName1
+      body:
+        tags:
+          tag1: value1Updated
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          name: exampleNamespaceName1
+          type: Microsoft.EventGrid/namespaces
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespaceName1
+          location: westus
+          properties:
+            provisioningState: Succeeded
+            topicSpacesConfiguration:
+              hostname: exampleNamespaceName1.westus-1.mqtt.eventgrid-int.azure.net
+              routeTopicResourceId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic1
+              state: Enabled
+      202:
+        headers:
+          Azure-AsyncOperation: https://management.windowsazure.com/subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/exampleNamespaceName1/providers/Microsoft.EventGrid/namespaces/exampleNamespaceName1/operationStatus/7B023877-A473-457B-B462-562F97048FB6?api-version={api-version}
+          Location: https://management.windowsazure.com/subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/exampleNamespaceName1/providers/Microsoft.EventGrid/namespaces/exampleNamespaceName1/operationResults/7B023877-A473-457B-B462-562F97048FB6?api-version={api-version}
+          Retry-After: "60"
+        body:
+          name: exampleNamespaceName1
+          type: Microsoft.EventGrid/namespaces
+          id: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/namespaces/exampleNamespaceName1
+          location: West US
+          properties:
+            provisioningState: Succeeded
+            topicSpacesConfiguration:
+              hostname: exampleNamespaceName1.westus-1.mqtt.eventgrid-int.azure.net
+              routeTopicResourceId: /subscriptions/8f6b6269-84f2-4d09-9e31-1127efcd1e40/resourceGroups/examplerg/providers/Microsoft.EventGrid/topics/exampleTopic1
+              state: Enabled
+          tags:
+            key1: value1Updated
+Namespaces.validateCustomDomainOwnership:
+  - since: "2024-06-01-preview"
+    request:
+      path:
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+        resourceGroupName: examplerg
+        namespaceName: exampleNamespaceName1
+    responses:
+      200:
+        body:
+          customDomainsForTopicsConfiguration:
+            - fullyQualifiedDomainName: custom-domain-name-1
+              validationState: Pending
+              identity:
+                type: SystemAssigned
+              certificateUrl: string
+              expectedTxtRecordName: txt-record-name-1
+              expectedTxtRecordValue: txt-record-value-1
+          customDomainsForTopicSpacesConfiguration:
+            - fullyQualifiedDomainName: custom-domain-name-2
+              validationState: Pending
+              identity:
+                type: SystemAssigned
+              certificateUrl: string
+              expectedTxtRecordName: txt-record-name-2
+              expectedTxtRecordValue: txt-record-value-2
+      202:
+        headers:
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+  - since: "2025-07-15-preview"
+    request:
+      path:
+        namespaceName: exampleNamespaceName1
+      query:
+        resourceGroupName: examplerg
+        subscriptionId: 8f6b6269-84f2-4d09-9e31-1127efcd1e40
+    responses:
+      200:
+        body:
+          customDomainsForTopicSpacesConfiguration:
+            - certificateUrl: string
+              expectedTxtRecordName: txt-record-name-2
+              expectedTxtRecordValue: txt-record-value-2
+              fullyQualifiedDomainName: custom-domain-name-2
+              identity:
+                type: SystemAssigned
+              validationState: Pending
+          customDomainsForTopicsConfiguration:
+            - certificateUrl: string
+              expectedTxtRecordName: txt-record-name-1
+              expectedTxtRecordValue: txt-record-value-1
+              fullyQualifiedDomainName: custom-domain-name-1
+              identity:
+                type: SystemAssigned
+              validationState: Pending
+      202:
+        headers:
+          Azure-AsyncOperation: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationResults/00000000-0000-0000-0000-000000000000/Spring/default?api-version={api-version}
+          Location: https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/examplerg/providers/Microsoft.EventGrid/locations/eastus/operationStatus/default/operationId/00000000-0000-0000-0000-000000000000?api-version={api-version}
