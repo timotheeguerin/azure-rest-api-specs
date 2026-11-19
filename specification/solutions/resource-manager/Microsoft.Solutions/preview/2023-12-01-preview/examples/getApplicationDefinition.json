@@ -1,21 +1,19 @@
 {
   "parameters": {
-    "subscriptionId": "subid",
-    "resourceGroupName": "rg",
+    "api-version": "2023-12-01-preview",
     "applicationDefinitionName": "myManagedApplicationDef",
-    "api-version": "2023-12-01-preview"
+    "resourceGroupName": "rg",
+    "subscriptionId": "subid"
   },
   "responses": {
-    "404": {},
     "200": {
-      "headers": {},
       "body": {
         "name": "myManagedApplicationDef",
-        "id": "/subscriptions/subid/resourceGroups/rg/providers/Microsoft.Solutions/applicationDefinitions/myManagedApplicationDef",
         "type": "Microsoft.Solutions/applicationDefinitions",
+        "id": "/subscriptions/subid/resourceGroups/rg/providers/Microsoft.Solutions/applicationDefinitions/myManagedApplicationDef",
         "managedBy": null,
-        "sku": null,
         "properties": {
+          "description": "myManagedApplicationDef description",
           "artifacts": [
             {
               "name": "CreateUiDefinition",
@@ -34,17 +32,21 @@
               "roleDefinitionId": "validroleguid"
             }
           ],
-          "description": "myManagedApplicationDef description",
+          "deploymentPolicy": null,
           "displayName": "myManagedApplicationDef",
           "lockLevel": "None",
-          "packageFileUri": "https://path/to/packagezipfile",
-          "notificationPolicy": null,
           "lockingPolicy": null,
-          "deploymentPolicy": null,
           "managementPolicy": null,
+          "notificationPolicy": null,
+          "packageFileUri": "https://path/to/packagezipfile",
           "policies": []
-        }
-      }
-    }
-  }
+        },
+        "sku": null
+      },
+      "headers": {}
+    },
+    "404": {}
+  },
+  "operationId": "ApplicationDefinitions_Get",
+  "title": "Get managed application definition"
 }

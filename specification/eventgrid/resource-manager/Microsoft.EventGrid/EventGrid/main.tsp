@@ -13,10 +13,11 @@ import "@azure-tools/typespec-azure-core";
 import "@azure-tools/typespec-azure-resource-manager";
 import "./models.tsp";
 import "./back-compatible.tsp";
+import "./client.tsp";
 import "./CaCertificate.tsp";
 import "./Channel.tsp";
 import "./ClientGroup.tsp";
-import "./Client.tsp";
+import "./ClientResource.tsp";
 import "./Domain.tsp";
 import "./DomainTopic.tsp";
 import "./EventSubscription.tsp";
@@ -68,6 +69,12 @@ enum Versions {
    * The 2025-10-15-preview API version.
    */
   v2025_10_15_preview: "2025-10-15-preview",
+
+  /**
+   * The 2025-11-15-preview API version.
+   */
+  @previewVersion
+  v2025_11_15_preview: "2025-11-15-preview",
 }
 
 interface Operations

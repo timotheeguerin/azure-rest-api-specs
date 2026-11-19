@@ -1,24 +1,26 @@
 {
   "parameters": {
-    "subscriptionId": "subid",
-    "resourceGroupName": "rg",
+    "api-version": "2023-12-01-preview",
     "applicationName": "myManagedApplication",
-    "api-version": "2023-12-01-preview"
+    "resourceGroupName": "rg",
+    "subscriptionId": "subid"
   },
   "responses": {
     "200": {
-      "headers": {},
       "body": {
         "value": [
           {
             "name": "name",
-            "promotionCode": "promotionCode",
             "product": "product",
+            "promotionCode": "promotionCode",
             "publisher": "publisher",
             "version": "version"
           }
         ]
-      }
+      },
+      "headers": {}
     }
-  }
+  },
+  "operationId": "Applications_ListAllowedUpgradePlans",
+  "title": "List allowed upgrade plans for application"
 }
