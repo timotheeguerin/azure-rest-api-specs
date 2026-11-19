@@ -1,34 +1,34 @@
 {
   "parameters": {
-    "subscriptionId": "00000000-1111-2222-3333-444444444444",
-    "resourceGroupName": "test-rg",
-    "registryName": "my-aml-registry",
-    "componentName": "string",
-    "api-version": "2024-10-01-preview",
     "$orderBy": "string",
+    "$skipToken": "string",
     "$top": 1,
-    "$skipToken": "string"
+    "api-version": "2024-10-01-preview",
+    "componentName": "string",
+    "registryName": "my-aml-registry",
+    "resourceGroupName": "test-rg",
+    "subscriptionId": "00000000-1111-2222-3333-444444444444"
   },
   "responses": {
     "200": {
-      "headers": {},
       "body": {
+        "nextLink": "https://management.azure.com/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/testrg123/providers/Microsoft.MachineLearningServices/registries/registries123/components/string/versions?api-version=2025-07-01-preview&$skip=2",
         "value": [
           {
-            "id": "string",
             "name": "string",
             "type": "string",
+            "id": "string",
             "properties": {
               "description": "string",
-              "tags": {
-                "string": "string"
+              "componentSpec": {
+                "50acbce5-cccc-475a-8ac6-c4da402afbd8": null
               },
+              "isAnonymous": false,
               "properties": {
                 "string": "string"
               },
-              "isAnonymous": false,
-              "componentSpec": {
-                "50acbce5-cccc-475a-8ac6-c4da402afbd8": null
+              "tags": {
+                "string": "string"
               }
             },
             "systemData": {
@@ -40,9 +40,11 @@
               "lastModifiedByType": "User"
             }
           }
-        ],
-        "nextLink": "string"
-      }
+        ]
+      },
+      "headers": {}
     }
-  }
+  },
+  "operationId": "RegistryComponentVersions_List",
+  "title": "List Registry Component Version."
 }
