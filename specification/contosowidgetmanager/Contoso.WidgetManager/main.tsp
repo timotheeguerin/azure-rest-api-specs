@@ -24,6 +24,7 @@ enum Versions {
   v2022_12_01: "2022-12-01",
 }
 
+#suppress "@azure-tools/typespec-azure-core/documentation-required" "Initial demo suppression justification"
 @doc("A widget.")
 @resource("widgets")
 model WidgetSuite {
