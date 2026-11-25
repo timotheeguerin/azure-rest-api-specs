@@ -33,6 +33,7 @@ model WidgetSuite {
   @visibility(Lifecycle.Read)
   name: string;
 
+  #suppress "@azure-tools/typespec-azure-core/no-unknown" "Second demo suppression"
   @doc("The ID of the widget's manufacturer.")
   manufacturerId: string;
 
